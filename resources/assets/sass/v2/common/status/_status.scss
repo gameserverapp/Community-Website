@@ -1,0 +1,136 @@
+.status {
+    position: relative;
+    display: inline-block;
+    width:10px;
+    height:10px;
+    vertical-align: top;
+    background:$status_default;
+
+    @include border-radius($gutter);
+
+    &:before {
+        content: '';
+        position: absolute;
+        width:20px;
+        height:20px;
+        top: -5px;
+        left: -5px;
+        vertical-align: top;
+        opacity: 0.0;
+        border: 2px $status_default solid;
+
+        @include border-radius($gutter);
+
+    }
+
+    &.small {
+        width:7px;
+        height:7px;
+
+        &:before {
+            width:15px;
+            height:15px;
+            top: -4px;
+            left: -4px;
+        }
+    }
+
+    &.tiny {
+        width:4px;
+        height:4px;
+
+        &:before {
+            width:12px;
+            height:12px;
+            top: -4px;
+            left: -4px;
+            border-width: 1px;
+        }
+    }
+
+    &.aftername {
+        margin-left:2px;
+        margin-right:5px;
+    }
+    
+    &.middle {
+        vertical-align: middle;
+    }
+
+    &.before {
+        margin-right:5px
+    }
+
+    &.online,
+    &.new,
+    &.update,
+    &.streaming {
+        &:before {
+            -webkit-animation: pulsate 2s ease-out;
+            -webkit-animation-iteration-count: infinite;
+            animation: pulsate 2s ease-out;
+            animation-iteration-count: infinite;
+            border-color:$status_online;
+        }
+    }
+
+    &.online {
+        background:$status_online;
+    }
+
+    &.update {
+        background:$status_update;
+
+        &:before {
+            border-color: $status_update;
+        }
+    }
+
+    &.vip,
+    &.p2p {
+        background:$orange !important;
+
+        &:before {
+            border-color: $orange;
+        }
+    }
+
+    &.beta {
+        background:$grey;
+
+        &:before {
+            border-color: $grey;
+        }
+    }
+
+    &.offline {
+        background:$status_offline;
+
+        &:before {
+            border-color:$status_offline;
+        }
+    }
+
+    &.streaming {
+        background: $status_stream;
+
+        &:before {
+            border-color:$status_stream;
+        }
+    }
+
+    &.new {
+        background:$status_new;
+
+        &:before {
+            border-color:$status_new;
+        }
+    }
+
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    25% {opacity: 1.0;}
+    50% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+    100% {}
+}

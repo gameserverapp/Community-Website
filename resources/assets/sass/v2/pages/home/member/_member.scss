@@ -1,0 +1,108 @@
+&.member {
+
+    .banner {
+        position: relative;
+        overflow: hidden;
+        background: #000;
+
+        &:before {
+            content: "";
+            background-position: 0 -50px;
+            background-size: cover;
+            opacity: .5;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: 0;
+            width: 100%;
+            height: 110vh;
+            max-height: 600px;
+
+            @media (max-width: 767px) {
+                max-height: 1000vh;
+            }
+
+            @media (max-width: 767px) {
+                min-height: 1280px;
+            }
+        }
+
+        .title h1 {
+            color: $orange;
+            text-shadow: 1px 1px 13px #000;
+        }
+
+        .cta {
+            display: block;
+            margin-top: 130px;
+            max-width: 100%;
+
+            .panel {
+                margin-bottom: $gutter;
+            }
+        }
+
+        .more {
+        }
+
+        .banner_content_wrap {
+            position: relative;
+            z-index: 1;
+            height: auto;
+            padding-bottom: 90px;
+        }
+    }
+
+    .tips {
+        margin-top: $large-gutter;
+        margin-bottom: -20px;
+    }
+
+    .characters {
+        .stat_canvas {
+            height: 250px;
+            max-width: 100%;
+        }
+
+        .cta {
+            margin-top: $gutter
+        }
+
+    }
+
+    .spotlight {
+
+        .title {
+            margin-bottom:30px;
+        }
+
+        @media (max-width: 991px) {
+            .character-account-split {
+                margin-bottom:30px;
+            }
+        }
+    }
+
+    .tribe-card {
+        margin-bottom: $gutter;
+    }
+
+    @media (max-width: 767px) {
+        .fulldark {
+            padding: 0;
+
+            .defaultcontent {
+                margin-top: $inner_gutter;
+                margin-bottom: $gutter;
+            }
+        }
+
+        .spotlight {
+            .character-account-split {
+                margin-bottom:$gutter;
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+&.promote {
+
+    .banner {
+
+        .background {
+
+            img {
+                //opacity:.3;
+                margin-top:-40%
+            }
+        }
+    }
+
+    .share {
+
+        h2 {
+            text-align: center;
+            color: $orange;
+            margin-top:$large-gutter;
+        }
+
+        .shareurl {
+            width:100%;
+            padding:10px;
+            border:0;
+            font-size:18px;
+            line-height:30px;
+            text-align: center;
+            @include border-radius(5px);
+        }
+
+    }
+
+    .wheretoshare {
+
+        ul {
+
+            li {
+                margin-top: 5px;
+
+                &:first-child {
+                    margin-top:0;
+                }
+            }
+        }
+    }
+
+}

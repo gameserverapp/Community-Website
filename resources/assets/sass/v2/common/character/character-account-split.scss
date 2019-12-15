@@ -1,0 +1,144 @@
+.character-account-split {
+    padding:$inner-gutter 0;
+    border:1px $grey_light + 100 solid;
+
+    @include border-radius(5px);
+
+
+    .row {
+        display:table;
+        width:100%;
+        margin:0;
+    }
+
+    .account {
+        display: table-cell;
+        float:none;
+        vertical-align: top;
+
+        .characterlink {
+            font-size:20px;
+        }
+
+
+        .tribelink,
+        .accountlink {
+            text-decoration: underline;
+            
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .thumbnail {
+            display:block;
+            margin:0 auto 0px;
+            border:0;
+            background:transparent;
+            width:60px;
+            height:60px;
+
+            img {
+                width:60px;
+                border:2px $white solid;
+
+                @include border-radius(90px);
+            }
+        }
+
+        .summary {
+            margin-top:$inner-gutter;
+            //padding-left:10px;
+            //border-top:1px $grey_light + 100 solid;
+
+            > div {
+                text-align: left;
+                font-size:14px;
+                margin:0;
+                line-height:24px;
+            }
+
+            a.recruit,
+            .message-link a {
+                color:$orange;
+                text-decoration: underline;
+                
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            .tribe {
+                height:50px;
+            }
+        }
+    }
+
+    .character {
+        display: table-cell;
+        float:none;
+        margin-left:0;
+        border-right:1px $grey_light + 100 solid;
+        padding-right:$inner-gutter;
+        text-align: center;
+        
+        .tags {
+            position: absolute;
+            bottom:5px;
+            text-align: center;
+            width:calc( 100% - 30px );
+
+            .label {
+                font-size:9px !important;
+            }
+        }
+
+        .picture_wrap {
+            height:240px;
+            min-width:50px;
+            margin-bottom:0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        h1 {
+            font-family: lato;
+            font-size: 20px;
+            color: $grey;
+            margin-bottom: 0;
+            line-height: 20px;
+
+            .label {
+                font-size:9px;
+                vertical-align: 4px;
+                margin-right:-30px;
+            }
+        }
+
+        small {
+            line-height:10px;
+        }
+    }
+
+    .status.aftername {
+        margin-right:-5px;
+    }
+
+    small {
+        display:block;
+        font-size:10px;
+    }
+}
+
+&.me .recruit {
+    visibility:hidden;
+}
+
+&.tribe.members .tribe {
+    display:none;
+}
+
+&.account.dashboard .owner {
+    display:none;
+}

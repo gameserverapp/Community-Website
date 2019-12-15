@@ -1,0 +1,16 @@
+.tinylink {
+
+    span {
+        font-size: 10px;
+        color: #999;
+        text-align: center;
+        border-bottom: 1px #ccc dotted;
+    }
+
+    &:hover,
+    &:hover span {
+        color:$grey;
+        border-color:$grey;
+        text-decoration: none;
+    }
+}

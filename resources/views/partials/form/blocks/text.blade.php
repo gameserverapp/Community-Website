@@ -1,0 +1,1 @@
+<input class="form-control" type="text" name="{{$name}}" @if(isset($block['required'])) required @endif @if(isset($block['minlength'])) minlength="{{$block['minlength']}}" @endif @if(isset($block['maxlength'])) maxlength="{{$block['maxlength']}}" @endif value="{{old($name)}}">

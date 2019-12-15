@@ -1,0 +1,162 @@
+&.theme-aberration-gold {
+
+    background: #253138;
+    background-image:url('/img/themes_copyright/aberration_gold/bg_purple.jpg');
+    background-size:contain;
+    background-repeat:repeat-y;
+    color:#fff;
+
+    p {
+        color:#fff
+    }
+
+    .banner {
+        background:rgba(0,0,0,.4) !important;
+
+        &:after {
+            position: relative;
+            display:block;
+            content: '';
+            height:20px;
+            width:calc(100% + 30px);
+            margin:0 -15px -5px;
+            background-image:url('/img/themes_copyright/aberration_gold/row-divider.png');
+            background-size:100% 20px;
+            background-position:0 -2px;
+            z-index: 1;
+        }
+
+        .fallback {
+            //display:none;
+        }
+    }
+
+    .footer {
+        border:none;
+
+        &:before {
+            display:block;
+            content: '';
+            height:20px;
+            width:calc(100% + 30px);
+            margin:0 -15px -5px;
+            background-image:url('/img/themes_copyright/aberration_gold/row-divider.png');
+            background-size:100% 20px;
+            background-position:0 -2px;
+        }
+    }
+
+    .message-item .date {
+        color:#333;
+    }
+
+    .container-fluid {
+        //
+        //padding-top:30px;
+        //padding-bottom:30px;
+        //
+        //margin-top:-30px;
+        //margin-bottom:-30px;
+
+        //&:not(.banner):not(.footer):before {
+        //    display:block;
+        //    content: '';
+        //    height:20px;
+        //    width:100%;
+        //    background-image:url('/img/themes_copyright/aberration/row-divider.png');
+        //    background-size:100% 20px;
+        //    background-position:0 -2px;
+        //}
+
+        //&.white,
+        //&.grey,
+        &.red,
+        &.purple {
+            background-size:100%;
+            background-repeat:repeat-y;
+            max-width:100%;
+        }
+
+        //&.white {
+        //    background-image:url('/img/themes_copyright/aberration/bg_white.jpg');
+        //    border-top-color:#3c303e;
+        //}
+
+        &.grey {
+            //background-image:url('/img/themes_copyright/aberration/bg_grey.jpg');
+
+        }
+
+        &.red {
+            background-image:url('/img/themes_copyright/aberration_gold/bg_red.jpg');
+
+
+        }
+
+        &.purple {
+            background-image:url('/img/themes_copyright/aberration_gold/bg_purple.jpg');
+
+        }
+    }
+
+    &.home .fulldark {
+        h1, h2, h3 {
+            color:#333;
+        }
+    }
+
+    .textcolor-light {
+        .panel-title {
+            color:#333;
+        }
+    }
+
+    select {
+        color:#000;
+    }
+
+    .panel {
+        td, th, tr, p, label, strong, .panel-body, .panel-body p {
+            color:#333 !important;
+        }
+    }
+
+    .well:not(.server-block):not(.forum-well):not(.thread-well) * {
+        color:#333 !important;
+    }
+
+    .character-account-split {
+        background:rgba(255,255,255, 0.2);
+        border:none;
+
+        .character {
+            border-right:none;
+        }
+
+        * {
+            color:#fff;
+        }
+    }
+
+    .tribe-card {
+        tr th {
+            color:#333 !important;
+        }
+    }
+
+    .spotlight {
+        h1 {
+            color:#fff;
+        }
+    }
+
+    @import 'forum', 'menu', 'inspector', 'shop';
+
+    //footer.footer {
+    //    border-top-color:#d6d3ac;
+    //
+    //    .colofon .content i {
+    //        color:#d6d3ac;
+    //    }
+    //}
+}

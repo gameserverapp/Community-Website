@@ -1,0 +1,62 @@
+<footer class="footer container-fluid">
+    <div class="container">
+
+        <div class="row links">
+            <div class="col-sm-5 mission">
+                <h3 class="logo">
+                    {{GameserverApp\Helpers\SiteHelper::name()}}
+                </h3>
+                <p>
+                    {!! Markdown::convertToHtml(
+                        GameserverApp\Helpers\SiteHelper::footerDescription()
+                    ) !!}
+                </p>
+
+                {{--<span class="paypal">--}}
+                    {{--<a href="{{route('token.index')}}">--}}
+                        {{--Donate via--}}
+                        {{--<img src="/img/other/PP_logo_h_200x51.png" width="100">--}}
+                    {{--</a>--}}
+                {{--</span>--}}
+            </div>
+
+
+            <div class="col-sm-7">
+                <div class="row">
+
+                    <div class="col-md-5 col-md-offset-1 col-sm-6 left">
+                        {!! Markdown::convertToHtml(
+                            GameserverApp\Helpers\SiteHelper::footerLinks('left')
+                        ) !!}
+                    </div>
+
+
+                    <div class="col-md-6 col-sm-6 right">
+                        {!! Markdown::convertToHtml(
+                            GameserverApp\Helpers\SiteHelper::footerLinks('right')
+                        ) !!}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="colofon">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 content">
+                    <span>&copy; GameserverApp.com 2015 - {{date('Y')}}</span> &nbsp; <i>//</i> &nbsp;
+                    <a href="http://steampowered.com/" target="_blank" rel="nofollow">Powered by Steam Login</a>
+
+                    &nbsp; <i>//</i> &nbsp;
+                    <a style="color:#ccc" href="https://www.gameserverapp.com/?camp=fe&grp=fo" target="_blank" rel="FOLLOW">Free gameserver website</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script type="text/javascript" src="{{ elixir('js/bundle.js') }}"></script>

@@ -1,0 +1,103 @@
+.stream {
+    background: $status_stream;
+    padding-top:$large-gutter;
+
+    .title {
+        color:#fff;
+        text-align: center;
+        font-family:Righteous;
+
+        span {
+            font-family:Lato;
+        }
+    }
+
+    .stream-container {
+
+        #streamcarousel {
+            display:block;
+
+            .stream {
+                margin:0 15px;
+                h2 {
+                    text-align: center;
+                    color:#fff;
+
+                    a {
+                        color:#fff
+                    }
+                }
+
+                iframe {
+                }
+
+                &.one-stream {
+                    text-align: center;
+                    iframe {
+                        max-width:800px;
+                        height:450px;
+                    }
+                }
+            }
+
+            .item.no-stream {
+
+                .stream {
+                    margin:0 auto;
+                }
+            }
+        }
+        
+        .no-streamers {
+            background:rgba(255,255,255,0.2);
+            height:300px;
+            padding:50px;
+
+            h2 {
+                margin-top:40px;
+
+                @media (max-width:767px) {
+                    margin-top:20px;
+                }
+
+                @media (max-width:400px) {
+                    margin-top:0px;
+                }
+            }
+
+            p {
+                padding-top:$gutter;
+                color:#fff;
+                text-align: center;
+                vertical-align: middle;
+
+                a {
+                    color:#fff;
+                }
+            }
+
+            //margin-top:$gutter;
+            //text-align: center;
+            //
+            //p {
+            //    color:#fff;
+            //}
+        }
+    }
+
+    .become-streamer {
+        margin-top:$gutter;
+        margin-bottom:$gutter;
+
+        p {
+            opacity:0.6;
+            text-align: right;
+            color:#fff;
+            font-size:14px;
+
+            a {
+                color:#fff
+            }
+        }
+    }
+}

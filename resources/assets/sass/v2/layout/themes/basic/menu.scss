@@ -1,0 +1,136 @@
+.navbar {
+    background-image:url('/img/themes_copyright/extinction/menu-repeat.png');
+    background-size:100% 111px;
+    width:100%;
+    height:111px;
+
+    &.passed-banner:before,
+    &:before {
+        position: absolute;
+        top:0;
+        left:0;
+        opacity:1;
+        background:none;
+        background-image:url('/img/themes_copyright/extinction/menu-left.png');
+        background-size:cover;
+        width:450px;
+        height:111px;
+        z-index:2;
+    }
+
+    &:after {
+        position: absolute;
+        top:0;
+        right:0;
+        background-image:url('/img/themes_copyright/extinction/menu-right.png');
+        background-size:cover;
+        width:450px;
+        height:111px;
+        z-index:2;
+    }
+
+    @media (max-width:1600px) {
+        &.passed-banner:before,
+        &:before  {
+            left:-30px;
+        }
+
+        &:after {
+            right:-30px;
+        }
+    }
+
+    @media (max-width:1500px) {
+        &.passed-banner:before,
+        &:before  {
+            left:-80px;
+        }
+
+        &:after {
+            right:-80px;
+        }
+    }
+
+    @media (max-width:1370px) {
+        &.passed-banner:before,
+        &:before  {
+            left:-140px;
+        }
+
+        &:after {
+            right:-140px;
+        }
+    }
+
+    @media (max-width:767px) {
+        &.passed-banner:before,
+        &:before  {
+            left:-160px;
+        }
+
+        &:after {
+            right:-160px;
+        }
+    }
+
+    @media (max-width:599px) {
+        &.passed-banner:before,
+        &:before  {
+            left:-160px;
+        }
+
+        &:after {
+            display:none;
+        }
+    }
+
+    .container {
+        position: relative;
+        z-index:10;
+        padding-top:4px;
+
+        @media (max-width: 767px) {
+            .navbar-header {
+                padding:2px 15px;
+            }
+
+            .navbar-collapse {
+                background:#333;
+
+                .dropdown {
+                    .dashboard {
+                        color:#999 !important;
+                    }
+                }
+            }
+        }
+
+        .navbar-toggle {
+            margin-top:10px;
+
+            .icon-bar {
+                width: 35px;
+                height: 3px;
+            }
+        }
+
+        //&:before {
+        //    position: absolute;
+        //    top:0;
+        //    left:50%;
+        //    right:50%;
+        //    background-image:url('/img/themes_copyright/aberration/menu-mesh.png');
+        //    background-position: center;
+        //    background-size:664px 64px;
+        //    width:664px;
+        //    height:64px;
+        //    z-index:1;
+        //}
+
+    }
+}
+
+.nav-filler {
+    display:block;
+    height:60px;
+}

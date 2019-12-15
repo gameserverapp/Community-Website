@@ -1,0 +1,81 @@
+
+
+.new_message_button {
+    display: inline-block;
+    margin-top: -$gutter;
+    margin-bottom: $gutter;
+}
+
+.message-list {
+    margin-bottom:0;
+
+    .message-item {
+
+        @include transition(all .2s);
+
+        .accountlink-name {
+            color:$grey;
+        }
+
+        .subject {
+            color:$grey;
+        }
+
+        .summary {
+            color:$grey_light + 50
+        }
+
+        &.new {
+
+            .status.new {
+                position: absolute;
+                top:24px;
+                left:-20px;
+            }
+
+            a,
+            .summary,
+            .subject {
+                color:$orange;
+            }
+        }
+
+        a {
+            color:$grey;
+
+            &.messagelink {
+
+                &:hover * {
+                    text-decoration: underline;
+                }
+
+            }
+        }
+
+
+        @media (max-width:767px) {
+            
+            .date {
+                text-align: right;
+                font-style: italic;
+            }
+
+            &.new {
+                .sender a,
+                .date {
+                    color:$grey;
+                }
+
+            }
+
+            .subject {
+                margin-top:10px;
+            }
+            
+        }
+
+        &:hover {
+            background:#ccc + 40;
+        }
+    }
+}

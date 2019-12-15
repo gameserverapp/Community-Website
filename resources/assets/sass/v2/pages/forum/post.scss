@@ -1,0 +1,230 @@
+.forum-post {
+    padding-bottom: $inner_gutter;
+
+    > td {
+        padding: $inner_gutter;
+        //border-bottom: 1px solid #ddd;
+        background:#fbfbfb;
+        border:0;
+        border-top: 1px solid #ddd;
+    }
+
+    > td.persona {
+        width: 20%;
+        background: #ddd + 20 ;
+        text-align: center;
+        border:0;
+        border-top: 1px solid #ddd;
+        //border-right: 1px solid #ddd;
+
+
+        @media (max-width:499px) {
+            display:block;
+            width:100%;
+            text-align: left;
+
+            .person-data {
+                display:inline-block;
+                width:120px;
+                text-align: center;
+
+                &.nochars {
+                    width:100%;
+                }
+            }
+        }
+    }
+
+    .linkwrapper {
+
+        .status {
+            position: absolute !important;
+        }
+    }
+
+    .thumbnail {
+        display: block;
+        margin: 10px 0 $inner-gutter 0;
+        border: 0;
+        background: transparent;
+
+        height: auto;
+
+        @media (max-width: 649px) {
+            display: block;
+            height: 120px;
+            margin-top: $inner-gutter;
+            margin-right: auto;
+            margin-bottom: -15px;
+            margin-left: auto;
+        }
+
+        @media (max-width:499px) {
+            margin-top:0;
+        }
+
+        img {
+            width: 100px;
+            border: 2px $white solid;
+
+            @include border-radius(90px);
+            //@include box-shadow(0 0 60px -15px #000);
+        }
+    }
+
+    .accountlink {
+        color:$orange;
+    }
+
+    .role {
+        margin-top:$large-gutter;
+
+        @media (max-width:499px) {
+            margin-top:$inner-gutter;
+        }
+
+        .support {
+            display:block;
+            color:$orange;
+            font-size:12px;
+            margin-top:$inner-gutter
+        }
+
+        span, a {
+            display: inline-block;
+            margin-right: 3px;
+            padding: .3em .5em;
+        }
+    }
+
+    .stats {
+        display:block;
+        font-size:10px;
+        margin-top:$inner_gutter;
+        //text-align: left;
+
+        span {
+            //font-style: italic;
+        }
+    }
+
+    .characters {
+        background:#ddd + 30;
+        margin-top:$gutter;
+        margin-right:-$inner_gutter;
+        margin-left:-$inner_gutter;
+        margin-bottom:-$inner_gutter;
+        padding:$gutter $inner_gutter;
+
+
+        ul {
+            list-style: none;
+            text-align: left;
+            margin:0 0 0 8px;
+            padding:0;
+
+            li {
+                margin-bottom: $inner_gutter;
+
+                &:last-child {
+                    margin-bottom:0;
+                }
+
+                .char_pic {
+                    display:table-cell;
+                    width: 20px;
+                    height: 30px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                }
+
+                .linkwrapper {
+                    display:table-cell;
+                    vertical-align: middle;
+                    padding-left: 8px;
+
+                    a {
+                        font-size:12px;
+                    }
+                }
+            }
+        }
+
+
+        @media (max-width:499px) {
+            display:inline-block;
+            width:50%;
+            float:right;
+            background:transparent;
+            max-height:150px;
+            overflow: hidden;
+            margin-top:0;
+
+            ul li {
+                display:none;
+
+                &:nth-child(1) {
+                    display:block;
+                }
+
+                &:nth-child(2) {
+                    display:block;
+                }
+            }
+        }
+
+    }
+
+    .contentwrap {
+        position: relative;
+        padding-bottom:$large-gutter;
+
+
+        @media (max-width:499px) {
+            display:block;
+            width:100%;
+        }
+
+        .content {
+            padding: 10px $inner_gutter;
+
+
+            @media (max-width:499px) {
+                padding-bottom:$gutter;
+            }
+        }
+
+        .bottom-nav {
+            position: absolute;
+            width:100%;
+            padding:0 ( $gutter + $inner_gutter ) 0 $inner-gutter;
+            bottom:10px;
+            font-size:11px;
+            color:$grey_light;
+
+            .posted {
+                display: inline-block;
+            }
+
+            .edit {
+                float:right;
+                display: inline-block;
+
+                a {
+                    color: $orange;
+                    text-decoration: underline;
+                }
+            }
+
+            .donate {
+                margin: $inner-gutter 0 5px;
+                color:$grey_light + 70;
+
+                a {
+                    color:$grey_light + 70;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

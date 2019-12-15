@@ -1,0 +1,21 @@
+.logincta {
+    padding: $large-gutter 0;
+    background: $blue;
+
+    .table-cell:last-child {
+        vertical-align: middle;
+    }
+
+    iframe {
+        width: 100%;
+
+        @media (max-width: 991px) {
+            margin-bottom: $gutter;
+        }
+    }
+
+    P:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}

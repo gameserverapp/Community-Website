@@ -1,0 +1,131 @@
+.category {
+    width:100%;
+
+    td.well {
+        border:0;
+        @include box-shadow(initial);
+    }
+
+    .forum-category-decoration-top,
+    .forum-category-decoration-right,
+    .forum-category-decoration-bottom,
+    .forum-category-decoration-left {
+        display:none;
+    }
+
+    tr {
+        td {
+            padding:20px 10px;
+        }
+    }
+
+    .left {
+
+        .info {
+            display:table-cell;
+
+            a {
+                color:$orange;
+
+                h3 {
+                    line-height: 20px;
+                    font-weight: bold;
+                    margin-top:0;
+                }
+            }
+
+            p {
+                font-size:13px;
+                line-height:23px;
+            }
+
+            ul {
+                margin-top: $inner-gutter;
+                margin-bottom:0;
+                padding-left:0;
+
+                li {
+                    display:inline-block;
+                    color:$grey_light;
+                    font-size: 12px;
+
+                    span {
+                        color:$grey;
+                    }
+                }
+            }
+
+            .children {
+                margin-top:$inner-gutter;
+
+                a {
+                    display:block;
+                    float:left;
+                    color:$grey;
+                    font-size:14px;
+                    line-height:25px;
+                    margin-right:$inner-gutter;
+                    text-decoration: none;
+
+                    i {
+                        padding-right:5px;
+                    }
+
+                    span {
+                        border-bottom: 1px dotted rgb(204, 204, 204);
+                    }
+
+                    &:hover span {
+                        color:$orange;
+                        border-bottom-color: $orange;
+                    }
+                }
+            }
+        }
+    }
+
+    .right {
+        vertical-align: middle;
+        text-align: right;
+        padding-top:13px;
+
+        span.well {
+            display:block;
+            float:right;
+            text-align: left;
+            width:100%;
+            padding:10px;
+            margin:0 0 0 $gutter;
+
+            color:$grey;
+            font-size: 12px;
+
+            > span {
+                font-weight:bold;
+            }
+
+            &:first-child {
+                margin-left:0;
+                margin-bottom:$inner-gutter;
+            }
+
+            a {
+                color:$grey;
+                line-height:16px;
+                text-decoration:none;
+                
+                span {
+                    text-decoration: underline;
+                }
+
+                &:hover span {
+                    text-decoration:none;
+                }
+
+                time {
+                    color:$grey_light;
+                }
+            }
+        }
+    }
+}

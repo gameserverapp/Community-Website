@@ -1,0 +1,46 @@
+&.dashboard {
+
+    .characters_nav {
+        position: relative;
+
+        h2 {
+            margin: 0;
+        }
+
+        a {
+            position: absolute;
+            top: 7px;
+            right: $inner-gutter;
+            color: $grey
+        }
+
+        hr {
+            margin-top: 10px;
+        }
+    }
+
+    .character-account-split {
+        margin-bottom:$gutter;
+    }
+
+    .defaultcontent.characters {
+        margin-bottom:-$gutter;
+    }
+
+    .defaultcontent.tribes {
+        margin-bottom:-$gutter;
+    }
+
+
+    @media (max-width:599px) {
+        .col-xs-6 {
+            display:block;
+            float:none;
+            width:100%;
+        }
+
+        .tribe-card {
+            margin-bottom:$gutter;
+        }
+    }
+}

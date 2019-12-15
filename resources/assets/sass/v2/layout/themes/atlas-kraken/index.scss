@@ -1,0 +1,302 @@
+&.theme-atlas-kraken {
+
+    @import 'color';
+
+
+    background: $themeBgColor;
+    //background-image:url('/img/themes_copyright/aberration/bg_purple.jpg');
+
+    background-size:contain;
+    background-repeat:repeat-y;
+
+    &.home .banner .cta .panel {
+        margin-bottom: 0 !important;
+        width:100%
+    }
+
+    &.home .fulldark {
+        border:0;
+        background:transparent;
+    }
+
+    &.home .servers h1 {
+        color:#fff
+    }
+
+    .navbar .navbar-brand h1:hover,
+    .navbar .navbar-nav > li > a:hover,
+    .navbar .navbar-nav > li > a.active,
+    .navbar .navbar-nav > li > .dropdown > span.dashboard,
+    .frame .contentwrap a:not(.label-donor):not(.champ),
+    .frame .contentwrap a span,
+    &.inspector .results__title,
+    &.forum .forum_wrapper h3,
+    h4,
+    .main_content a:not(.btn):not(.label-donor),
+    .banner .navigation ul.nav li.active a,
+    .message-list .message-item.new .subject,
+    .navbar .navbar-nav > li .dropdown .dropdown-menu a.orange,
+    .navbar .navbar-nav > li .dropdown .dropdown-menu a:hover,
+    .token-package h2 span,
+    .token-package p.description span,
+    &.token.single .banner h1 span,
+    &.token.single .list-group .list-group-item strong,
+    .forum_wrapper .category .well a h3,
+    .table-thread .thread-list-item .author span:not(.created),
+    .table-thread .thread-list-item .last-post span:not(.posted),
+    .thread-show h2 span:not(.label),
+    .article-block a:hover .article-block__title,
+    &.news.archive .article-block__title,
+    .article-block__date,
+    .article-block__summary .readmore,
+    &.news.show .banner h1,
+    &.supplies.single .agree_terms span strong,
+    &.tribe .banner .banner_content h1 .tribelink-name {
+        color:$themeLinkColor !important;
+        //color:#66ecec !important;
+    }
+
+    &.news {
+        &.archive .markdown-content p {
+            color:#fff;
+        }
+
+        &.show p {
+            color:#fff;
+        }
+    }
+
+    .main_content .thread-show .editor-toolbar,
+    &.forum .editor-toolbar {
+        background:lighten($themeLinkColor, 10) !important;
+
+        a,
+        a:before {
+            color: darken($themeLinkColor, 20) !important;
+        }
+
+        i {
+            border-color: $themeLinkColor !important;
+        }
+    }
+
+
+    &.tribe.promote .introtext h2,
+    &.tribe.promote .wheretoshare p,
+    &.tribe.promote .wheretoshare {
+        color:lighten($themeBgColor, 40) !important;
+    }
+
+    &.tribe.members {
+        em {
+            color:lighten($themeBgColor, 40) !important;
+        }
+    }
+
+    .navbar .navbar-nav > li > .dropdown > span.dashboard:hover,
+    .navbar .navbar-nav > li > a.active .label {
+        color:$themeLinkColor !important;
+        border-color:$themeLinkColor !important;
+
+        .caret {
+            color:$themeLinkColor !important;
+        }
+    }
+
+    .navbar .navbar-nav > li > .dropdown > span.dashboard ul li a,
+    .forum_wrapper .category .well .well a span {
+        color:$themeLinkColor !important;
+    }
+
+    .paginate .pagination li.active span {
+        background: $themeLinkColor;
+        border-color: $themeLinkColor;
+    }
+
+    .serverbtn.grey:hover,
+    .label-donor {
+        background-color:$themeLinkColor !important;
+        color:#fff !important;
+    }
+
+    .btn.champ {
+        background-color:$themeLinkColor !important;
+        border-color:$themeLinkColor !important;
+        color:lighten($themeLinkColor, 40) !important;
+        font-weight: bold;
+
+        &.inverted {
+            background-color:transparent !important;
+            color:$themeLinkColor !important;
+
+            .dark {
+
+            }
+
+            &:hover {
+                background-color:$themeLinkColor !important;
+                border-color:$themeLinkColor !important;
+                color:lighten($themeLinkColor, 40) !important;
+            }
+        }
+
+        &:hover {
+            background-color:lighten($themeLinkColor, 40) !important;
+            color:$themeLinkColor !important;
+        }
+    }
+
+    .forum_wrapper .category .well .well a time,
+    .forum_wrapper .category .well .well span,
+    .forum_wrapper .category .well .info ul li,
+    .forum_wrapper .category .well .info ul li span {
+        color:$themeForumTextColor !important;
+    }
+
+    .forum-post .persona {
+        background: rgba(80, 80, 80, 0.5)
+    }
+
+    .table-thread thead tr th,
+    .table-thread .thread-list-item td {
+        border-color:$themeForumTextColor !important;
+        color:$themeForumTextColor !important;
+    }
+
+    .forum_wrapper .category .well .well {
+        border-color:$themeForumTextColor !important;
+    }
+
+    .banner {
+        background:rgba(0,0,0,.4) !important;
+
+
+        .fallback {
+            //display:none;
+        }
+
+        .background:after {
+            position: absolute;
+            bottom:0;
+            right:0;
+            left:0;
+            content: '';
+            display:block;
+            width:100%;
+            height:100px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#132e48+0,132e48+100&0.09+0,1+100 */
+            background: -moz-linear-gradient(top, rgba(19,46,72,0.09) 0%, rgba(19,46,72,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(19,46,72,0.09) 0%,rgba(19,46,72,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(19,46,72,0.09) 0%,rgba(19,46,72,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17132e48', endColorstr='#132e48',GradientType=0 ); /* IE6-9 */
+        }
+    }
+
+    .footer {
+        border:none;
+
+        background:darken($themeBgColor, 5);
+        border-top:5px lighten($themeBgColor, 5) solid;
+
+        h3 {
+            color:$themeLinkColor !important;
+        }
+
+        .colofon {
+            background:darken($themeBgColor, 10);
+
+            .content i {
+                color:$themeLinkColor
+            }
+        }
+    }
+
+    .message-item .date {
+        color:#333;
+    }
+
+    .container-fluid:not(.banner) {
+        &:not(.purple):not(.grey):not(.white):not(.red) {
+            .textcolor-dark * {
+                //color:#fff;
+            }
+        }
+    }
+
+    &.tribe.members .character-account-split {
+        margin-bottom:0;
+    }
+
+    &.supplies,
+    &.supplies p,
+    &.token,
+    &.token p,
+    &.tribe.dashboard,
+    &.tribe.dashboard p,
+    &.tribe.log,
+    &.tribe.log p {
+        color:#fff;
+    }
+
+    &.non-pagebuilder .main_content .defaultcontent * {
+        color:#fff;
+    }
+
+    &.home .fulldark {
+        h1, h2, h3 {
+            color:#fff;
+        }
+    }
+
+    &.pagebuilder .forum ul li article .category a {
+        color:$themeLinkColor
+    }
+
+    .textcolor-light {
+        .panel-title {
+            color:#333;
+        }
+    }
+
+    select {
+        color:#000;
+    }
+
+    .panel {
+        td, th, tr, p, label, strong, .panel-body, .panel-body p {
+            //color:#333 !important;
+        }
+    }
+
+    .well:not(.server-block):not(.forum-well):not(.thread-well) * {
+        color:#333 !important;
+    }
+
+    .character-account-split {
+        background:rgba(255,255,255, 0.2);
+        border:none;
+
+        .character {
+            border-right:none;
+        }
+
+    }
+
+    .textcolor-light * {
+        color: #fff;
+    }
+
+    .tribe-card {
+        tr th {
+            color:#333 !important;
+        }
+    }
+
+    .spotlight {
+        h1, em, p {
+            color:#fff;
+        }
+    }
+
+    @import 'forum', 'menu', 'inspector', 'shop', 'frame';
+}

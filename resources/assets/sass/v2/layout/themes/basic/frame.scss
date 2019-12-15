@@ -1,0 +1,146 @@
+.frame {
+    width:100%;
+
+    &.simple {
+        margin-top:20px;
+        position: relative;
+        margin-bottom:60px;
+
+        > table {
+            display: table;
+            width:100%;
+            border-spacing: 0;
+            border-collapse: separate;
+        }
+
+        .contentwrap {
+            display: block;
+        }
+
+        .decoration-top,
+        .decoration-bottom,
+        .decoration-right,
+        .decoration-left {
+            display:none;
+        }
+
+        .decoration-top,
+        .decoration-bottom {
+            display:none;
+        }
+
+        .decoration-right,
+        .decoration-left {
+            display:none;
+        }
+
+        .decoration-top {
+            width: 100%;
+            position: absolute;
+            top: -20px;
+
+            .top-left {
+                float:left;
+                background-size:cover;
+                width:66.5px;
+                height:19.5px;
+            }
+
+            .top-repeat {
+                float:left;
+                background-size:100% 19.5px;
+                width:calc(100% - 129px);
+                height:19.5px;
+                margin:0 -2px;
+            }
+
+            .top-right {
+                float:right;
+                background-size:cover;
+                width:66.5px;
+                height:19.5px;
+            }
+        }
+
+        .decoration-middle {
+            padding:20px 0;
+            overflow: hidden;
+        }
+
+        .decoration-right {
+            position: relative;
+            width:23px;
+            background-size:100% 22.5px;
+
+            .right-repeat-top {
+                position: absolute;
+                top:0px;
+                background-size:cover;
+                width:23px;
+                height:46px;
+                left:0px;
+            }
+
+            .right-repeat-bottom {
+                position: absolute;
+                bottom:0;
+                background-size:cover;
+                width:23px;
+                height:46px;
+                left:0px;
+            }
+        }
+
+        .decoration-bottom {
+            width: 100%;
+            position: absolute;
+            bottom: -20px;
+
+            .bottom-left {
+                float:left;
+                background-size:cover;
+                width:66.5px;
+                height:20px;
+            }
+
+            .bottom-repeat {
+                float:left;
+                background-size:100% 20px;
+                width:calc(100% - 129px);
+                height:20px;
+                margin:0 -2px;
+            }
+
+            .bottom-right {
+                float:right;
+                background-size:cover;
+                width:66.5px;
+                height:20px;
+            }
+        }
+
+        .decoration-left {
+            position: relative;
+            width:23px;
+            background-size:100% 23px;
+
+            .left-repeat-top {
+                position: absolute;
+                top:0;
+                //left:.5px;
+                background-size:cover;
+                width:23px;
+                height:46px;
+            }
+
+            .left-repeat-bottom {
+                position: absolute;
+                bottom:0;
+                //left:.5px;
+                background-size:cover;
+                width:23px;
+                height:46px;
+            }
+        }
+    }
+}

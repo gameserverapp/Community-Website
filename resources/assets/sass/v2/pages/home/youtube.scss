@@ -1,0 +1,56 @@
+.youtube {
+    background:#cc181e;
+    padding:$large-gutter 0;
+
+    h1 {
+        color:$white;
+        margin-bottom:$gutter;
+
+        span {
+            font-family:Righteous;
+        }
+    }
+
+    p {
+        color:$white;
+
+        time {
+            color:$white;
+            font-style: italic;
+        }
+
+        &:last-of-type {
+            padding-bottom:$inner-gutter;
+        }
+
+        a {
+            color:$white;
+        }
+    }
+
+    .table-cell:last-child {
+        vertical-align: top;
+
+        iframe {
+            margin-bottom:-9px;
+        }
+
+    }
+
+    iframe {
+        border:10px $white solid;
+        width:100%;
+        -webkit-box-shadow: 0px 5px 25px -6px black;
+        -moz-box-shadow: 0px 5px 25px -6px black;
+        box-shadow: 0px 5px 25px -6px black;
+
+        @media (max-width:991px) {
+            margin-top:$gutter;
+        }
+    }
+
+    P:last-child {
+        margin-bottom:0;
+        padding-bottom:0;
+    }
+}

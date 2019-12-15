@@ -1,0 +1,128 @@
+.btn.champ {
+    color: $white;
+    background:$orange;
+    line-height:30px;
+    font-size:16px;
+    text-decoration: none;
+    border: 1px $orange solid;
+    padding: 8px 15px;
+
+    &.small {
+        padding: 5px 13px;
+        line-height: 28px;
+        font-size: 14px;
+    }
+
+    &.tinytosmall {
+        color:$white;
+        border-color: transparent;
+
+        span {
+            border-bottom:1px $white dotted;
+        }
+
+        &:hover {
+            color: $white;
+            background:transparent;
+            border-color: $white;
+
+            .label {
+                color:$orange;
+                background:$grey;
+            }
+
+            span {
+                border-bottom:0;
+            }
+        }
+    }
+    
+    @include transition(all .2s);
+
+    i {
+        margin-right: 5px;
+        color:$white;
+
+        @include transition(all .2s);
+    }
+
+    .label {
+        margin-left: 10px;
+        font-size:11px;
+        @include transition(all .2s);
+    }
+
+    &:hover {
+        color: $grey;
+        background: transparent;
+        border: 1px $grey solid;
+
+        i {
+            color:$grey;
+        }
+    }
+
+    &.inverted {
+        color: $orange;
+        background:$white;
+        border-color: $orange;
+
+        &:hover {
+            color: $grey;
+            background:transparent;
+            border-color: $grey;
+        }
+
+        &.dark {
+            color:$grey;
+            border-color: $grey;
+
+            .label {
+                background:$grey_light + 70;
+            }
+
+            &:hover {
+                color: $orange;
+                background:transparent;
+                border-color: $orange;
+
+                .label {
+                    color:$orange;
+                    background:$grey;
+                }
+            }
+        }
+
+        &.tinytosmall {
+            color:$grey_light + 60;
+            border-color: $white;
+
+            span {
+                border-bottom:1px $grey_light + 60 dotted;
+            }
+
+            .label {
+                background:$grey_light + 70;
+            }
+
+            &:hover {
+                color: $orange;
+                background:transparent;
+                border-color: $orange;
+
+                .label {
+                    color:$orange;
+                    background:$grey;
+                }
+
+                span {
+                    border-bottom:0;
+                }
+            }
+        }
+    }
+    
+    &.ghost {
+        background-color:transparent;
+    }
+}

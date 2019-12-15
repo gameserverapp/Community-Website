@@ -1,0 +1,67 @@
+& {
+    font-family: lato;
+    font-size:15px;
+    line-height: 23px;
+}
+
+.label {
+    font-weight:normal;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-top:0;
+}
+
+h1 {
+    //font-family: Righteous;
+    font-family: lato;
+    font-size: 40px;
+    line-height: 50px;
+
+
+    @media (max-width: 600px) {
+        font-size: 35px;
+        line-height: 45px;
+    }
+}
+
+h2 {
+    font-family: lato;
+    font-size: 25px;
+    line-height: 35px;
+}
+
+h3 {
+    font-family: lato;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+h4 {
+    font-family: lato;
+    font-size: 18px;
+    line-height: 28px;
+    color: $primary;
+}
+
+p {
+    color: $black;
+    margin-bottom: $inner-gutter;
+
+    &.small {
+        font-size:13px;
+        line-height:18px;
+    }
+}
+
+ul li a,
+ol li a,
+p a {
+    color:$orange;
+    text-decoration: underline;
+
+    &:hover {
+        color: $orange;
+        text-decoration: none ;
+    }
+}

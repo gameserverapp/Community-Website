@@ -1,0 +1,57 @@
+
+.label-admin {
+    background-color: #ccc !important;
+    font-size:12px;
+}
+
+.label-champ {
+    background-color:$grey_light + 90;
+    color:$grey + 90 !important;
+    font-size:10px;
+}
+
+.label-donor {
+    background-color:$orange;
+    color:$white !important;
+    font-size:12px;
+}
+
+.label-maintenance {
+    background-color:$grey_light + 70;
+    color:$grey !important;
+}
+
+.label-important {
+    background-color:$grey;
+    font-weight:bold;
+    color:$orange !important;
+}
+
+.label-vip {
+    background-color:$orange;
+    color:$white !important;
+    border:1px $orange solid;
+    font-size:12px;
+}
+
+.label-tester {
+    background-color:$grey;
+    color:$orange;
+    border:1px $grey solid;
+    font-size:12px;
+}
+
+.label-subscriber {
+    background-color:$orange;
+    color:$white;
+    border:1px $orange solid;
+    font-size:12px;
+
+    background: repeating-linear-gradient(
+                    45deg,
+                    $orange + 10,
+                    $orange + 10 10px,
+                    $orange - 10 10px,
+                    $orange - 10 20px
+    );
+}

@@ -1,0 +1,16 @@
+.display-table {
+
+    @media (min-width:992px) {
+        display: table;
+
+        &:not(.nowidth) {
+            width:100%;
+        }
+
+        .table-cell {
+            display: table-cell;
+            float: none;
+            vertical-align: middle;
+        }
+    }
+}

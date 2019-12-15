@@ -1,0 +1,36 @@
+.information {
+
+    .panel-title {
+
+        .label {
+            float:right;
+            margin-top:9px;
+            margin-left:10px;
+            font-size:10px;
+        }
+    }
+
+    .tribe-card {
+
+        header {
+            //height:100px;
+
+            .server {
+                display:none;
+            }
+            //
+            //h1 {
+            //    margin-top:25px;
+            //    line-height:40px;
+            //}
+            //
+            //.more {
+            //    margin-top:-20px;
+            //}
+        }
+
+        .content .table {
+            min-width:101%;
+        }
+    }
+}

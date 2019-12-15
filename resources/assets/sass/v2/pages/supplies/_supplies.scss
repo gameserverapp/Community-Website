@@ -1,0 +1,149 @@
+&.supplies {
+
+    .banner {
+
+        .balance {
+            display: inline-block;
+            margin-right: 60px;
+            margin-left: -180px;
+
+            @media (max-width:991px) {
+                display:block;
+                margin: 0 0 $inner-gutter 0;
+            }
+
+           // .dropdown {
+
+                .btn.inverted {
+                    text-shadow: none;
+                    border-color: $grey;
+                    color:$grey;
+
+                    .label {
+                        color:$white;
+                        background:$grey;
+                    }
+
+                    .caret {
+                        margin-left:8px;
+                    }
+
+                    &:hover {
+                        background:$white;
+                    }
+                }
+
+                .dropdown-menu {
+                    left:auto;
+                    right:0;
+
+
+
+                    a {
+                        position: relative;
+                        text-decoration: none;
+                        color:$grey;
+                        text-shadow: none;
+                        @include transition(color .2s);
+                        padding-right:75px;
+
+                        &.orange {
+                            color:$orange;
+                        }
+
+                        &:hover {
+                            background:none;
+                            color:$orange;
+                        }
+                    }
+                }
+            //}
+        }
+
+        h1 {
+            display: inline-block;
+        }
+
+        &:before {
+            background-image: url('/img/background-supplycrate-championark.jpg');
+            background-position: right bottom;
+            background-size:cover;
+            opacity:.8;
+
+            @media (max-width:1199px) {
+                max-height:400px;
+                min-height:auto;
+            }
+        }
+    }
+
+    &.single {
+
+        .banner {
+
+            h1 {
+
+            }
+        }
+
+        h2 {
+            margin-bottom: $gutter;
+
+            img {
+                margin-right: 20px;
+            }
+        }
+
+        .list-group {
+            margin-bottom: $gutter;
+
+            .list-group-item {
+                border-color: $grey_light + 90;
+                background: #e2e2e2 + 20;
+
+                strong {
+                    color:$grey;
+                }
+            }
+        }
+
+        hr {
+            margin: $gutter 0;
+        }
+        
+        .image {
+
+            @media(max-width:767px) {
+                text-align: center;
+                margin-bottom:$large-gutter;
+
+                img {
+                    max-width:100%;
+                    height: auto;
+                    padding:0 $gutter*2.5;
+                }
+            }
+        }
+
+        .agree_terms {
+            font-weight:normal;
+
+            input {
+                display: block;
+                float: left;
+                margin-top: 4px;
+                font-size: 20px;
+            }
+
+            span {
+                display: block;
+                float: left;
+                margin-left: 10px;
+
+                strong {
+                    color: $orange;
+                }
+            }
+        }
+    }
+}

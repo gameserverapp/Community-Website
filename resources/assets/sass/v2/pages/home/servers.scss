@@ -1,0 +1,239 @@
+.servers {
+    padding-top:$large-gutter;
+    padding-bottom:$gutter;
+
+    .intro {
+        margin-bottom:$gutter + $inner_gutter;
+    }
+
+    @media (max-width:767px) {
+        margin-top:$large-gutter + 10px;
+    }
+
+    #serverSlider {
+        .item {
+            position: relative;
+            margin:$gutter;
+        }
+    }
+
+    .server-block {
+        margin-bottom: $gutter;
+    }
+    
+    .status {
+        position: absolute;
+        top:$inner-gutter;
+        right:$inner-gutter;
+    }
+
+    @media (max-width:767px) {
+        .moreinfo .btn.tinytosmall {
+            margin-bottom: $gutter;
+        }
+    }
+
+    .cluster_name {
+        color:$grey_light + 40;
+
+        .label-default {
+            background:#999+20
+        }
+    }
+
+    .status_message {
+        position: absolute;
+        top:8.5px;
+        right:$gutter + 7px;
+        font-size:10px;
+        color:$grey_light + 40
+    }
+
+    .title {
+        margin-bottom:$mega-gutter;
+
+        h2 {
+            font-family: lato;
+            font-size:45px;
+            font-weight: 100;
+            color:$grey_light;
+        }
+    }
+
+
+
+    @media (max-width:991px) {
+
+        .col-md-4 .row {
+            margin:0;
+        }
+    }
+
+    .well {
+        text-align: center;
+        padding:30px 30px 20px;
+        border:0;
+        @include box-shadow(initial);
+
+        @media (max-width:1199px) {
+            padding:40px 20px;
+        }
+
+        @media (max-width:767px) {
+            margin-bottom:$gutter;
+        }
+
+        h2 {
+            font-family: Righteous;
+            color:$grey;
+            margin:10px 0 20px 0;
+            padding:0;
+            font-size:20px;
+            line-height: 35px;
+
+            i {
+                color:$orange;
+                font-style: normal;
+            }
+
+            @media (max-width:1199px) {
+                font-size:25px;
+                margin-bottom:$inner-gutter;
+            }
+
+            @media (min-width:768px) and (max-width:991px) {
+                font-size:21px;
+            }
+
+            @media (min-width:400px) and (max-width:767px) {
+                font-size:40px;
+                margin-bottom:25px;
+            }
+        }
+
+        @media  (max-width:1199px) {
+            padding: 40px 20px 20px;
+        }
+
+        @media (min-width:400px) and (max-width:767px) {
+
+            .serverbtn {
+                font-size:23px;
+            }
+        }
+
+        .alert {
+            margin-bottom:0;
+            font-size:14px;
+        }
+
+        .version {
+            position: absolute;
+            top:8.5px;
+            right:$gutter + 7px;
+            font-size:9px;
+            color:$grey_light + 40;
+
+            text-decoration: none;
+        }
+
+        .help {
+            display: block;
+            padding-top:15px;
+
+            span {
+                color:$grey_light + 50;
+                font-size:10px;
+                line-height:16px;
+                text-decoration: none;
+
+                //&:hover {
+                //    text-decoration: underline;
+                //}
+            }
+        }
+
+        .vote {
+            position: absolute;
+            top:8.5px;
+            left:$inner-gutter;
+            font-size:12px;
+
+            .label-champ {
+                color:$grey;
+
+                i {
+                    color:$orange;
+                }
+
+            }
+        }
+
+        .moreinfo {
+            display: inline-block;
+            color:$grey_light + 40;
+            font-size:12px;
+            line-height:16px;
+            margin-bottom:5px;
+            border-bottom:1px #ccc dotted;
+            text-decoration: none;
+
+            @include transition(all .1s);
+
+            &:hover {
+                color:$grey;
+                border-bottom-color: transparent;
+            }
+        }
+
+
+
+        &.p2p {
+            background:$grey;
+
+            h2 {
+                color:$white;
+            }
+
+            .vote .p2p {
+                background:transparent;
+                border:1px $orange dashed;
+                color:$orange !important;
+            }
+
+            .version strong {
+                color:$orange;
+            }
+
+            .btn {
+                background:$grey_light;
+
+                span {
+                    color:$black;
+                }
+
+                &.get-access {
+                    color: white;
+
+                    &:hover {
+                        background:$orange;
+                    }
+                }
+
+                &:hover {
+                    background:$orange;
+                }
+            }
+        }
+    }
+
+    .moreinfo {
+        margin-top:10px;
+        //margin:0px 0 60px;
+
+
+        @media (max-width:767px) {
+            margin-top:0;
+        }
+    }
+}

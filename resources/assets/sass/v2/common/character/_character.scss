@@ -1,0 +1,51 @@
+@import "character-account-split";
+
+.online-character {
+
+    text-align: center;
+
+    a:not(.btn) {
+        color: $grey;
+        text-decoration: none;
+
+        .picture_wrap {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 340px;
+            margin: $gutter 0;
+            @include transition(all .2s);
+            max-height: 240px;
+        }
+
+        h1 {
+            font-family: lato;
+            font-size: 20px;
+            color: $grey;
+            margin-bottom: 0;
+            line-height:30px;
+            height:50px;
+            @include transition(all .2s);
+        }
+
+        .label {
+            @include transition(all .2s);
+        }
+
+        &:hover {
+            .picture_wrap {
+                max-height: 300px;
+                margin: 0;
+            }
+
+            h1 {
+                color: $orange
+            }
+
+            .label {
+                color: $orange;
+                background: $grey;
+            }
+        }
+    }
+}

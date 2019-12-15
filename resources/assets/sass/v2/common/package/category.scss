@@ -1,0 +1,119 @@
+.package-category {
+    text-align: center;
+    margin-bottom:$large-gutter;
+
+    img {
+        //margin-bottom:$inner-gutter;
+    }
+
+    h2 {
+        margin-bottom: $gutter;
+        font-size:18px;
+
+        a {
+            color:#333;
+        }
+    }
+    
+    .progress {
+        position: relative;
+        margin-bottom:$gutter;
+
+        .progress-bar-info {
+            background:$grey_light + 60
+        }
+        
+        .detail {
+            position: absolute;
+            text-align: center;
+            width:100%;
+            font-size: 12px;
+            line-height:20px;
+            color: $black;
+            padding:0 $inner_gutter;
+
+            .row > div {
+                text-align: center;
+            }
+            
+            i {
+                font-size:9px;
+                font-style: normal;
+            }
+        }
+    }
+    button.dropdown-toggle {
+        width: 200px;
+        text-align: left;
+
+        .caret {
+            display: inline-block;
+            float: right;
+            margin-top: 13px;
+        }
+    }
+
+    .dropdown-menu {
+
+        a {
+            text-decoration: none;
+        }
+
+        li > span {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.42857143;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .disabled a,
+        .disabled span {
+            color: #333;
+            cursor: pointer;
+
+            span {
+                text-decoration: line-through;
+            }
+        }
+
+        .disabled a {
+
+            &:hover {
+                background-color: #f5f5f5;
+            }
+        }
+
+        .expensive a,
+        .expensive span {
+            color: $grey;
+
+            span {
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    a.single {
+        color:$orange;
+
+        &.isdisabled {
+            color: $grey;
+            //cursor:not-allowed;
+
+            span {
+                text-decoration: line-through;
+            }
+        }
+
+        &.expensive {
+            color: $grey;
+
+            span {
+                text-decoration: line-through;
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+&.tribes {
+
+    @media (max-width:599px) {
+        .col-xs-6 {
+            display:block;
+            float:none;
+            width:100%;
+            margin-bottom:$large-gutter;
+        }
+
+        .defaultcontent {
+            margin-bottom:0;
+        }
+    }
+
+}

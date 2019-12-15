@@ -1,0 +1,18 @@
+.breadcrumb {
+    padding:10px 15px;
+    margin-bottom:$gutter;
+    opacity:.8;
+
+    li {
+
+        &:before {
+            font-size:10px;
+        }
+
+        a {
+            color:$grey_light;
+            font-size:13px;
+            line-height:15px;
+        }
+    }
+}

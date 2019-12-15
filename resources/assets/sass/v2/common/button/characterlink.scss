@@ -1,0 +1,12 @@
+.characterlink {
+    color:$grey;
+    text-decoration: underline;
+    
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.characterlink-name {
+    color:$grey
+}

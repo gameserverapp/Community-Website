@@ -1,0 +1,51 @@
+&.payment {
+
+    .banner {
+        height:200px;
+
+        .text-only h1 {
+            color:$orange;
+        }
+
+        .banner_content_wrap {
+            max-height:250px;
+        }
+    }
+
+    .toc {
+        margin-bottom:$gutter;
+        max-height:30vh;
+        overflow-y: scroll;
+        overflow: -moz-scrollbars-vertical;
+        border:1px $grey solid;
+        padding:10px;
+
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+        ::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0,0,0,.5);
+            -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+        }
+    }
+
+    .double-agree {
+        text-align: center;
+        font-size:12px;
+    }
+
+    h4 {
+        color:$grey;
+    }
+
+    .btnwrap {
+        margin-bottom:$large-gutter;
+        text-align: center;
+
+        .champ {
+            color:$orange;
+        }
+    }
+}

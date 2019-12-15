@@ -1,0 +1,102 @@
+&.guest {
+
+    .defaultcontent .panel {
+        margin-bottom:0;
+    }
+
+    .navbar {
+
+        &:not(.passed-banner) .navbar-brand {
+            opacity:0 !important;
+        }
+
+        h1 {
+            color: $white;
+        }
+    }
+
+    .banner {
+
+        .title h1 {
+            color:$orange;
+            text-shadow: 1px 1px 13px  #000;
+        }
+    }
+
+    .tips {
+        margin-top: $large-gutter;
+        margin-bottom:0;
+    }
+
+    .spotlight {
+        margin-bottom:$inner-gutter;
+
+        .title {
+            margin-top:$gutter;
+            margin-bottom:$large-gutter;
+
+            h1 {
+
+                small {
+                    font-size:14px;
+                    margin-left:$inner-gutter;
+                }
+            }
+        }
+
+        .character-account-split {
+            background:$white;
+            margin-bottom:$gutter;
+        }
+
+        .tribe-card {
+            margin-bottom:$gutter;
+        }
+
+        .display-table {
+            width:100%;
+        }
+    }
+
+
+    @media (max-width:767px) {
+        iframe {
+            margin-bottom:$gutter;
+        }
+    }
+
+    .latest {
+        border:0;
+        background:none;
+        padding:$gutter 0
+    }
+
+    .stats {
+        padding:0;
+
+        .panel {
+            margin-bottom:$gutter;
+        }
+
+        .stat_block {
+            margin-bottom:$gutter;
+        }
+    }
+
+    .go {
+        h1 {
+            span {
+                font-family: Righteous;
+            }
+        }
+    }
+
+    @media (max-width:767px) {
+
+        .go {
+            .col-sm-6:first-child {
+                margin-bottom:$large-gutter;
+            }
+        }
+    }
+}

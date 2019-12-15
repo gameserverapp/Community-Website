@@ -1,0 +1,16 @@
+.read {
+
+    .tools {
+        font-size:14px;
+
+        .report {
+            color:red;
+        }
+    }
+
+    .well {
+        @include box-shadow(none);
+        border:0;
+        padding:19px 19px 3px 19px;
+    }
+}

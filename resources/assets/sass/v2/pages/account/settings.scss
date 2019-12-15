@@ -1,0 +1,23 @@
+&.settings {
+
+    input {
+        margin-right:5px;
+
+        &[type=email] {
+            width:250px;
+        }
+    }
+
+    label {
+        font-size:13px;
+        margin:0;
+    }
+
+    .alert {
+        margin-bottom:0;
+
+        .indent {
+            line-height:15px;
+        }
+    }
+}

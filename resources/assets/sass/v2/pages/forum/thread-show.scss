@@ -1,0 +1,16 @@
+.thread-show {
+
+    .title {
+        display:inline-block;
+    }
+
+    .follow {
+        display:inline-block;
+        float:right;
+
+
+        @media (max-width:499px) {
+            float:none;
+        }
+    }
+}

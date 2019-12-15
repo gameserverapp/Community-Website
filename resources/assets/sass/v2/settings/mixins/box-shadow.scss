@@ -1,0 +1,7 @@
+@mixin box-shadow($options) {
+
+    -moz-box-shadow:    $options;
+    -webkit-box-shadow: $options;
+    box-shadow:         $options;
+
+}

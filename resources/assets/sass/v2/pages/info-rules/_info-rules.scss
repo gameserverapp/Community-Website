@@ -1,0 +1,47 @@
+&.info-rules {
+
+    .display-table {
+        width:100%
+    }
+
+    .main_content {
+
+        .logo {
+            font-family: Righteous;
+            font-size: 40px;
+            line-height:45px;
+            margin-bottom: $gutter;
+
+            span {
+                color: $orange
+            }
+        }
+
+        .blue {
+            background: $blue;
+        }
+
+        .rules {
+
+            .title {
+
+                p {
+                    font-size: 17px;
+                }
+            }
+
+            h3 {
+                margin-top:$gutter;
+            }
+
+            ul {
+
+                li {
+                    line-height: 30px;
+                    font-size: 17px;
+                    margin-bottom: $inner_gutter;
+                }
+            }
+        }
+    }
+}

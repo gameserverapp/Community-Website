@@ -1,0 +1,126 @@
+.banner {
+    background:$grey;
+
+
+    .background {
+        background:$grey;
+        opacity:.9;
+    }
+
+    &:before {
+        background-image:none !important;
+    }
+
+    .switcher {
+        display: inline-block;
+        margin-right: 60px;
+        margin-left: -90px;
+
+        @media (max-width:991px) {
+            display:block;
+            margin: 0 0 $inner-gutter 0;
+        }
+
+        button {
+            &:hover {
+                color: $orange;
+                text-shadow: 1px 1px 13px #000;
+                border: 1px $orange solid;
+                background:transparent;
+
+                .caret {
+                    color:$orange;
+                }
+
+                @media (max-width: 767px) {
+                    color: $white;
+                    text-shadow: none;
+                    border: 1px $white solid;
+                }
+            }
+        }
+
+        .dropdown-menu {
+            left:auto;
+            right:0;
+
+
+            .tribenav {
+                position: relative;
+
+
+                .linkwrapper {
+                    line-height:22px;
+                    padding-right:60px;
+
+                    .tribelink-name {
+                        text-decoration: none;
+                        color:$grey;
+                        text-shadow: none;
+                        @include transition(color .2s);
+
+                        &.orange {
+                            color:$orange;
+                        }
+
+                        &:hover {
+                            background:none;
+                            color:$orange;
+                        }
+                    }
+                }
+
+
+                .divider {
+                    margin:5px 0;
+                }
+
+                .server {
+                    position: absolute;
+                    top:6px;
+                    right:15px;
+                    margin-left:35px;
+                }
+            }
+        }
+    }
+
+    .banner_content {
+
+
+        h1 {
+            .tribelink-name {
+                text-shadow: none !important;
+                color:$orange;
+            }
+        }
+    }
+
+    .promote {
+        display: inline-block;
+        margin-left: 60px !important;
+        margin-right: -90px !important;
+    }
+
+    .navigation {
+
+        ul.nav {
+
+            li {
+                &.inbox {
+                    float:right;
+                }
+
+                &.outbox {
+                    float:right;
+                }
+
+                &.settings {
+                    float: right;
+
+
+                }
+            }
+        }
+    }
+}

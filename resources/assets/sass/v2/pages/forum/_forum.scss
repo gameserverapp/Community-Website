@@ -1,0 +1,64 @@
+&.forum {
+
+    .forum_wrapper {
+        margin-top:$gutter + $inner_gutter;
+        margin-bottom:$large-gutter;
+
+        h1 {
+            color:$orange;
+        }
+
+        h1 .label,
+        h2 .label {
+            margin-right:10px;
+        }
+    }
+    
+    .banner {
+        
+        h1,
+        h2 {
+            
+            small {
+                display: block;
+                font-size:20px;
+                margin-top: 15px;
+                margin-bottom: -30px;
+            }
+        }
+
+        &:before {
+            background-image: url('/img/forum-background.jpg');
+            background-position: bottom right;
+            background-size:cover;
+            opacity:.8;
+
+            @media (max-width:767px) {
+                max-height:400px;
+                min-height:auto;
+            }
+        }
+    }
+
+    @media (max-width:767px) {
+        .sendmessage {
+            display: block !important;
+            text-align: center;
+            margin: -15px auto 15px !important;
+        }
+    }
+
+
+    @media (max-width:499px) {
+        textarea {
+            height: 150px;
+        }
+    }
+
+    @import 'partials/index',
+    'post',
+    'thread',
+    'thread-single',
+    'category',
+    'thread-show';
+}

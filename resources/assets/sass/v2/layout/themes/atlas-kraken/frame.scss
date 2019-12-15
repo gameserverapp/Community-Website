@@ -1,0 +1,190 @@
+.frame {
+    width:100%;
+
+    &.simple {
+        position: relative;
+        margin-bottom:60px;
+
+        > table {
+            display: table;
+            width:100%;
+            border-spacing: 0;
+            border-collapse: separate;
+        }
+
+        .contentwrap {
+            z-index:1;
+            margin: -4px -6px -4px;
+            display: block;
+            background:#ccc;
+            padding:0;
+
+            p {
+                color:#333;
+            }
+
+            .well {
+                margin-bottom:0;
+            }
+
+            .stat_canvas {
+                margin: 15px 1px 5px;
+                width:calc(100% - 2px);
+            }
+
+            .rownav {
+                h1 {
+                    margin-top:20px;
+                    color:#666;
+                }
+            }
+
+            .panel {
+                margin:0;
+                border:0;
+
+                .panel-heading {
+                    padding:5px 20px 5px;
+                    background:darken($themeLinkColor, 30);
+                    border:none;
+                    color:#fff;
+
+                    .panel-title, .panel-title i {
+                        color:#fff;
+                        font-size:17px;
+                        font-weight: bold;
+                    }
+                }
+
+                .panel-body,
+                .table {
+                    padding:15px 20px 15px;
+                    background:#ccc;
+                    color:#333;
+                    border:none;
+                }
+
+                .table {
+
+                    th, td {
+                        color:#333;
+                        border-color:#c1c1c1
+                    }
+
+                }
+
+                .panel-footer {
+                    padding:15px 20px 15px;
+                    background:#2a2826;
+                    border:none;
+                }
+
+                .stat_canvas * {
+                    color:#666;
+
+                    .legend {
+                        color:#666;
+                    }
+                }
+            }
+
+            .list-group {
+                z-index: 1;
+                margin:-2px 0px -2px;
+                max-width:100%;
+                width:100%;
+                position: relative;
+
+                color:#333;
+            }
+
+            iframe {
+                z-index: 1;
+                margin:2px 0px -7px;
+                max-width:100%;
+                width:100%;
+                position: relative;
+            }
+        }
+
+        .decoration-top,
+        .decoration-bottom,
+        .decoration-right,
+        .decoration-left {
+            display:block !important;
+            z-index:3;
+
+            td {
+                z-index:3;
+                border:0;
+                padding:0;
+            }
+        }
+
+        .decoration-top,
+        .decoration-bottom {
+            display:table-row !important;
+        }
+
+        .decoration-right,
+        .decoration-left {
+            display:table-cell !important;
+        }
+
+        .decoration-top {
+            width: calc(100% - 2px);
+
+            .top-left {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_top-left.png') !important
+            }
+
+            .top-repeat {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_top-repeat.png') !important;
+                background-size: 100% 20px;
+            }
+
+            .top-right {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_top-right.png') !important;
+                width:66px;
+            }
+        }
+        .decoration-right {
+            background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_right-repeat.png') !important;
+
+            .right-repeat-top {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_right-repeat-top.png') !important;
+            }
+
+            .right-repeat-bottom {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_right-repeat-bottom.png') !important;
+            }
+        }
+
+        .decoration-bottom {
+
+            .bottom-left {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_bottom-left.png') !important;
+            }
+
+            .bottom-repeat {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_bottom-repeat.png') !important;
+            }
+
+            .bottom-right {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_bottom-right.png') !important;
+            }
+        }
+
+        .decoration-left {
+            background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_left-repeat.png') !important;
+
+            .left-repeat-top {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_left-repeat-top.png') !important;
+            }
+
+            .left-repeat-bottom {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_left-repeat-bottom.png') !important;
+            }
+        }
+    }
+}

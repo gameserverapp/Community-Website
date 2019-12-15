@@ -1,0 +1,124 @@
+.banner {
+    padding:0;
+
+    @media (max-width:767px) {
+        .banner_content_wrap {
+            height:auto !important;
+            padding-bottom:$gutter;
+        }
+
+        .scrolldown {
+            display:none;
+        }
+    }
+
+    .title {
+        margin-top:220px;//190px;//190px;
+        margin-bottom:50px;
+
+        @media (max-width:767px) {
+            margin-top:150px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: Righteous;
+            color:$grey;
+            font-size: 60px;
+            margin:0 0 30px;
+
+            @media (max-width:991px) {
+                font-size:50px;
+                margin-bottom:15px;
+            }
+
+            @media (max-width:500px) {
+                font-size:40px;
+            }
+        }
+
+        h2 {
+            margin:0 0 30px;
+            color:$white;
+            font-size: 25px;
+            line-height: 35px;
+
+            @media (max-width:991px) {
+                font-size:20px;
+            }
+        }
+
+        .btnwrap {
+            padding-top:10px;
+            padding-left:0px;
+
+
+            @media (max-width:991px) {
+                padding-top:0;
+
+                a {
+                    font-size:15px;
+                }
+            }
+        }
+    }
+
+    .cta {
+        margin-top:90px;
+
+        .panel {
+            border:0;
+            width:95%;
+            margin:0 auto;
+        }
+
+        .panel-title {
+            text-align: center;
+            font-weight:normal;
+
+            .label {
+                background:$grey_light;
+                color:$white;
+                margin: 0 0 0 10px;
+                padding: .4em .6em;
+                vertical-align: middle;
+                font-size:11px;
+            }
+
+            .fa {
+                margin-right:3px;
+            }
+        }
+
+        a {
+            color:$orange;
+        }
+
+        .table {
+            text-align: left;
+
+            th {
+                font-weight:normal;
+            }
+        }
+
+        .owl-theme {
+            margin-top:30px;
+
+            .owl-item {
+                height:330px;
+            }
+
+            .owl-controls {
+
+                .owl-page {
+                    opacity: .4;
+
+                    span {
+                        background: $white;
+                    }
+                }
+            }
+        }
+    }
+}

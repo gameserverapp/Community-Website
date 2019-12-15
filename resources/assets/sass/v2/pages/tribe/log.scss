@@ -1,0 +1,46 @@
+&.log {
+
+    .rgba {
+        //background: $black;
+
+        .date {
+            //color:$white;
+        }
+
+        .message {
+
+            .red {
+                color: red;
+            }
+
+            .orange {
+                color:orange;
+            }
+
+            .purple {
+                color: purple
+            }
+
+            .green {
+                color:green
+            }
+
+            .blue {
+                color:blue + 30;
+            }
+
+            .yellow {
+                color:yellow - 40
+            }
+
+            .black {
+                color:#000;
+            }
+
+            .gamedate {
+                color:$grey_light + 70;
+                padding-left:10px
+            }
+        }
+    }
+}

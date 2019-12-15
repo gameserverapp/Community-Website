@@ -1,0 +1,1 @@
+<label>{{ucfirst($value)}}</label>

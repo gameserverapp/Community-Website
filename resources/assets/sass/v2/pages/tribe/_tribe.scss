@@ -1,0 +1,20 @@
+&.tribe {
+    @import "banner",
+    'members',
+    'promote',
+    'log';
+
+    .panel-title .label {
+        margin-left: 5px;
+        font-size: 10px;
+        vertical-align: 3px;
+    }
+
+    .label-admin {
+        color:$grey;
+    }
+
+    .stat_canvas {
+        min-height:300px;
+    }
+}

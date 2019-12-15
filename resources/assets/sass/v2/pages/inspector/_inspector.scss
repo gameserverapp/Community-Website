@@ -1,0 +1,47 @@
+&.inspector {
+
+    .filters {
+
+        border-right:1px #ddd solid;
+
+        input[type=checkbox] {
+            margin-right:7px;
+        }
+
+        select[name=order_by] {
+            margin-bottom:10px;
+        }
+
+        input[type=submit] {
+            width:100%;
+        }
+    }
+
+    .searchFilters {
+        display:none;
+
+        &.show {
+            display:block;
+        }
+    }
+
+    .results {
+        margin-bottom:$gutter;
+
+        &__title {
+            display: block;
+            text-align: center;
+            margin-top:-25px;
+            margin-bottom:$gutter;
+            color:$orange;
+
+
+            @media (max-width:991px) {
+                margin-top:$gutter;
+            }
+        }
+
+        .character-account-split {
+        }
+    }
+}

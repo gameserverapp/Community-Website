@@ -1,0 +1,37 @@
+.stream {
+    border-color: $status_stream;
+
+    .panel-heading {
+        background-color: $status_stream;
+        color: #fff;
+        border-color: $status_stream;
+        
+        .label {
+            position:absolute;
+            top:14px;
+            right:30px;
+            font-size:15px;
+            background:#fff;
+            color: $status_stream;
+            border:1px $status_stream solid;
+
+            i {
+                margin-left:3px;
+            }
+
+            @include transition(all .2s);
+
+            &:hover {
+                background:$status_stream;
+                color: #fff;
+                border-color:#fff;
+            }
+        }
+    }
+
+    .panel-body {
+        padding: 0;
+        line-height: 0;
+        overflow:hidden;
+    }
+}

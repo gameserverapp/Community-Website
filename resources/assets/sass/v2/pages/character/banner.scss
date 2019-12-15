@@ -1,0 +1,138 @@
+.banner {
+
+    .actions {
+        display: inline-block;
+        margin-right: 60px;
+        margin-left: -180px;
+
+        @media (max-width:991px) {
+            display:block;
+            margin: 0 0 $inner-gutter 0;
+        }
+
+        .dropdown,
+        .btn-group {
+
+            .btn {
+                text-shadow: none;
+                //border-color: $grey;
+                //color:$grey;
+
+                .label {
+                    color:$white;
+                    background:$grey;
+                }
+
+                &:hover {
+                    background:$white;
+                    border-color:$white;
+                    color:$grey
+                }
+            }
+
+            .dropdown-menu {
+                left:auto;
+                right:0;
+
+                a {
+                    position: relative;
+                    text-decoration: none;
+                    color:$grey;
+                    text-shadow: none;
+                    @include transition(color .2s);
+                    padding-right:75px;
+
+                    &.orange {
+                        color:$orange;
+                    }
+
+                    &:hover {
+                        background:none;
+                        color:$orange;
+                    }
+                }
+            }
+        }
+    }
+
+    .text-only {
+        h1 {
+
+            span.level {
+                color: $grey_light;
+                font-size:35px;
+                line-height: 35px;
+                margin-left:5px;
+            }
+
+            small {
+                display: block;
+                font-size: 16px;
+                color: $white;
+                margin-top: 10px;
+                margin-bottom: -26px;
+
+                .linkwrapper {
+                    line-height: 26px !important;
+
+                    a.accountlink {
+                        color:$orange;
+                    }
+                }
+            }
+        }
+    }
+
+    .navigation {
+        text-align: center;
+
+        .filler {
+
+            display:inline-block;
+            float:left;
+            width:20px;
+            height:35px;
+        }
+
+        .char_pic {
+            display:inline-block;
+            float:left;
+            width:20px;
+            height:30px;
+            margin-top:-3px;
+            margin-right:5px;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+
+        .character {
+            .label {
+                margin-top:3px !important;
+                font-size:10px;
+            }
+
+            a  {
+                * {
+                    cursor: pointer;
+                }
+                .characterlink-name {
+                    color: $white;
+                }
+
+                &:hover .characterlink-name {
+                    color:#abafaa
+                }
+            }
+
+            &.active {
+                .characterlink-name {
+                    color:$orange;
+
+                    &:hover {
+                        color:$orange;
+                    }
+                }
+            }
+        }
+    }
+}

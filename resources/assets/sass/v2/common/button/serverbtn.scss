@@ -1,0 +1,62 @@
+.serverbtn {
+    background:$orange;
+    color:$white;
+    border:0;
+    font-size:16px;
+    text-decoration: none;
+
+    @include transition(all .2s);
+
+    strong {
+        font-family: Righteous;
+
+        span {
+            color:$grey;
+            @include transition(all .2s);
+        }
+
+        @media (min-width:768px) and (max-width:991px) {
+            display:none;
+        }
+    }
+
+    span {
+        color:$orange;
+        @include transition(all .2s);
+    }
+
+    i {
+        padding-left:15px;
+    }
+
+    &:hover {
+        background:$grey;
+        color:$white;
+        text-decoration: none;
+
+        span {
+            color:$grey;
+        }
+
+        strong span {
+            color:$orange;
+        }
+    }
+
+    &.grey {
+        background:$grey;
+
+        &:hover {
+            background:$orange;
+            color:$white;
+        }
+    }
+
+    @media (max-width:1199px) {
+        font-size:16px;
+    }
+
+    @media (min-width:768px) and (max-width:991px) {
+        font-size:14px;
+    }
+}

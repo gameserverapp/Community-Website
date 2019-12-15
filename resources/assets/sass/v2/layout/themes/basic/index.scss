@@ -1,0 +1,51 @@
+&.theme-basic {
+
+    background: #253138;
+    //background-image:url('/img/themes_copyright/aberration/bg_purple.jpg');
+    background-size:contain;
+    background-repeat:repeat-y;
+
+    .banner {
+
+        &:after {
+            display:none;
+        }
+
+        .fallback {
+            //display:none;
+        }
+    }
+
+    .footer {
+        border:none;
+
+        &:before {
+            display:none;
+            content: '';
+        }
+    }
+
+
+    .container-fluid {
+
+
+        &.white {
+
+        }
+
+        &.grey {
+
+        }
+
+        &.red {
+
+        }
+
+        &.purple {
+
+        }
+    }
+
+    @import 'forum', 'menu', 'inspector', 'shop', 'frame';
+
+}

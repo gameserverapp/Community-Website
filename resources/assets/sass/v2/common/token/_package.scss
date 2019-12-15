@@ -1,0 +1,42 @@
+.token-package {
+    text-align: center;
+
+    a {
+        color:$grey;
+        text-decoration: none;
+    }
+    img {
+        margin-bottom:$inner-gutter;
+    }
+
+    h2 {
+        margin-top: $inner-gutter;
+
+        span {
+            color:$orange;
+        }
+    }
+
+    p.description {
+
+        span {
+            color: $orange;
+        }
+        
+        em {
+            font-size:10px;
+            font-style: italic;
+        }
+    }
+
+    .btn {
+
+        span {
+            color:$grey;
+        }
+    }
+}
+
+&.buy .token-package {
+    margin-bottom:90px;
+}

@@ -1,0 +1,35 @@
+.navbar {
+    background-image:url('/img/themes_copyright/atlas-kraken/menu-repeat.png') !important;
+
+    &.passed-banner:before,
+    &:before {
+        background-image:url('/img/themes_copyright/atlas-kraken/menu-left.png') !important;
+    }
+
+    &:after {
+        background-image:url('/img/themes_copyright/atlas-kraken/menu-right.png') !important;
+    }
+
+    > .container {
+        padding-top:7px;
+
+        @media (min-width:1000px) {
+            &:before {
+                position: absolute;
+                background-image:url('/img/themes_copyright/atlas-kraken/menu_texture_overlay.png') !important;
+                background-size:cover;
+                height:54px;
+                width:611.5px;
+
+                top:5px;
+                left:50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+}
+
+.nav-filler {
+    display:block;
+    height:60px;
+}

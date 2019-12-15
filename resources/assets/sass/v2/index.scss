@@ -1,0 +1,19 @@
+@import 'settings/_settings';
+
+body.v2 {
+    background:$white;
+
+    img {
+        max-width:100%;
+    }
+    
+    &.fixed {
+        position: fixed;
+    }
+
+    @import
+    'layout/_layout',
+            'common/_common',
+            'pages/_pages';
+
+}

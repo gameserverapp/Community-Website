@@ -1,0 +1,30 @@
+//variables
+
+$inner_gutter:  15px;
+$gutter:        30px;
+$large-gutter:  60px;
+$mega-gutter:   120px;
+
+//colors
+$orange: #FF4B3E;
+$orange_dark: #A34944;
+
+$grey: #545754;
+$grey_light: #838782;
+
+$green: #D1E8D5;
+$blue: #E6F8FF;
+
+$primary: $orange;
+$secondary: $grey;
+
+$white: #fff;//#FFFFF8;
+$black: #333333;
+
+//status colors
+$status_online: #8cc68d;
+$status_offline: #a94442;
+$status_default: $grey;
+$status_stream: #6441a4;
+$status_new: $orange;
+$status_update: orange;

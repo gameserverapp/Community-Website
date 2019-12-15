@@ -1,0 +1,13 @@
+.picture {
+
+    .picture_wrap {
+        background-size:contain;
+        background-repeat:no-repeat;
+        background-position: center;
+        height:340px;
+    }
+
+    @media (max-width:991px) {
+        margin-bottom:$large-gutter;
+    }
+}

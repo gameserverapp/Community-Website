@@ -53,4 +53,5 @@ php /var/www/artisan optimize
 
 sudo bash install-step-2.sh
 
-sudo bash install-ssl.sh
+sudo bash /var/www/install-ssl.sh
+rm -rf /var/www/install-ssl.sh

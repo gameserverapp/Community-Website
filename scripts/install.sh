@@ -39,10 +39,12 @@ git clone https://github.com/GameserverApp/Community-Website.git /var/www;
 
 composer install -d /var/www;
 npm --prefix /var/www install;
+(cd /var/www && gulp --production)
 
 chown -R www-data:www-data /var/www
 
 sed -i 's#/var/www/html#/var/www/public#g' /etc/nginx/sites-enabled/digitalocean
+sed -i 's#try_files $uri $uri/ =404#try_files $uri $uri/ /index.php?$query_string#g' /etc/nginx/sites-enabled/digitalocean
 
 service nginx reload
 
@@ -54,4 +56,7 @@ php /var/www/artisan optimize
 sudo bash install-step-2.sh
 
 sudo bash /var/www/install-ssl.sh
+
+rm -rf install.sh
+rm -rf install-step-2.sh
 rm -rf /var/www/install-ssl.sh

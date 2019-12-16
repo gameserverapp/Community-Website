@@ -3,7 +3,7 @@
   "dependencies": {
     "bootstrap": "^3.3.5",
     "flot": "^0.8.0-alpha",
-    "gulp": "^3.9.0",
+    "gulp": "2.2.0",
     "gulp-notify": "^2.2.0",
     "jquery": "^2.1.4",
     "laravel-elixir": "^2.0.0",

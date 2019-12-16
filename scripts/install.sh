@@ -39,6 +39,7 @@ git clone https://github.com/GameserverApp/Community-Website.git /var/www;
 
 composer install -d /var/www;
 npm --prefix /var/www install;
+npm install -g gulp@2.2.0
 (cd /var/www && gulp --production)
 
 chown -R www-data:www-data /var/www

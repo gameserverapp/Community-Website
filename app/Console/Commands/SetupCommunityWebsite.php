@@ -63,6 +63,8 @@ class SetupCommunityWebsite extends Command
 
         file_put_contents('/var/www/install-ssl.sh', 'certbot --nginx --agree-tos --redirect -d ' . $domain . ' --register-unsafely-without-email');
 
+        $this->call('key:generate');
+
         $this->info('Almost ready! Setup the custom domain for your website on the GameserverApp.com dashboard.');
     }
 
@@ -70,7 +72,7 @@ class SetupCommunityWebsite extends Command
     {
         $content = file_get_contents($this->laravel->environmentFilePath());
 
-        if(!empty($content) and strpos($key, $content) === false) {
+        if(!empty($content) and strpos($content, $key) === false) {
             $content .= "\n" . $key . '=' . $value;
         } else {
             $content = preg_replace(

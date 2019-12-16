@@ -176,7 +176,6 @@ class OAuthApi
         $headers = [
             'User-Agent'     => 'GameserverApp-Frontend/1.0',
             'Accept'         => 'application/json',
-            'premium-domain' => self::domain()
         ];
 
         if (self::hasAuthCookies() and $auth) {
@@ -185,6 +184,9 @@ class OAuthApi
 
         if(env('PREMIUM_GUI_API_KEY', false)) {
             $headers[env('PREMIUM_GUI_API_HEADER')] = env('PREMIUM_GUI_API_KEY', false);
+            $headers['premium-domain'] = self::domain();
+        } else {
+            $headers['X-AUTH-GSA-CLIENT-ID'] = config('gameserverapp.connection.client_id');
         }
 
         return $headers;

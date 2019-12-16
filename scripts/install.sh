@@ -19,9 +19,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-nvm install 6.17.1;
+touch install-step-2.sh;
+
+echo "nvm install 6.17.1;
 
 apt install composer zip unzip php-mbstring php-dom -y;
+
+ssh-keyscan github.com >> githubKey
+ssh-keygen -lf githubKey
 
 rm -rf /var/www/*;
 git clone git@github.com:GameserverApp/Community-Website.git /var/www;
@@ -37,4 +42,6 @@ service nginx reload
 
 php /var/www/artisan setup-community-website
 
-php /var/www/artisan optimize
+php /var/www/artisan optimize" >> install-step-2.sh;
+
+bash install-step-2.sh

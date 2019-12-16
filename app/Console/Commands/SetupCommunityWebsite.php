@@ -52,6 +52,10 @@ class SetupCommunityWebsite extends Command
             return $this->call('setup-community-website');
         }
 
+        if(!file_exists($this->laravel->environmentFilePath())) {
+            file_put_contents($this->laravel->environmentFilePath(), '');
+        }
+
         $this->writeNewEnvironmentFileWith('GSA_CLIENT_ID', $id);
         $this->writeNewEnvironmentFileWith('GSA_CLIENT_SECRET', $secret);
         $this->writeNewEnvironmentFileWith('GSA_REDIRECT_URL', 	'https://' . $domain . '/auth/callback');

@@ -23,6 +23,7 @@ nvm install 6.17.1;
 touch install-step-2.sh;
 
 echo "
+sudo su
 apt install composer zip unzip php-mbstring php-dom -y;
 
 ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
@@ -31,7 +32,7 @@ rm -rf /var/www/*;
 git clone git@github.com:GameserverApp/Community-Website.git /var/www;
 
 composer install -d /var/www;
-npm --prefix /var/www install;
+npm --prefix /var/www install /var/www;
 
 chown -R www-data:www-data /var/www
 

@@ -67,7 +67,7 @@ class SetupCommunityWebsite extends Command
     {
         $content = file_get_contents($this->laravel->environmentFilePath());
 
-        if(strpos($key, $content) === false) {
+        if(!empty($content) and strpos($key, $content) === false) {
             $content .= "\n" . $key . '=' . $value;
         } else {
             $content = preg_replace(

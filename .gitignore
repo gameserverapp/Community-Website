@@ -20,10 +20,3 @@ npm-debug.log
 /public/js/bundle.js
 /public/js/app.js
 public/core
-
-/resources/sass/v2/layout/themes/atlas-kraken
-/resources/sass/v2/layout/themes/extinction
-
-
-/public/img/themes_copyright/atlas-kraken
-/public/img/themes_copyright/extinction

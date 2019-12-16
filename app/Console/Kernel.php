@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SetupCommunityWebsite;
 use App\Console\Commands\WarmCache;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        WarmCache::class
+        WarmCache::class,
+        SetupCommunityWebsite::class
     ];
 
     /**

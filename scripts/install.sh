@@ -48,6 +48,9 @@ service nginx reload
 
 php /var/www/artisan setup-community-website
 
-php /var/www/artisan optimize" >> install-step-2.sh;
+php /var/www/artisan optimize
+" >> install-step-2.sh;
 
 sudo bash install-step-2.sh
+
+sudo bash install-ssl.sh

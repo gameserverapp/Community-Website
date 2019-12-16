@@ -5,7 +5,7 @@
     "flot": "^0.8.0-alpha",
     "gulp": "2.2.0",
     "gulp-notify": "^2.2.0",
-    "jquery": "^2.1.4",
+    "jquery": "^3.4.0",
     "laravel-elixir": "^2.0.0",
     "laravel-elixir-livereload": "0.0.3",
     "simplemde": "^1.11.2"

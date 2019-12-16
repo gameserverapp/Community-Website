@@ -53,7 +53,8 @@ class SetupCommunityWebsite extends Command
         }
 
         if(!file_exists($this->laravel->environmentFilePath())) {
-            file_put_contents($this->laravel->environmentFilePath(), '');
+            $content = file_get_contents($this->laravel->environmentFilePath() . '.example');
+            file_put_contents($this->laravel->environmentFilePath(), $content);
         }
 
         $this->writeNewEnvironmentFileWith('GSA_CLIENT_ID', $id);

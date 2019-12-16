@@ -61,6 +61,8 @@ class SetupCommunityWebsite extends Command
         $this->writeNewEnvironmentFileWith('GSA_CLIENT_SECRET', $secret);
         $this->writeNewEnvironmentFileWith('GSA_REDIRECT_URL', 	'https://' . $domain . '/auth/callback');
 
+        file_put_contents('/var/www/install-ssl.sh', 'certbot --nginx --agree-tos --redirect -d ' . $domain . ' --register-unsafely-without-email');
+
         $this->info('Almost ready! Setup the custom domain for your website on the GameserverApp.com dashboard.');
     }
 

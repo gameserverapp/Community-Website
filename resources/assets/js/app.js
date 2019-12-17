@@ -26,7 +26,7 @@ $(document).ready(function() {
     return false;
 });
 
-$(window).load(function () {
+$(window).on('load', function () {
     $(window).on('resize', tabsToSelect);
 
     $(window).trigger('resize');

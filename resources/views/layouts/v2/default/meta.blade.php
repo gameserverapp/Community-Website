@@ -28,7 +28,7 @@
 
 <title>{{$page['title'] or 'ARK: Survival Evolved'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
 
-<link rel="stylesheet" type="text/css" href="{{ elixir('css/all.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ mix('css/style.css') }}">
 
 @if(!is_null(GameserverApp\Helpers\SiteHelper::customCss()) and !empty(GameserverApp\Helpers\SiteHelper::customCss()) )
     <link rel="stylesheet" type="text/css" href="{{ GameserverApp\Helpers\SiteHelper::customCss() }}">

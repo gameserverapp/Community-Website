@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+let mix  = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,20 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'js').version();
+
+
+mix.sass('resources/assets/sass/style.scss', 'build/css')
+    .combine([
+        'public/build/css/style.css',
+        'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/simplemde/dist/simplemde.min.css',
+        'resources/assets/vendor/owl.carousel/owl-carousel/owl.carousel.css',
+        'resources/assets/vendor/owl.carousel/owl-carousel/owl.theme.css',
+        'resources/assets/vendor/owl.carousel/owl-carousel/owl.transitions.css',
+    ], 'public/css/style.css')
+    .version();
+
+
+mix.copy('node_modules/bootstrap/fonts', 'public/build/fonts')
+    .copy('resources/assets/vendor/owl.carousel/owl-carousel/*.gif', 'public/build/css/AjaxLoader.gif');

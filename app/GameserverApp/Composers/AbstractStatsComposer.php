@@ -19,27 +19,34 @@ class AbstractStatsComposer
 
     public function basicStats(View $view, $type)
     {
-        if(!isset($view->getData()['value']) or empty($view->getData()['value'])) {
-            $data = $this->api->stats(
-                'domain',
-                $type
-            );
-        } elseif(strpos($view->getData()['value'], 'cluster-') !== false) {
-            $value = str_replace('cluster-', '', $view->getData()['value']);
+        try {
+            if(!isset($view->getData()['value']) or empty($view->getData()['value'])) {
+                $data = $this->api->stats(
+                    'domain',
+                    $type
+                );
+            } elseif(strpos($view->getData()['value'], 'cluster-') !== false) {
+                $value = str_replace('cluster-', '', $view->getData()['value']);
 
-            $data = $this->api->stats(
-                'cluster',
-                $type,
-                $value
-            );
-        } else {
+                $data = $this->api->stats(
+                    'cluster',
+                    $type,
+                    $value
+                );
+            } else {
 
-            $value = str_replace('server-', '', $view->getData()['value']);
-            $data = $this->api->stats(
-                'server',
-                $type,
-                $value
-            );
+                $value = str_replace('server-', '', $view->getData()['value']);
+                $data = $this->api->stats(
+                    'server',
+                    $type,
+                    $value
+                );
+            }
+        } catch (\Exception $e) {
+            $data = [
+                'data' => '',
+                'options' => ''
+            ];
         }
 
         return $data;

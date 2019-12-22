@@ -20,3 +20,4 @@ npm-debug.log
 /public/js/bundle.js
 /public/js/app.js
 public/core
+/public/mix-manifest.json

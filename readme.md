@@ -32,10 +32,14 @@ composer install --no-interaction --no-dev --prefer-dist
 php artisan down
 npm install --loglevel=error
 gulp --production
-php artisan optimize
+npm run production
 chown -R www-data:www-data ./*
 php artisan up
 ```
 
 # Issues
 If you experience any (security) issues, please contact support@gameserverapp.com.
+
+## License
+
+The Community website is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).

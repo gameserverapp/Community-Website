@@ -26,9 +26,9 @@ class SetupCommunityWebsite extends Command
 
     public function handle()
     {
-        $id = trim($this->ask('Enter your Client ID from GameserverApp.com:'));
-        $secret = trim($this->ask('Enter your Client Secret from GameserverApp.com:'));
-        $domain = trim($this->ask('Enter the domain for your website (without HTTP or HTTPS):'));
+        $id = trim($this->ask('Enter your Client ID from GameserverApp.com'));
+        $secret = trim($this->ask('Enter your Client Secret from GameserverApp.com'));
+        $domain = trim($this->ask('Enter the domain for your website (without HTTP or HTTPS)'));
 
         $client = new \GuzzleHttp\Client([
             'base_uri' => config('gameserverapp.connection.url'),
@@ -61,7 +61,9 @@ class SetupCommunityWebsite extends Command
         $this->writeNewEnvironmentFileWith('GSA_CLIENT_SECRET', $secret);
         $this->writeNewEnvironmentFileWith('GSA_REDIRECT_URL', 	'https://' . $domain . '/auth/callback');
 
-        file_put_contents('/var/www/install-ssl.sh', 'certbot --nginx --agree-tos --redirect -d ' . $domain . ' --register-unsafely-without-email');
+        $content = file_get_contents(base_path('scripts/install-ssl.sh'));
+        $content = str_replace('%%DOMAIN%%', $domain, $content);
+        file_put_contents('/var/www/install-ssl.sh', $content);
 
         $this->call('key:generate');
 

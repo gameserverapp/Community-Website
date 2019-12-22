@@ -14,9 +14,13 @@
         <div class="col-md-{{$block['size'] or 12}}
         @if(isset($row['settings']['vertical_align']))table-cell @endif
         @if(isset($block['align'])) text-{{$block['align']}} @endif">
-            @include('pages.v1.page.blocks.' . $block['type'], [
-                'value' => isset($block['value'])? $block['value'] : ''
-            ])
+            @if($block['type'] == 'formbuilder' and !isset($block['name']))
+                Could not find a form
+            @else
+                @include('pages.v1.page.blocks.' . $block['type'], [
+                    'value' => isset($block['value'])? $block['value'] : ''
+                ])
+            @endif
         </div>
     @endforeach
 </div>

@@ -47,6 +47,52 @@ class WarmCache extends Command
         ];
     }
 
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        try {
+            $domains = PremiumHostedHelper::getActiveDomains();
+        } catch(\Exception $e) {
+            if($e->getCode() == 503) {
+                return;
+            }
+
+            if(!env('PREMIUM_GUI_API_DOMAIN_ENDPOINT', false)) {
+                return $this->warmSelfHosted();
+            }
+
+            Bugsnag::notifyException($e);
+        }
+
+        if(!isset($domains) or !$domains) {
+            return;
+        }
+
+        foreach($domains as $domain) {
+            config([
+                'gameserverapp.oauthapi_domain' => $domain,
+                'gameserverapp.oauthapi_allow_cache' => false
+            ]);
+
+            $this->info('Processing ' . $domain);
+            $this->warm($this->warm);
+
+            $this->info('Cache warmed for ' . $domain);
+        }
+    }
+
+    private function warmSelfHosted()
+    {
+        $this->info('Processing self-hosted');
+        $this->warm($this->warm);
+
+        $this->info('Cache warmed for self-hosted');
+    }
+
     private function warm(Array $callables)
     {
         foreach($callables as $callable => $args) {
@@ -70,40 +116,6 @@ class WarmCache extends Command
         $this->client->stats('domain', 'new-characters');
         $this->client->stats('domain', 'online-players');
         $this->client->stats('domain', 'hours-played');
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        try {
-            $domains = PremiumHostedHelper::getActiveDomains();
-        } catch(\Exception $e) {
-            if($e->getCode() == 503) {
-                return;
-            }
-
-            Bugsnag::notifyException($e);
-        }
-
-        if(!isset($domains) or !$domains) {
-            return;
-        }
-
-        foreach($domains as $domain) {
-            config([
-                'gameserverapp.oauthapi_domain' => $domain,
-                'gameserverapp.oauthapi_allow_cache' => false
-            ]);
-
-            $this->info('Processing ' . $domain);
-            $this->warm($this->warm);
-
-            $this->info('Cache warmed for ' . $domain);
-        }
     }
 
     private function callMethod($method, $args)

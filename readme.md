@@ -4,7 +4,7 @@ You can use the GSA pagebuilder, or setup your custom HTML webpages. The Communi
 
 You can find all assets (js & css) files in `/resources/assets/`. The JS & CSS files in the public dir should NOT be used to customize. 
 
-After making changes to the assets, please run `gulp --production`. Or have gulp compile the assets for you after each change automatically: `gulp watch`.
+After making changes to the assets, please run `npm run production`. Or have gulp compile the assets for you after each change automatically: `npm run watch`.
 
 # Set up the community website
 
@@ -16,14 +16,13 @@ Rename `.env.example` to `.env`. Change the parameters in the `.env` to your GSA
 
 ### Command line installation
 Now we need to run a couple commands. Navigate into the project root.
-We recommend using NodeJS v6.17.1 & NPM 3.10.10.
+We recommend using NodeJS v11.15.0 & NPM 6.7.0.
 
 ```@cli
 $ composer install
-$ npm install
 ```
 
-This project uses Gulp to build the assets. You can run it once with `gulp --production` or for development purposes with `gulp watch`.
+This project uses Gulp to build the assets. You can run it once with `npm run production` or for development purposes with `npm run watch`.
 
 If you are deploying your code to your webserver, we suggest you run the following commands in the web root:
 
@@ -31,7 +30,6 @@ If you are deploying your code to your webserver, we suggest you run the followi
 composer install --no-interaction --no-dev --prefer-dist
 php artisan down
 npm install --loglevel=error
-gulp --production
 npm run production
 chown -R www-data:www-data ./*
 php artisan up

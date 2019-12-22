@@ -45,9 +45,6 @@ npm --prefix /var/www run production;
 chown -R www-data:www-data /var/www
 
 sed -i 's#/var/www/html#/var/www/public#g' /etc/nginx/sites-enabled/digitalocean
-sed -i 's#try_files $uri $uri/ =404#try_files $uri $uri/ /index.php?$query_string#g' /etc/nginx/sites-enabled/digitalocean
-
-service nginx reload
 
 php /var/www/artisan setup-community-website
 

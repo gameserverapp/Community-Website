@@ -16,12 +16,12 @@ mix.js('resources/assets/js/app.js', 'js').version();
 
 mix.sass('resources/assets/sass/style.scss', 'build/css')
     .combine([
-        'public/build/css/style.css',
-        'node_modules/bootstrap/dist/css/bootstrap.css',
-        'node_modules/simplemde/dist/simplemde.min.css',
-        'resources/assets/vendor/owl.carousel/owl-carousel/owl.carousel.css',
-        'resources/assets/vendor/owl.carousel/owl-carousel/owl.theme.css',
-        'resources/assets/vendor/owl.carousel/owl-carousel/owl.transitions.css',
+            'public/build/css/style.css',
+            'node_modules/bootstrap/dist/css/bootstrap.css',
+            'node_modules/simplemde/dist/simplemde.min.css',
+            'resources/assets/vendor/owl.carousel/owl-carousel/owl.carousel.css',
+            'resources/assets/vendor/owl.carousel/owl-carousel/owl.theme.css',
+            'resources/assets/vendor/owl.carousel/owl-carousel/owl.transitions.css',
     ], 'public/css/style.css')
     .version();
 

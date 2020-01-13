@@ -41,6 +41,17 @@ use GameserverApp\Helpers\SiteHelper;
                         </a>
                     @endif
                 </li>
+
+                @if(
+                    $navChar->tribeOwner()
+                )
+                    <li>
+                        <a href="{{route('tribe.settings', $tribe->id)}}">
+                            Tribe settings
+                        </a>
+                    </li>
+                @endif
+
             @endif
             @if(SiteHelper::featureEnabled('character_page') or SiteHelper::featureEnabled('tribe_page'))
             <li role="separator" class="divider"></li>

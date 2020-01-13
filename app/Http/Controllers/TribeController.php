@@ -108,7 +108,9 @@ class TribeController extends Controller
             return view('pages.v1.tribe.disabled');
         }
 
-        $tribe = $this->tribe($id);
+        $tribe = $this->tribe($id, [
+            'settings' => true
+        ]);
 
         if(
             !auth()->check() or
@@ -126,6 +128,30 @@ class TribeController extends Controller
         return view('pages.v1.tribe.settings', [
             'tribe' => $tribe,
             'logs' => $this->api->tribeLog($id, route('tribe.log', $id), $request->get('page'))
+        ]);
+    }
+
+    public function discordStatus(Request $request, $id,  $status)
+    {
+        switch($status) {
+            case 'success':
+                $alert = [
+                    'status'  => 'success',
+                    'message' => 'Done! Your logs are now also reported to your Discord'
+                ];
+                break;
+
+            case 'configure':
+                $alert = [
+                    'status'  => 'success',
+                    'message' => 'Almost done! Please finalize the configurations.'
+                ];
+                break;
+        }
+
+
+        return redirect(route('tribe.settings', $id))->with([
+            'alert' => $alert
         ]);
     }
 
@@ -162,8 +188,35 @@ class TribeController extends Controller
         ]);
     }
 
-    private function tribe($id)
+    public function discordSetChannel(Request $request, $id)
     {
-        return $this->api->tribe($id);
+        if(! SiteHelper::featureEnabled('tribe_page')) {
+            return view('pages.v1.tribe.disabled');
+        }
+
+        $tribe = $this->tribe($id);
+
+        $response = $this->api->saveTribeDiscordChannel(
+            $tribe,
+            $request->only([
+                'channel_id'
+            ])
+        );
+
+        if(
+            $response instanceof \Exception or
+            is_null($response)
+        ) {
+            $error = json_decode($response->getResponse()->getBody());
+
+            return redirect()->back()->withErrors($error);
+        }
+
+        return redirect(route('tribe.discord.status', ['uuid' => $tribe->id, 'status' => 'success']));
+    }
+
+    private function tribe($id, $with = [])
+    {
+        return $this->api->tribe($id, $with);
     }
 }

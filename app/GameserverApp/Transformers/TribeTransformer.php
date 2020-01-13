@@ -27,6 +27,24 @@ class TribeTransformer extends ModelTransformer implements ModelTransformerInter
             $data['members'] = CharacterTransformer::transformMultiple($args->members);
         }
 
+        if(isset($args->discord)) {
+            $data['discord'] = [
+                'name' => $args->discord->name,
+            ];
+
+            if (isset($args->discord->oauth_redirect)) {
+                $data['discord']['oauth_redirect'] = $args->discord->oauth_redirect;
+            }
+
+            if (isset($args->discord->available_channels)) {
+                $data['discord']['available_channels'] = $args->discord->available_channels;
+            }
+
+            if (isset($args->discord->channel)) {
+                $data['discord']['channel'] = $args->discord->channel;
+            }
+        }
+
         if(isset($args->owner_id)) {
             $data['owner_id'] = $args->owner_id;
         }

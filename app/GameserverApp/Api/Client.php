@@ -123,10 +123,16 @@ class Client
         );
     }
 
-    public function tribe($id)
+    public function tribe($id, $with = [])
     {
+        $query = '';
+
+        if(count($with)) {
+            $query = '?' . http_build_query($with);
+        }
+
         return TribeTransformer::transform(
-            $this->api()->guestRequest('get', 'group/' . $id)
+            $this->api()->guestRequest('get', 'group/' . $id . $query)
         );
     }
 
@@ -357,6 +363,15 @@ class Client
         $this->api()->clearCache('get', 'group/' . $tribe->id);
 
         return $this->api()->authRequest('post', 'group/' . $tribe->id . '/settings', [
+            'form_params' => $data
+        ]);
+    }
+
+    public function saveTribeDiscordChannel(Tribe $tribe, $data)
+    {
+        $this->api()->clearCache('get', 'group/' . $tribe->id);
+
+        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/discord', [
             'form_params' => $data
         ]);
     }

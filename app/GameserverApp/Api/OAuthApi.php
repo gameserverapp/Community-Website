@@ -178,7 +178,7 @@ class OAuthApi
             'Accept'         => 'application/json',
         ];
 
-        if (self::hasAuthCookies() and $auth) {
+        if (self::hasAuthCookies()) {
             $headers['Authorization'] = self::authHeader();
         }
 

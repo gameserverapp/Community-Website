@@ -376,9 +376,10 @@ class Client
         ]);
     }
 
-    public function clearCache($method, $route)
+    public function clearCache($method, $route, $options = [])
     {
-        $this->api()->clearCache($method, $route);
+        $this->api()->clearCache($method, $route, $options, true);
+        $this->api()->clearCache($method, $route, $options);
     }
 
     public function myContacts()

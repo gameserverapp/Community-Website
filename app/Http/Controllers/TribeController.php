@@ -133,6 +133,8 @@ class TribeController extends Controller
 
     public function discordStatus(Request $request, $id,  $status)
     {
+        $this->api()->clearCache('get', 'group/' . $id);
+
         switch($status) {
             case 'success':
                 $alert = [

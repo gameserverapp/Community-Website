@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Http\Controllers\Forum\CategoryController;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Api\OAuthApi;
@@ -36,8 +37,15 @@ class HomeController extends Controller
         }
 
         if(RouteHelper::home()) {
-            $pageController = app(PageController::class);
-            return $pageController->show(RouteHelper::home());
+
+            switch(RouteHelper::home()) {
+                case 'forum':
+                    return redirect('/forum');
+
+                default:
+                    $pageController = app(PageController::class);
+                    return $pageController->show(RouteHelper::home());
+            }
         }
 
         $top = $this->api->characters('top');

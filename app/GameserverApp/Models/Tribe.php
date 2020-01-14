@@ -25,6 +25,34 @@ class Tribe extends Model implements LinkableInterface
         $this->online;
     }
 
+    public function discordSetup()
+    {
+        return !is_null($this->discordServerName());
+    }
+
+    public function discordChannelSetup()
+    {
+        return isset($this->discord['channel']) and !is_null($this->discord['channel']);
+    }
+
+    public function discordServerName()
+    {
+        if(!isset($this->discord)) {
+            return null;
+        }
+
+        return $this->discord['name'];
+    }
+
+    public function discordOAuthRedirectUrl()
+    {
+        if(!isset($this->discord['oauth_redirect'])) {
+            return null;
+        }
+
+        return $this->discord['oauth_redirect'];
+    }
+
     public function hasServer()
     {
         return isset($this->server) and $this->server instanceof Server;

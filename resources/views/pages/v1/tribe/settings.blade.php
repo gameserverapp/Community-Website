@@ -27,7 +27,7 @@
     <div class="container defaultcontent">
         <div class="row">
 
-            <div class="col-md-8 center-block">
+            <div class="col-md-8">
 
                 @include('partials.frame.simple-top')
                 <div class="panel panel-default">
@@ -70,6 +70,76 @@
                     {!! Form::close() !!}
                 </div>
 
+                @include('partials.frame.simple-bottom')
+            </div>
+
+
+            <div class="col-md-4">
+                @include('partials.frame.simple-top')
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Connect your Discord server
+                        </h3>
+                    </div>
+
+                    @if( $tribe->discordSetup() )
+                    {!! Form::model($tribe, ['route'=>['tribe.discord.save', $tribe->id], 'method' => 'post']) !!}
+                    @endif
+                    <div class="panel-body">
+
+                        <p>
+                            Connect your Discord server to receive the logs in your private Discord server.
+                        </p>
+
+                        @if( $tribe->discordSetup() )
+
+
+                            @if($tribe->discordChannelSetup())
+                                <div class="alert alert-success">
+                                    <span class="indent">
+                                        Discord <strong>{{$tribe->discordServerName()}}</strong> connected
+                                    </span>
+                                </div>
+                            @else
+                                <div class="alert alert-warning">
+                                    <span class="indent">
+                                        Please select a channel to report to! <br>
+                                        <strong>Make sure the bot has access to the channel!</strong>
+                                    </span>
+                                </div>
+                            @endif
+
+                            <select name="channel_id">
+                                <option> - Select a Discord channel - </option>
+                                @foreach($tribe->discord['available_channels'] as $id => $name)
+                                    @if($tribe->discordChannelSetup() and $id == $tribe->discord['channel'])
+                                        <option selected value="{{$id}}">{{$name}} [Current]</option>
+                                    @else
+                                        <option value="{{$id}}">{{$name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+
+                        @else
+                            <div class="alert alert-warning">
+                                <span class="indent">
+                                    Not connected. <a href="{{$tribe->discordOAuthRedirectUrl()}}">Connect your account &raquo;</a>
+                                </span>
+                            </div>
+                        @endif
+                    </div>
+
+
+                    @if( $tribe->discordSetup() )
+
+                    <div class="panel-footer">
+                        {!! Form::submit('Save channel', array('class' => 'btn champ inverted  small')) !!}
+                    </div>
+
+                    {!! Form::close() !!}
+                    @endif
+                </div>
                 @include('partials.frame.simple-bottom')
             </div>
 

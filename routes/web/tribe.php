@@ -38,5 +38,22 @@ Route::group([
         'as'   => 'tribe.settings.save',
         'uses' => 'TribeController@storeSettings'
     ]);
+
+
+    Route::group([
+        'prefix' => 'settings/discord'
+    ], function ($router) {
+
+        Route::post('/set-channel', [
+            'as'   => 'tribe.discord.save',
+            'uses' => 'TribeController@discordSetChannel'
+        ]);
+
+        Route::get('/{status}', [
+            'as'   => 'tribe.discord.status',
+            'uses' => 'TribeController@discordStatus',
+            'middleware' => 'auth'
+        ]);
+    });
 });
 

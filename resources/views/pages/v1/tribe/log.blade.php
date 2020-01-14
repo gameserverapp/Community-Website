@@ -26,6 +26,19 @@
 
         <div class="row">
             <div class="col-md-10 center-block">
+
+
+                @if(
+                    auth()->check() and
+                    auth()->user()->isTribeMember($tribe) and
+                    (
+                        $tribe->isOwner(auth()->user()) and
+                        !$tribe->discordSetup()
+                    )
+                )
+                    <div class="alert alert-info">Read the logs on your Discord server. <a href="{{route('tribe.settings', $tribe->id)}}">Setup Discord &raquo;</a></div>
+                @endif
+
                 <h2>
                     Number of logs: {{$logs->total()}}
                 </h2>

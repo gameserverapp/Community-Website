@@ -81,6 +81,32 @@ Route::group([
         ]);
     });
 
+    Route::group([
+        'prefix' => 'discord'
+    ], function ($router) {
+
+        Route::get('/connect', [
+            'as'   => 'user.discord.connect',
+            'uses' => 'DiscordController@connect',
+            'middleware' => 'auth'
+        ]);
+
+        Route::post('/disconnect', [
+            'as'   => 'user.discord.disconnect',
+            'uses' => 'DiscordController@disconnect',
+            'middleware' => 'auth'
+        ]);
+
+        Route::get('/success', [
+            'as'   => 'user.discord.success',
+            'uses' => 'DiscordController@success'
+        ]);
+
+        Route::get('/failed', [
+            'as'   => 'user.discord.failed',
+            'uses' => 'DiscordController@failed'
+        ]);
+    });
 
     Route::group([
         'prefix' => 'forum',

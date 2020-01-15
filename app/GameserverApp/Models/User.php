@@ -132,6 +132,26 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
     }
 
 
+
+    public function hasDiscordSetup()
+    {
+        return ! is_null($this->discord['username']);
+    }
+
+    public function discordUsername()
+    {
+        return $this->discord['username'];
+    }
+
+    public function discordOAuthRedirect()
+    {
+        if(!isset($this->discord['oauth_redirect'])) {
+            return false;
+        }
+
+        return $this->discord['oauth_redirect'];
+    }
+
     public function donated()
     {
         return $this->donated;

@@ -149,6 +149,13 @@ class TribeController extends Controller
                     'message' => 'Almost done! Please finalize the configurations.'
                 ];
                 break;
+
+            case 'failed':
+                $alert = [
+                    'status'  => 'danger',
+                    'message' => 'Something went wrong. Please make sure all permissions are checked.'
+                ];
+                break;
         }
 
 

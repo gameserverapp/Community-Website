@@ -241,14 +241,14 @@
 
                             <br>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 {!! Form::model($user, ['route'=>['user.twitch.sync'], 'method' => 'post']) !!}
                                 <div class="text-left">
                                     {!! Form::submit('Sync', array('class' => 'btn champ grey  small')) !!}
                                 </div>
                                 {!! Form::close() !!}
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7 text-right">
                                 {!! Form::model($user, ['route'=>['user.twitch.disconnect'], 'method' => 'post']) !!}
                                 <div class="text-right">
                                     {!! Form::submit('Disconnect Twitch', array('class' => 'btn champ inverted  small')) !!}
@@ -268,6 +268,50 @@
                     </div>
                 </div>
                 @include('partials.frame.simple-bottom')
+
+                    @include('partials.frame.simple-top')
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                Connect your Discord account
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <p>
+                                Connect your Discord account to interact with <strong>GameserverAppBot</strong> and receive notifications via DM.
+                            </p>
+
+                            @if( auth()->user()->hasDiscordSetup() )
+
+                                <div class="alert alert-success">
+                                <span class="indent">
+                                    Discord account <strong>{{auth()->user()->discordUsername()}}</strong> connected
+                                </span>
+                                </div>
+
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {!! Form::model($user, ['route'=>['user.discord.disconnect'], 'method' => 'post']) !!}
+                                        <div class="text-right">
+                                            {!! Form::submit('Disconnect Discord', array('class' => 'btn champ inverted  small')) !!}
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+
+
+                            @else
+                                <div class="alert alert-warning">
+                                <span class="indent">
+                                    Not connected. <a href="{{route('user.discord.connect')}}">Connect your account &raquo;</a>
+                                </span>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    @include('partials.frame.simple-bottom')
 
                 @include('partials.frame.simple-top')
                 <div class="panel panel-default">

@@ -53,6 +53,16 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             }
         }
 
+        if (isset($args->discord)) {
+            $data['discord'] = [
+                'username' => $args->discord->username,
+            ];
+
+            if (isset($args->discord->oauth_redirect)) {
+                $data['discord']['oauth_redirect'] = $args->discord->oauth_redirect;
+            }
+        }
+
         if (isset($args->unread_messages)) {
             $data['unread_messages'] = $args->unread_messages;
         }

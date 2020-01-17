@@ -87,6 +87,11 @@ class Client
         return $this->api()->authRequest('post', 'user/me/twitch/disconnect');
     }
 
+    public function discordDisconnect()
+    {
+        return $this->api()->authRequest('post', 'user/me/discord/disconnect');
+    }
+
     public function twitchSync()
     {
         return $this->api()->authRequest('post', 'user/me/twitch/sync');

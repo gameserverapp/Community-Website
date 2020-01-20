@@ -365,7 +365,7 @@ class Client
 
     public function saveTribeSettings(Tribe $tribe, $data)
     {
-        $this->api()->clearCache('get', 'group/' . $tribe->id, [], true);
+        $this->clearCache('get', 'group/' . $tribe->id . '?settings=1', []);
 
         return $this->api()->authRequest('post', 'group/' . $tribe->id . '/settings', [
             'form_params' => $data

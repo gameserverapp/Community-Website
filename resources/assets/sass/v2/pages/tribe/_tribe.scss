@@ -17,4 +17,24 @@
     .stat_canvas {
         min-height:300px;
     }
+
+    &.settings {
+
+        .discord {
+
+            .panel-body {
+
+                select {
+                    display:inline-block;
+                    width:50%;
+                    height:30px;
+                }
+
+                input[type=submit] {
+                    float: right;
+                    padding: 0px 7px;
+                }
+            }
+        }
+    }
 }

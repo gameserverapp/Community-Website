@@ -31,13 +31,11 @@ class DiscordController extends Controller
     public function success()
     {
         if(!auth()->check()) {
-            if(!auth()->check()) {
-                session()->flash('alert', [
-                    'status'  => 'success',
-                    'message' => 'Your Discord account is now connected!'
-                ]);
-                return view('pages.v1.discord.success');
-            }
+            session()->flash('alert', [
+                'status'  => 'success',
+                'message' => 'Your Discord account is now connected!'
+            ]);
+            return view('pages.v1.discord.success');
         }
 
         app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
@@ -64,17 +62,15 @@ class DiscordController extends Controller
         }
 
         if(!auth()->check()) {
-            if(!auth()->check()) {
 
-                session()->flash('alert', [
-                    'status'  => 'danger',
-                    'message' => $msg
-                ]);
+            session()->flash('alert', [
+                'status'  => 'danger',
+                'message' => $msg
+            ]);
 
-                return view('pages.v1.discord.failed', [
-                    'reason' => $request->get('reason', false)
-                ]);
-            }
+            return view('pages.v1.discord.failed', [
+                'reason' => $request->get('reason', false)
+            ]);
         }
 
         return redirect(route('user.settings', auth()->user()->id))->with([

@@ -156,6 +156,13 @@ class TribeController extends Controller
                     'message' => 'Something went wrong. Please make sure all permissions are checked.'
                 ];
                 break;
+
+            case 'disconnected':
+                $alert = [
+                    'status'  => 'success',
+                    'message' => 'Your Discord information was removed.'
+                ];
+                break;
         }
 
 
@@ -222,6 +229,28 @@ class TribeController extends Controller
         }
 
         return redirect(route('tribe.discord.status', ['uuid' => $tribe->id, 'status' => 'success']));
+    }
+
+    public function disconnectDiscord(Request $request, $id)
+    {
+        if(! SiteHelper::featureEnabled('tribe_page')) {
+            return view('pages.v1.tribe.disabled');
+        }
+
+        $tribe = $this->tribe($id);
+
+        $response = $this->api->disconnectTribeDiscordChannel($tribe);
+
+        if(
+            $response instanceof \Exception or
+            is_null($response)
+        ) {
+            $error = json_decode($response->getResponse()->getBody());
+
+            return redirect()->back()->withErrors($error);
+        }
+
+        return redirect(route('tribe.discord.status', ['uuid' => $tribe->id, 'status' => 'disconnected']));
     }
 
     private function tribe($id, $with = [])

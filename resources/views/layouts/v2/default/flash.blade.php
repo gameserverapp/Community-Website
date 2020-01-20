@@ -3,7 +3,13 @@
         <div class="flash alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    @if(is_array($error))
+                        @foreach($error as $err)
+                            <li>{{ $err }}</li>
+                        @endforeach
+                    @else
+                        <li>{{ $error }}</li>
+                    @endif
                 @endforeach
             </ul>
         </div>

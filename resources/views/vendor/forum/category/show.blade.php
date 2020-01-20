@@ -2,8 +2,20 @@
 @extends ('forum::master', ['thread' => null])
 
 @section ('content')
-    <div id="category">
 
+    @if (isset( $category ) and $category->threadsEnabled)
+        @can ('createThreads', $category)
+            <div class="create-wrapper">
+                <div class="create sendmessage">
+                    <a class="btn champ  small" href="{{ Forum::route('thread.create', $category) }}">
+                        {{ trans('forum::threads.new_thread') }}
+                    </a>
+                </div>
+            </div>
+        @endcan
+    @endif
+
+    <div id="category">
         {{--<h2>--}}
             {{--{{ $category->title }}--}}
             {{--@if ($category->description)--}}
@@ -23,9 +35,11 @@
             <form action="{{ Forum::route('bulk.thread.update') }}" method="POST" data-actions-form>
                 {!! csrf_field() !!}
                 {!! method_field('delete') !!}
-                @endcan
+        @endcan
 
                 @if ($category->threadsEnabled)
+                    @include('partials.frame.simple-top')
+                    <article>
                     <table class="table table-thread">
                         <thead>
                         <tr>
@@ -55,9 +69,11 @@
                         @endif
                         </tbody>
                     </table>
+                    </article>
+                    @include('partials.frame.simple-bottom')
                 @endif
 
-                @can ('manageThreads', $category)
+        @can ('manageThreads', $category)
                     @include ('forum::category.partials.thread-actions')
             </form>
         @endcan

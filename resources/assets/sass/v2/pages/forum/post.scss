@@ -177,7 +177,7 @@
 
     .contentwrap {
         position: relative;
-        padding-bottom:$large-gutter;
+        //padding-bottom:$large-gutter;
 
 
         @media (max-width:499px) {
@@ -189,13 +189,13 @@
             padding: 10px $inner_gutter;
 
 
-            @media (max-width:499px) {
-                padding-bottom:$gutter;
-            }
+            //@media (max-width:499px) {
+                padding-bottom:0;
+            //}
         }
 
         .bottom-nav {
-            position: absolute;
+            //position: absolute;
             width:100%;
             padding:0 ( $gutter + $inner_gutter ) 0 $inner-gutter;
             bottom:10px;

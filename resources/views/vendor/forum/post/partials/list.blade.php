@@ -74,15 +74,6 @@ use GameserverApp\Helpers\SiteHelper;
         <table>
             <tr>
                 <td>
-                    <div class="content">
-                        @if ($post->trashed())
-                            <span class="label label-danger">{{ trans('forum::general.deleted') }}</span>
-                        @else
-                            <div class="markdown-content" itemprop="text">
-                                {!! Markdown::convertToHtml($post->content) !!}
-                            </div>
-                        @endif
-                    </div>
 
                     <div class="bottom-nav">
 
@@ -103,6 +94,15 @@ use GameserverApp\Helpers\SiteHelper;
                             @endif
                         </div>
 
+                    </div>
+                    <div class="content">
+                        @if ($post->trashed())
+                            <span class="label label-danger">{{ trans('forum::general.deleted') }}</span>
+                        @else
+                            <div class="markdown-content" itemprop="text">
+                                {!! Markdown::convertToHtml($post->content) !!}
+                            </div>
+                        @endif
                     </div>
                 </td>
             </tr>

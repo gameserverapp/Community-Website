@@ -41,7 +41,8 @@ Route::group([
 
 
     Route::group([
-        'prefix' => 'settings/discord'
+        'prefix' => 'settings/discord',
+        'middleware' => 'auth'
     ], function ($router) {
 
         Route::post('/set-channel', [
@@ -49,10 +50,14 @@ Route::group([
             'uses' => 'TribeController@discordSetChannel'
         ]);
 
+        Route::post('/disconnect', [
+            'as'   => 'tribe.discord.disconnect',
+            'uses' => 'TribeController@disconnectDiscord'
+        ]);
+
         Route::get('/{status}', [
             'as'   => 'tribe.discord.status',
             'uses' => 'TribeController@discordStatus',
-            'middleware' => 'auth'
         ]);
     });
 });

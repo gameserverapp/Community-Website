@@ -374,11 +374,14 @@ class Client
 
     public function saveTribeDiscordChannel(Tribe $tribe, $data)
     {
-        $this->api()->clearCache('get', 'group/' . $tribe->id);
-
         return $this->api()->authRequest('post', 'group/' . $tribe->id . '/discord', [
             'form_params' => $data
         ]);
+    }
+
+    public function disconnectTribeDiscordChannel(Tribe $tribe)
+    {
+        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/discord/disconnect');
     }
 
     public function clearCache($method, $route, $options = [])

@@ -2,7 +2,7 @@
     'page' => [
         'title' => 'Settings - ' . $tribe->name,
         'description' => '',
-        'class' => 'tribe log'
+        'class' => 'tribe log settings'
     ],
     'banner' => [
         'size' => 'small',
@@ -76,7 +76,7 @@
 
             <div class="col-md-4">
                 @include('partials.frame.simple-top')
-                <div class="panel panel-default">
+                <div class="discord panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             Connect your Discord server
@@ -120,6 +120,7 @@
                                     @endif
                                 @endforeach
                             </select>
+                            {!! Form::submit('Save channel', array('class' => 'btn champ  small')) !!}
 
                         @else
                             <div class="alert alert-warning">
@@ -130,14 +131,18 @@
                         @endif
                     </div>
 
+                    {!! Form::close() !!}
+
 
                     @if( $tribe->discordSetup() )
 
-                    <div class="panel-footer">
-                        {!! Form::submit('Save channel', array('class' => 'btn champ inverted  small')) !!}
-                    </div>
-
-                    {!! Form::close() !!}
+                        <div class="panel-footer">
+                            {!! Form::model($tribe, ['route'=>['tribe.discord.disconnect', $tribe->id], 'method' => 'post']) !!}
+                            <div class="">
+                                {!! Form::submit('Disconnect Discord', array('class' => 'btn champ inverted  small')) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
                     @endif
                 </div>
                 @include('partials.frame.simple-bottom')

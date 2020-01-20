@@ -24,33 +24,6 @@ if (isset($thread)) {
     ]
 ])
 
-@section('banner_content')
-
-    @if (isset( $category ) and $category->threadsEnabled)
-        @can ('createThreads', $category)
-        <div class="sendmessage">
-            <a class="btn champ  small" href="{{ Forum::route('thread.create', $category) }}">
-                {{ trans('forum::threads.new_thread') }}
-            </a>
-        </div>
-        @endcan
-    @endif
-
-    @if( isset($thread) )
-        {{$thread->title}}
-        <small>
-            {{ $category->title }}
-        </small>
-    @elseif( isset($category) )
-        {{$category->title}}
-        <small>
-            {{ $category->description }}
-        </small>
-    @else
-        Forum
-    @endif
-@stop
-
 @section('page_content')
 
     <div class="container forum_wrapper">

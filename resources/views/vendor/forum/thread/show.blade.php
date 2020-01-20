@@ -3,6 +3,27 @@
 @section ('content')
     <div id="thread" class="thread-show" itemscope itemtype="http://schema.org/DiscussionForumPosting">
 
+        @if(auth()->check())
+
+            <div class="follow">
+
+                @if (isset( $category ) and $category->threadsEnabled)
+                    @can ('createThreads', $category)
+                        <a class="btn champ  small" href="{{ Forum::route('thread.create', $category) }}">
+                            {{ trans('forum::threads.new_thread') }}
+                        </a>
+                        &nbsp; &nbsp;
+                    @endcan
+                @endif
+
+                @if(!auth()->user()->subscribedToThread($thread))
+                    <a href="{{route('user.forum.subscribe',[$thread->id])}}" class="btn champ small">Subscribe</a>
+                @else
+                    <a href="{{route('user.forum.unsubscribe',[$thread->id])}}" class="btn champ inverted dark small">Unsubscribe</a>
+                @endif
+            </div>
+        @endif
+
         <h2 class="title">
             @if ($thread->trashed())
                 <span class="label label-danger">{{ trans('forum::general.deleted') }}</span>
@@ -18,16 +39,6 @@
             <time datetime="{{$thread->firstPost->date('created_at')->toDateTimeString()}}" itemprop="datePublished"></time>
 
         </h2>
-
-        @if(auth()->check())
-            <div class="follow">
-                @if(!auth()->user()->subscribedToThread($thread))
-                    <a href="{{route('user.forum.subscribe',[$thread->id])}}" class="btn champ small">Subscribe</a>
-                @else
-                    <a href="{{route('user.forum.unsubscribe',[$thread->id])}}" class="btn champ inverted dark small">Unsubscribe</a>
-                @endif
-            </div>
-        @endif
 
         <table class="table forum-thread-single {{ $thread->trashed() ? 'deleted' : '' }}">
             <tbody>

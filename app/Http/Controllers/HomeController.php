@@ -97,9 +97,7 @@ class HomeController extends Controller
 
     public function purge()
     {
-        app(OAuthApi::class)->clearCache('get', 'domain/settings',[
-            'no_404_exception' => true
-        ]);
+        $this->api->clearCache('get', 'domain/settings');
     }
 
     public function verify(Request $request, $code)

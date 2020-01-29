@@ -60,6 +60,6 @@ class PageController extends Controller
 
     public function purge($id)
     {
-        app(OAuthApi::class)->clearCache('get', 'page/' . $id);
+        $this->client->clearCache('get', 'page/' . $id);
     }
 }

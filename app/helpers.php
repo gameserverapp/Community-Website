@@ -1,6 +1,7 @@
 <?php
 
 use GameserverApp\Helpers\RichColor;
+use GuzzleHttp\Client;
 
 function redirectBackWithAlert($msg, $status = 'success')
 {
@@ -34,4 +35,38 @@ function mb_unserialize($string) {
         },
         $string);
     return unserialize($string2);
+}
+
+
+function alertOnSlack($data, $channel = 'bugsnag')
+{
+    try {
+        $client = new Client([
+            'base_uri' => 'https://slack.com',
+            'timeout' => 5
+        ]);
+
+        if (is_array($data) or is_object($data)) {
+            $data = json_encode($data);
+        }
+
+        $data = '[' . app()->environment() . '] - ' . $data;
+
+        $response = $client->post(
+            '/api/chat.postMessage',
+            [
+                'query' =>
+                    [
+                        'token'   => env('SLACK_API_TOKEN'),
+                        'channel' => '#' . $channel,
+                        'text'    => $data
+                    ]
+            ]
+        );
+
+        return json_decode($response->getBody());
+
+    } catch( Exception $e) {
+//        Bugsnag::notifyException($e);
+    }
 }

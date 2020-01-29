@@ -161,6 +161,7 @@ class OAuthApi
     public static function clearCache($method, $uri, $options = [], $auth = false)
     {
         $cacheKey = self::cacheKey([[$method, $uri, $options], self::getHeaders($auth)]);
+
         return self::cache()->forget($cacheKey);
     }
 
@@ -178,7 +179,7 @@ class OAuthApi
             'Accept'         => 'application/json',
         ];
 
-        if (self::hasAuthCookies()) {
+        if ($auth and self::hasAuthCookies()) {
             $headers['Authorization'] = self::authHeader();
         }
 

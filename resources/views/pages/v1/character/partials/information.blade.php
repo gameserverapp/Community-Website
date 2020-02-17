@@ -6,9 +6,11 @@
     <div class="col-md-12">
 
         @if( $character->hasTribe() )
-            @include('pages.v1.partials.tribe-card', [
-                'tribe' => $character->tribe
-            ])
+            @foreach($character->tribes as $tribe)
+                @include('pages.v1.partials.tribe-card', [
+                    'tribe' => $tribe
+                ])
+            @endforeach
         @else
             @include('pages.v1.character.partials.information.tribe')
         @endif

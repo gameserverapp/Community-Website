@@ -67,7 +67,7 @@
                     {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}}:
                     @if( $character->hasTribe() )
                         <span itemprop="memberOf">
-                            {!! $character->tribe->showLink(['limit' => 18]) !!}
+                            {!! $character->tribes[0]->showLink(['limit' => 18]) !!}
                         </span>
                     @elseif($character->hasUser())
                         <a href="{{route('message.create', $character->user->id)}}" class="recruit">

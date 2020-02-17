@@ -42,22 +42,30 @@ class Character extends Model implements LinkableInterface
         }
     }
 
-    public function tribeOwner()
+    public function tribeOwner($tribe)
     {
-        if(!isset($this->tribe_owner)) {
+        if(!isset($tribe->owners)) {
             return false;
         }
 
-        return $this->tribe_owner;
+        $ownerIds = $tribe->owners;
+
+        return in_array($this->user->id, $ownerIds);
     }
 
-    public function tribeAdmin()
+    public function tribeAdmin($tribe)
     {
-        if(!isset($this->tribe_admin)) {
+        if($this->tribeOwner($tribe)) {
+            return true;
+        }
+
+        if(!isset($tribe->admins)) {
             return false;
         }
 
-        return $this->tribe_admin;
+        $ownerIds = $tribe->admins;
+
+        return in_array($this->id, $ownerIds);
     }
 
     public function hasServer()
@@ -72,7 +80,7 @@ class Character extends Model implements LinkableInterface
 
     public function hasTribe()
     {
-        return isset($this->tribe);
+        return isset($this->tribes) and count($this->tribes) > 0;
     }
 
     public function hasGame()

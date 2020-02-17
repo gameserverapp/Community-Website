@@ -181,7 +181,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         }
 
         $characters = $this->characters->filter(function ($item) use ($tribe) {
-            return $item->hasTribe() and $item->tribe->id == $tribe->id;
+            return $item->hasTribe($tribe);
         });
 
         return $characters->count() > 0;

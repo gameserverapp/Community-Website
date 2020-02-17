@@ -10,53 +10,62 @@ use GameserverApp\Helpers\SiteHelper;
     <ul class="dropdown-menu">
 
         <?php
-        $navChar = auth()->user()->lastCharacter();
+        if(auth()->user()->hasCharacters()) {
+            $navChar = auth()->user()->lastCharacter();
 
-        if($navChar) {
-            ?>
+            if($navChar) {
+                ?>
 
-            @if(SiteHelper::featureEnabled('character_page'))
-                <li>
-                    <a href="{{route('character.show', $navChar->id)}}" class="charview {{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('character.show', $navChar->id) ? 'orange' : '' }}">
-                            <span>
-                                {!! $navChar->showLink(['disable_link' => true]) !!}
-                            </span>
-                        &nbsp;
-                        <div class="char_pic"
-                             style="background-image:url('/img/character/{{$navChar->characterImage()}}')"></div>
-                    </a>
-                </li>
-            @endif
-
-            @if(SiteHelper::featureEnabled('tribe_page'))
-                <li>
-                    @if($navChar->hasTribe())
-                        <?php $tribe = auth()->user()->lastCharacter()->tribe ?>
-                        <a href="{{route('tribe.show', $tribe->id)}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('tribe.show', $tribe->id) ? 'orange' : '' }}">
-                            {!! $tribe->showLink(['disable_link' => true]) !!}
-                        </a>
-                    @elseif($navChar)
-                        <a href="/{{GameserverApp\Helpers\RouteHelper::inspector()}}?search_type=tribe">
-                            Find a {{ GameserverApp\Helpers\SiteHelper::groupName()}} &raquo;
-                        </a>
-                    @endif
-                </li>
-
-                @if(
-                    $navChar->tribeOwner()
-                )
+                @if(SiteHelper::featureEnabled('character_page'))
                     <li>
-                        <a href="{{route('tribe.settings', $tribe->id)}}">
-                            Tribe settings
+                        <a href="{{route('character.show', $navChar->id)}}" class="charview {{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('character.show', $navChar->id) ? 'orange' : '' }}">
+                                <span>
+                                    {!! $navChar->showLink(['disable_link' => true]) !!}
+                                </span>
+                            &nbsp;
+                            <div class="char_pic"
+                                 style="background-image:url('/img/character/{{$navChar->characterImage()}}')"></div>
                         </a>
                     </li>
                 @endif
 
-            @endif
-            @if(SiteHelper::featureEnabled('character_page') or SiteHelper::featureEnabled('tribe_page'))
-            <li role="separator" class="divider"></li>
-            @endif
-            <?php
+                @if(SiteHelper::featureEnabled('tribe_page'))
+
+                    @if($navChar->hasTribe())
+                        <?php
+                        $tribes = auth()->user()->lastCharacter()->tribes
+                        ?>
+
+                        @foreach($tribes as $tribe)
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{{route('tribe.show', $tribe->id)}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('tribe.show', $tribe->id) ? 'orange' : '' }}">
+                                    {!! $tribe->showLink(['disable_link' => true]) !!}
+                                </a>
+                            </li>
+                            @if($navChar->tribeAdmin($tribe))
+                                <li>
+                                    <a href="{{route('tribe.settings', $tribe->id)}}">
+                                        Tribe settings
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
+                    @elseif($navChar)
+                        <li>
+                            <a href="/{{GameserverApp\Helpers\RouteHelper::inspector()}}?search_type=tribe">
+                                Find a {{ GameserverApp\Helpers\SiteHelper::groupName()}} &raquo;
+                            </a>
+                        </li>
+                    @endif
+
+                @endif
+                @if(SiteHelper::featureEnabled('character_page') or SiteHelper::featureEnabled('tribe_page'))
+                <li role="separator" class="divider"></li>
+                @endif
+                <?php
+            }
+
         }
         ?>
 

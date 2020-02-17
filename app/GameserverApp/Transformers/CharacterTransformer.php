@@ -35,16 +35,10 @@ class CharacterTransformer extends ModelTransformer implements ModelTransformerI
             $data['game'] = GameTransformer::transform($args->game);
         }
 
-        if (isset($args->tribe_admin)) {
-            $data['tribe_admin'] = $args->tribe_admin;
-        }
-
-        if (isset($args->tribe_owner)) {
-            $data['tribe_owner'] = $args->tribe_owner;
-        }
-
-        if (isset($args->tribe)) {
-            $data['tribe'] = TribeTransformer::transform($args->tribe);
+        if (isset($args->tribes)) {
+            foreach($args->tribes as $tribe) {
+                $data['tribes'][] = TribeTransformer::transform($tribe);
+            }
         }
 
         if (isset($args->user)) {

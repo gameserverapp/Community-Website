@@ -45,8 +45,12 @@ class TribeTransformer extends ModelTransformer implements ModelTransformerInter
             }
         }
 
-        if(isset($args->owner_id)) {
-            $data['owner_id'] = $args->owner_id;
+        if(isset($args->owners)) {
+            $data['owners'] = $args->owners;
+        }
+
+        if(isset($args->admins)) {
+            $data['admins'] = $args->admins;
         }
 
         if(isset($args->server)) {

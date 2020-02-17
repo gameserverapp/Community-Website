@@ -48,7 +48,7 @@
                     @if(
                         auth()->check() and
                         $tribe->hasOwners() and
-                        $tribe->owner_id == auth()->id()
+                        $tribe->isOwner(auth()->user())
                     )
                         <p>
                             Since you are the {{ GameserverApp\Helpers\SiteHelper::groupName()}} owner, you can setup the 'About' message, on the <a

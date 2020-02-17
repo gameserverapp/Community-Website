@@ -6,7 +6,7 @@
     $tribe->hasOwners()
  )
     <div class="promote">
-        <a class="btn champ inverted small" href="{{route('message.create', $tribe->owner_id)}}">
+        <a class="btn champ inverted small" href="{{route('message.create', $tribe->owners->first()->id)}}">
             send application &raquo;
         </a>
     </div>

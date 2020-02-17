@@ -37,6 +37,7 @@ use GameserverApp\Helpers\SiteHelper;
                         ?>
 
                         @foreach($tribes as $tribe)
+                            <li role="separator" class="divider"></li>
                             <li>
                                 <a href="{{route('tribe.show', $tribe->id)}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('tribe.show', $tribe->id) ? 'orange' : '' }}">
                                     {!! $tribe->showLink(['disable_link' => true]) !!}

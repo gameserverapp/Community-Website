@@ -29,9 +29,9 @@
                         {!! $char->showLink() !!}
                     </td>
                     <td>
-                        @if( $char->tribeOwner() )
+                        @if( $char->tribeOwner($tribe) )
                             <span class="label label-default">Owner</span>
-                        @elseif($char->tribeAdmin())
+                        @elseif($char->tribeAdmin($tribe))
                             <span class="label label-admin">Admin</span>
                         @endif
                     </td>

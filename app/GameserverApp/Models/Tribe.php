@@ -70,8 +70,8 @@ class Tribe extends Model implements LinkableInterface
 
     public function isAdmin(User $user)
     {
-        if($this->hasMembers()) {
-            return $this->members->where('user.id', $user->id)->where('tribe_admin', true)->count() > 0;
+        if($this->hasAdmins()) {
+            return in_array($user->id, $this->admins);
         }
 
         return false;
@@ -79,8 +79,8 @@ class Tribe extends Model implements LinkableInterface
 
     public function isOwner(User $user)
     {
-        if($this->hasMembers()) {
-            return $this->members->where('user.id', $user->id)->where('tribe_owner', true)->count() > 0;
+        if($this->hasOwners()) {
+            return in_array($user->id, $this->owners);
         }
 
         return false;
@@ -147,9 +147,14 @@ class Tribe extends Model implements LinkableInterface
         return isset($this->members) and count($this->members);
     }
 
-    public function hasOwner()
+    public function hasOwners()
     {
-        return isset($this->owner_id);
+        return isset($this->owners) and count($this->owners);
+    }
+
+    public function hasAdmins()
+    {
+        return isset($this->admins) and count($this->admins);
     }
 
     public function hasGame()

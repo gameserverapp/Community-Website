@@ -47,7 +47,7 @@
                     </p>
                     @if(
                         auth()->check() and
-                        $tribe->hasOwner() and
+                        $tribe->hasOwners() and
                         $tribe->owner_id == auth()->id()
                     )
                         <p>

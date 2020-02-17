@@ -62,20 +62,20 @@
                     @endif
                 </div>
 
-                <div  class="tribe @if( !$character->hasTribe() ) recruit @endif ">
+{{--                <div  class="tribe @if( !$character->hasTribe() ) recruit @endif ">--}}
 
-                    {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}}:
-                    @if( $character->hasTribe() )
-                        <span itemprop="memberOf">
-                            {!! $character->tribe->showLink(['limit' => 18]) !!}
-                        </span>
-                    @elseif($character->hasUser())
-                        <a href="{{route('message.create', $character->user->id)}}" class="recruit">
-                            Recruit {{str_limit($character->name, 9, '...')}} &raquo;
-                        </a>
-                    @endif
+{{--                    {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}}:--}}
+{{--                    @if( $character->hasTribe() )--}}
+{{--                        <span itemprop="memberOf">--}}
+{{--                            {!! $character->tribe->showLink(['limit' => 18]) !!}--}}
+{{--                        </span>--}}
+{{--                    @elseif($character->hasUser())--}}
+{{--                        <a href="{{route('message.create', $character->user->id)}}" class="recruit">--}}
+{{--                            Recruit {{str_limit($character->name, 9, '...')}} &raquo;--}}
+{{--                        </a>--}}
+{{--                    @endif--}}
 
-                </div>
+{{--                </div>--}}
 
                 @if($character->hasUser())
                     <div class="message-link">

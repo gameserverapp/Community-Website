@@ -46,9 +46,9 @@
                         <tr>
                             <td itemprop="member">
                                 {!! $character->showLink() !!}
-                                @if( $character->tribeOwner() )
+                                @if( $character->tribeOwner($tribe) )
                                     <span class="label label-default">Owner</span>
-                                @elseif($character->tribeAdmin())
+                                @elseif($character->tribeAdmin($tribe))
                                     <span class="label label-admin">Admin</span>
                                 @endif
                             </td>

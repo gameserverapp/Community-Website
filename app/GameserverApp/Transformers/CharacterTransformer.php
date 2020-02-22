@@ -17,7 +17,7 @@ class CharacterTransformer extends ModelTransformer implements ModelTransformerI
     {
         $data = [
             'id'           => $args->id,
-            'name'         => $args->name,
+            'name'         => utf8_decode($args->name),
             'level'        => $args->level,
             'gender'       => $args->gender,
             'hours_played' => $args->hours_played,

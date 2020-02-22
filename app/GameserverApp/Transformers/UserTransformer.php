@@ -16,7 +16,7 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
     {
         $data = [
             'id'         => $args->id,
-            'name'       => $args->persona->name,
+            'name'       => utf8_decode($args->persona->name),
             'steam_id'   => $args->persona->steam_id,
             'avatar'     => $args->persona->avatar,
             'online'     => $args->online,

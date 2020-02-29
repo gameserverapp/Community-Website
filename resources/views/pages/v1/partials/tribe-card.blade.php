@@ -65,7 +65,7 @@
                             <td colspan="4" class="text-right more">
                                 <a href="{{route('tribe.show', $tribe->id)}}"
                                    onClick="ga('send', 'event', 'Button', 'click', 'See all online players');">
-                                    See all {{ GameserverApp\Helpers\SiteHelper::groupName()}} members ({{count($tribe->members)}}) &raquo;
+                                    See all {{ GameserverApp\Helpers\SiteHelper::groupName()}} members &raquo;
                                 </a>
                             </td>
                         </tr>

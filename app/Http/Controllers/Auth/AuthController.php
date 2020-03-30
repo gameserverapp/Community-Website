@@ -63,8 +63,6 @@ class AuthController extends Controller
             return redirect('/');
         }
 
-        alertOnSlack($response->getStatusCode());
-
         if ($response->getStatusCode() == 200) {
             $tokens = json_decode($response->getBody()->getContents());
 

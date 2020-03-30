@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
@@ -51,6 +52,9 @@ class AuthController extends Controller
         try {
             $response = $this->api->getAccessTokensWithAuthorizationCode($request->code);
         } catch (ClientException $e) {
+
+            Bugsnag::notifyException($e);
+
             if($e->getCode() == 400) {
                 return redirect(route('auth.login'));
             }
@@ -58,6 +62,8 @@ class AuthController extends Controller
             Auth::logout();
             return redirect('/');
         }
+
+        alertOnSlack($response->getStatusCode());
 
         if ($response->getStatusCode() == 200) {
             $tokens = json_decode($response->getBody()->getContents());

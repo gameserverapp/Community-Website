@@ -113,9 +113,13 @@ class WarmCache extends Command
             $this->callMethod($callable, $args);
         }
 
-        $this->client->stats('domain', 'new-characters');
-        $this->client->stats('domain', 'online-players');
-        $this->client->stats('domain', 'hours-played');
+        try {
+            $this->client->stats('domain', 'new-characters');
+            $this->client->stats('domain', 'online-players');
+            $this->client->stats('domain', 'hours-played');
+        } catch( \Exception $e) {
+            Bugsnag::notifyException($e);
+        }
     }
 
     private function callMethod($method, $args)

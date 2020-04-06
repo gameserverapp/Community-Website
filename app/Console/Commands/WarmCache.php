@@ -118,6 +118,7 @@ class WarmCache extends Command
             $this->client->stats('domain', 'online-players');
             $this->client->stats('domain', 'hours-played');
         } catch( \Exception $e) {
+            Bugsnag::leaveBreadcrumb('Domain: ' . config('gameserverapp.oauthapi_domain'));
             Bugsnag::notifyException($e);
         }
     }

@@ -2,6 +2,7 @@
 namespace GameserverApp\Api;
 
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
@@ -154,6 +155,8 @@ class OAuthApi
                 throw new MaintenanceModeException(time(), 0, $e->getMessage(), $e->getPrevious(), $e->getCode());
             }
 
+            return $e;
+        } catch (ConnectException $e) {
             return $e;
         }
     }

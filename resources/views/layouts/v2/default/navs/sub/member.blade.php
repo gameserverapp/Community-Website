@@ -43,7 +43,9 @@ use GameserverApp\Helpers\SiteHelper;
                                     {!! $tribe->showLink(['disable_link' => true]) !!}
 
                                     @if($tribe->hasServer())
-                                        [{{$tribe->server->name()}}]
+                                        <span class="label label-default right">
+                                            {{$tribe->server->name()}}
+                                        </span>
                                     @endif
                                 </a>
                             </li>

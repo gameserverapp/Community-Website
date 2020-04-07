@@ -41,6 +41,10 @@ use GameserverApp\Helpers\SiteHelper;
                             <li>
                                 <a href="{{route('tribe.show', $tribe->id)}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('tribe.show', $tribe->id) ? 'orange' : '' }}">
                                     {!! $tribe->showLink(['disable_link' => true]) !!}
+
+                                    @if($tribe->hasServer())
+                                        [{{$tribe->server->name()}}]
+                                    @endif
                                 </a>
                             </li>
                             @if($navChar->tribeAdmin($tribe))

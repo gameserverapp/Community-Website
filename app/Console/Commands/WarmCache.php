@@ -79,6 +79,7 @@ class WarmCache extends Command
             ]);
 
             $this->info('Processing ' . $domain);
+
             $this->warm($this->warm);
 
             $this->info('Cache warmed for ' . $domain);
@@ -118,6 +119,11 @@ class WarmCache extends Command
             $this->client->stats('domain', 'online-players');
             $this->client->stats('domain', 'hours-played');
         } catch( \Exception $e) {
+
+            if($e->getCode() == 503) {
+                return;
+            }
+
             Bugsnag::leaveBreadcrumb('Domain: ' . config('gameserverapp.oauthapi_domain'));
             Bugsnag::notifyException($e);
         }

@@ -136,7 +136,7 @@ class Client
             $queryWith = $with;
             unset($queryWith['auth']);
 
-            $query = '?' . http_build_query($with);
+            $query = '?' . http_build_query($queryWith);
         }
 
         if(isset($with['auth']) and $with['auth']) {

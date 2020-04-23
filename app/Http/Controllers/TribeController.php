@@ -108,6 +108,8 @@ class TribeController extends Controller
             return view('pages.v1.tribe.disabled');
         }
 
+        $this->api->clearCache('get', 'group/' . $id . '?settings=1', []);
+
         $tribe = $this->tribe($id, [
             'settings' => true,
             'auth' => true
@@ -133,8 +135,6 @@ class TribeController extends Controller
 
     public function discordStatus(Request $request, $id,  $status)
     {
-        $this->api->clearCache('get', 'group/' . $id . '?settings=1', []);
-
         switch($status) {
             case 'success':
                 $alert = [

@@ -53,7 +53,12 @@
         //color:#66ecec !important;
     }
 
-    &.news.show p {
+    &.news.show p,
+    &.news.archive p {
+        color:#fff;
+    }
+
+    &.news.archive .article-block__title {
         color:#fff;
     }
 

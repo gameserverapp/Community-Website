@@ -109,7 +109,8 @@ class TribeController extends Controller
         }
 
         $tribe = $this->tribe($id, [
-            'settings' => true
+            'settings' => true,
+            'auth' => true
         ]);
 
         if(
@@ -126,8 +127,7 @@ class TribeController extends Controller
         }
 
         return view('pages.v1.tribe.settings', [
-            'tribe' => $tribe,
-            'logs' => $this->api->tribeLog($id, route('tribe.log', $id), $request->get('page'))
+            'tribe' => $tribe
         ]);
     }
 

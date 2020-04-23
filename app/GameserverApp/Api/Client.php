@@ -133,7 +133,16 @@ class Client
         $query = '';
 
         if(count($with)) {
+            $queryWith = $with;
+            unset($queryWith['auth']);
+
             $query = '?' . http_build_query($with);
+        }
+
+        if(isset($with['auth']) and $with['auth']) {
+            return TribeTransformer::transform(
+                $this->api()->authRequest('get', 'group/' . $id . $query)
+            );
         }
 
         return TribeTransformer::transform(

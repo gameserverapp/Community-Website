@@ -28,6 +28,7 @@ class TribeTransformer extends ModelTransformer implements ModelTransformerInter
         }
 
         if(isset($args->discord)) {
+
             $data['discord'] = [
                 'name' => $args->discord->name,
             ];

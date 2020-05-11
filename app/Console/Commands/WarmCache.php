@@ -125,7 +125,7 @@ class WarmCache extends Command
             }
 
             Bugsnag::leaveBreadcrumb('Domain: ' . config('gameserverapp.oauthapi_domain'));
-            Bugsnag::notifyException($e);
+//            Bugsnag::notifyException($e);
         }
     }
 

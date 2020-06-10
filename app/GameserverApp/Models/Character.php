@@ -202,7 +202,7 @@ class Character extends Model implements LinkableInterface
         } else {
             if ($this->donated()) {
                 $class[] = 'vip';
-                $title .= 'Donor <3 | ';
+                $title .= 'Supporter <3 | ';
             }
 
             $title .= 'Online with character \'' . $this->name() . '\' since ' . $this->date('status_since')->diffForHumans();

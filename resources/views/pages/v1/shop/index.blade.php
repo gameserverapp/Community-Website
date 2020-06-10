@@ -1,8 +1,12 @@
+<?php
+use GameserverApp\Helpers\SiteHelper;
+?>
+
 @extends('layouts.v2.banner', [
     'page' => [
         'title' => 'Shop',
         'description' => 'Your orders are delivered in real-time! Pick it up at the nearest Supply Crate or Obelisk!',
-        'class' => 'supplies'
+        'class' => 'supplies buy'
     ],
     'banner' => [
         'size' => 'small',

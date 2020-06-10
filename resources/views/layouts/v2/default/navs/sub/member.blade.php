@@ -77,6 +77,16 @@ use GameserverApp\Helpers\SiteHelper;
         }
         ?>
 
+
+        @if(SiteHelper::featureEnabled('supporter_tiers'))
+            <li>
+                <a href="{{route('supporter-tier.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('supporter-tier.index') ? 'orange' : '' }}">
+                    Supporter Tiers
+                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                </a>
+            </li>
+        @endif
+
         @if(SiteHelper::featureEnabled('tokens'))
             <li>
                 <a href="{{route('token.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index') ? 'orange' : '' }}">

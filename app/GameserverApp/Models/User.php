@@ -131,8 +131,6 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->twitch['streaming'];
     }
 
-
-
     public function hasDiscordSetup()
     {
         return ! is_null($this->discord['username']);
@@ -196,7 +194,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         }
 
         if ($this->donated()) {
-            $output .= '<a href="' . route('token.buy') . '" class="label label-donor">Donor <3</a> &nbsp;';
+            $output .= '<a href="' . route('token.buy') . '" class="label label-donor">Supporter <3</a> &nbsp;';
         }
 
         return $output;
@@ -302,7 +300,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         } else {
             if ($this->donated()) {
                 $class[] = 'vip';
-                $title .= 'Donor <3 | ';
+                $title .= 'Supporter <3 | ';
             }
 
             $title .= 'Online with character \'' . $this->name() . '\'';

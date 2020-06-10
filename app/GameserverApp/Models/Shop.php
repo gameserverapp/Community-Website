@@ -19,6 +19,16 @@ class Shop extends Model implements LinkableInterface
         return $this->description;
     }
 
+    public function hasCharacters()
+    {
+        return $this->characters;
+    }
+
+    public function characters()
+    {
+        return $this->characters;
+    }
+
     public function limit()
     {
         return $this->limit;

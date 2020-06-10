@@ -56,7 +56,6 @@ class UserController extends Controller
             'twitch_username'
         ]));
 
-
         if($response instanceof \Exception) {
 
             if($response->getCode() == 422) {

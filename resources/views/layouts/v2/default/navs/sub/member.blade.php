@@ -81,8 +81,17 @@ use GameserverApp\Helpers\SiteHelper;
         @if(SiteHelper::featureEnabled('supporter_tiers'))
             <li>
                 <a href="{{route('supporter-tier.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('supporter-tier.index') ? 'orange' : '' }}">
+                    <i class="fa fa-trophy" aria-hidden="true"></i> &nbsp;
                     Supporter Tiers
-                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                </a>
+            </li>
+        @endif
+
+        @if(SiteHelper::featureEnabled('shop'))
+            <li>
+                <a href="{{route('shop.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.index') ? 'orange' : '' }}">
+                    <i class="fa fa-gift" aria-hidden="true"></i> &nbsp;
+                    Shop
                 </a>
             </li>
         @endif
@@ -96,6 +105,15 @@ use GameserverApp\Helpers\SiteHelper;
                     </span>
                 </a>
             </li>
+        @endif
+
+
+        @if(
+            SiteHelper::featureEnabled('supporter_tiers') or
+            SiteHelper::featureEnabled('shop') or
+            SiteHelper::featureEnabled('tokens')
+        )
+            <li role="separator" class="divider"></li>
         @endif
         {{--
 

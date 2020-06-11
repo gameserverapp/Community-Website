@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 
+use GameserverApp\Helpers\SiteHelper;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Http\Request;
@@ -26,6 +27,10 @@ class ShopController extends Controller
 
     public function index(Request $request)
     {
+        if(! SiteHelper::featureEnabled('shop')) {
+            return view('pages.v1.shop.disabled');
+        }
+
         $packs = $this->client->shopItems(route('shop.index'));
 
         if($request->has('status') == 'success') {
@@ -43,6 +48,10 @@ class ShopController extends Controller
 
     public function show(Request $request, $id)
     {
+        if(! SiteHelper::featureEnabled('shop')) {
+            return view('pages.v1.shop.disabled');
+        }
+
         $pack = $this->client->shopItem($id);
 
         return view('pages.v1.shop.show', [
@@ -52,6 +61,10 @@ class ShopController extends Controller
 
     public function orders()
     {
+        if(! SiteHelper::featureEnabled('shop')) {
+            return view('pages.v1.shop.disabled');
+        }
+
         $orders = $this->client->shopOrders(route('shop.index'));
 
         return view('pages.v1.shop.history', [

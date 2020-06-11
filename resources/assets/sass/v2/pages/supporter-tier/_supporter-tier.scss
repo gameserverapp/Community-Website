@@ -52,12 +52,7 @@
 
         .banner {
 
-            h1 {
 
-                span {
-                    color: $orange;
-                }
-            }
         }
 
         h2 {
@@ -68,8 +63,18 @@
             }
         }
 
+        .disclaimer {
+            h4 {
+                color: $primary;
+            }
+
+            p {
+                color:lighten($secondary, 15)
+            }
+        }
+
         h4 {
-            color: $grey;
+            color: $primary;
         }
 
         a {
@@ -87,9 +92,14 @@
             .list-group-item {
                 border-color: $grey_light + 90;
                 background: #e2e2e2 + 20;
+                color:$grey;
 
                 strong {
                     color: $orange;
+                }
+
+                p {
+                    color:$grey;
                 }
             }
         }

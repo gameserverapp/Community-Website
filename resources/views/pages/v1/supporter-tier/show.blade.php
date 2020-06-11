@@ -15,7 +15,7 @@
 
     <div class="col-md-8 text-only center-block">
         <h1>
-            Order: <span>{{$package->name()}}</span>
+            {{$package->name()}}
         </h1>
     </div>
 @stop
@@ -52,7 +52,7 @@
                         @endif
 
                         <h2>
-                            Your order: {{$package->name()}}
+                            {{$package->name()}}
                         </h2>
 
                         @include('partials.frame.simple-top')
@@ -80,7 +80,7 @@
 
             <br><br>
             <br><br>
-            <div class="col-md-6 center-block">
+            <div class="col-md-6 center-block disclaimer">
 
                 <h4>Customer support</h4>
                 <p>

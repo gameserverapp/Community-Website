@@ -4,6 +4,12 @@ Route::group([
     'prefix' => 'user'
 ], function ($router) {
 
+
+    Route::post('/switch-theme', [
+        'as'   => 'user.switch-theme',
+        'uses' => 'UserController@switchTheme'
+    ]);
+
     Route::get('/{uuid}', [
         'as'   => 'user.show',
         'uses' => 'UserController@show'

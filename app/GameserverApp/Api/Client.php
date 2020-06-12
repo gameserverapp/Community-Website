@@ -368,9 +368,13 @@ class Client
         return ShopTransformer::transform($this->api()->guestRequest('get', 'shop/' . $id, [], 2));
     }
 
-    public function purchaseShopItem($id)
+    public function purchaseShopItem($id, $characterId)
     {
-        return $this->api()->authRequest('post', 'shop/' . $id . '/purchase');
+        return $this->api()->authRequest('post', 'shop/' . $id . '/purchase',[
+            'form_params' => [
+                'character_id' => $characterId
+            ]
+        ]);
     }
 
     public function shopOrders($route)

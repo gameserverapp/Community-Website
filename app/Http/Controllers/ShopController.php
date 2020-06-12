@@ -74,7 +74,7 @@ class ShopController extends Controller
 
     public function purchase(Request $request, $id)
     {
-        $response = $this->client->purchaseShopItem($id);
+        $response = $this->client->purchaseShopItem($id, $request->input('character_id', null));
 
         if(
             $response instanceof ClientException or

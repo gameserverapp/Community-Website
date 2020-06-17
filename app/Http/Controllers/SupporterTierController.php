@@ -30,7 +30,6 @@ class SupporterTierController extends Controller
 
         $packages = $this->client->allSupporterTiers(route('supporter-tier.index'));
 
-
         if($request->has('status') == 'success') {
             session()->flash('alert', [
                 'status'  => 'success',

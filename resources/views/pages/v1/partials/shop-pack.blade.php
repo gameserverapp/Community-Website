@@ -1,4 +1,7 @@
 <div class="package-category">
+    @if($pack->cluster)
+        <div class="label label-donor">{{$pack->cluster}} only</div>
+    @endif
 
     <a href="{{route('shop.show', $pack->id)}}">
         <img height="127" src="{{$pack->image()}}" alt="{{$pack->name()}}">

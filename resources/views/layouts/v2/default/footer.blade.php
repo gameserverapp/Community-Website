@@ -53,6 +53,39 @@
 
                     &nbsp; <i>//</i> &nbsp;
                     <a style="color:#ccc" href="https://www.gameserverapp.com/?camp=fe&grp=fo" target="_blank" rel="FOLLOW">Free gameserver website</a>
+
+
+
+                    @if(config('app.debug'))
+                        &nbsp;
+                        <span>
+                            <form style="display:inline-block" method="post" action="{{route('user.switch-theme')}}">
+                                {{csrf_field()}}
+                                <?php
+                                $themePath = base_path('resources/assets/sass/v2/layout/themes');
+                                $dirs = scandir($themePath);
+
+                                $dirs = array_filter($dirs, function($item) {
+                                    return !in_array($item, ['.', '..', 'index.scss']);
+                                });
+
+                                $overrideCookie = 0;
+                                if(Cookie::has('override_theme')) {
+                                    $overrideCookie = Cookie::get('override_theme');
+                                }
+                                ?>
+
+                                <select name="theme" onchange="submit();">
+                                    <option @if($overrideCookie === '0') selected @endif value="0">- Inherit from settings -</option>
+
+                                    @foreach($dirs as $dir)
+                                        <option  @if($overrideCookie === $dir) selected @endif value="{{$dir}}">{{$dir}}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+
+                        </span>
+                    @endif
                 </div>
             </div>
         </div>

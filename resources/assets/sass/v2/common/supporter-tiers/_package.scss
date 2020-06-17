@@ -1,0 +1,64 @@
+&.supporter-tier {
+
+
+    .banner-container {
+        margin-top:110px;
+
+        h1 {
+            margin-bottom:90px;
+        }
+    }
+
+    .package {
+        border-radius: 4px;
+        border: 1px $grey solid;
+        background:rgba(0,0,0,.4);
+        padding:20px;
+
+        margin-bottom:30px;
+
+        text-align: center;
+
+        a {
+            color:$grey;
+            text-decoration: none;
+        }
+        img {
+            margin-bottom:$inner-gutter;
+        }
+
+        h2 {
+            margin-top: $inner-gutter;
+            margin-bottom:0;
+            color: #fff;
+            text-shadow: 1px 1px 13px #000;
+        }
+
+        .costs {
+            margin-bottom:$inner-gutter;
+            color:#fff;
+            opacity:.6;
+            font-weight: bold;
+            text-shadow: 1px 1px 13px #000;
+        }
+
+        p.description {
+
+            span {
+                color: $orange;
+            }
+
+            em {
+                font-size:10px;
+                font-style: italic;
+            }
+        }
+
+        .btn {
+
+            span {
+                color:$grey;
+            }
+        }
+    }
+}

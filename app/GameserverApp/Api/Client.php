@@ -2,6 +2,8 @@
 
 namespace GameserverApp\Api;
 
+use App\Http\Controllers\SupporterTierController;
+use GameserverApp\Transformers\SupportTierTransformer;
 use Illuminate\Pagination\LengthAwarePaginator;
 use GameserverApp\Models\Model;
 use GameserverApp\Models\Tribe;
@@ -289,6 +291,32 @@ class Client
         return $this->paginatedResponse($response, $route);
     }
 
+    public function supporterTier($id)
+    {
+        return SupportTierTransformer::transform($this->api()->guestRequest('get', 'supporter-tier/' . $id));
+    }
+
+    public function allSupporterTiers($route)
+    {
+        $response = $this->api()->guestRequest('get', 'supporter-tier');
+
+        if(!isset($response->items)) {
+            return new LengthAwarePaginator(
+                [],
+                0,
+                8,
+                0,
+                [
+                    'path' => $route
+                ]
+            );
+        }
+
+        $response->items = SupportTierTransformer::transformMultiple($response->items);
+
+        return $this->paginatedResponse($response, $route);
+    }
+
     public function allUserTransactions($route)
     {
         $response = $this->api()->authRequest('get', 'user/me/transactions?page=' . request()->get('page', null), [], false);
@@ -333,12 +361,20 @@ class Client
 
     public function shopItem($id)
     {
+        if(auth()->check()) {
+            return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], 2));
+        }
+
         return ShopTransformer::transform($this->api()->guestRequest('get', 'shop/' . $id, [], 2));
     }
 
-    public function purchaseShopItem($id)
+    public function purchaseShopItem($id, $characterId)
     {
-        return $this->api()->authRequest('post', 'shop/' . $id . '/purchase');
+        return $this->api()->authRequest('post', 'shop/' . $id . '/purchase',[
+            'form_params' => [
+                'character_id' => $characterId
+            ]
+        ]);
     }
 
     public function shopOrders($route)

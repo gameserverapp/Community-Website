@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Api\OAuthApi;
 use GameserverApp\Models\Character;
+use Illuminate\Support\Facades\Cookie;
 
 class UserController extends Controller
 {
@@ -12,6 +13,17 @@ class UserController extends Controller
     public function __construct()
     {
         $this->api = app(Client::class);
+    }
+
+    public function switchTheme(Request $request)
+    {
+        $this->validate($request, [
+            'theme' => 'required'
+        ]);
+
+        Cookie::queue('override_theme', $request->input('theme'));
+
+        return redirect()->back();
     }
     
     public function show(Request $request, $id)
@@ -55,7 +67,6 @@ class UserController extends Controller
             'notify_forum',
             'twitch_username'
         ]));
-
 
         if($response instanceof \Exception) {
 

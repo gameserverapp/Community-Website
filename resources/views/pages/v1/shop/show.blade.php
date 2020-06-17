@@ -34,6 +34,15 @@
                     </div>
                     <div class="col-sm-8">
 
+                        @if($pack->cluster)
+                            <div class="alert alert-warning">
+                                <span>
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    Only deliverable on the <strong>{{$pack->cluster}}</strong> cluster!
+                                </span>
+                            </div>
+                        @endif
+
                         <h2>
                             Your order: {{$pack->name()}}
                         </h2>
@@ -52,8 +61,28 @@
                         </ul>
                         @include('partials.frame.simple-bottom')
 
-
                         {!! Form::open(['route'=>['shop.purchase', $pack->id], 'method' => 'order']) !!}
+
+                        @if(auth()->check())
+                            @if($pack->hasCharacters())
+                                <div class="form-group">
+                                    <label>Deliver to:</label>
+                                    <select name="character_id">
+                                        @foreach($pack->characters() as $character)
+                                            @if($character->status)
+                                                <option selected value="{{$character->id}}">{{$character->name()}} [online]</option>
+                                            @else
+                                                <option value="{{$character->id}}">{{$character->name()}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @else
+                                <div class="alert alert-danger">
+                                    You do not have a character to deliver this shop pack to.
+                                </div>
+                            @endif
+                        @endif
 
                         <div class="form-group">
                             <label class="agree_terms">
@@ -70,15 +99,7 @@
 
                         <h3>When do I get it?</h3>
                         <p>
-                            If your tribute inventory is empty, your order will be delivered in approximately 10 seconds. If your Tribute inventory is full, you will be asked to empty your Tribute inventory first. After you emptied your Tribute inventory, it should take only 1 minute to be delivered.
-                        </p>
-                        <p>
-                            When your order is ready for pickup, you will get notified in-game!
-                        </p>
-
-                        <h3>Where to pick up the order</h3>
-                        <p>
-                            Every Supply crate and Obelisk gives you access to your Tribute inventory.
+                            Your order is delivered automatically in less than 1 minute. You're alerted in-game on the status.
                         </p>
 
                     </div>

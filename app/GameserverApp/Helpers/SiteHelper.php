@@ -3,6 +3,8 @@
 namespace GameserverApp\Helpers;
 
 
+use Illuminate\Support\Facades\Cookie;
+
 class SiteHelper extends Helper
 {
 
@@ -80,7 +82,16 @@ class SiteHelper extends Helper
 
     public static function theme()
     {
-        $theme = self::api()->domain('theme');
+        if(
+            config('app.debug') and
+            Cookie::has('override_theme') and
+            Cookie::get('override_theme') != '0'
+        ) {
+            $theme = 'theme-' . Cookie::get('override_theme');
+            $theme = str_replace('_', '-', $theme);
+        } else {
+            $theme = self::api()->domain('theme');
+        }
 
         if($theme != 'theme-default') {
             $theme = 'theme-basic ' . $theme;

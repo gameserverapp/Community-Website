@@ -1,5 +1,5 @@
 <?php
-use GameserverApp\Helpers\SiteHelper;
+use GameserverApp\Helpers\SiteHelper;use Illuminate\Support\Facades\Cookie;
 ?>
 
 @if( !Request::is('/') )

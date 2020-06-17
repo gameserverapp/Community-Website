@@ -11,3 +11,4 @@ include 'web/news.php';
 include 'web/token.php';
 include 'web/domain.php';
 include 'web/form.php';
+include 'web/supporter-tier.php';

@@ -77,6 +77,17 @@
         }
     }
 
+    &.buy {
+
+        .package-category {
+            .label {
+                position: absolute;
+                top:20px;
+                left:35px;
+            }
+        }
+    }
+
     &.single {
 
         .banner {

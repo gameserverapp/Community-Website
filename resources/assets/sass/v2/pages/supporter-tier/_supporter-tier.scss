@@ -1,0 +1,134 @@
+&.supporter-tier {
+
+    .banner {
+
+        .navigation {
+
+            .right {
+                float: right !important;
+            }
+        }
+    }
+
+    &.buy {
+
+        .introtext {
+            strong {
+                color: $orange;
+                font-weight: normal;
+            }
+        }
+
+        .package {
+            .label {
+                position: absolute;
+                top:20px;
+                left:35px;
+            }
+        }
+    }
+
+    &.transaction {
+        .table .label {
+
+            &-default {
+                background: $grey_light + 105;
+                color: $grey_light + 20;
+            }
+
+            &-champ {
+                background: $orange;
+                color: $white;
+            }
+        }
+
+        td {
+            padding-top: $inner-gutter;
+            padding-bottom: $inner-gutter;
+        }
+    }
+
+    &.single {
+
+        .banner {
+
+
+        }
+
+        h2 {
+            margin-bottom: $gutter;
+
+            img {
+                margin-right: 20px;
+            }
+        }
+
+        .disclaimer {
+            h4 {
+                color: $primary;
+            }
+
+            p {
+                color:lighten($secondary, 15)
+            }
+        }
+
+        h4 {
+            color: $primary;
+        }
+
+        a {
+            color: $grey;
+        }
+
+        .terms {
+            height: 300px;
+            overflow: scroll-x;
+        }
+
+        .list-group {
+            margin-bottom: $gutter;
+
+            .list-group-item {
+                border-color: $grey_light + 90;
+                background: #e2e2e2 + 20;
+                color:$grey;
+
+                strong {
+                    color: $orange;
+                }
+
+                p {
+                    color:$grey;
+                }
+            }
+        }
+
+        hr {
+            margin: $gutter 0;
+        }
+
+        .agree_terms {
+            input {
+                display: block;
+                float: left;
+                margin-top: 4px;
+                font-size: 20px;
+            }
+
+            span {
+                display: block;
+                float: left;
+                margin-left: 10px;
+
+                strong {
+                    color: $orange;
+                }
+            }
+        }
+
+        .btnwrap {
+            text-align: right;
+        }
+    }
+}

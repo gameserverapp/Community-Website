@@ -1,4 +1,5 @@
 <?php
+
 namespace GameserverApp\Transformers;
 
 use GameserverApp\Interfaces\ModelTransformerInterface;
@@ -26,8 +27,15 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             'limit'       => $args->limit,
             'limit_days'  => $args->limit_days,
             'token_price' => $args->token_price,
+            'cluster'     => $args->cluster,
             'image'       => $args->image
         ];
+
+        if(isset($args->characters) and $args->characters) {
+            $data['characters'] = CharacterTransformer::transformMultiple($args->characters);
+        } else {
+            $data['characters'] = false;
+        }
 
         return $data;
     }

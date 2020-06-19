@@ -8,7 +8,7 @@
         </li>
 
         <li class="right {{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.buy') ? 'active' : '' }}">
-            <a href="{{route('token.buy')}}">
+            <a href="{{route('supporter-tier.index')}}">
                 Get more tokens
             </a>
         </li>

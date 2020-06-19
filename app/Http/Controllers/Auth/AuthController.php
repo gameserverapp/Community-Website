@@ -68,6 +68,17 @@ class AuthController extends Controller
 
             app(OAuthApi::class)->setTokenCookie($tokens);
 
+            $targetUrl = redirect()->intended()->getTargetUrl();
+
+            preg_match('/.*(\/shop\/[0-9a-z-]+\/purchase)/', $targetUrl, $matches);
+
+            if(isset($matches[1])) {
+
+                $targetUrl = str_replace('/purchase', '/show', $targetUrl);
+
+                return redirect()->intended()->setTargetUrl($targetUrl);
+            }
+
             return redirect()->intended();
         }
 

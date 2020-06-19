@@ -66,13 +66,17 @@
                         </ul>
                         @include('partials.frame.simple-bottom')
 
-                        {!! Form::open(['url'=>$package->orderUrl(), 'method' => 'get']) !!}
+                        @if(auth()->check())
+                            {!! Form::open(['url'=>$package->orderUrl(), 'method' => 'get']) !!}
 
-                        <div class="btnwrap">
-                            {!! Form::submit('Order with PayPal &raquo;', array('class' => 'btn champ small')) !!}
-                        </div>
+                            <div class="btnwrap">
+                                {!! Form::submit('Order with PayPal &raquo;', array('class' => 'btn champ small')) !!}
+                            </div>
 
-                        {!! Form::close() !!}
+                            {!! Form::close() !!}
+                        @else
+                                <div class="alert alert-danger">Please <a href="{{route('auth.login')}}">login</a> to continue</div>
+                        @endif
 
                     </div>
                 </div>

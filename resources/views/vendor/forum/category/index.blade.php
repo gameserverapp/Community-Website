@@ -9,7 +9,7 @@
 
         <div class="alert alert-info">
             Nothing here yet!<br>
-            To edit the forum, you require the "admin" role. You can assign this role, via Admin tools -> Accounts -> {your account} -> role
+            To edit the forum, you require the "admin" role. You can assign this role, via Admin tools -> Players -> {your account} -> role
         </div>
     @endforelse
 

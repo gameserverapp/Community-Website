@@ -360,6 +360,20 @@ class Client
         return $this->paginatedResponse($response, $route);
     }
 
+    public function changeSubscriptionCharacter($uuid, $characterId)
+    {
+        return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/change_character', [
+            'form_params' => [
+                'character_id' => $characterId
+            ]
+        ]);
+    }
+
+    public function cancelSubscription($uuid)
+    {
+        return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/cancel');
+    }
+
     public function shopItems($route)
     {
         $response = $this->api()->authRequest('get', 'shop?page=' . request()->get('page', null));

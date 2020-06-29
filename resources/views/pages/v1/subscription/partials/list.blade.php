@@ -47,6 +47,13 @@ use GameserverApp\Models\Order;
                         </td>
                     </tr>
                 </table>
+
+                @if(!$subscription->expired())
+                    <form method="post" action="{{route('subscription.cancel', $subscription->id())}}">
+                        {{csrf_field()}}
+                        <button type="submit" class="btn btn-xs btn-danger">Cancel subscription</button>
+                    </form>
+                @endif
             </div>
 
             <div class="col-md-6">
@@ -57,18 +64,26 @@ use GameserverApp\Models\Order;
                     </div>
                 @else
                     @if($subscription->hasCharacter())
+
+                        <div class="alert alert-info">
+                            You can determine which character should receive the contents of this subscription. Certain subscriptions can only be purchased on specific clusters, which also limits which character(s) you can choose. You can switch characters at any time.
+                        </div>
+
                         <form method="post" action="{{route('subscription.change_character', $subscription->id())}}">
+                            {{csrf_field()}}
                             <div class="form-group">
                                 <label>
                                     Deliver content to:
                                 </label>
-                                <select>
-                                    <option selected id="{{$subscription->character->id}}">{{$subscription->character->name()}} [Current]</option>
+                                <select name="character_id">
+                                    <option selected value="{{$subscription->character->id}}">{{$subscription->character->name()}} [Current]</option>
 
                                     @foreach($subscription->availableCharacters() as $character)
-                                        <option id="{{$character->id}}">{{$character->name()}}</option>
+                                        <option value="{{$character->id}}">{{$character->name()}}</option>
                                     @endforeach
                                 </select>
+
+                                <button type="submit" class="btn btn-xs">Change</button>
                             </div>
                         </form>
                     @endif

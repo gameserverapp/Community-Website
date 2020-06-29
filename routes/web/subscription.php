@@ -9,12 +9,12 @@ Route::group([
         'uses' => 'SubscriptionController@index',
     ]);
     
-    Route::get('/{id}/changeCharacter', [
+    Route::post('/{id}/change_character', [
         'as'   => 'subscription.change_character',
         'uses' => 'SubscriptionController@changeCharacter'
     ]);
 
-    Route::get('/{id}/cancel', [
+    Route::post('/{id}/cancel', [
         'as'   => 'subscription.cancel',
         'uses' => 'SubscriptionController@cancel'
     ]);

@@ -69,13 +69,31 @@
                         @if(auth()->check())
                             {!! Form::open(['url'=>$package->orderUrl(), 'method' => 'get']) !!}
 
+
+                            @if($package->isSubscription())
+                                <div class="alert alert-success">
+                                    <span>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                        You can easily stop automatic renewal at any moment.
+                                    </span>
+                                </div>
+                            @endif
+
                             <div class="btnwrap">
-                                {!! Form::submit('Order with PayPal &raquo;', array('class' => 'btn champ small')) !!}
+                                <?php
+                                if($package->isSubscription()) {
+                                    $text = 'Subscribe via PayPal';
+                                } else {
+                                    $text = 'Order with PayPal';
+                                }
+                                ?>
+
+                                {!! Form::submit($text . ' &raquo;', array('class' => 'btn champ small')) !!}
                             </div>
 
                             {!! Form::close() !!}
                         @else
-                                <div class="alert alert-danger">Please <a href="{{route('auth.login')}}">login</a> to continue</div>
+                            <div class="alert alert-danger">Please <a href="{{route('auth.login')}}">login</a> to continue</div>
                         @endif
 
                     </div>

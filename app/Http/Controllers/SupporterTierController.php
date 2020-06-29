@@ -76,6 +76,14 @@ class SupporterTierController extends Controller
                         'stay'    => true
                     ]);
                     break;
+
+                case 'no-char-error':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'You need to have a character to order this Supporter Tier.',
+                        'stay'    => true
+                    ]);
+                    break;
             }
         }
 

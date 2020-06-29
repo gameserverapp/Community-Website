@@ -26,7 +26,13 @@ class SupportTier extends Model implements LinkableInterface
 
     public function displayTotalPrice()
     {
-        return $this->displayCurrency() . '' . $this->totalPrice();
+        $suffix = '';
+
+        if($this->isSubscription()) {
+            $suffix = ' p/mo';
+        }
+
+        return $this->displayCurrency() . '' . $this->totalPrice() . $suffix;
     }
 
     public function requiresDiscordSetup()
@@ -34,9 +40,19 @@ class SupportTier extends Model implements LinkableInterface
         return $this->requires_discord;
     }
 
+    public function isSubscription()
+    {
+        return $this->type() == 'subscription';
+    }
+
     public function currency()
     {
         return $this->currency;
+    }
+
+    public function type()
+    {
+        return $this->type;
     }
 
     public function cluster()

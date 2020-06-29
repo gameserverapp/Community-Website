@@ -61,7 +61,14 @@
                                 Order contents: {!! Markdown::convertToHtml($package->description()) !!}
                             </li>
                             <li class="list-group-item">
-                                Total price: <strong>{{$package->displayTotalPrice()}}</strong>
+
+                                @if($package->isSubscription())
+                                    Costs:
+                                @else
+                                    Total price:
+                                @endif
+
+                                <strong>{{$package->displayTotalPrice()}}</strong>
                             </li>
                         </ul>
                         @include('partials.frame.simple-bottom')

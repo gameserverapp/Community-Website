@@ -84,6 +84,14 @@ class SupporterTierController extends Controller
                         'stay'    => true
                     ]);
                     break;
+
+                case 'not-available':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'Subscriptions are currently not supported.',
+                        'stay'    => true
+                    ]);
+                    break;
             }
         }
 

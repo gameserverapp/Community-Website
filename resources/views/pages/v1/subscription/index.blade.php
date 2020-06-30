@@ -24,7 +24,14 @@
             @forelse($subscriptions as $subscription)
                 @include('pages.v1.subscription.partials.list')
             @empty
-                <h1>You don't have any subscriptions yet</h1>
+
+                @include('partials.frame.simple-top')
+                <div class="panel panel-default">
+                    <div class="panel-body text-center">
+                        <h3>You don't have any subscriptions yet</h3>
+                    </div>
+                </div>
+                @include('partials.frame.simple-bottom')
             @endforelse
 
             <div class="paginate">

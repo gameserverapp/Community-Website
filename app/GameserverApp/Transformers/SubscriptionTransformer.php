@@ -21,13 +21,14 @@ class SubscriptionTransformer extends ModelTransformer implements ModelTransform
     public static function transformableInput($args)
     {
         $data = [
-            'id'         => $args->id,
-            'currency'   => $args->currency,
-            'amount'     => $args->amount,
-            'character'  => $args->character ? CharacterTransformer::transform($args->character) : false,
-            'status'     => $args->status,
-            'created_at' => $args->created_at,
-            'expires_at' => $args->expires_at
+            'id'                 => $args->id,
+            'currency'           => $args->currency,
+            'amount'             => $args->amount,
+            'requires_character' => $args->requires_character,
+            'character'          => $args->character ? CharacterTransformer::transform($args->character) : false,
+            'status'             => $args->status,
+            'created_at'         => $args->created_at,
+            'expires_at'         => $args->expires_at
         ];
 
         if (isset($args->relatable)) {

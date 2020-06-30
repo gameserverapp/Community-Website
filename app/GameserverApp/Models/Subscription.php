@@ -28,9 +28,14 @@ class Subscription extends Model
         return !is_null($this->expires_at);
     }
 
+    public function requiresCharacter()
+    {
+        return $this->requires_character;
+    }
+
     public function hasCharacter()
     {
-        return !is_null($this->character);
+        return $this->character instanceof Character;
     }
 
     public function relatableUrl()

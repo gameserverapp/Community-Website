@@ -63,11 +63,17 @@ use GameserverApp\Models\Order;
                         This subscription has been cancelled and can not longer be changed.
                     </div>
                 @else
-                    @if($subscription->hasCharacter())
+                    @if($subscription->requiresCharacter())
 
-                        <div class="alert alert-info">
-                            You can determine which character should receive the contents of this subscription. Certain subscriptions can only be purchased on specific clusters, which also limits which character(s) you can choose. You can switch characters at any time.
-                        </div>
+                        @if(!$subscription->hasCharacter())
+                            <div class="alert alert-warning">
+                                This subscriptions currently has no character setup. Please select a character to make sure you receive your rewards.
+                            </div>
+                        @else
+                            <div class="alert alert-info">
+                                You can determine which character should receive the contents of this subscription. Certain subscriptions can only be purchased on specific clusters, which also limits which character(s) you can choose. You can switch characters at any time.
+                            </div>
+                        @endif
 
                         <form method="post" action="{{route('subscription.change_character', $subscription->id())}}">
                             {{csrf_field()}}
@@ -76,10 +82,15 @@ use GameserverApp\Models\Order;
                                     Deliver content to:
                                 </label>
                                 <select name="character_id">
-                                    <option selected value="{{$subscription->character->id}}">{{$subscription->character->name()}} [Current]</option>
-
                                     @foreach($subscription->availableCharacters() as $character)
-                                        <option value="{{$character->id}}">{{$character->name()}}</option>
+                                        @if(
+                                            $subscription->hasCharacter() and
+                                            $subscription->character->id == $character->id
+                                        )
+                                            <option selected value="{{$character->id}}">{{$character->name()}} [currect]</option>
+                                        @else
+                                            <option value="{{$character->id}}">{{$character->name()}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
 

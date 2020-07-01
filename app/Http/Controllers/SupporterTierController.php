@@ -99,4 +99,10 @@ class SupporterTierController extends Controller
             'package' => $package
         ]);
     }
+
+    public function purge($id)
+    {
+        $this->client->clearCache('get', 'supporter-tier');
+        $this->client->clearCache('get', 'supporter-tier/show/' . $id);
+    }
 }

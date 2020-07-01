@@ -14,5 +14,9 @@ Route::group([
         'uses' => 'SupporterTierController@show'
     ]);
 
+    Route::get('/show/{id}/purge_cache', [
+        'as'   => 'supporter-tier.purge',
+        'uses' => 'SupporterTierController@purge'
+    ]);
 });
 

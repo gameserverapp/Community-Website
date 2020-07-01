@@ -21,17 +21,18 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
     public static function transformableInput($args)
     {
         $data = [
-            'id'          => $args->id,
-            'name'        => $args->name,
-            'description' => $args->description,
-            'limit'       => $args->limit,
-            'limit_days'  => $args->limit_days,
-            'token_price' => $args->token_price,
-            'cluster'     => $args->cluster,
-            'image'       => $args->image
+            'id'           => $args->id,
+            'name'         => $args->name,
+            'description'  => $args->description,
+            'limit'        => $args->limit,
+            'limit_days'   => $args->limit_days,
+            'token_price'  => $args->token_price,
+            'cluster'      => $args->cluster,
+            'image'        => $args->image,
+            'content_type' => $args->content_type
         ];
 
-        if(isset($args->characters) and $args->characters) {
+        if (isset($args->characters) and $args->characters) {
             $data['characters'] = CharacterTransformer::transformMultiple($args->characters);
         } else {
             $data['characters'] = false;

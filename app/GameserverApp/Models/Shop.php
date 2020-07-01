@@ -39,6 +39,11 @@ class Shop extends Model implements LinkableInterface
         return $this->limit_days;
     }
 
+    public function isEmptyPack()
+    {
+        return is_null($this->content_type);
+    }
+
     public function tokenPrice()
     {
         return $this->token_price;

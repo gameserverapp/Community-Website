@@ -107,6 +107,14 @@ use GameserverApp\Helpers\SiteHelper;
             </li>
         @endif
 
+        @if(SiteHelper::featureEnabled('supporter_tiers'))
+            <li>
+                <a href="{{route('subscription.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index') ? 'orange' : '' }}">
+                    Subscriptions
+                </a>
+            </li>
+        @endif
+
 
         @if(
             SiteHelper::featureEnabled('supporter_tiers') or

@@ -3,6 +3,7 @@
 namespace GameserverApp\Api;
 
 use App\Http\Controllers\SupporterTierController;
+use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
 use Illuminate\Pagination\LengthAwarePaginator;
 use GameserverApp\Models\Model;
@@ -336,6 +337,41 @@ class Client
         $response->items = TransactionTransformer::transformMultiple($response->items);
 
         return $this->paginatedResponse($response, $route);
+    }
+
+    public function allUserSubscriptions($route)
+    {
+        $response = $this->api()->authRequest('get', 'user/me/subscriptions?page=' . request()->get('page', null), [], false);
+
+        if(!isset($response->items)) {
+            return new LengthAwarePaginator(
+                [],
+                0,
+                8,
+                0,
+                [
+                    'path' => $route
+                ]
+            );
+        }
+
+        $response->items = SubscriptionTransformer::transformMultiple($response->items);
+
+        return $this->paginatedResponse($response, $route);
+    }
+
+    public function changeSubscriptionCharacter($uuid, $characterId)
+    {
+        return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/change_character', [
+            'form_params' => [
+                'character_id' => $characterId
+            ]
+        ]);
+    }
+
+    public function cancelSubscription($uuid)
+    {
+        return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/cancel');
     }
 
     public function shopItems($route)

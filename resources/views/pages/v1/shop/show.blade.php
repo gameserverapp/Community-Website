@@ -63,7 +63,7 @@
 
                         {!! Form::open(['route'=>['shop.purchase', $pack->id], 'method' => 'order']) !!}
 
-                        @if(auth()->check())
+                        @if(auth()->check() and !$pack->isEmptyPack())
                             @if($pack->hasCharacters())
                                 <div class="form-group">
                                     <label>Deliver to:</label>

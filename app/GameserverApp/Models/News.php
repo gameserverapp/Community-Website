@@ -38,6 +38,16 @@ class News extends Model implements LinkableInterface
         return '';//$this->meta_description;
     }
 
+    public function hasImage()
+    {
+        return isset($this->image) and $this->image;
+    }
+
+    public function image()
+    {
+        return $this->image;
+    }
+
     public function hasType()
     {
         if($this->type == '0') {

@@ -7,6 +7,16 @@
     .article-block {
         margin-bottom:$large-gutter;
 
+        &__image {
+            max-height:150px;
+            overflow: hidden;
+            margin-bottom:10px;
+
+            img {
+
+            }
+        }
+
         &__title {
             color:$grey;
             margin-bottom: 10px;

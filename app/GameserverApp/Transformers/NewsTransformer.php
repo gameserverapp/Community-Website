@@ -1,4 +1,5 @@
 <?php
+
 namespace GameserverApp\Transformers;
 
 use GameserverApp\Interfaces\ModelTransformerInterface;
@@ -23,6 +24,7 @@ class NewsTransformer extends ModelTransformer implements ModelTransformerInterf
             'summary'      => $args->summary,
             'content'      => $args->content,
             'type'         => $args->type,
+            'image'        => $args->image,
             'published_at' => $args->published_at
         ];
 

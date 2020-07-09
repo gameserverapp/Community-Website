@@ -1,3 +1,15 @@
+<?php
+$banner = [
+    'size' => 'small',
+    'vertical-align' => true
+];
+
+if($post->hasImage()) {
+    $banner['background']['img'] = $post->image();
+    $banner['class'] = 'custom_bg';
+}
+?>
+
 @extends('layouts.v2.banner', [
     'page' => [
         'title' => $post->title(),
@@ -8,10 +20,7 @@
     'microdata' => [
         'content' => 'itemscope itemtype="http://schema.org/Article"'
     ],
-    'banner' => [
-        'size' => 'small',
-        'vertical-align' => true
-    ]
+    'banner' => $banner
 ])
 
 @section('banner_content')

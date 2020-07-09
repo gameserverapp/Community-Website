@@ -69,6 +69,14 @@
                                     return !in_array($item, ['.', '..', 'index.scss']);
                                 });
 
+                                $dirs = array_map(function($item) {
+                                    if($item == 'basic') {
+                                        return 'default';
+                                    }
+
+                                    return $item;
+                                }, $dirs);
+
                                 $overrideCookie = 0;
                                 if(Cookie::has('override_theme')) {
                                     $overrideCookie = Cookie::get('override_theme');

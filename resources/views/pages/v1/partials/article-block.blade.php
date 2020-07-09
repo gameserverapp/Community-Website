@@ -1,5 +1,12 @@
 <article class="article-block" itemscope itemtype="http://schema.org/Article">
     <a href="{{route('news.show', ['id' => $post->id, 'slug' => $post->slug()])}}" itemprop="url">
+
+        @if($post->hasImage())
+            <div class="article-block__image">
+                <img src="{{$post->image()}}">
+            </div>
+        @endif
+
         <h1 class="article-block__title" itemprop="headline">
             {!! $post->title() !!}
         </h1>

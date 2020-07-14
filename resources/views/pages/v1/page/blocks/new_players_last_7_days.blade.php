@@ -13,9 +13,11 @@
     <div class="row stat_block">
         <div class="col-md-12">
 
-            <div class="stat_canvas"
-                 data-data='{!! json_encode($stat['data']) !!}'
-                 data-options='{!!json_encode($stat['options'])!!}'></div>
+            @if(isset($stat['data']) and isset($stat['options']))
+                <div class="stat_canvas"
+                     data-data='{!! json_encode($stat['data']) !!}'
+                     data-options='{!!json_encode($stat['options'])!!}'></div>
+            @endif
         </div>
     </div>
 </article>

@@ -24,7 +24,6 @@
                     <div class="panel-body">
 
                         @if(isset($stat['data']) and isset($stat['options']))
-
                             <div class="stat_canvas"
                                  data-data='{!! json_encode($stat['data']) !!}'
                                  data-options='{!!json_encode($stat['options'])!!}'></div>

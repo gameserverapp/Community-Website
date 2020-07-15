@@ -1,36 +1,36 @@
 @import 'typography',
-        'banner/banner',
-        'status/status',
-        'button/button',
-        'character/character',
-        'tribe/tribe',
-        'pagination/pagination',
-        'statcanvas/statcanvas',
-        'alert/alert',
-        'package/package',
-        'token/package',
-        'supporter-tiers/package',
-        'markdown-content/markdown',
-        //'snow/snow',
-        'label/label',
-        'pagebuilder/index';
+'banner/banner',
+'status/status',
+'button/button',
+'character/character',
+'tribe/tribe',
+'pagination/pagination',
+'statcanvas/statcanvas',
+'alert/alert',
+'package/package',
+'token/package',
+'supporter-tiers/package',
+'markdown-content/markdown',
+    //'snow/snow',
+'label/label',
+'pagebuilder/index';
 
 
 .frame {
-        width: 100%;
+    width: 100%;
 
-        &.simple {
-                position: relative;
+    &.simple {
+        position: relative;
 
-                > table {
-                        display: table;
-                        width: 100%;
-                        border-spacing: 0;
-                        border-collapse: separate;
-                }
-
-                .contentwrap {
-                        display: block;
-                }
+        > table {
+            display: table;
+            width: 100%;
+            border-spacing: 0;
+            border-collapse: separate;
         }
+
+        .contentwrap {
+            display: block;
+        }
+    }
 }

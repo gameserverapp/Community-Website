@@ -1,0 +1,22 @@
+.btn-theme {
+    width: 226px;
+    height: 65px;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+
+    border: none;
+
+    transition: background-image 0.2s ease;
+
+    span {
+        display: block;
+        padding:10px 0 0 10px;
+        font-weight: bold;
+        color:#fff !important;
+        text-transform: uppercase;
+        text-align: center;
+        overflow: hidden;
+        opacity:.9
+    }
+}

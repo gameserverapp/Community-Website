@@ -20,28 +20,85 @@
 
 
     .big_banner {
-        height: 80vh;
+        min-height: 80vh;
 
         .content-wrapper {
             position: relative;
             text-align: center;
-            padding-top:30vh;
+            padding-top:25vh;
 
             z-index:2;
 
             h1 {
                 font-weight: bold;
-                font-size:70px;
+                font-size:110px;
+                line-height: 120px;
                 text-shadow: 1px 1px 13px #000;
-                margin-bottom:40px;
+                margin-bottom:0px;
+                color:#fff !important;
             }
 
             h2 {
-                font-size:50px;
-                text-shadow: 1px 1px 13px #000;
+                font-size:40px;
+                line-height: 50px;
+                text-shadow: 1px 1px 6px #000;
                 color:#fff !important;
+            }
+
+            .button-wrapper {
+                margin-top:20px;
+            }
+        }
+
+        @media (max-width:767px) {
+
+            min-height: auto;
+
+            .content-wrapper {
+                padding-top:60px;
+                padding-bottom:120px;
+
+                h1 {
+                    font-size:70px;
+                    line-height: 80px;
+                }
+
+                h2 {
+                    font-size:25px;
+                    line-height: 35px;
+                }
+            }
+        }
+
+        @media (max-width:500px) {
+
+            .content-wrapper {
+
+                h1 {
+                    font-size:30px;
+                    line-height: 40px;
+                    margin-bottom:10px;
+                }
+
+                h2 {
+                    font-size:20px;
+                    line-height: 30px;
+                }
+
+                .button-wrapper {
+                    margin-top:30px;
+                }
             }
         }
     }
+
+    //.textcolor-dark {
+    //    .big_banner .content-wrapper {
+    //        h1, h2 {
+    //            color:#333 !important;
+    //            text-shadow: 1px 1px 13px #fff;
+    //        }
+    //    }
+    //}
 }
 

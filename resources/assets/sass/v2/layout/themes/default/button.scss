@@ -1,0 +1,26 @@
+.btn-theme {
+
+    width: 226px;
+    height:auto;
+    background: #FF4B3E;
+    border: 1px #FF4B3E solid;
+
+
+    span {
+        display: block;
+        color: #fff !important;
+        padding:10px 0;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    &:hover {
+        background: #fff;
+
+        span {
+            color:#FF4B3E !important;
+        }
+    }
+}

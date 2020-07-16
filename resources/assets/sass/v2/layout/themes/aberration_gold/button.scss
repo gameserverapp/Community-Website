@@ -1,0 +1,14 @@
+.btn-theme {
+
+    margin-left:-22px;
+
+    background-image:url('/img/themes_copyright/aberration_gold/button_rock.png');
+
+    &:hover {
+        background-image:url('/img/themes_copyright/aberration_gold/button_rock_hover.png');
+    }
+
+    span {
+        padding:23px 11px 0 26px;
+    }
+}

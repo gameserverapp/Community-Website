@@ -1,0 +1,47 @@
+.big_banner_row {
+
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+
+    &:after {
+        content: ' ';
+        position: absolute;
+        width:100%;
+        min-height:100%;
+        top:0;
+        bottom:0;
+        z-index:1;
+
+        background-color: #000;
+        opacity: 0.42;
+        mix-blend-mode: multiply;
+    }
+
+
+    .big_banner {
+        height: 80vh;
+
+        .content-wrapper {
+            position: relative;
+            text-align: center;
+            padding-top:30vh;
+
+            z-index:2;
+
+            h1 {
+                font-weight: bold;
+                font-size:70px;
+                text-shadow: 1px 1px 13px #000;
+                margin-bottom:40px;
+            }
+
+            h2 {
+                font-size:50px;
+                text-shadow: 1px 1px 13px #000;
+                color:#fff !important;
+            }
+        }
+    }
+}
+

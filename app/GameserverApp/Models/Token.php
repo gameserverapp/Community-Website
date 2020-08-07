@@ -62,6 +62,15 @@ class Token extends Model implements LinkableInterface
             case 'GBP':
                 return '£';
 
+            case 'BRL':
+                return 'R$';
+
+            case 'AUD':
+                return 'A$';
+
+            case 'CAD':
+                return 'C$';
+
             default:
                 return '$';
         }

@@ -13,6 +13,16 @@ use GameserverApp\Helpers\SiteHelper;use Illuminate\Support\Facades\Cookie;
         <a href="{{$item->url}}" @if($item->new_window) target="_blank" @endif class="{{ '/' . request()->path() == $item->url ? 'active' : '' }}">
             {{$item->title}}
         </a>
+
+        @if(isset($item->children) and is_array($item->children))
+            <ul>
+                @foreach($item->children as $child)
+                    <a href="{{$child->url}}" @if($child->new_window) target="_blank" @endif class="{{ '/' . request()->path() == $child->url ? 'active' : '' }}">
+                        {{$child->title}}
+                    </a>
+                @endforeach
+            </ul>
+        @endif
     </li>
 @endforeach
 

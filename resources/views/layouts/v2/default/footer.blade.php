@@ -48,7 +48,7 @@
             <div class="row">
 
                 <div class="col-md-12 content">
-                    <span>&copy; GameserverApp.com 2015 - {{date('Y')}}</span> &nbsp; <i>//</i> &nbsp;
+                    <span>&copy; GameServerApp.com 2015 - {{date('Y')}}</span> &nbsp; <i>//</i> &nbsp;
                     <a href="http://steampowered.com/" target="_blank" rel="nofollow">Powered by Steam Login</a>
 
                     &nbsp; <i>//</i> &nbsp;

@@ -1,4 +1,4 @@
-The GameserverApp.com community website has all the basics setup for you, so you can focus on the details and custom design.
+The GameServerApp.com community website has all the basics setup for you, so you can focus on the details and custom design.
 
 You can use the GSA pagebuilder, or setup your custom HTML webpages. The Community website is build on top of the [Laravel framework](https://laravel.com/docs/5.4).
 

@@ -68,6 +68,6 @@
 <div class="alert alert-info">
     <i class="fa fa-question-circle" aria-hidden="true"></i>
     <span class="indent">
-        Abuse will result in a ban from the <u>entire</u> GameserverApp.com platform.
+        Abuse will result in a ban from the <u>entire</u> GameServerApp.com platform.
     </span>
 </div>

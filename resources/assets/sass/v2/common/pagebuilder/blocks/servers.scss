@@ -52,12 +52,12 @@
             &:after {
                 position: absolute;
                 content: ' ';
-                width:100%;
-                min-height:100%;
-                top:0;
-                bottom:0;
-                left:0;
-                right:0;
+                width:110%;
+                min-height:110%;
+                top:-10px;
+                bottom:-10px;
+                left:-10px;
+                right:-10px;
 
                 background-color: #000;
                 opacity: 0.22;

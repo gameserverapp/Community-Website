@@ -203,20 +203,17 @@ $(document).ready(function () {
         });
     }
 
-    // if ($('#tribespeak').length) {
-    //     var webrtc = new simpleWebRTC({
-    //         autoRequestMedia: true,
-    //         media: {audio: true, video: false},
-    //         url: 'https://voice.championark.com/',
-    //         /*peerConnectionConfig:{
-    //          iceTransports: 'relay'
-    //          }*/
-    //     });
-    //
-    //     webrtc.on('readyToCall', function () {
-    //         webrtc.joinRoom(tribeChannel);
-    //     });
-    // }
+    if($(".server-block").length) {
+        $(".server-block").each(function(){
+            $.get({
+                url: '/server/' + $(this).data('id')
+            }).done(function(data) {
+                $(this).replaceWith(data);
+            }).fail(function(data) {
+                console.log('failed');
+            });
+        });
+    }
 });
 
 function debounce(fn, delay) {

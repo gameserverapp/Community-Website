@@ -21,6 +21,57 @@
         position: relative;
         margin-top: $gutter;
         margin-bottom: $gutter;
+        overflow: hidden;
+
+        background-size: cover;
+
+        .content {
+            position: relative;
+        }
+
+        &.has_background {
+            .content {
+
+                h2,
+                .help,
+                .status_message {
+                    color:#fff;
+                    text-shadow: 1px 1px 13px #000;
+                }
+
+            }
+        }
+
+        .background {
+            position: absolute;
+            top:0;
+            bottom:0;
+            right:0;
+            left:0;
+            width:100%;
+            background-size: cover;
+
+            &:after {
+                position: absolute;
+                content: ' ';
+                width:100%;
+                min-height:100%;
+                top:0;
+                bottom:0;
+                left:0;
+                right:0;
+
+                background-color: #000;
+                opacity: 0.22;
+                transition: opacity ease .2s;
+            }
+        }
+
+        &:hover {
+            .background:after {
+                opacity:.62;
+            }
+        }
     }
     
     .status {

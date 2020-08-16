@@ -113,6 +113,13 @@ class Client
         );
     }
 
+    public function server($id)
+    {
+        return ServerTransformer::transform(
+            $this->api()->guestRequest('get', 'server/' . $id)
+        );
+    }
+
     public function characters($sub = false)
     {
         if ($sub) {

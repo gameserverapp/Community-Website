@@ -21,6 +21,7 @@ class ServerTransformer extends ModelTransformer implements ModelTransformerInte
             'p2p'        => $args->p2p,
             'twitch_sub_only' => $args->twitch_sub_only,
             'selfhosted' => $args->selfhosted,
+            'background' => $args->background,
         ];
 
         if (isset($args->version)) {

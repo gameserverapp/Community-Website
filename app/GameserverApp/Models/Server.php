@@ -63,9 +63,16 @@ class Server extends Model implements LinkableInterface
         return isset($this->online) ? $this->online : null;
     }
 
+    public function hasBackground()
+    {
+        return !is_null($this->background);
+    }
+
     public function getCssClass()
     {
-        $class = [];
+        $class = [
+            'server-partial'
+        ];
 
         if($this->p2p()) {
             $class[] = 'p2p';
@@ -73,6 +80,10 @@ class Server extends Model implements LinkableInterface
 
         if($this->twitchSubOnly()) {
             $class[] = 'p2p';
+        }
+
+        if($this->hasBackground()) {
+            $class[] = 'has_background';
         }
 
         return implode(' ', $class);

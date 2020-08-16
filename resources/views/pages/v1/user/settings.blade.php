@@ -52,7 +52,7 @@
                         @endif
                         <div class="alert alert-info">
                             <strong>We hate spam, just like you!</strong>
-                            Your e-mail address is stored in the GameserverApp.com database and will only be used for alerts, which you can choose below. Your e-mail address will <u>not</u> be sold to 3rd parties.
+                            Your e-mail address is stored in the GameServerApp.com database and will only be used for alerts, which you can choose below. Your e-mail address will <u>not</u> be sold to 3rd parties.
                         </div>
                         <br>
                         <hr>

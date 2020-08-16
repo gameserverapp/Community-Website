@@ -26,8 +26,8 @@ class SetupCommunityWebsite extends Command
 
     public function handle()
     {
-        $id = trim($this->ask('Enter your Client ID from GameserverApp.com'));
-        $secret = trim($this->ask('Enter your Client Secret from GameserverApp.com'));
+        $id = trim($this->ask('Enter your Client ID from GameServerApp.com'));
+        $secret = trim($this->ask('Enter your Client Secret from GameServerApp.com'));
         $domain = trim($this->ask('Enter the domain for your website (without HTTP or HTTPS)'));
 
         $client = new \GuzzleHttp\Client([
@@ -67,7 +67,7 @@ class SetupCommunityWebsite extends Command
 
         $this->call('key:generate');
 
-        $this->info('Almost ready! Setup the custom domain for your website on the GameserverApp.com dashboard.');
+        $this->info('Almost ready! Setup the custom domain for your website on the GameServerApp.com dashboard.');
     }
 
     protected function writeNewEnvironmentFileWith($key, $value)

@@ -1,6 +1,6 @@
 {
     "name": "gameserverapp/community-website",
-    "description": "The GameserverApp.com Community website.",
+    "description": "The GameServerApp.com Community website.",
     "keywords": ["gameserverapp", "laravel"],
     "license": "MIT",
     "type": "project",

@@ -52,7 +52,7 @@
                     <a href="http://steampowered.com/" target="_blank" rel="nofollow">Powered by Steam Login</a>
 
                     &nbsp; <i>//</i> &nbsp;
-                    <a style="color:#ccc" href="https://www.gameserverapp.com/?camp=fe&grp=fo" target="_blank" rel="FOLLOW">Free gameserver website</a>
+                    <a style="color:#ccc" href="https://www.gameserverapp.com/?camp=fe&grp={{GameserverApp\Helpers\SiteHelper::slug()}}" target="_blank" rel="FOLLOW">Free game server website</a>
 
 
 

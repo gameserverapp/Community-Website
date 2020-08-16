@@ -1,4 +1,4 @@
-<div data-id="{{$server->id}}" class="well server-block-{{$server->id}} server-block {{$server->getCssClass()}}">
+<div data-id="{{$server->id}}" class="well @if($server->slots()) loaded @endif server-block-{{$server->id}} server-block {{$server->getCssClass()}}">
 
     @if($server->hasBackground())
     <div class="background" style="background-image:url('{{$server->background}}')"></div>
@@ -27,7 +27,7 @@
             @endif
         </div>
 
-        @if(!isset($status))
+        @if(!isset($status) and !$server->slots())
 
             <span class="preload">
                 <div class="loader"></div>

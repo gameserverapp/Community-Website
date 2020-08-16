@@ -208,7 +208,10 @@ $(document).ready(function () {
 
             var id = $(elm).data('id');
 
-            if(id == undefined) {
+            if(
+                id == undefined ||
+                $(elm).hasClass('loaded')
+            ) {
                 return;
             }
 

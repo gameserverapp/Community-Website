@@ -319,7 +319,70 @@
                     background: transparent;
                 }
 
-                .dropdown {
+                &.has_child {
+                    position: relative;
+
+                    > a {
+                        &:after {
+                            display: inline-block;
+                            content: ' ';
+                            width: 0;
+                            height: 0;
+                            margin-left: 5px;
+                            vertical-align: middle;
+                            border-top: 4px dashed;
+                            border-top: 4px solid \9;
+                            border-right: 4px solid transparent;
+                            border-left: 4px solid transparent;
+                        }
+                    }
+
+                }
+
+                ul.submenu {
+                    left:0 !important;
+                    right: auto !important;
+                }
+
+                //ul.submenu {
+                //    position: absolute;
+                //    top: 100%;
+                //    left: 0;
+                //    z-index: 1000;
+                //    display: none;
+                //    float: left;
+                //    min-width: 160px;
+                //    padding: 5px 0;
+                //    margin: 0 0 0;
+                //    font-size: 14px;
+                //    text-align: left;
+                //    list-style: none;
+                //    background-color: #fff;
+                //    background-clip: padding-box;
+                //    border: 1px solid #ccc;
+                //    border: 1px solid rgba(0, 0, 0, 0.15);
+                //    border-radius: 4px;
+                //    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+                //    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+                //
+                //    > li > a {
+                //        display: block;
+                //        padding: 3px 20px;
+                //        clear: both;
+                //        font-weight: 400;
+                //        line-height: 1.42857143;
+                //        color: #333333;
+                //        white-space: nowrap;
+                //        text-decoration: none;
+                //    }
+                //}
+
+                &:hover ul.submenu {
+                    display:block;
+                }
+
+                .dropdown,
+                &.has_child {
 
 
 
@@ -329,9 +392,9 @@
                     //    margin-top: 0; // remove the gap so it doesn't close
                     //}
 
-                    .dropdown-menu {
+                    ul.dropdown-menu {
 
-                        a {
+                        li a {
                             text-decoration: none;
                             color:$grey;
                             @include transition(color .2s);
@@ -349,7 +412,7 @@
                                 font-weight:bold;
                             }
 
-                            &:hover {
+                            > &:hover {
                                 background:none;
                                 color:$orange;
                             }
@@ -429,7 +492,7 @@
 
                     a {
                         margin: 0;
-                        font-size:20px;
+                        font-size: 28px !important;
                         text-align: center;
 
                         &:hover {
@@ -457,32 +520,38 @@
                         }
                     }
                     
-                    .dropdown {
+                    .dropdown,
+                    &.has_child {
                         margin-top:$large-gutter;
 
                         .dashboard {
                             width:100%;
                             border:none !important;
                             background:transparent;
-                            color:#333 !important;
-                            font-size:20px;
+                            color:$white !important;
+                            font-size:28px;
                             
                             .caret {
                                 display: none;
                             }
                         }
 
+                        .characterlink-name {
+                            color: #ccc !important;
+                        }
+
                         > a {
-                            display: block;
-                            border: 0 !important;
-                            background: 0 !important;
-                            color: $grey !important;
-                            font-size: 36px !important;
-                            border-bottom: 1px $grey solid !important;
-                            border-radius: 0 !important;
-                            padding-bottom:$gutter !important;
+                            //display: block;
+                            //border: 0 !important;
+                            //background: 0 !important;
+                            //color: $grey !important;
+                            font-size: 28px !important;
+                            //border-bottom: 1px $grey solid !important;
+                            //border-radius: 0 !important;
+                            //padding-bottom:$gutter !important;
                             
-                            .caret {
+                            .caret,
+                            &:after {
                                 display: none;
                             }
                         }
@@ -502,9 +571,11 @@
 
                             a {
                                 display: inline-block;
-                                font-size:20px !important;
+                                font-size:18px !important;
                                 border-bottom:none !important;
-                                color:$white !important;
+                                //color:$white !important;
+
+                                color: #ccc !important;
                                 padding:7px 0;
 
                                 .char_pic {
@@ -513,6 +584,10 @@
 
                                 .label {
                                     margin-left:10px;
+                                }
+
+                                &:hover {
+                                    background:initial;
                                 }
                             }
 

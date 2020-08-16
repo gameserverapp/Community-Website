@@ -9,17 +9,19 @@ use GameserverApp\Helpers\SiteHelper;use Illuminate\Support\Facades\Cookie;
 @endif
 
 @foreach(SiteHelper::customMenuItems() as $item)
-    <li>
+    <li class="@if(isset($item->children) and is_array($item->children)) has_child @endif">
         <a href="{{$item->url}}" @if($item->new_window) target="_blank" @endif class="{{ '/' . request()->path() == $item->url ? 'active' : '' }}">
             {{$item->title}}
         </a>
 
         @if(isset($item->children) and is_array($item->children))
-            <ul>
+            <ul class="submenu dropdown-menu">
                 @foreach($item->children as $child)
-                    <a href="{{$child->url}}" @if($child->new_window) target="_blank" @endif class="{{ '/' . request()->path() == $child->url ? 'active' : '' }}">
-                        {{$child->title}}
-                    </a>
+                    <li>
+                        <a href="{{$child->url}}" @if($child->new_window) target="_blank" @endif class="{{ '/' . request()->path() == $child->url ? 'active' : '' }}">
+                            {{$child->title}}
+                        </a>
+                    </li>
                 @endforeach
             </ul>
         @endif
@@ -36,18 +38,6 @@ use GameserverApp\Helpers\SiteHelper;use Illuminate\Support\Facades\Cookie;
 @endif
 
 @if(auth()->check())
-
-    @if(SiteHelper::featureEnabled('messages'))
-        <li class="hidden-sm">
-            <a href="{{route('message.index')}}"
-               class="inbox {{ ( Request::is('message/*')) ? 'active' : '' }}">
-                Messages
-            <span class="label label-default">
-               {{auth()->user()->unreadMessagesCount()}}
-            </span>
-            </a>
-        </li>
-    @endif
     <li>
         @include('layouts.v2.default.navs.sub.member')
     </li>

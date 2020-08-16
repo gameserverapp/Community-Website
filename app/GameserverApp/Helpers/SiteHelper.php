@@ -13,6 +13,11 @@ class SiteHelper extends Helper
         return self::api()->domain('name');
     }
 
+    public static function slug()
+    {
+        return self::api()->domain('slug');
+    }
+
     public static function footerDescription()
     {
         return self::api()->domain('content')->footer->description;

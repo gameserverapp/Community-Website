@@ -208,6 +208,10 @@ $(document).ready(function () {
 
             var id = $(elm).data('id');
 
+            if(id == undefined) {
+                return;
+            }
+
             $.get({
                 url: '/server/' + $(elm).data('id')
             }).done(function(data) {

@@ -13,3 +13,4 @@ include 'web/domain.php';
 include 'web/form.php';
 include 'web/supporter-tier.php';
 include 'web/subscription.php';
+include 'web/server.php';

@@ -8,7 +8,7 @@ if(isset($block['frame_height']) and !empty($block['frame_height'])) {
 ?>
 @include('partials.frame.simple-top')
 <iframe
-        src="https://player.twitch.tv/?channel={{$value}}&autoplay=false&muted=true"
+        src="https://player.twitch.tv/?channel={{$value}}&autoplay=false&muted=true&parent={{Request::getHost()}}"
         height="{{$height}}"
         width="100%"
         frameborder="0"

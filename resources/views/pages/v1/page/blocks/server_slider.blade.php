@@ -15,9 +15,7 @@
         <div class=" owl-theme" id="serverSlider">
             @forelse($servers as $server)
                 <div class="item">
-                    <div class="well server-block {{$server->getCssClass()}}">
-                        @include('pages.v1.partials.server')
-                    </div>
+                    @include('pages.v1.partials.server')
                 </div>
             @empty
 

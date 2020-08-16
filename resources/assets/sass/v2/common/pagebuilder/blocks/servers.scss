@@ -21,12 +21,83 @@
         position: relative;
         margin-top: $gutter;
         margin-bottom: $gutter;
+        overflow: hidden;
+
+        background-size: cover;
+
+        .server-block-content {
+            position: relative;
+            z-index:1;
+        }
+
+        &.has_background {
+            .server-block-content h2,
+            .server-block-content .help span,
+            .status_message,
+            .version {
+                color:#fff;
+                text-shadow: 1px 1px 13px #000;
+            }
+        }
+
+        .background {
+            position: absolute;
+            top:0;
+            bottom:0;
+            right:0;
+            left:0;
+            width:100%;
+            background-size: cover;
+
+            &:after {
+                position: absolute;
+                content: ' ';
+                width:110%;
+                min-height:110%;
+                top:-10px;
+                bottom:-10px;
+                left:-10px;
+                right:-10px;
+
+                background-color: #000;
+                opacity: 0.22;
+                transition: opacity ease .2s;
+            }
+        }
+
+        &:hover {
+            .background:after {
+                opacity:.62;
+            }
+        }
     }
-    
-    .status {
+
+    .status,
+    .preload {
         position: absolute;
         top:$inner-gutter;
         right:$inner-gutter;
+    }
+
+    .preload {
+        top:8px;
+    }
+
+    .loader {
+        display: inline-block;
+        border: 2px solid $grey; /* Light grey */
+        border-top: 2px solid $primary; /* Blue */
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        animation: spin 1s linear infinite;
+        margin-top:-2px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     &.no-slider {

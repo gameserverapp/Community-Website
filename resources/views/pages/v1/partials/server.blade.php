@@ -1,4 +1,4 @@
-<div data-id="{{$server->id}}" class="well server-block {{$server->getCssClass()}}">
+<div data-id="{{$server->id}}" class="well server-block-{{$server->id}} server-block {{$server->getCssClass()}}">
 
     @if($server->hasBackground())
     <div class="background" style="background-image:url('{{$server->background}}')"></div>

@@ -206,10 +206,12 @@ $(document).ready(function () {
     if($(".server-block").length) {
         $(".server-block").each(function(i, elm) {
 
+            var id = $(elm).data('id');
+
             $.get({
                 url: '/server/' + $(elm).data('id')
             }).done(function(data) {
-                $(elm).replaceWith(data);
+                $('.server-block-' + id).replaceWith(data);
             }).fail(function(data) {
                 console.log('failed');
             });

@@ -116,7 +116,7 @@ class Client
     public function server($id)
     {
         return ServerTransformer::transform(
-            $this->api()->guestRequest('get', 'server/' . $id)
+            $this->api()->guestRequest('get', 'server/' . $id, [], 1)
         );
     }
 

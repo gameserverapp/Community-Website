@@ -204,11 +204,12 @@ $(document).ready(function () {
     }
 
     if($(".server-block").length) {
-        $(".server-block").each(function(){
+        $(".server-block").each(function(i, elm) {
+
             $.get({
-                url: '/server/' + $(this).data('id')
+                url: '/server/' + $(elm).data('id')
             }).done(function(data) {
-                $(this).replaceWith(data);
+                $(elm).replaceWith(data);
             }).fail(function(data) {
                 console.log('failed');
             });

@@ -4,7 +4,6 @@
     <div class="background" style="background-image:url('{{$server->background}}')"></div>
     @endif
 
-    <div class="content">
 
         <div class="vote">
             @if($server->twitchSubOnly())
@@ -28,7 +27,13 @@
             @endif
         </div>
 
-        @if($server->isScheduled())
+        @if(!isset($status))
+
+            <span class="preload">
+                <div class="loader"></div>
+            </span>
+
+        @elseif($server->isScheduled())
             @if($server->isScheduledForUpdate())
                 <span class="status_message">
                     @if( $server->date('update_at') > Carbon\Carbon::now() )
@@ -71,6 +76,8 @@
                 <span class="status offline"></span>
             @endif
         @endif
+
+    <div class="server-block-content">
 
         <h2>{{$server->name()}}</h2>
 

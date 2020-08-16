@@ -25,12 +25,13 @@
 
         background-size: cover;
 
-        .content {
+        .server-block-content {
             position: relative;
+            z-index:1;
         }
 
         &.has_background {
-            .content {
+            .server-block-content {
 
                 h2,
                 .help,
@@ -73,11 +74,33 @@
             }
         }
     }
-    
-    .status {
+
+    .status,
+    .preload {
         position: absolute;
         top:$inner-gutter;
         right:$inner-gutter;
+    }
+
+    .preload {
+        top:8px;
+    }
+
+    .loader {
+        display: inline-block;
+        border: 2px solid $grey; /* Light grey */
+        border-top: 2px solid $primary; /* Blue */
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        animation: spin 1s linear infinite;
+        margin-top:-2px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     &.no-slider {

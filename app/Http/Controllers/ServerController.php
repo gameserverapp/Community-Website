@@ -31,7 +31,8 @@ class ServerController extends Controller
         $server = $this->api->server($id);
 
         return view('pages.v1.partials.server', [
-            'server' => $server
+            'server' => $server,
+            'status' => true
         ]);
     }
 }

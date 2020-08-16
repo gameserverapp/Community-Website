@@ -153,7 +153,19 @@ use GameserverApp\Helpers\SiteHelper;
         @if(GameserverApp\Helpers\RouteHelper::rules() != false)
             <li>
                 <a href="{{GameserverApp\Helpers\RouteHelper::rules()}}">
-                    <span>Server rules</span>
+                    <span>Rules</span>
+                </a>
+            </li>
+        @endif
+
+        @if(SiteHelper::featureEnabled('messages'))
+            <li class="hidden-sm">
+                <a href="{{route('message.index')}}"
+                   class="inbox {{ ( Request::is('message/*')) ? 'active' : '' }}">
+                    Messages
+                    <span class="label label-default right">
+                       {{auth()->user()->unreadMessagesCount()}}
+                    </span>
                 </a>
             </li>
         @endif

@@ -115,9 +115,13 @@ class Client
 
     public function server($id)
     {
-        return ServerTransformer::transform(
-            $this->api()->guestRequest('get', 'server/' . $id, [], 1)
-        );
+        $server = $this->api()->guestRequest('get', 'server/' . $id, [], 1);
+
+        if(isset($server->data) and !count($server->data)) {
+            return [];
+        }
+
+        return ServerTransformer::transform($server);
     }
 
     public function characters($sub = false)

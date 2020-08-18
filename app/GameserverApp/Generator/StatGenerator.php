@@ -54,6 +54,6 @@ class StatGenerator
             ];
         }
 
-        return $data;
+        return (array) $data;
     }
 }

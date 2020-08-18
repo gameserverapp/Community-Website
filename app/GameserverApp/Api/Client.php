@@ -117,13 +117,7 @@ class Client
     {
         $server = $this->api()->guestRequest('get', 'server/' . $id, [], 1);
 
-        if(
-            !isset($server->data->id) or
-            (
-                isset($server->data) and
-                !count($server->data)
-            )
-        ) {
+        if(!isset($server->id)) {
             return false;
         }
 

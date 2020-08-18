@@ -191,17 +191,57 @@ $(document).ready(function () {
             $(this).attr('target', '_blank');
         });
     }
-    
-    parsePlot();
 
-    if ($('.activatePlot').length) {
-        $('.activatePlot').click(function () {
+    if($('.stat_canvas').length) {
+        $('.stat_canvas').each(function () {
 
-            setTimeout(function () {
-                parsePlot();
-            }, 10);
+            var thisElm = $(this);
+
+            if(
+                $(this).data('route')
+            ) {
+                $.get({
+                    url: $(this).data('route'),
+                    data: 'value=' + $(this).data('value'),
+                    success: function(data) {
+                        thisElm.data('data', data.data);
+                        thisElm.data('options', data.options);
+
+                        parsePlot(thisElm);
+                    }
+                });
+            }
+
+            if($(this).data('data')) {
+                parsePlot($(this));
+            }
         });
     }
+
+    if($(".server-block").length) {
+        $(".server-block").each(function(i, elm) {
+
+            var id = $(elm).data('id');
+
+            if(
+                id == undefined ||
+                $(elm).hasClass('loaded')
+            ) {
+                return;
+            }
+
+            $.get({
+                url: '/server/' + $(elm).data('id'),
+                success: function(data, textStatus, xhr) {
+                    $('.server-block-' + id).replaceWith(data);
+                }
+            }).fail(function(data) {
+                console.log('failed');
+            });
+        });
+    }
+
+
 
     if($(".server-block").length) {
         $(".server-block").each(function(i, elm) {
@@ -308,16 +348,14 @@ function tabsToSelect() {
     }
 }
 
-function parsePlot() {
-    $('.stat_canvas').each(function () {
+function parsePlot(elm) {
 
-        if ($(this).height() == 0) {
-            $(this).height('250px');
-        }
+    if (elm.height() == 0) {
+        elm.height('250px');
+    }
 
-        $.plot($(this),
-            $(this).data('data'),
-            $(this).data('options')
-        );
-    });
+    $.plot(elm,
+        elm.data('data'),
+        elm.data('options')
+    );
 }

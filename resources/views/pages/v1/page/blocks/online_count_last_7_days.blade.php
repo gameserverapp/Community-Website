@@ -12,12 +12,7 @@
 
     <div class="row stat_block">
         <div class="col-md-12">
-
-            @if(isset($stat['data']) and isset($stat['options']))
-                <div class="stat_canvas"
-                     data-data='{!! json_encode($stat['data']) !!}'
-                     data-options='{!!json_encode($stat['options'])!!}'></div>
-            @endif
+            <div class="stat_canvas" data-value="{{$value}}" data-route="{{route('stat.index', 'online-count-last-7-days')}}"><span>Loading...</span></div>
         </div>
     </div>
 </article>

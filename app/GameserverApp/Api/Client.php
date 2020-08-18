@@ -124,7 +124,7 @@ class Client
                 !count($server->data)
             )
         ) {
-            return [];
+            return false;
         }
 
         return ServerTransformer::transform($server);

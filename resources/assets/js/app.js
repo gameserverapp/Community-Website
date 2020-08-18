@@ -216,9 +216,10 @@ $(document).ready(function () {
             }
 
             $.get({
-                url: '/server/' + $(elm).data('id')
-            }).done(function(data) {
-                $('.server-block-' + id).replaceWith(data);
+                url: '/server/' + $(elm).data('id'),
+                success: function(data, textStatus, xhr) {
+                    $('.server-block-' + id).replaceWith(data);
+                }
             }).fail(function(data) {
                 console.log('failed');
             });

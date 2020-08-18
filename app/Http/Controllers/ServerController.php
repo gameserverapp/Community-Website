@@ -30,6 +30,10 @@ class ServerController extends Controller
     {
         $server = $this->api->server($id);
 
+        if(!$server) {
+            return response('Could not retrieve data', 500);
+        }
+
         return view('pages.v1.partials.server', [
             'server' => $server,
             'status' => true

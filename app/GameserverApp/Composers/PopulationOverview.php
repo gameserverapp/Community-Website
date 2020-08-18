@@ -19,22 +19,25 @@ class PopulationOverview
 
     public function compose(View $view)
     {
-
         $stats = [];
 
-        if ($newCharacters = $this->api->stats('domain', 'new-characters')) {
-            $stats['Fresh survivors'] = (array) $newCharacters;
-            $stats['Fresh survivors']['col'] = 6;
-        }
+        $stats[] = [
+            'name' => 'Fresh survivors',
+            'col' => 6,
+            'route' => 'new-characters'
+        ];
 
-        if ($onlinePlayers = $this->api->stats('domain', 'online-players')) {
-            $stats['Online players'] = (array) $onlinePlayers;
-            $stats['Online players']['col'] = 6;
-        }
-        if ($hoursPlayed = $this->api->stats('domain', 'hours-played')) {
-            $stats['Hours played per day'] = (array) $hoursPlayed;
-            $stats['Hours played per day']['col'] = 12;
-        }
+        $stats[] = [
+            'name' => 'Online players',
+            'col' => 6,
+            'route' => 'online-players'
+        ];
+
+        $stats[] = [
+            'name' => 'Hours played per day',
+            'col' => 12,
+            'route' => 'hours-played'
+        ];
 
         $view->with([
             'stats' => $stats

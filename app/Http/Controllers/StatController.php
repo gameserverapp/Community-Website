@@ -18,9 +18,9 @@ class StatController extends Controller
     public function index(Request $request, $stat)
     {
         $availableStats = [
-            'online_count_last_7_days',
-            'hours_played_last_7_days',
-            'new_players_last_7_days',
+            'online-count-last-7-days',
+            'hours-played-last-7-days',
+            'new-players-last-7-days',
             'new-characters',
             'online-players',
             'hours-played'

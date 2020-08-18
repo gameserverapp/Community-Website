@@ -12,7 +12,7 @@
 
     <div class="row stat_block">
         <div class="col-md-12">
-            <div class="stat_canvas" data-value="{{$value}}" data-route="{{route('stat.index', 'new_players_last_7_days')}}"><span>Loading...</span></div>
+            <div class="stat_canvas" data-value="{{$value}}" data-route="{{route('stat.index', 'new-players-last-7-days')}}"><span>Loading...</span></div>
         </div>
     </div>
 </article>

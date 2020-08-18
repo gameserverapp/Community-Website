@@ -34,7 +34,8 @@
             .server-block-content h2,
             .server-block-content .help span,
             .status_message,
-            .version {
+            .version,
+            .version strong {
                 color:#fff;
                 text-shadow: 1px 1px 13px #000;
             }

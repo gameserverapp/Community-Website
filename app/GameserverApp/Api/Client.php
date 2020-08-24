@@ -124,6 +124,11 @@ class Client
         return ServerTransformer::transform($server);
     }
 
+    public function serverClaimVote($id)
+    {
+        return $this->api()->authRequest('post', 'server/' . $id . '/claim-vote');
+    }
+
     public function characters($sub = false)
     {
         if ($sub) {

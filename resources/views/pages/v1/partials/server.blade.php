@@ -35,7 +35,7 @@
                                         <div class="col-md-6">
                                             <a href="{{$site->vote_url}}" target="_blank" class="btn btn-primary">
                                                 @if($site->icon)
-                                                    <img src="{{$site->icon}}" width="25" title="{{$site->name}}" />
+                                                    <img src="{{$site->icon}}" height="15" title="{{$site->name}}" />
                                                     &nbsp;
                                                 @endif
                                                 Vote on {{$site->name}}

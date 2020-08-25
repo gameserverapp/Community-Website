@@ -26,6 +26,8 @@ class ServerTransformer extends ModelTransformer implements ModelTransformerInte
 
         if (isset($args->vote_sites)) {
             $data['vote_sites'] = $args->vote_sites;
+        } else {
+            $data['vote_sites'] = [];
         }
 
         if (isset($args->version)) {

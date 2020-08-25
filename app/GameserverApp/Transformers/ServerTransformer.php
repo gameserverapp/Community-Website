@@ -22,6 +22,7 @@ class ServerTransformer extends ModelTransformer implements ModelTransformerInte
             'twitch_sub_only' => $args->twitch_sub_only,
             'selfhosted' => $args->selfhosted,
             'background' => $args->background,
+            'vote_sites' => $args->vote_sites,
         ];
 
         if (isset($args->version)) {

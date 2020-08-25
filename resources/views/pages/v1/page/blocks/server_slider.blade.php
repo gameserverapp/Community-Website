@@ -15,12 +15,19 @@
         <div class=" owl-theme" id="serverSlider">
             @forelse($servers as $server)
                 <div class="item">
-                    @include('pages.v1.partials.server')
+                    @include('pages.v1.partials.server', [
+                        'slider' => true
+                    ])
                 </div>
             @empty
 
             @endforelse
         </div>
+        @foreach($servers as $server)
+            @include('pages.v1.partials.server-vote', [
+                'server' => $server
+            ])
+        @endforeach
     </div>
 
 
@@ -36,15 +43,6 @@
                             </span>
                         </a>
                     </div>
-
-                    {{--<div class="col-sm-6 text-center">--}}
-
-                    {{--<a href="{{route('travel.character')}}" class="btn champ inverted small">--}}
-                    {{--<span>--}}
-                    {{--Cluster travel guide &raquo;--}}
-                    {{--</span>--}}
-                    {{--</a>--}}
-                    {{--</div>--}}
                 </div>
             </div>
 

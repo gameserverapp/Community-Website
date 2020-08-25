@@ -6,10 +6,12 @@
 
 
         <div class="vote">
-            @if($server->twitchSubOnly())
-                <a href="{{route('user.settings', 'me')}}">
-                    <span class="label label-champ p2p" target="_blank">Sub only</span>
-                </a>
+            @if(isset($status) and $server->hasVoteSites())
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#voteServer{{$server->id}}">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    Vote
+                </button>
+
             @elseif($server->p2p())
                 @if(
                     auth()->check() and
@@ -94,6 +96,13 @@
         </div>
 
         <div class="help">
+
+
+            @if($server->twitchSubOnly())
+                <a href="{{route('user.settings', 'me')}}">
+                    <span class="label label-champ p2p" target="_blank">Sub only</span>
+                </a>
+            @endif
 
             {{--todo link naar troubleshoot pagina--}}
             {{--<a href="{{route('support')}}" class="">--}}

@@ -68,6 +68,11 @@ class Server extends Model implements LinkableInterface
         return !is_null($this->background);
     }
 
+    public function hasVoteSites()
+    {
+        return is_array($this->vote_sites) and count($this->vote_sites);
+    }
+
     public function getCssClass()
     {
         $class = [

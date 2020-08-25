@@ -15,7 +15,9 @@
         <div class=" owl-theme" id="serverSlider">
             @forelse($servers as $server)
                 <div class="item">
-                    @include('pages.v1.partials.server')
+                    @include('pages.v1.partials.server', [
+                        'slider' => true
+                    ])
                 </div>
             @empty
                 <div class="item">
@@ -40,6 +42,13 @@
                 </div>
             @endforelse
         </div>
+
+
+        @foreach($servers as $server)
+            @include('pages.v1.partials.server-vote', [
+                'server' => $server
+            ])
+        @endforeach
     </div>
 
 

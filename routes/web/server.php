@@ -9,5 +9,10 @@ Route::group([
         'uses' => 'ServerController@show'
     ]);
 
+    Route::post('/{id}/claim-vote', [
+        'as'   => 'server.claim-vote',
+        'uses' => 'ServerController@claimVote'
+    ]);
+
 });
 

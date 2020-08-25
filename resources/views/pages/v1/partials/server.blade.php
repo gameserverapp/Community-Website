@@ -6,7 +6,7 @@
 
 
         <div class="vote">
-            @if(isset($status) and $server->hasVoteSites())
+            @if($server->hasVoteSites())
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#voteServer{{$server->id}}">
                     <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                     Vote

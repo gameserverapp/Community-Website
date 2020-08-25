@@ -18,7 +18,7 @@
                 <div class="row">
 
                     @foreach($server->vote_sites as $site)
-                        <div class="col-md-6">
+                        <div class="col-md-6 text-center">
                             <a href="{{$site->vote_url}}" target="_blank" class="btn btn-primary">
                                 @if($site->icon)
                                     <img src="{{$site->icon}}" height="15" title="{{$site->name}}" />

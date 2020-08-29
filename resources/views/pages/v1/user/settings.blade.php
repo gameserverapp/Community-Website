@@ -279,7 +279,7 @@
                         <div class="panel-body">
 
                             <p>
-                                Connect your Discord account to interact with <strong>GameserverAppBot</strong> and receive notifications via DM.
+                                Connect your Discord account to interact with <strong>GameServerApp Bot</strong> and receive notifications via DM.
                             </p>
 
                             @if( auth()->user()->hasDiscordSetup() )

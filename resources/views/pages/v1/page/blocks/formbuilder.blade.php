@@ -19,14 +19,17 @@
                 You will be requested to log into your steam account, so we can determine which Steam ID to whitelist.
             </div>
         @elseif(
-            (
-                !auth()->user()->hasEmailSetup() or
-                !auth()->user()->emailConfirmed()
-            )
-            and (isset($block['form_type']) and $block['form_type'] == 'whitelist-application')
+            isset($block['form_type']) and
+            $block['form_type'] == 'whitelist-application'
         )
-
-            @if(isset($block['email_required']) and $block['email_required'])
+            @if(
+                (
+                    !auth()->user()->hasEmailSetup() or
+                    !auth()->user()->emailConfirmed()
+                ) and
+                isset($block['email_required']) and
+                $block['email_required']
+            )
                 <div class="alert alert-warning">
                     <i class="fa fa-exclamation-triangle" style="display:inline-block" aria-hidden="true"></i>
                     <span style="display:inline-block">
@@ -34,14 +37,17 @@
                     </span>
                 </div>
             @else
-                <div class="alert alert-info">
-                    Please <a href="{{route('user.settings', auth()->user()->id)}}">enter your e-mailaddress</a> to receive updates about your application.
+                <div class="alert alert-success">
+                    Updates about your application will be sent to your e-mailaddress.
                 </div>
             @endif
-        @elseif(isset($block['form_type']) and $block['form_type'] == 'whitelist-application')
-            <div class="alert alert-success">
-                Updates about your application will be sent to your e-mailaddress.
-            </div>
+
+            @if(!auth()->user()->hasDiscordSetup())
+                <div class="alert alert-warning">
+                    <i class="fa fa-exclamation-triangle" style="display:inline-block" aria-hidden="true"></i>
+                    Please <a href="{{route('user.settings', auth()->user()->id)}}">connect your Discord</a> to continue.
+                </div>
+            @endif
         @endif
 
         @if(isset($block['description']))

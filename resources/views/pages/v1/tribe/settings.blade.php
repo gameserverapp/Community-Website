@@ -110,6 +110,10 @@
                                 </div>
                             @endif
 
+                            <div class="alert alert-warning">
+                                If the bot is not able to talk in the channel you select, it will disconnect.
+                            </div>
+
                             <select name="channel_id">
                                 <option> - Select a Discord channel - </option>
                                 @foreach($tribe->discord['available_channels'] as $id => $name)

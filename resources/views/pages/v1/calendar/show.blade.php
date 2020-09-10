@@ -4,17 +4,17 @@ $banner = [
     'vertical-align' => true
 ];
 
-if($post->hasImage()) {
-    $banner['background']['img'] = $post->image();
+if($calendar->hasImage()) {
+    $banner['background']['img'] = $calendar->image();
     $banner['class'] = 'custom_bg';
 }
 ?>
 
 @extends('layouts.v2.banner', [
     'page' => [
-        'title' => $post->title(),
-        'description' => $post->metaDescription(),
-        'class' => 'news show',
+        'title' => $calendar->title(),
+        'description' => $calendar->metaDescription(),
+        'class' => 'calendar news show',
         'attributes' => ''
     ],
     'microdata' => [
@@ -27,10 +27,10 @@ if($post->hasImage()) {
     <div class="col-md-8 text-only center-block">
 
         <h1>
-            <span itemprop="headline">{!! $post->title() !!}</span>
+            <span itemprop="headline">{!! $calendar->title() !!}</span>
             <br>
             <small>
-                <time itemprop="datePublished" datetime="{{$post->date('published_at')->toDateTimeString()}}">{{$post->date('published_at')->format('j F Y')}}</time>
+                <time itemprop="datePublished" datetime="{{$calendar->date('start_at')->toDateTimeString()}}">{{$calendar->date('start_at')->format('j F Y')}}</time>
             </small>
         </h1>
 
@@ -49,23 +49,26 @@ if($post->hasImage()) {
 
                     <div class="col-md-12 content">
 
-                        @if($post->hasType())
-                            <div style="margin:-35px 0 15px;">
-                                {!! $post->presentType() !!}
-                            </div>
-                        @endif
-
-                        {{--<div class="summary markdown-content" itemprop="caption">--}}
-                            {{--{!! Markdown::convertToHtml($post->summary()) !!}--}}
-                        {{--</div>--}}
-
                         <div class="markdown-content" itemprop="articleBody">
-                            {!! Markdown::convertToHtml($post->content()) !!}
+                            {!! $calendar->description() !!}
                         </div>
+
+                        <h4>Details</h4>
+                        <p>
+                            <strong>Starts at</strong>: <span class="local-time" data-time="{{$calendar->start_at}}"></span><br>
+
+                            <strong>Ends at</strong>: <span class="local-time" data-time="{{$calendar->end_at}}"></span>
+                        </p>
+
+                        @if($calendar->hasRelated())
+                            <p>
+                                {{$calendar->displayRelated()}}
+                            </p>
+                        @endif
 
                         <p>
                             <br/>
-                            <a href="{{route('news.index')}}">&laquo; News overview</a>
+                            <a href="{{route('calendar.index')}}">&laquo; Calendar overview</a>
                         </p>
                     </div>
                 </div>

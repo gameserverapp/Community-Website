@@ -152,6 +152,18 @@ $(document).ready(function () {
     }
 
 
+    if ($('.local-time').length) {
+        $(".local-time").each(function(){
+            var elm = $(this);
+            var time = elm.data('time');
+
+            var date = new Date(time);
+
+            elm.html(date.toLocaleString());
+        });
+    }
+
+
     if ($('.slider').length) {
         $(".slider").owlCarousel({
             singleItem: true,

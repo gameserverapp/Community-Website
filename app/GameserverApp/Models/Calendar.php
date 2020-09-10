@@ -7,9 +7,6 @@ use GameserverApp\Traits\Linkable;
 
 class Calendar extends Model implements LinkableInterface
 {
-    const EVENT = 1;
-    const MAINTENANCE = 2;
-    const IMPORTANT = 3;
     
     use Linkable;
 
@@ -18,24 +15,35 @@ class Calendar extends Model implements LinkableInterface
         return $this->title;
     }
 
-    public function slug()
-    {
-        return $this->slug;
-    }
-
     public function summary()
     {
         return $this->summary;
     }
 
-    public function content()
+    public function description()
     {
-        return $this->content;
+        return $this->description;
     }
 
     public function metaDescription()
     {
-        return '';//$this->meta_description;
+        return $this->summary;
+    }
+
+    public function hasRelated()
+    {
+        return !is_null($this->related);
+    }
+
+    public function displayRelated()
+    {
+        if($this->related instanceof Server) {
+            return 'Server: ' . $this->related->name();
+        }
+
+        if($this->related instanceof Cluster) {
+            return 'Cluster: ' . $this->related->name();
+        }
     }
 
     public function hasImage()
@@ -46,32 +54,6 @@ class Calendar extends Model implements LinkableInterface
     public function image()
     {
         return $this->image;
-    }
-
-    public function hasType()
-    {
-        if($this->type == '0') {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function presentType()
-    {
-        switch($this->type) {
-            case self::MAINTENANCE:
-                return '<span class="label label-maintenance">Maintenance</span>';
-
-            case self::EVENT:
-                return '<span class="label label-vip">Event</span>';
-
-            case self::IMPORTANT:
-                return '<span class="label label-important">Important</span>';
-
-            default:
-                return;
-        }
     }
 
     public function linkableTemplate($url, $options = [])

@@ -19,15 +19,22 @@ class CalendarTransformer extends ModelTransformer implements ModelTransformerIn
     public static function transformableInput($args)
     {
         $data = [
-            'id'           => $args->id,
-            'slug'         => $args->slug,
-            'title'        => $args->title,
-            'summary'      => $args->summary,
-            'content'      => $args->content,
-            'type'         => $args->type,
-            'image'        => $args->image,
-            'published_at' => $args->published_at
+            'id'          => $args->id,
+            'title'       => $args->title,
+            'summary'     => $args->summary,
+            'description' => $args->description,
+            'image'       => $args->image,
+            'start_at'    => $args->start_at,
+            'end_at'      => $args->end_at
         ];
+
+        if (isset($args->server)) {
+            $data['related'] = ServerTransformer::transform($args->server);
+        }
+
+        if (isset($args->cluster)) {
+            $data['related'] = ClusterTransformer::transform($args->cluster);
+        }
 
         return $data;
     }

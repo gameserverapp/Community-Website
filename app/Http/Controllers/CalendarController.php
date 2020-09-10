@@ -41,7 +41,7 @@ class CalendarController extends Controller
     public function show($id)
     {
         return view('pages.v1.calendar.show', [
-            'post' => $this->client->news($id)
+            'calendar' => $this->client->calendar($id)
         ]);
     }
 }

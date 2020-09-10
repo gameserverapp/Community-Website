@@ -34,9 +34,14 @@ class SiteHelper extends Helper
         return $links;
     }
 
-    public static function customCss()
+    public static function customCssUrl()
     {
         return self::api()->domain('custom_css_url');
+    }
+
+    public static function customCss()
+    {
+        return self::api()->domain('custom_css');
     }
 
     public static function customMenuItems()
@@ -60,9 +65,14 @@ class SiteHelper extends Helper
         return str_limit(self::footerDescription(), 100, '...');
     }
 
+    public static function googleFont()
+    {
+        return self::api()->domain('font');
+    }
+
     public static function googleFontsUrl()
     {
-        return 'https://fonts.googleapis.com/css?family=Righteous|Lato:100,300,700';
+        return 'https://fonts.googleapis.com/css2?family=' . urlencode(self::googleFont()) . '&display=swap';
     }
 
     public static function googleAnalyticsId()

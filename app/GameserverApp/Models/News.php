@@ -35,7 +35,7 @@ class News extends Model implements LinkableInterface
 
     public function metaDescription()
     {
-        return '';//$this->meta_description;
+        return $this->summary;
     }
 
     public function hasImage()

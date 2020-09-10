@@ -152,6 +152,18 @@ $(document).ready(function () {
     }
 
 
+    if ($('.local-time').length) {
+        $(".local-time").each(function(){
+            var elm = $(this);
+            var time = elm.data('time');
+
+            var date = new Date(time);
+
+            elm.html(date.toLocaleString());
+        });
+    }
+
+
     if ($('.slider').length) {
         $(".slider").owlCarousel({
             singleItem: true,
@@ -182,6 +194,17 @@ $(document).ready(function () {
             spellChecker: false,
             status: false,
             element: $(".simplemde")[0]
+        });
+    }
+
+    if($('.calendar-js').length) {
+        $('.calendar-js').fullCalendar({
+            events: {
+                url: '/calendar/feed',
+                cache: true
+            },
+            firstDay: 1,
+            weekNumbers: 1
         });
     }
 

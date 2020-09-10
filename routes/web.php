@@ -15,3 +15,4 @@ include 'web/supporter-tier.php';
 include 'web/subscription.php';
 include 'web/server.php';
 include 'web/stat.php';
+include 'web/calendar.php';

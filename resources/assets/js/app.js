@@ -185,6 +185,17 @@ $(document).ready(function () {
         });
     }
 
+    if($('.calendar-js').length) {
+        $('.calendar-js').fullCalendar({
+            events: {
+                url: '/calendar/feed',
+                cache: true
+            },
+            firstDay: 1,
+            weekNumbers: 1
+        });
+    }
+
 
     if($(".markdown-content").length) {
         $(".markdown-content a").each(function(){

@@ -30,9 +30,19 @@
 
 <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css') }}">
 
-@if(!is_null(GameserverApp\Helpers\SiteHelper::customCss()) and !empty(GameserverApp\Helpers\SiteHelper::customCss()) )
-    <link rel="stylesheet" type="text/css" href="{{ GameserverApp\Helpers\SiteHelper::customCss() }}">
+@if(!is_null(GameserverApp\Helpers\SiteHelper::customCssUrl()) and !empty(GameserverApp\Helpers\SiteHelper::customCssUrl()) )
+    <link rel="stylesheet" type="text/css" href="{{ GameserverApp\Helpers\SiteHelper::customCssUrl() }}">
 @endif
+
+<style rel="stylesheet" type="text/css">
+    body *:not(.fa):not(.fc-icon) {
+        font-family: "{{ GameserverApp\Helpers\SiteHelper::googleFont() }}" !important;
+    }
+
+    @if(!is_null(GameserverApp\Helpers\SiteHelper::customCss()) and !empty(GameserverApp\Helpers\SiteHelper::customCss()) )
+        {{ GameserverApp\Helpers\SiteHelper::customCss() }}
+    @endif
+</style>
 
 <link href='{{GameserverApp\Helpers\SiteHelper::googleFontsUrl()}}' rel='stylesheet' type='text/css'>
 

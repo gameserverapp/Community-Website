@@ -32,7 +32,7 @@ class Calendar extends Model implements LinkableInterface
 
     public function hasRelated()
     {
-        return !is_null($this->related);
+        return isset($this->related) and !is_null($this->related);
     }
 
     public function displayRelated()

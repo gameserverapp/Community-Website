@@ -53,12 +53,36 @@ if($calendar->hasImage()) {
                             {!! $calendar->description() !!}
                         </div>
 
-                        <h4>Details</h4>
-                        <p>
-                            <strong>Starts at</strong>: <span class="local-time" data-time="{{$calendar->start_at}}"></span><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Details</h4>
+                                <p>
+                                    <strong>Starts at</strong>: <span class="local-time" data-time="{{$calendar->start_at}}"></span><br>
 
-                            <strong>Ends at</strong>: <span class="local-time" data-time="{{$calendar->end_at}}"></span>
-                        </p>
+                                    <strong>Ends at</strong>: <span class="local-time" data-time="{{$calendar->end_at}}"></span>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>
+                                    @if($calendar->participants > 0)
+                                        Join {{$calendar->participants}} others at "{{$calendar->title()}}"
+                                    @else
+                                        Join "{{$calendar->title()}}"
+                                    @endif
+                                </h4>
+
+                                <form method="post" action="{{route('calendar.participate', $calendar->id)}}">
+                                    {{csrf_field()}}
+
+                                    @if($calendar->participate)
+                                        <button type="submit" class="btn btn-theme disabled"><span><i class="fa fa-check" aria-hidden="true"></i> Participating</span></button>
+                                    @else
+                                        <button type="submit" class="btn btn-theme"><span>Participate</span></button>
+                                    @endif
+                                </form>
+                            </div>
+                        </div>
+
 
                         @if($calendar->hasRelated())
                             <p>

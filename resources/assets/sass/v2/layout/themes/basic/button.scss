@@ -3,11 +3,25 @@
     height: 65px;
     background-size: cover;
     background-position: center center;
+    background-color: transparent;
+    background-repeat: no-repeat;
     overflow: hidden;
 
     border: none;
 
     transition: background-image 0.2s ease;
+
+    &:active,
+    &:focus {
+        background-color: transparent;
+        box-shadow: none;
+        border:none;
+        outline:0;
+    }
+    
+    &.disabled {
+        cursor: pointer;
+    }
 
     span {
         display: block;

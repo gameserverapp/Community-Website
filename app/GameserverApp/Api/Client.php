@@ -247,7 +247,18 @@ class Client
 
     public function calendar($id)
     {
+        if(auth()->check()) {
+            return CalendarTransformer::transform($this->api()->authRequest('get', 'calendar/' . $id, [], 2));
+        }
+
         return CalendarTransformer::transform($this->api()->guestRequest('get', 'calendar/' . $id, [], 2));
+    }
+
+    public function participateCalendarEvent($id)
+    {
+        $this->clearCache('get', 'calendar/' . $id);
+
+        return $this->api()->authRequest('post', 'calendar/' . $id . '/participate');
     }
 
     public function allNews($route)

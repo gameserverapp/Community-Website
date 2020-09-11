@@ -72,7 +72,7 @@ class SiteHelper extends Helper
 
     public static function googleFontsUrl()
     {
-        return 'https://fonts.googleapis.com/css2?family=' . urlencode(self::googleFont()) . ':wght@100;300;700&display=swap';
+        return 'https://fonts.googleapis.com/css2?family=' . urlencode(self::googleFont()) . ':wght@100;300;500;700&display=swap';
     }
 
     public static function googleAnalyticsId()

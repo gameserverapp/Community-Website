@@ -25,7 +25,9 @@ class CalendarTransformer extends ModelTransformer implements ModelTransformerIn
             'description' => $args->description,
             'image'       => $args->image,
             'start_at'    => $args->start_at,
-            'end_at'      => $args->end_at
+            'end_at'      => $args->end_at,
+            'participate' => $args->participate,
+            'participants' => $args->participants
         ];
 
         if (isset($args->server)) {

@@ -19,5 +19,11 @@ Route::group([
         'uses' => 'CalendarController@show'
     ]);
 
+    Route::post('/{id}/participate', [
+        'as'   => 'calendar.participate',
+        'uses' => 'CalendarController@participate',
+        'middleware' => 'auth'
+    ]);
+
 });
 

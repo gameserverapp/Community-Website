@@ -67,12 +67,12 @@ class SiteHelper extends Helper
 
     public static function googleFont()
     {
-        return self::api()->domain('font');
+        return self::api()->domain('font', 'lato');
     }
 
     public static function googleFontsUrl()
     {
-        return 'https://fonts.googleapis.com/css2?family=' . urlencode(self::googleFont()) . '&display=swap';
+        return 'https://fonts.googleapis.com/css2?family=' . urlencode(self::googleFont()) . ':wght@100;300;700&display=swap';
     }
 
     public static function googleAnalyticsId()

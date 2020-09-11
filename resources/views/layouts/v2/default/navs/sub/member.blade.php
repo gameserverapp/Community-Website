@@ -150,6 +150,11 @@ use GameserverApp\Helpers\SiteHelper;
             </li>
         @endif
  --}}
+        <li>
+            <a href="/calendar">
+                <span>Calendar</span>
+            </a>
+        </li>
         @if(GameserverApp\Helpers\RouteHelper::rules() != false)
             <li>
                 <a href="{{GameserverApp\Helpers\RouteHelper::rules()}}">

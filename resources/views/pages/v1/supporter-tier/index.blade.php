@@ -13,7 +13,7 @@
 
 @section('banner_content')
 
-    <div class="col-md-8 text-only banner-container center-block">
+    <div class="col-md-8 full-content-banner text-only banner-container center-block">
         <h1>
             Supporter Tiers
             <i class="fa fa-trophy" aria-hidden="true"></i>

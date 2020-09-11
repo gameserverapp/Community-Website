@@ -3,6 +3,7 @@
 namespace GameserverApp\Api;
 
 use App\Http\Controllers\SupporterTierController;
+use GameserverApp\Transformers\CalendarTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -237,6 +238,16 @@ class Client
     public function news($id)
     {
         return NewsTransformer::transform($this->api()->guestRequest('get', 'news/' . $id, [], 2));
+    }
+
+    public function calendarFeed($start, $end)
+    {
+        return $this->api()->guestRequest('get', 'calendar-feed?start=' . $start . '&end=' . $end, [], 2);
+    }
+
+    public function calendar($id)
+    {
+        return CalendarTransformer::transform($this->api()->guestRequest('get', 'calendar/' . $id, [], 2));
     }
 
     public function allNews($route)

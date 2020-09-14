@@ -1,0 +1,6 @@
+@import './../settings/_settings';
+
+body.v3 {
+    @import 'layout/_layout',
+    'partial/_partial';
+}

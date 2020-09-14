@@ -1,0 +1,39 @@
+.paginate {
+    display: block;
+    text-align: center;
+
+    .pagination {
+        margin:2rem 0 0 0;
+
+        li {
+
+            span, a {
+                padding:5px 12px 6px;
+                background:var(--darker-text);
+                border-color:var(--medium-text);
+            }
+
+            &.active span {
+                background:var(--primary-color);
+                border-color: var(--primary-color);
+                color:var(--light-text);
+            }
+
+            a {
+                text-decoration: none;
+                line-height:22px;
+                color:var(--medium-text);
+
+                &:hover {
+                    color: var(--primary-color)
+                }
+            }
+
+            //&:first-child *,
+            //&:last-child * {
+            //    padding-top:5px;
+            //    padding-bottom:7px;
+            //}
+        }
+    }
+}

@@ -1,45 +1,44 @@
-@extends('layouts.v2.banner', [
+@extends('layouts.v3.default', [
     'page' => [
         'title' => 'Latest news',
         'description' => 'Find out what is happening and what is coming up!',
-        'class' => 'news archive'
-    ],
-    'banner' => [
-        'size' => 'small',
-        'down-button' => true,
-        'animated' => true,
-        'text-only' => true,
-        'vertical-align' => true
+        'class' => 'article-index'
     ]
 ])
 
-@section('banner_content')
-
-    <i class="fa fa-newspaper-o"></i> News & updates
-
-@stop
-
 @section('page_content')
 
-    <div class="container defaultcontent">
 
+    @include('partials.v3.article-horizontal', [
+        'title' => 'sdf saf sd fsd fadsf sdf adsf asdf',
+        'summary' => 'sdf saf sd fsd fadsf sdf adsf asdf dsfsdf saf sd fsd fadsf sdf adsf asdf dsfsdf saf sd fsd fadsf sdf adsf asdf dsfsdf saf sd fsd fadsf sdf adsf asdf dsf ',
+        'route' => '#',
+        'date' => \Carbon\Carbon::now(),
+        'image' => 'https://gamepedia.cursecdn.com/arksurvivalevolved_gamepedia/thumb/5/53/Genesis_27.jpg/1920px-Genesis_27.jpg'
+    ])
+
+    @forelse( $items->chunk(2) as $chunk )
         <div class="row">
-            <div class="col-md-8 center-block">
-
-                @forelse( $posts as $post )
-                    @include('pages.v1.partials.article-block')
-                @empty
-                    <em>
-                        No news found
-                    </em>
-                @endforelse
-
-                <div class="paginate">
-                    {!! $posts->links() !!}
+            @foreach($chunk as $item)
+                <div class="col-md-6">
+                    @include('partials.v3.article-vertical', [
+                        'title' => $item->title(),
+                        'summary' => $item->summary(),
+                        'route' => $item->showRoute(),
+                        'date' => $item->publishedAt(),
+                        'image' => $item->image()
+                    ])
                 </div>
-
-            </div>
+            @endforeach
         </div>
+    @empty
+        <em>
+            No news found
+        </em>
+    @endforelse
+
+    <div class="paginate">
+        {!! $items->links() !!}
     </div>
 
 @stop

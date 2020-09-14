@@ -1,31 +1,16 @@
 footer.footer {
-    background: $grey;
-    border-top: 5px $orange solid;
+    position: relative;
+    z-index:2 !important;
+
+    background: var(--footer-bg-color);
+    border-top: 5px var(--primary-color) solid;
 
     .links {
-        padding: $large-gutter 0;
+        padding: 4rem 0;
 
         .mission {
-
-            .paypal {
-                display: block;
-                color: $grey_light;
-                font-weight:bold;
-                vertical-align:bottom;
-                margin-top:( $large-gutter * 2 ) + $gutter;
-
-                a {
-                    color: $grey_light;
-                }
-
-                img {
-                    margin-top:-6px;
-                    margin-left:3px;
-                }
-            }
-
             @media (max-width: 768px) {
-                margin-bottom: $large-gutter;
+                margin-bottom: 4rem;
             }
         }
 
@@ -40,7 +25,7 @@ footer.footer {
 
         .left ul,
         .right ul {
-            margin-bottom:$gutter;
+            margin-bottom:2rem;
 
             &:last-child {
                 margin-bottom:0;
@@ -49,13 +34,13 @@ footer.footer {
 
         @media (max-width: 499px) {
             .left {
-                margin-bottom: $large-gutter;
+                margin-bottom: 4rem;
             }
         }
 
         h3 {
             padding-bottom: 0;
-            color: $grey_light + 30;
+            color: var(--footer-primary-color);
 
             &.logo {
                 font-size: 30px;
@@ -63,10 +48,10 @@ footer.footer {
         }
 
         P {
-            color: $grey_light;
+            color: var(--footer-secundary-color);
 
             a {
-                color: $grey_light;
+                color: var(--footer-secundary-color);
             }
         }
 
@@ -82,16 +67,16 @@ footer.footer {
                     width: 25px;
                     font-size: 20px;
                     line-height: 1px;
-                    color: $grey_light;
+                    color: var(--footer-secundary-color);
                     @include transition(all .2s);
                 }
 
                 a {
-                    color: $grey_light;
+                    color: var(--footer-secundary-color);
                     text-decoration: none;
 
                     &.highlight {
-                        color: $orange;
+                        color: var(--primary-color);
                     }
 
                     &:hover {
@@ -100,44 +85,48 @@ footer.footer {
                 }
 
                 &:hover i {
-                    color: $orange;
+                    color: var(--primary-color);
                 }
             }
         }
 
         hr {
             display: block;
-            background: $grey;
+            background: var(--footer-secundary-color);
             height: 1px;
             border: 0;
-            margin: $gutter 0;
+            margin: 2rem 0;
         }
     }
 
     .colofon {
-        padding: $inner-gutter 0;
-        background: $grey_light;
-        margin-right: -$inner-gutter;
-        margin-left: -$inner-gutter;
+        padding: 1rem 0;
+        background: var(--footer-secundary-color);
+        margin-right: -1rem;
+        margin-left: -1rem;
 
         .content {
             display: block;
             text-align: center;
             font-size: 12px;
             line-height: 16px;
-            color: $grey + 15;
 
             a, span {
-                color: $grey - 20;
+                color: var(--footer-bg-color);
                 line-height: 24px;
             }
 
             a {
                 text-decoration: underline;
+
+                &:hover {
+                    text-decoration: none;
+                }
             }
 
             i {
-                color: $orange;
+                color: var(--primary-color);
+                padding: 0 5px;
             }
 
             @media (max-width: 399px) {

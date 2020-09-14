@@ -49,8 +49,6 @@ class CalendarController extends Controller
     {
         $response = $this->client->participateCalendarEvent($id);
 
-
-
         if(
             $response instanceof \Exception or
             is_null($response)

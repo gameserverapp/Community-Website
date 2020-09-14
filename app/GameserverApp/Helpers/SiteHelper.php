@@ -8,6 +8,23 @@ use Illuminate\Support\Facades\Cookie;
 class SiteHelper extends Helper
 {
 
+
+    public static function translation($key, $default = '')
+    {
+        $translations = self::api()->domain('translate');
+
+        if(!isset($translations->$key)) {
+            return $default;
+        }
+
+        return $translations->$key;
+    }
+
+    public static function logo()
+    {
+        return self::api()->domain('logo');
+    }
+
     public static function name()
     {
         return self::api()->domain('name');

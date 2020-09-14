@@ -2,6 +2,7 @@
 
 namespace GameserverApp\Models;
 
+use Carbon\Carbon;
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
 
@@ -48,6 +49,11 @@ class News extends Model implements LinkableInterface
         return $this->image;
     }
 
+    public function publishedAt()
+    {
+        return Carbon::parse($this->published_at);
+    }
+
     public function hasType()
     {
         if($this->type == '0') {
@@ -81,11 +87,11 @@ class News extends Model implements LinkableInterface
 
     public function indexRoute()
     {
-        // TODO: Implement indexRoute() method.
+        return route('news.index');
     }
 
     public function showRoute()
     {
-        // TODO: Implement showRoute() method.
+        return route('news.show', ['id' => $this->id, 'slug' => $this->slug()]);
     }
 }

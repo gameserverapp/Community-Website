@@ -1,4 +1,18 @@
-@import 'settings/_settings';
+@import './../settings/_settings';
+.container.hr {
+    padding:0;
+    border: 0;
+    border-top: 1px solid #eee;
+    margin-bottom:$large-gutter;
+}
+
+.main_content .container-fluid {
+    padding:0;
+}
+
+* {
+    letter-spacing: .3px;
+}
 
 body.v2 {
     background:$white;
@@ -13,7 +27,7 @@ body.v2 {
 
     @import
     'layout/_layout',
-            'common/_common',
-            'pages/_pages';
+    'common/_common',
+    'pages/_pages';
 
 }

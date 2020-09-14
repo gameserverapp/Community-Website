@@ -22,6 +22,7 @@ use GameserverApp\Transformers\TokenTransformer;
 use GameserverApp\Transformers\TransactionTransformer;
 use GameserverApp\Transformers\TribeTransformer;
 use GameserverApp\Transformers\UserTransformer;
+use function GuzzleHttp\Psr7\build_query;
 
 class Client
 {
@@ -261,9 +262,9 @@ class Client
         return $this->api()->authRequest('post', 'calendar/' . $id . '/participate');
     }
 
-    public function allNews($route)
+    public function allNews($route, $args = [])
     {
-        $response = $this->api()->guestRequest('get', 'news');
+        $response = $this->api()->guestRequest('get', 'news?' . build_query($args), [], 2);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(

@@ -1,0 +1,22 @@
+<article class="article-vertical" itemscope itemtype="http://schema.org/Article">
+    <div class="article-wrapper">
+        <a href="{{$route}}" class="bg-image" style="background-image:url('{{$image}}')"></a>
+
+        <div class="content-wrapper">
+            <div class="content">
+                <a href="{{$route}}" itemprop="url">
+                    <h1 class="title">{{$title}}</h1>
+                    <div class="meta">
+                        <time class="date" datetime="{{$date->toDateTimeString()}}" itemprop="datePublished">
+                            {{$date->format('j F Y')}}
+                        </time>
+                    </div>
+                    <div class="summary">
+                        {{$summary}}
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</article>

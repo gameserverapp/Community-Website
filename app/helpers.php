@@ -1,6 +1,7 @@
 <?php
 
 use GameserverApp\Helpers\RichColor;
+use GameserverApp\Helpers\SiteHelper;
 use GuzzleHttp\Client;
 
 function redirectBackWithAlert($msg, $status = 'success')
@@ -69,4 +70,9 @@ function alertOnSlack($data, $channel = 'bugsnag')
     } catch( Exception $e) {
 //        Bugsnag::notifyException($e);
     }
+}
+
+function translate($key, $default = '')
+{
+    return SiteHelper::translation($key, $default);
 }

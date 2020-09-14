@@ -43,7 +43,7 @@ if($calendar->hasImage()) {
     <div class="container defaultcontent">
 
         <div class="row">
-            <div class="col-md-8 center-block">
+            <div class="col-md-8">
 
                 <div class="row">
 
@@ -53,36 +53,12 @@ if($calendar->hasImage()) {
                             {!! $calendar->description() !!}
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4>Details</h4>
-                                <p>
-                                    <strong>Starts at</strong>: <span class="local-time" data-time="{{$calendar->start_at}}"></span><br>
+                        <h4>Details</h4>
+                        <p>
+                            <strong>Starts at</strong>: <span class="local-time" data-time="{{$calendar->start_at}}"></span><br>
 
-                                    <strong>Ends at</strong>: <span class="local-time" data-time="{{$calendar->end_at}}"></span>
-                                </p>
-                            </div>
-                            <div class="col-md-6">
-                                <h4>
-                                    @if($calendar->participants > 0)
-                                        Join {{$calendar->participants}} others at "{{$calendar->title()}}"
-                                    @else
-                                        Join "{{$calendar->title()}}"
-                                    @endif
-                                </h4>
-
-                                <form method="post" action="{{route('calendar.participate', $calendar->id)}}">
-                                    {{csrf_field()}}
-
-                                    @if($calendar->participate)
-                                        <button type="submit" class="btn btn-theme disabled"><span><i class="fa fa-check" aria-hidden="true"></i> Participating</span></button>
-                                    @else
-                                        <button type="submit" class="btn btn-theme"><span>Participate</span></button>
-                                    @endif
-                                </form>
-                            </div>
-                        </div>
-
+                            <strong>Ends at</strong>: <span class="local-time" data-time="{{$calendar->end_at}}"></span>
+                        </p>
 
                         @if($calendar->hasRelated())
                             <p>
@@ -97,6 +73,52 @@ if($calendar->hasImage()) {
                     </div>
                 </div>
 
+            </div>
+            <div class="col-md-4">
+
+                <div class="text-center">
+
+                    <form class="participate-btn" method="post" action="{{route('calendar.participate', $calendar->id)}}">
+                        {{csrf_field()}}
+
+                        @if($calendar->participate)
+                            <h4>
+                                You joined "{{$calendar->title()}}"
+                            </h4>
+                            <button type="submit" class="btn btn-theme disabled"><span><i class="fa fa-check" aria-hidden="true"></i> Participating</span></button>
+                            <p>
+                                <small>
+                                    <?php
+                                    $otherParticipants = $calendar->participants - 1;
+                                    ?>
+                                    @if($otherParticipants == 1)
+                                        Together with 1 participant
+                                    @elseif($otherParticipants > 1)
+                                        Together with {{$calendar->participants}} participants
+                                    @endif
+                                </small>
+                            </p>
+                        @else
+
+                            <h4>
+                                Join "{{$calendar->title()}}"
+                            </h4>
+
+                            <button type="submit" class="btn btn-theme"><span>Participate</span></button>
+
+                            <p>
+                                <small>
+                                    Join
+                                    @if($calendar->participants == 1)
+                                        1 participant
+                                    @elseif($calendar->participants > 1)
+                                        {{$calendar->participants}} participants
+                                    @endif
+                                </small>
+                            </p>
+                        @endif
+                    </form>
+                </div>
             </div>
         </div>
     </div>

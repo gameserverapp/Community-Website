@@ -1,0 +1,21 @@
+&.theme-extinction {
+    @import 'base-theme';
+
+    .navbar {
+        background-image:url('/img/themes_copyright/extinction/menu-repeat.png');
+
+        &.passed-banner:before,
+        &:before {
+            background-image:url('/img/themes_copyright/extinction/menu-left.png');
+        }
+
+        &:after {
+            background-image:url('/img/themes_copyright/extinction/menu-right.png');
+        }
+    }
+
+    .nav-filler {
+        display:block;
+        height:60px;
+    }
+}

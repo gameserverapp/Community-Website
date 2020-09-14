@@ -26,6 +26,7 @@
                                 @endif
                                 Vote on {{$site->name}}
                             </a>
+                            <br><br>
                         </div>
                     @endforeach
                 </div>

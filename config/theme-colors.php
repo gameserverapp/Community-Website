@@ -1,9 +1,9 @@
 <?php
 return [
-    'primary-color' => '#FF4B3E',
+    'primary-color' => '#b326b0',
     'secondary-color' => '#f00',
 
-    'bg-color' => '#253138',
+    'bg-color' => '#000',
 
     'hr-color' => '#1b2226',
 
@@ -11,6 +11,10 @@ return [
     'medium-text' => '#999',
     'darker-text' => '#333',
     'dark-text' => '#111',
+
+    //content
+    'content-text-color' => '#ccc',
+    'content-bg-color' => '#333',
 
 
     //btn

@@ -23,7 +23,7 @@ class CalendarController extends Controller
 
     public function index()
     {
-        return view('pages.v1.calendar.index');
+        return view('pages.v3.calendar.index');
     }
 
     public function feed(Request $request)
@@ -40,8 +40,9 @@ class CalendarController extends Controller
 
     public function show($id)
     {
-        return view('pages.v1.calendar.show', [
-            'calendar' => $this->client->calendar($id)
+        return view('pages.v3.calendar.show', [
+            'item' => $this->client->calendar($id),
+            'items' => []
         ]);
     }
 

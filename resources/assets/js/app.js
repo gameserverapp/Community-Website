@@ -159,7 +159,11 @@ $(document).ready(function () {
 
             var date = new Date(time);
 
-            elm.html(date.toLocaleString());
+            var localDate = date.toLocaleString();
+
+            localDate = localDate.substring(0, localDate.length-3);
+
+            elm.html(localDate);
         });
     }
 

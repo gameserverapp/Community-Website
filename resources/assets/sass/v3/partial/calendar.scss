@@ -1,0 +1,77 @@
+.calendar-js {
+    margin-top:-14px;
+    height:auto !important;
+
+    .fc-toolbar {
+
+        h2 {
+            color:$white;
+            text-shadow: 1px 1px 13px  #000;
+        }
+    }
+
+    .fc-view-container {
+
+        border-radius: 4px;
+        padding:10px 20px 10px 10px;
+        //border: 1px $grey solid;
+        background:rgba(0,0,0,.7);
+
+        table {
+            border:0;
+
+            thead,
+            thead td,
+            thead th {
+                border:0;
+                color:#fff;
+            }
+
+            thead td {
+                padding-bottom:10px;
+            }
+
+            tbody,
+            tbody td {
+                border:0
+            }
+
+            th.fc-week-number {
+                display:none;
+            }
+
+            td.fc-week-number {
+                padding-right:10px;
+            }
+
+            td.fc-day {
+                border:1px $grey solid;
+            }
+
+            .fc-time {
+                color:#111;
+            }
+
+            .fc-day-grid-event {
+                background-color:var(--primary-color);
+                border:0;
+                padding:3px;
+            }
+
+            .fc-day-top {
+                padding:10px;
+            }
+
+            .fc-today {
+                background:$grey
+            }
+
+            .fc-day-grid {
+
+                .fc-row.fc-week:last-child {
+                    margin-bottom:15px;
+                }
+            }
+        }
+    }
+}

@@ -80,6 +80,23 @@ class News extends Model implements LinkableInterface
         }
     }
 
+    public function category()
+    {
+        switch($this->type) {
+            case self::MAINTENANCE:
+                return translate('maintenance', 'Maintenance');
+
+            case self::EVENT:
+                return translate('event', 'Event');
+
+            case self::IMPORTANT:
+                return translate('important', 'Important');
+
+            default:
+                return;
+        }
+    }
+
     public function linkableTemplate($url, $options = [])
     {
         // TODO: Implement name() method.

@@ -30,6 +30,11 @@ class Calendar extends Model implements LinkableInterface
         return $this->summary;
     }
 
+    public function startAt()
+    {
+        return $this->date('start_at');
+    }
+
     public function hasRelated()
     {
         return isset($this->related) and !is_null($this->related);
@@ -38,11 +43,11 @@ class Calendar extends Model implements LinkableInterface
     public function displayRelated()
     {
         if($this->related instanceof Server) {
-            return 'Server: ' . $this->related->name();
+            return '[Server] ' . $this->related->name();
         }
 
         if($this->related instanceof Cluster) {
-            return 'Cluster: ' . $this->related->name();
+            return '[Cluster] ' . $this->related->name();
         }
     }
 

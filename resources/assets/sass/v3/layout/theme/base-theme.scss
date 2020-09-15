@@ -59,6 +59,12 @@
         }
     }
 
+    @media (max-width:992px) {
+        .navbar-brand {
+            margin-left:80px;
+        }
+    }
+
     @media (max-width:767px) {
         &.passed-banner:before,
         &:before  {
@@ -67,6 +73,10 @@
 
         &:after {
             right:-160px;
+        }
+
+        .navbar-brand {
+            margin-left:50px;
         }
     }
 
@@ -111,5 +121,90 @@
             }
         }
 
+    }
+}
+
+.frame {
+
+    overflow: visible;
+
+    @include border-radius(0);
+
+    &.simple {
+        //frame
+        > table {
+            display: table;
+            width:100%;
+            border-spacing: 0;
+            border-collapse: separate;
+        }
+
+        .contentwrap {
+            z-index:1;
+            margin: -5px -10px -10px;
+        }
+
+        .decoration-top,
+        .decoration-bottom,
+        .decoration-right,
+        .decoration-left {
+            display:block !important;
+            z-index:3;
+
+            td {
+                z-index:3;
+                border:0;
+                padding:0;
+            }
+        }
+
+        .decoration-top,
+        .decoration-bottom {
+            display:table-row !important;
+        }
+
+        .decoration-right,
+        .decoration-left {
+            display:table-cell !important;
+        }
+    }
+}
+
+.btn-theme {
+    width: 226px;
+    height: 65px;
+    background-size: cover;
+    background-position: center center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin-left:-17px;
+
+    border: none;
+
+    transition: background-image 0.2s ease;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: transparent;
+        box-shadow: none;
+        border:none;
+        outline:0;
+    }
+
+    &.disabled {
+        cursor: pointer;
+    }
+
+    span {
+        display: block;
+        padding:10px 0 0 10px;
+        font-weight: bold;
+        color:#fff !important;
+        text-transform: uppercase;
+        text-align: center;
+        overflow: hidden;
+        opacity:.9
     }
 }

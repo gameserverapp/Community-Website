@@ -7,6 +7,11 @@
                 <a href="{{$route}}" itemprop="url">
                     <h1 class="title">{{$title}}</h1>
                     <div class="meta">
+                        @isset($category)
+                            <div class="label label-theme category">
+                                {!! $category !!}
+                            </div>
+                        @endisset
                         <time class="date" datetime="{{$date->toDateTimeString()}}" itemprop="datePublished">
                             {{$date->format('j F Y')}}
                         </time>

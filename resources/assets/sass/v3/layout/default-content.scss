@@ -1,0 +1,46 @@
+p,h1,h2,h3,h4,h5,h6,ol,ul,li,em,strong,time {
+    color:var(--content-text-color);
+    font-size:1rem;
+    line-height: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color:var(--primary-color);
+    font-weight: bold;
+    margin-top:0;
+    margin-bottom:1rem;
+}
+
+h1 {
+    font-size:3rem;
+    line-height: 3.5rem;
+    margin-bottom:2rem;
+}
+
+h2 {
+    font-size:2.5rem;
+    line-height: 2.7rem;
+}
+
+h3 {
+    font-size:2rem;
+    line-height: 2.3rem;
+}
+
+h4,h5,h6 {
+    font-size:1.5rem;
+    line-height: 2rem;
+}
+
+p {
+    color:var(--light-text)
+}
+
+
+@media (max-width:767px) {
+    h1 {
+        font-size:1.9rem;
+        line-height: 2.4rem;
+        margin-bottom:1rem;
+    }
+}

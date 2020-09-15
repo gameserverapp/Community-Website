@@ -18,4 +18,70 @@
         display:block;
         height:60px;
     }
+
+    .frame {
+        &.simple {
+
+            .decoration-top {
+
+                .top-left {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_top-left.png')
+                }
+
+                .top-repeat {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_top-repeat.png');
+                }
+
+                .top-right {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_top-right.png');
+                }
+            }
+            .decoration-right {
+                background-image:url('/img/themes_copyright/extinction/gem_frame_right-repeat.png');
+
+                .right-repeat-top {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_right-repeat-top.png');
+                }
+
+                .right-repeat-bottom {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_right-repeat-bottom.png');
+                }
+            }
+
+            .decoration-bottom {
+
+                .bottom-left {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_bottom-left.png');
+                }
+
+                .bottom-repeat {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_bottom-repeat.png');
+                }
+
+                .bottom-right {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_bottom-right.png');
+                }
+            }
+
+            .decoration-left {
+                background-image:url('/img/themes_copyright/extinction/gem_frame_left-repeat.png');
+
+                .left-repeat-top {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_left-repeat-top.png');
+                }
+
+                .left-repeat-bottom {
+                    background-image:url('/img/themes_copyright/extinction/gem_frame_left-repeat-bottom.png');
+                }
+            }
+        }
+    }
+
+    .btn-theme {
+        background-image: url('/img/themes_copyright/extinction/button_rock.png');
+
+        &:hover {
+            background-image: url('/img/themes_copyright/extinction/button_rock_hover.png');
+        }
+    }
 }

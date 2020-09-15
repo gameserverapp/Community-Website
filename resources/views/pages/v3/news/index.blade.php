@@ -3,6 +3,12 @@
         'title' => 'Latest news',
         'description' => 'Find out what is happening and what is coming up!',
         'class' => 'article-index'
+    ],
+
+    'breadcrumbs' => [
+        [
+            'title' => translate('news', 'News')
+        ]
     ]
 ])
 
@@ -12,6 +18,7 @@
     @include('partials.v3.article-horizontal', [
         'title' => $hero->title(),
         'summary' => $hero->summary(),
+        'category' => $hero->category(),
         'route' => $hero->showRoute(),
         'date' => $hero->publishedAt(),
         'image' => $hero->image()
@@ -24,6 +31,7 @@
                     @include('partials.v3.article-vertical', [
                         'title' => $item->title(),
                         'summary' => $item->summary(),
+                        'category' => $item->category(),
                         'route' => $item->showRoute(),
                         'date' => $item->publishedAt(),
                         'image' => $item->image()
@@ -49,6 +57,7 @@
                     @include('partials.v3.article-vertical', [
                         'title' => $item->title(),
                         'summary' => $item->summary(),
+                        'category' => $item->category(),
                         'route' => $item->showRoute(),
                         'date' => $item->publishedAt(),
                         'image' => $item->image()

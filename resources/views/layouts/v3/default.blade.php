@@ -8,9 +8,19 @@
 ])
 
 @section('layout_content')
-    <div class="main_content">
-        <div class="container">
-            @yield('page_content')
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9 col-md-10 center-block">
+                <div class="main_content">
+
+                    @isset($breadcrumbs)
+                        @include('partials.v3.breadcrumbs', $breadcrumbs)
+                    @endisset
+
+                    @yield('page_content')
+                </div>
+            </div>
         </div>
     </div>
 @stop

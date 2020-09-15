@@ -44,7 +44,8 @@ class NewsController extends Controller
     public function show($id)
     {
         return view('pages.v3.news.show', [
-            'item' => $this->client->news($id)
+            'item' => $this->client->news($id),
+            'items' => []
         ]);
     }
 }

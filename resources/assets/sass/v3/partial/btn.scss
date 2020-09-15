@@ -6,7 +6,8 @@
 
     @include transition(background, color, border-color .2s);
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color:var(--btn-color);
         color:var(--btn-bg);
         border-color:var(--btn-bg);
@@ -16,7 +17,7 @@
     &:focus {
         background-color: transparent;
         box-shadow: none;
-        border:none;
+        //border:none;
         outline:0;
     }
 

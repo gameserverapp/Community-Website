@@ -18,16 +18,21 @@
             opacity: 0.9;
         }
 
-        @media (max-width:767px) {
-            .navbar-header {
-                padding:0 15px;
-            }
-        }
+        //@media (max-width:767px) {
+        //    .navbar-header {
+        //        padding:0 15px;
+        //    }
+        //}
     }
 
     > .container {
         padding-top: 5px;
         padding-bottom:5px;
+    }
+
+    .navbar-collapse {
+
+        //margin-top:4px;
     }
 
     .navbar-brand {
@@ -69,7 +74,9 @@
         background: transparent !important;
         text-shadow: 1px 1px 13px #000;
         font-size: 22px;
-        z-index: 999;
+        z-index: 5;
+        margin-top:12px;
+        margin-right:0;
         @include border-radius(0);
         @include transition(all .2s);
 
@@ -105,6 +112,9 @@
     }
 
     .navbar-nav {
+
+        position: relative;
+        z-index:999;
 
         &.navbar-right {
             margin-right:-11px;
@@ -405,24 +415,41 @@
     }
 }
 
+@media (min-width:768px) {
+    .navbar > .container-fluid .navbar-brand {
+        margin-left: 0px;
+        padding-left: 0 !important;
+        //margin-top:4px;
+    }
+
+    .navbar-collapse {
+        margin-top:4px;
+    }
+}
+
 @media (max-width:767px) {
     .navbar {
         margin: 0;
     }
 
     .navbar-header {
-        position: absolute;
+        //position: absolute;
         width: 100%;
-        padding: $inner-gutter;
+        //padding: 2px 15px;
+        padding-top:2px;
+        padding-bottom:7px;
+        height:61px;
     }
 
     .navbar-nav {
-        margin-top: $large-gutter + 15px
+        margin-top: 0px;
+        padding-top:2rem;
     }
 
 
     .navbar-brand {
         opacity:.7 !important;
+        margin-top:3px;
 
         h1 {
             color: $white !important;
@@ -430,17 +457,20 @@
     }
 
     .navbar-collapse {
-        background: var(--primary-color);
         height: 100vh;
+        min-height: 100vh;
         max-height: 100vh;
-        margin-top:-5px;
+        margin-top:0;
         border:none;
         position: absolute;
-        width:100%;
+        width:calc(100% + 3px);
+        margin-left:-15px;
 
         .navbar-nav {
-            height:calc(100vh - 100px);
+            height:100vh;
             overflow-y:auto;
+            z-index:auto;
+            background: var(--primary-color);
 
             li {
                 padding-right: $gutter;

@@ -41,11 +41,11 @@ if($item->hasImage()) {
     ])
         <div class="meta">
 
-            @if($item->hasRelated())
+            @foreach($item->displayLabel() as $label)
                 <div class="label label-theme category">
-                    {!! $item->displayRelated() !!}
+                    {!! $label !!}
                 </div>
-            @endif
+            @endforeach
 
             <strong>Starts:</strong>
             <time datetime="{{$item->startAt()->toDateTimeString()}}" itemprop="datePublished">
@@ -114,7 +114,7 @@ if($item->hasImage()) {
 
 
     @include('partials.v3.hr-title', [
-        'title' => translate('upcoming_events', 'Upcoming events')
+        'title' => translate('more_events', 'More events')
     ])
 
     <div class="row">
@@ -123,7 +123,7 @@ if($item->hasImage()) {
                 @include('partials.v3.article-vertical', [
                     'title' => $item->title(),
                     'summary' => $item->summary(),
-                    'category' => $item->displayRelated(),
+                    'category' => $item->displayLabel(),
                     'route' => $item->showRoute(),
                     'date' => $item->startAt(),
                     'image' => $item->image()

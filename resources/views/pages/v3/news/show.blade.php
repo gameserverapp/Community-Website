@@ -40,9 +40,11 @@ if($item->hasImage()) {
         ]
     ])
         <div class="meta">
-            @if($item->hasType())
-                <div class="label label-theme category">{!! $item->category() !!}</div>
-            @endif
+            @foreach($item->category() as $label)
+                <div class="label label-theme category">
+                    {!! $label !!}
+                </div>
+            @endforeach
 
             <time class=" date" datetime="{{$item->publishedAt()->toDateTimeString()}}" itemprop="datePublished">
                 {{$item->publishedAt()->format('j F Y')}}
@@ -68,7 +70,8 @@ if($item->hasImage()) {
                     'category' => $item->category(),
                     'route' => $item->showRoute(),
                     'date' => $item->publishedAt(),
-                    'image' => $item->image()
+                    'image' => $item->image(),
+                    'class' => 'article-small'
                 ])
             </div>
         @empty

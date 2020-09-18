@@ -14,7 +14,6 @@
 
 @section('page_content')
 
-
     @include('partials.v3.article-horizontal', [
         'title' => $hero->title(),
         'summary' => $hero->summary(),
@@ -60,7 +59,8 @@
                         'category' => $item->category(),
                         'route' => $item->showRoute(),
                         'date' => $item->publishedAt(),
-                        'image' => $item->image()
+                        'image' => $item->image(),
+                        'class' => 'article-small'
                     ])
                 </div>
             @endforeach

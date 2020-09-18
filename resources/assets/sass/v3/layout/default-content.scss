@@ -1,4 +1,4 @@
-p,h1,h2,h3,h4,h5,h6,ol,ul,li,em,strong,time {
+p,h1,h2,h3,h4,h5,h6,ol,ul,li,em,strong,time, td {
     color:var(--content-text-color);
     font-size:1rem;
     line-height: 1.5rem;
@@ -9,6 +9,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     margin-top:0;
     margin-bottom:1rem;
+
+    a {
+        color:var(--primary-color);
+    }
 }
 
 h1 {
@@ -18,8 +22,8 @@ h1 {
 }
 
 h2 {
-    font-size:2.5rem;
-    line-height: 2.7rem;
+    font-size:2rem;
+    line-height: 2.5rem;
 }
 
 h3 {
@@ -34,6 +38,50 @@ h4,h5,h6 {
 
 p {
     color:var(--light-text)
+}
+
+a {
+    text-decoration: underline;
+    
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+td a {
+    color:var(--primary-color)
+}
+
+.btn-link {
+    display:inline-block;
+    color:var(--primary-color);
+    text-decoration: underline;
+    padding:0;
+    margin:0;
+    
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+select,
+select:focus,
+select:active,
+input[type=text] {
+    background-color:var(--transparent-bg);
+    color:var(--primary-color);
+    border:1px var(--primary-color) solid;
+    padding:6px;
+    vertical-align: bottom;
+    outline:none;
+
+    width:100%;
+    margin-bottom:1rem;
+    @include border-radius(4px);
+}
+
+hr {
+    border-color:var(--hr-color);
 }
 
 

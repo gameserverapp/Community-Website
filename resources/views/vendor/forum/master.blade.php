@@ -11,34 +11,20 @@ if (isset($thread)) {
 }
 ?>
 
-@extends('layouts.v2.banner', [
+@extends('layouts.v3.default', [
     'page' => [
         'title' => $title . ' Forum',
         'class' => 'forum',
         'description' => $metaDescription
-    ],
-    'banner' => [
-        'text-only' => true,
-        'size' => 'small',
-        'vertical-align' => true
     ]
 ])
 
 @section('page_content')
 
-    <div class="container forum_wrapper">
-        <div class="row">
+    @include ('forum::partials.breadcrumbs')
 
-            <div class="col-md-10 center-block">
+    @yield('content')
 
-                @include ('forum::partials.breadcrumbs')
-
-                @yield('content')
-            </div>
-        </div>
-
-
-    </div>
 @stop
 
 @section('footer_scripts')

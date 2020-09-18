@@ -1,0 +1,48 @@
+//simplemde
+.editor-toolbar {
+    border-color:var(--primary-color);
+
+    i.separator {
+        border-color:var(--primary-color);
+    }
+
+    a {
+        background-color:transparent;
+        border:none;
+        color:var(--light-color) !important;
+
+        &:hover,
+        &:focus {
+            background-color:transparent;
+            border:none;
+            color:var(--primary-color);
+            outline: none;
+        }
+
+        &:hover {
+            color:var(--primary-color) !important;
+        }
+    }
+}
+
+.CodeMirror {
+    background-color:var(--content-bg-color);
+    color:var(--content-text-color);
+    border-color:var(--primary-color)
+}
+
+.CodeMirror-cursor {
+    border-left: 1px solid var(--primary-color);
+    border-right: none;
+    width: 0;
+}
+
+.frame {
+    &.simple,
+    &.big {
+        .editor-toolbar,
+        .CodeMirror {
+            background-color:var(--transparent-bg);
+        }
+    }
+}

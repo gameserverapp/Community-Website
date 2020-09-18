@@ -190,11 +190,11 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         $output = '';
 
         if ($this->role('Admin') or $this->role('Super Admin')) {
-            $output .= '<span class="label label-admin">Admin</span>';
+            $output .= '<span class="label label-theme">Admin</span>';
         }
 
         if ($this->donated()) {
-            $output .= '<a href="' . route('token.buy') . '" class="label label-donor">Supporter <3</a> &nbsp;';
+            $output .= '<a href="' . route('supporter-tier.index') . '" class="label label-theme">Supporter <3</a> &nbsp;';
         }
 
         return $output;
@@ -232,6 +232,22 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->unread_messages;
     }
 
+    public function canSendMessage()
+    {
+        if(!SiteHelper::featureEnabled('messages_send')) {
+
+            if($this->role(self::ROLE_MODERATOR)) {
+                return true;
+            }
+
+            return false;
+        }
+
+        if($this->banned()) {
+            return false;
+        }
+    }
+
     public function lastCharacter()
     {
         if (! $this->characters->count()) {
@@ -254,9 +270,9 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 
         $output = [];
 
-        if(!$this->hasCharacters()) {
-            $options['disable_link'] = true;
-        }
+//        if(!$this->hasCharacters()) {
+//            $options['disable_link'] = true;
+//        }
 
         $output[] = '<span class="linkwrapper" itemscope itemtype="http://schema.org/Person">';
 
@@ -308,7 +324,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 //
         $class = $size . ' ' . implode(' ', $class);
 
-        return '<span title="' . $title . '" class="status  ' . $class . '"></span>';
+        return '<span title="' . $title . '" class="user-status  ' . $class . '"></span>';
     }
 
     public function indexRoute()

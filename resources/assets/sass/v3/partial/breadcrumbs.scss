@@ -2,12 +2,13 @@
     margin-top:2rem;
     margin-bottom:3rem;
 
-    background:rgba(0,0,0,0.5);
+    background-color:var(--transparent-bg);
     border:1px rgba(0,0,0,0.7) solid;
 
     padding:10px 20px;
 
     a {
         color:var(--primary-color);
+        text-decoration: none;
     }
 }

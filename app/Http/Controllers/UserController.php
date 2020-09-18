@@ -39,7 +39,7 @@ class UserController extends Controller
 
     public function settings(Request $request)
     {
-        return view('pages.v1.user.settings', [
+        return view('pages.v3.user.settings', [
             'user' => auth()->user()
         ]);
     }

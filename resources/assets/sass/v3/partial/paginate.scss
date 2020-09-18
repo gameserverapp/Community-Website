@@ -3,7 +3,7 @@
     text-align: center;
 
     .pagination {
-        margin:2rem 0 0 0;
+        //margin:2rem 0 0 0;
 
         li {
 
@@ -28,12 +28,25 @@
                     color: var(--primary-color)
                 }
             }
+        }
+    }
 
-            //&:first-child *,
-            //&:last-child * {
-            //    padding-top:5px;
-            //    padding-bottom:7px;
-            //}
+    &.tiny {
+        display:inline-block;
+        margin:0;
+        padding:0;
+
+        .pagination {
+            margin:0;
+
+            li {
+
+                span, a {
+                    padding:2px 6px 3px;
+                    font-size:.7rem;
+                    line-height: .8rem;
+                }
+            }
         }
     }
 }

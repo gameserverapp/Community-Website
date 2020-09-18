@@ -1,0 +1,149 @@
+.group-card {
+
+    .tag {
+        position: absolute;
+        top:1rem;
+        left:1rem;
+    }
+
+    header {
+        display:table;
+        width:calc(100% + 42px);
+        position: relative;
+        background: var(--primary-color);
+        height: 200px;
+        text-align: center;
+        margin:-20px -21px 0;
+
+
+        .content {
+            display:table-cell;
+            vertical-align: middle;
+            background: var(--content-bg-color);
+            border:0;
+            width:100%;
+            text-decoration: none;
+
+            h1 {
+                position: relative;
+                z-index: 999;
+                color: var(--primary-color);
+                text-align: center;
+                font-size: 35px;
+                line-height: 35px;
+                max-width:80%;
+                margin:25px auto 1rem;
+                text-decoration: none;
+                
+                a {
+                    text-decoration: none;
+                }
+
+                .status {
+                    margin-right: -9px;
+                }
+            }
+
+            .more {
+                position: relative;
+                z-index: 999;
+                opacity: 1;
+
+                @media (max-width: 767px) {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            bottom:0;
+            left:0;
+            right:0;
+            opacity: .09;
+
+            @include transition(opacity .2s);
+
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            overflow: hidden;
+
+            .imgcontainer {
+                margin: -$inner-gutter 0 0 -30px;
+                width: 120%;
+                opacity: .7;
+
+                .memberimage {
+                    display: inline-block;
+                    height: 50px;
+                    margin: 0;
+                    padding: 0;
+
+                    @include transition(height .2s);
+
+                    img {
+                        height: 100%;
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .background {
+            opacity:0.15;
+        }
+
+        .background {
+            .imgcontainer {
+                .memberimage {
+                    height: 51px;
+                }
+            }
+
+        }
+
+        header .more {
+            opacity: 1;
+        }
+    }
+
+    .content {
+        width:calc(100% + 42px);
+        margin:0px -21px -20px;
+
+
+        .table {
+            margin-bottom: 0;
+
+            thead {
+                background-color: var(--transparent-bg);
+
+                th {
+                    border: 0;
+                    padding-left:25px;
+                    padding-right:25px;
+                }
+            }
+
+            tbody {
+
+                tr:first-child td {
+                    border: 0;
+                }
+
+                td {
+                    padding-left:25px;
+                    padding-right:25px;
+
+                    .label {
+                        float: right;
+                        margin-top: 3px;
+                    }
+                }
+            }
+        }
+    }
+}

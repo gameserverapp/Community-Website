@@ -3,50 +3,65 @@
 @section ('content')
     <div id="thread" class="thread-show" itemscope itemtype="http://schema.org/DiscussionForumPosting">
 
-        @if(auth()->check())
 
-            <div class="follow">
+        <div class="row">
+            <div class="col-md-3 title-buttons">
+                @can ('manageThreads', $category)
+                    @include ('forum::thread.partials.actions')
+                @endcan
+            </div>
+            <div class="col-md-6 text-center">
+                <h2 class="title">
+                    <span itemprop="headline">{{ $thread->title }}</span>
 
-                @if (isset( $category ) and $category->threadsEnabled)
-                    @can ('createThreads', $category)
-                        <a class="btn champ  small" href="{{ Forum::route('thread.create', $category) }}">
-                            {{ trans('forum::threads.new_thread') }}
-                        </a>
-                        &nbsp; &nbsp;
-                    @endcan
-                @endif
+                    <time datetime="{{$thread->firstPost->date('created_at')->toDateTimeString()}}" itemprop="datePublished"></time>
+                </h2>
 
-                @if(!auth()->user()->subscribedToThread($thread))
-                    <a href="{{route('user.forum.subscribe',[$thread->id])}}" class="btn champ small">Subscribe</a>
-                @else
-                    <a href="{{route('user.forum.unsubscribe',[$thread->id])}}" class="btn champ inverted dark small">Unsubscribe</a>
+                <div class="labels">
+                    @if ($thread->trashed())
+                        <span class="label label-danger">{{ trans('forum::general.deleted') }}</span>
+                    @endif
+                    @if ($thread->locked)
+                        <span class="label label-theme">{{ trans('forum::threads.locked') }}</span>
+                    @endif
+                    @if ($thread->pinned)
+                        <span class="label label-theme">{{ trans('forum::threads.pinned') }}</span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-3 title-buttons text-right">
+                @if(auth()->check())
+
+                    <div class="follow">
+
+                        @if (isset( $category ) and $category->threadsEnabled)
+                            @can ('createThreads', $category)
+                                <a class="btn btn-theme btn-theme-gem small" href="{{ Forum::route('thread.create', $category) }}">
+                                    <span>{{ trans('forum::threads.new_thread') }}</span>
+                                </a>
+                                &nbsp; &nbsp;
+                            @endcan
+                        @endif
+
+                        @if(!auth()->user()->subscribedToThread($thread))
+                            <a href="{{route('user.forum.subscribe',[$thread->id])}}" class="btn btn-theme small"><span>Subscribe</span></a>
+                        @else
+                            <a href="{{route('user.forum.unsubscribe',[$thread->id])}}" class="btn btn-theme small"><span>Unsubscribe</span></a>
+                        @endif
+                    </div>
                 @endif
             </div>
-        @endif
+        </div>
 
-        <h2 class="title">
-            @if ($thread->trashed())
-                <span class="label label-danger">{{ trans('forum::general.deleted') }}</span>
-            @endif
-            @if ($thread->locked)
-                <span class="label label-warning">{{ trans('forum::threads.locked') }}</span>
-            @endif
-            @if ($thread->pinned)
-                <span class="label label-info">{{ trans('forum::threads.pinned') }}</span>
-            @endif
-            <span itemprop="headline">{{ $thread->title }}</span>
-
-            <time datetime="{{$thread->firstPost->date('created_at')->toDateTimeString()}}" itemprop="datePublished"></time>
-
-        </h2>
-
-        <table class="table forum-thread-single {{ $thread->trashed() ? 'deleted' : '' }}">
-            <tbody>
-                @foreach ($thread->postsPaginated as $post)
-                    @include ('forum::post.partials.list', compact('post'))
-                @endforeach
-            </tbody>
-        </table>
+        <div class="forum-thread-single {{ $thread->trashed() ? 'deleted' : '' }}">
+            @foreach ($thread->postsPaginated as $post)
+                <div class="row">
+                    <div class="col-md-12">
+                        @include ('forum::post.partials.list', compact('post'))
+                    </div>
+                </div>
+            @endforeach
+        </div>
 
         <div class="paginate">
             {!! $thread->postsPaginated->render() !!}
@@ -54,32 +69,23 @@
 
         @can ('reply', $thread)
             <div class="row">
-                <div class="col-md-10 center-block">
-                    <br><br>
-                    <h3>{{ trans('forum::general.reply') }}</h3>
-                    <div id="reply">
-                        <form method="POST" action="{{ Forum::route('post.store', $thread) }}">
-                            {!! csrf_field() !!}
+                <div class="col-md-8 center-block">
 
-                            <div class="form-group">
-                                <textarea name="content" class="form-control simplemde">{{ old('content') }}</textarea>
+                    <form method="POST" action="{{ Forum::route('post.store', $thread) }}">
+                        {!! csrf_field() !!}
+                        @component('partials.v3.frame', ['type' => 'basic', 'title' => trans('forum::general.reply')])
+                            <div id="reply">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control simplemde">{{ old('content') }}</textarea>
+                                </div>
                             </div>
-
-                            <button type="submit" class="btn champ small pull-right">{{ trans('forum::general.reply') }}</button>
-                        </form>
-                    </div>
+                        @endcomponent
+                        <button type="submit" class="btn btn-theme btn-theme-rock center">
+                            <span>{{ trans('forum::general.reply') }}</span>
+                        </button>
+                    </form>
                 </div>
             </div>
-        @endcan
-
-        @can ('manageThreads', $category)
-            <br><br>
-            <form action="{{ Forum::route('thread.update', $thread) }}" method="POST" data-actions-form>
-                {!! csrf_field() !!}
-                {!! method_field('patch') !!}
-
-                @include ('forum::thread.partials.actions')
-            </form>
         @endcan
     </div>
 @stop

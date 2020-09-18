@@ -3,7 +3,7 @@ return [
     'primary-color' => '#b326b0',
     'secondary-color' => '#f00',
 
-    'bg-color' => '#000',
+    'bg-color' => '#222',
 
     'hr-color' => '#1b2226',
 
@@ -12,9 +12,13 @@ return [
     'darker-text' => '#333',
     'dark-text' => '#111',
 
+    //background
+    'transparent-bg' => 'rgba(0,0,0,.5)',
+
     //content
     'content-text-color' => '#ccc',
     'content-bg-color' => '#333',
+    'content-title-bg-color' => '#222',
 
 
     //btn
@@ -23,6 +27,7 @@ return [
 
     //header
     'navigation-bg-color' => '#333',
+    'navigation-text-color' => '#fff',
 
     //footer
     'footer-bg-color' => '#545754',

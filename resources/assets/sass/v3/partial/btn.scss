@@ -3,6 +3,7 @@
     color:var(--btn-color);
     border:1px var(--btn-color) solid;
     padding:1rem 2rem;
+    text-decoration: none !important;
 
     @include transition(background, color, border-color .2s);
 
@@ -25,9 +26,39 @@
         cursor: pointer;
     }
 
+    &.center {
+        display: block;
+        margin-right:auto;
+        margin-left:auto;
+    }
+
     span {
         font-size:1rem;
         text-align: center;
         font-weight: bold;
+        text-decoration: none;
+    }
+
+    &.small {
+        padding:.3rem .7rem;
+
+        span {
+            font-size:.7rem;
+        }
+    }
+}
+
+a.btn-theme {
+    color:var(--btn-color) !important;
+
+    &:hover,
+    &:focus {
+        color:var(--btn-bg) !important;
+    }
+
+    &.center {
+        display: inline-block;
+        left:50%;
+        transform: translateX(50%);
     }
 }

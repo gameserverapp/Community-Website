@@ -26,59 +26,23 @@ class TokenController extends Controller
     public function index()
     {
         if(! SiteHelper::featureEnabled('tokens')) {
-            return view('pages.v1.token.disabled');
+            return view('pages.v3.transactions.disabled');
         }
 
         $transactions = $this->client->allUserTransactions(route('token.index'));
 
-        return view('pages.v1.token.index', [
+        return view('pages.v3.transactions.index', [
             'transactions' => $transactions
         ]);
     }
 
     public function buy()
     {
-        if(! SiteHelper::featureEnabled('tokens')) {
-            return view('pages.v1.token.disabled');
-        }
-
-        $packages = $this->client->allTokens(route('token.index'));
-
-        return view('pages.v1.token.buy', [
-            'packages' => $packages
-        ]);
+        return redirect(route('supporter-tier.index'));
     }
 
     public function show(Request $request, $id)
     {
-        if(! SiteHelper::featureEnabled('tokens')) {
-            return view('pages.v1.token.disabled');
-        }
-
-        $package = $this->client->token($id);
-
-        if ($request->has('status')) {
-            switch ($request->get('status')) {
-                case 'cancel':
-                    session()->flash('alert', [
-                        'status'  => 'warning',
-                        'message' => 'Your order was cancelled',
-                        'stay'    => true
-                    ]);
-                    break;
-
-                case 'error':
-                    session()->flash('alert', [
-                        'status'  => 'warning',
-                        'message' => 'There was an error during the process. Please try again or contact the admin.',
-                        'stay'    => true
-                    ]);
-                    break;
-            }
-        }
-
-        return view('pages.v1.token.show', [
-            'package' => $package
-        ]);
+        return redirect(route('supporter-tier.index'));
     }
 }

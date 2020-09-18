@@ -1,0 +1,35 @@
+&.forum {
+
+
+    .create-wrapper {
+        width:100%;
+        text-align: right;
+        margin-bottom:10px;
+
+        .create {
+        }
+    }
+
+    .category-description {
+        color:var(--light-text);
+        margin-bottom:2rem;
+    }
+
+    .title-buttons {
+        a, button {
+            display:inline-block
+        }
+    }
+
+    @media (max-width:499px) {
+        textarea {
+            height: 150px;
+        }
+    }
+
+    @import 'post',
+    'thread',
+    'thread-single',
+    'category',
+    'thread-show';
+}

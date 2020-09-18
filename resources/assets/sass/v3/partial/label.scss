@@ -1,3 +1,14 @@
 .label-theme {
+    color:var(--bg-color) !important;
     background-color:var(--primary-color);
+    text-decoration: none !important;
+
+    a {
+        color:var(--bg-color) !important;
+        text-decoration: underline;
+        
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }

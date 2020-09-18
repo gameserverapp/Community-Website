@@ -1,0 +1,155 @@
+&.theme-aberration-gold {
+    @import 'base-theme';
+
+    .navbar {
+        background-image:url('/img/themes_copyright/aberration_gold/menu-repeat.png');
+
+        &.passed-banner:before,
+        &:before {
+            background-image:url('/img/themes_copyright/aberration_gold/menu-left.png');
+        }
+
+        &:after {
+            background-image:url('/img/themes_copyright/aberration_gold/menu-right.png');
+        }
+    }
+
+    .frame {
+        &.simple {
+
+            .decoration-top {
+
+                .top-left {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_top-left.png')
+                }
+
+                .top-repeat {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_top-repeat.png');
+                }
+
+                .top-right {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_top-right.png');
+                }
+            }
+
+            .decoration-right {
+                background-image:url('/img/themes_copyright/aberration_gold/gem_frame_right-repeat.png');
+
+                .right-repeat-top {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_right-repeat-top.png');
+                }
+
+                .right-repeat-bottom {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_right-repeat-bottom.png');
+                }
+            }
+
+            .decoration-bottom {
+
+                .bottom-left {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_bottom-left.png');
+                }
+
+                .bottom-repeat {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_bottom-repeat.png');
+                }
+
+                .bottom-right {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_bottom-right.png');
+                }
+            }
+
+            .decoration-left {
+                background-image:url('/img/themes_copyright/aberration_gold/gem_frame_left-repeat.png');
+
+                .left-repeat-top {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_left-repeat-top.png');
+                }
+
+                .left-repeat-bottom {
+                    background-image:url('/img/themes_copyright/aberration_gold/gem_frame_left-repeat-bottom.png');
+                }
+            }
+        }
+
+        &.big {
+            .decoration-top {
+                .top-left {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_top-left.png');
+                }
+
+                .top-repeat {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_top-repeat.png');
+                }
+
+                .top-right {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_top-right.png');
+                }
+            }
+
+            .decoration-right {
+                background-image:url('/img/themes_copyright/aberration_gold/rock_frame_right-repeat.png');
+
+                .right-repeat-top {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_right-repeat-top.png');
+                }
+
+                .right-repeat-bottom {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_right-repeat-bottom.png');
+                }
+            }
+
+            .decoration-bottom {
+                .bottom-left {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_bottom-left.png');
+                }
+
+                .bottom-repeat {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_bottom-repeat.png');
+                }
+
+                .bottom-right {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_bottom-right.png');
+                }
+            }
+
+            .decoration-left {
+                background-image:url('/img/themes_copyright/aberration_gold/rock_frame_left-repeat.png');
+
+                .left-repeat-top {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_left-repeat-top.png');
+                }
+
+                .left-repeat-bottom {
+                    background-image:url('/img/themes_copyright/aberration_gold/rock_frame_left-repeat-bottom.png');
+                }
+            }
+        }
+    }
+
+    .btn-theme {
+        background-image: url('/img/themes_copyright/aberration_gold/button.png');
+
+        &:hover {
+            background-image: url('/img/themes_copyright/aberration_gold/button_hover.png');
+        }
+
+        &.btn-theme-gem {
+
+            background-image: url('/img/themes_copyright/aberration_gold/button_gem.png');
+
+            &:hover {
+                background-image: url('/img/themes_copyright/aberration_gold/button_gem_hover.png');
+            }
+        }
+
+        &.btn-theme-rock {
+
+            background-image: url('/img/themes_copyright/aberration_gold/button_rock.png');
+
+            &:hover {
+                background-image: url('/img/themes_copyright/aberration_gold/button_rock_hover.png');
+            }
+        }
+    }
+}

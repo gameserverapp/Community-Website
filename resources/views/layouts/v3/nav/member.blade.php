@@ -68,49 +68,30 @@ use GameserverApp\Helpers\SiteHelper;
                     @endif
 
                 @endif
+
                 @if(SiteHelper::featureEnabled('character_page') or SiteHelper::featureEnabled('tribe_page'))
-                <li role="separator" class="divider"></li>
+                    <li role="separator" class="divider"></li>
                 @endif
+
                 <?php
             }
-
         }
         ?>
 
+        @if(SiteHelper::featureEnabled('shop'))
+            <li>
+                <a href="{{route('shop.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.index') ? 'orange' : '' }}">
+                    <i class="fa fa-gift" aria-hidden="true"></i> &nbsp;
+                    Reward shop
+                </a>
+            </li>
+        @endif
 
         @if(SiteHelper::featureEnabled('supporter_tiers'))
             <li>
                 <a href="{{route('supporter-tier.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('supporter-tier.index') ? 'orange' : '' }}">
                     <i class="fa fa-trophy" aria-hidden="true"></i> &nbsp;
                     Supporter Tiers
-                </a>
-            </li>
-        @endif
-
-        @if(SiteHelper::featureEnabled('shop'))
-            <li>
-                <a href="{{route('shop.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.index') ? 'orange' : '' }}">
-                    <i class="fa fa-gift" aria-hidden="true"></i> &nbsp;
-                    Shop
-                </a>
-            </li>
-        @endif
-
-        @if(SiteHelper::featureEnabled('tokens'))
-            <li>
-                <a href="{{route('token.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index') ? 'orange' : '' }}">
-                    Tokens
-                    <span class="label label-default right">
-                        {{auth()->user()->tokenBalance()}}
-                    </span>
-                </a>
-            </li>
-        @endif
-
-        @if(SiteHelper::featureEnabled('supporter_tiers'))
-            <li>
-                <a href="{{route('subscription.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index') ? 'orange' : '' }}">
-                    Subscriptions
                 </a>
             </li>
         @endif
@@ -123,33 +104,6 @@ use GameserverApp\Helpers\SiteHelper;
         )
             <li role="separator" class="divider"></li>
         @endif
-        <li>
-            <a href="{{route('news.index')}}" class="news {{ Request::is('news*') ? 'active' : '' }}">
-                News & Updates
-            </a>
-        </li>
-        <li>
-            <a href="/calendar">
-                <span>Calendar</span>
-            </a>
-        </li>
-
-        @if(SiteHelper::featureEnabled('inspector'))
-            <li>
-                <a href="{{route('inspector.index')}}" class="{{ Request::is('inspector*') ? 'active' : '' }}">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    Inspector
-                </a>
-            </li>
-        @endif
-
-        @if(GameserverApp\Helpers\RouteHelper::rules() != false)
-            <li>
-                <a href="{{GameserverApp\Helpers\RouteHelper::rules()}}">
-                    <span>Rules</span>
-                </a>
-            </li>
-        @endif
 
         @if(SiteHelper::featureEnabled('messages'))
             <li class="hidden-sm">
@@ -159,6 +113,37 @@ use GameserverApp\Helpers\SiteHelper;
                     <span class="label label-default right">
                        {{auth()->user()->unreadMessagesCount()}}
                     </span>
+                </a>
+            </li>
+        @endif
+
+        @if(SiteHelper::featureEnabled('tokens'))
+            @if(!SiteHelper::featureEnabled('shop'))
+                <li role="separator" class="divider"></li>
+            @endif
+            <li>
+                <a href="{{route('token.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index') ? 'orange' : '' }}">
+                    Tokens
+                    <span class="label label-default right">
+                    {{auth()->user()->tokenBalance()}}
+                </span>
+                </a>
+            </li>
+        @endif
+
+
+        @if(SiteHelper::featureEnabled('shop'))
+            <li>
+                <a href="{{route('shop.orders')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.orders') ? 'orange' : '' }}">
+                    Shop history
+                </a>
+            </li>
+        @endif
+
+        @if(SiteHelper::featureEnabled('supporter_tiers'))
+            <li>
+                <a href="{{route('subscription.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index') ? 'orange' : '' }}">
+                    Subscriptions
                 </a>
             </li>
         @endif

@@ -1,4 +1,4 @@
-<div class="simple frame">
+<div class="frame {{$type or 'simple'}} {{$class or ''}}">
     <table class="">
         <tr class="decoration-middle">
             <td class="decoration-left">
@@ -28,6 +28,12 @@
 
                     </div>
                 @endif
+
+                @isset($title)
+                    <div class="frame-title">
+                        <h1 class="title">{!! $title !!}</h1>
+                    </div>
+                @endisset
 
                 {!! $slot !!}
             </td>

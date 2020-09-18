@@ -1,4 +1,4 @@
-<div class="panel panel-default hidden" data-actions data-bulk-actions>
+<div class="panel panel-default " data-actions data-bulk-actions>
     <div class="panel-heading">{{ trans('forum::general.with_selection') }}</div>
     <div class="panel-body">
         <div class="form-group">

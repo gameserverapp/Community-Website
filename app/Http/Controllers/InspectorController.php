@@ -25,7 +25,7 @@ class InspectorController extends Controller
     public function index(Request $request)
     {
         if(! SiteHelper::featureEnabled('inspector')) {
-            return view('pages.v1.inspector.disabled');
+            return view('pages.v3.inspector.disabled');
         }
 
         $servers = $this->api->allServers(false);
@@ -54,7 +54,7 @@ class InspectorController extends Controller
             $request->only($keys)
         );
 
-        return view('pages.v1.inspector.index', [
+        return view('pages.v3.inspector.index', [
             'servers' => $servers,
             'results' => $result
         ]);

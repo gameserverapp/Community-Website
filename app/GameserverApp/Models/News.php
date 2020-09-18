@@ -84,16 +84,16 @@ class News extends Model implements LinkableInterface
     {
         switch($this->type) {
             case self::MAINTENANCE:
-                return translate('maintenance', 'Maintenance');
+                return [translate('maintenance', 'Maintenance')];
 
             case self::EVENT:
-                return translate('event', 'Event');
+                return [translate('event', 'Event')];
 
             case self::IMPORTANT:
-                return translate('important', 'Important');
+                return [translate('important', 'Important')];
 
             default:
-                return;
+                return [];
         }
     }
 

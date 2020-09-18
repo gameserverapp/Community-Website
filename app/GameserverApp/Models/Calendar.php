@@ -2,8 +2,10 @@
 
 namespace GameserverApp\Models;
 
+use Carbon\Carbon;
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
+use Illuminate\Support\Str;
 
 class Calendar extends Model implements LinkableInterface
 {
@@ -13,6 +15,11 @@ class Calendar extends Model implements LinkableInterface
     public function title()
     {
         return $this->title;
+    }
+
+    public function slug()
+    {
+        return Str::slug($this->title());
     }
 
     public function summary()
@@ -35,9 +42,34 @@ class Calendar extends Model implements LinkableInterface
         return $this->date('start_at');
     }
 
+    public function endAt()
+    {
+        return $this->date('end_at');
+    }
+
     public function hasRelated()
     {
         return isset($this->related) and !is_null($this->related);
+    }
+
+    public function currentlyActive()
+    {
+        return $this->startAt() < Carbon::now() and $this->endAt() > Carbon::now();
+    }
+
+    public function displayLabel()
+    {
+        $label = [];
+
+        if($this->currentlyActive()) {
+            $label[] = translate('currently_active', 'Currently active');
+        }
+
+        if($this->hasRelated()) {
+            $label[] = $this->displayRelated();
+        }
+
+        return $label;
     }
 
     public function displayRelated()
@@ -73,6 +105,6 @@ class Calendar extends Model implements LinkableInterface
 
     public function showRoute()
     {
-        // TODO: Implement showRoute() method.
+        return route('calendar.show', [$this->id, $this->slug()]);
     }
 }

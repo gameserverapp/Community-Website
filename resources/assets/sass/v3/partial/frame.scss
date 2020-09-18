@@ -1,32 +1,95 @@
 .frame {
-    width:100%;
-    overflow: hidden;
+    width: 100%;
 
-    @include box-shadow(0 0 60px -15px #000);
+    > table {
+        display: table;
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: separate;
+    }
 
-    @include border-radius(5px);
+    &.no-padding {
 
-    &.simple {
-        margin-top:65px;
+        &.simple,
+        &.big,
+        &.basic {
+            .contentwrap {
+                padding:0 !important;
+            }
+        }
+    }
+
+    &.basic {
         position: relative;
-        margin-bottom:60px;
+        background-color:var(--transparent-bg);
+        padding:20px;
+        margin-bottom:30px;
+        overflow: hidden;
 
-        > table {
-            display: table;
-            width:100%;
-            border-spacing: 0;
-            border-collapse: separate;
+        //@include box-shadow(0 0 30px -15px #000);
+
+        @include border-radius(5px);
+        @include box-shadow(0 0 60px -15px #000);
+
+        .frame-title {
+            background: var(--content-title-bg-color);
+            padding:15px 30px;
+            margin:-20px -30px 1.1rem;
+
+            .title {
+                font-size:1.3rem;
+                line-height: 1.5rem;
+                margin-bottom: 0;
+            }
         }
 
+        &.forum-thread-table {
+            padding-bottom:0;
+
+            .frame-title {
+                margin-bottom:0;
+            }
+        }
+    }
+
+    &.simple,
+    &.big {
+        position: relative;
+        margin-bottom: 60px;
+
+        .frame-title {
+            background: var(--content-title-bg-color);
+            padding:15px 30px;
+            margin:-20px -30px 1.1rem;
+
+            .title {
+                font-size:1.3rem;
+                line-height: 1.5rem;
+                margin-bottom: 0;
+            }
+        }
+
+        @include box-shadow(0 0 60px -15px #000);
+
         .contentwrap {
+            position: relative;
             display: block;
-            padding:15px 20px 30px;
-            background:var(--content-bg-color);
+            padding: 15px 20px 20px;
+            background: var(--content-bg-color);
+            margin: -1px;
+
+            @include border-radius(5px);
+            overflow: hidden;
+
+
+            @media (min-width: 768px) {
+                padding: 20px 30px 25px !important;
+            }
 
             @import "./../layout/default-content";
 
             p:last-child {
-                margin-bottom:0 !important;
+                margin-bottom: 0 !important;
             }
 
             .header {
@@ -34,10 +97,10 @@
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center center;
-                padding:7rem 0;
+                padding: 7rem 0;
                 margin: -15px -30px 20px;
 
-                height:15rem;
+                height: 15rem;
 
                 //&:before {
                 //    position: absolute;
@@ -54,10 +117,10 @@
                     //text-shadow: 1px 1px 13px #000;
                     //text-align: center;
                     position: absolute;
-                    padding:5px 15px 5px 25px;
-                    background-color:rgba(0,0,0,.7);
-                    top:auto;
-                    bottom:5px;
+                    padding: 5px 15px 5px 25px;
+                    background-color: rgba(0, 0, 0, .7);
+                    top: auto;
+                    bottom: 5px;
                     max-width: 90%;
                 }
 
@@ -65,42 +128,42 @@
                     text-align: center;
 
                     .category {
-                        margin-right:1rem;
+                        margin-right: 1rem;
                     }
 
                     .date {
-                        color:var(--content-text-color);
-                        background:var(--content-bg-color);
+                        color: var(--content-text-color);
+                        background: var(--content-bg-color);
                     }
                 }
             }
 
-            @media (max-width:767px) {
+            @media (max-width: 767px) {
                 .row {
                     > div {
-                        margin-bottom:2rem;
+                        margin-bottom: 2rem;
                     }
 
                     &:last-child > div:last-child {
-                        margin-bottom:0;
+                        margin-bottom: 0;
                     }
                 }
             }
 
-            @media (min-width:768px) {
-                padding:15px 35px 40px;
+            @media (min-width: 768px) {
+                padding: 15px 30px 40px;
 
                 .header {
-                    height:30rem;
+                    height: 30rem;
 
                     .title {
-                        padding:5px 15px 5px 24px;
+                        padding: 5px 15px 5px 24px;
                         max-width: 70%;
                     }
                 }
 
                 .meta {
-                    margin-bottom:2rem;
+                    margin-bottom: 2rem;
                 }
             }
         }
@@ -109,74 +172,73 @@
         .decoration-bottom,
         .decoration-right,
         .decoration-left {
-            display:none;
+            display: none;
         }
 
         .decoration-top,
         .decoration-bottom {
-            display:none;
+            display: none;
         }
 
         .decoration-right,
         .decoration-left {
-            display:none;
+            display: none;
         }
 
         .decoration-top {
             width: 100%;
             position: absolute;
             top: -20px;
-            padding-right:1px;
 
             .top-left {
-                float:left;
-                background-size:cover;
-                width:66.5px;
-                height:19.5px;
+                float: left;
+                background-size: cover;
+                width: 66px;
+                height: 20px;
             }
 
             .top-repeat {
-                float:left;
-                background-size:100% 20.5px;
-                width:calc(100% - 129px);
-                height:20px;
-                margin:0 -2px;
+                float: left;
+                background-size: 100% 20px;
+                width: calc(100% - 129px);
+                height: 20px;
+                margin: 0 -2px;
             }
 
             .top-right {
-                float:right;
-                background-size:cover;
-                width:66.5px;
-                height:19.5px;
+                float: right;
+                background-size: cover;
+                width: 66px;
+                height: 20px;
             }
         }
 
         .decoration-middle {
-            padding:20px 0;
+            padding: 20px 0;
             overflow: hidden;
         }
 
         .decoration-right {
             position: relative;
-            width:23px;
-            background-size:100% 22.5px;
+            width: 22px;
+            background-size: 23px;
 
             .right-repeat-top {
                 position: absolute;
-                top:0px;
-                background-size:cover;
-                width:23px;
-                height:46px;
-                left:0px;
+                top: 0px;
+                background-size: cover;
+                width: 22px;
+                height: 47px;
+                left: 0px;
             }
 
             .right-repeat-bottom {
                 position: absolute;
-                bottom:0;
-                background-size:cover;
-                width:23px;
-                height:46px;
-                left:0px;
+                bottom: 0;
+                background-size: cover;
+                width: 22px;
+                height: 47px;
+                left: 0px;
             }
         }
 
@@ -184,52 +246,51 @@
             width: 100%;
             position: absolute;
             bottom: -20px;
-            padding-right:1px;
 
             .bottom-left {
-                float:left;
-                background-size:cover;
-                width:66.5px;
-                height:20px;
+                float: left;
+                background-size: cover;
+                width: 66px;
+                height: 20px;
             }
 
             .bottom-repeat {
-                float:left;
-                background-size:100% 20px;
-                width:calc(100% - 129px);
-                height:20px;
-                margin:0 -2px;
+                float: left;
+                background-size: 100% 20px;
+                width: calc(100% - 129px);
+                height: 20px;
+                margin: 0 -2px;
             }
 
             .bottom-right {
-                float:right;
-                background-size:cover;
-                width:66.5px;
-                height:20px;
+                float: right;
+                background-size: cover;
+                width: 66px;
+                height: 20px;
             }
         }
 
         .decoration-left {
             position: relative;
-            width:23px;
-            background-size:100% 23px;
+            width: 23px;
+            background-size: 100% 23px;
 
             .left-repeat-top {
                 position: absolute;
-                top:0;
+                top: 0;
                 //left:.5px;
-                background-size:cover;
-                width:23px;
-                height:46px;
+                background-size: cover;
+                width: 23px;
+                height: 47px;
             }
 
             .left-repeat-bottom {
                 position: absolute;
-                bottom:0;
+                bottom: 0;
                 //left:.5px;
-                background-size:cover;
-                width:23px;
-                height:46px;
+                background-size: cover;
+                width: 23px;
+                height: 45px;
             }
         }
     }

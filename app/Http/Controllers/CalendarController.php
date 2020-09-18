@@ -42,7 +42,7 @@ class CalendarController extends Controller
     {
         return view('pages.v3.calendar.show', [
             'item' => $this->client->calendar($id),
-            'items' => []
+            'items' => $this->client->relatedCalendarEvents($id)
         ]);
     }
 

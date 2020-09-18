@@ -32,4 +32,143 @@
         }
     }
 
+    .frame {
+        &.simple {
+            .decoration-top {
+                width: calc(100% - 2px);
+
+                .top-left {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_top-left.png') !important
+                }
+
+                .top-repeat {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_top-repeat.png') !important;
+                    background-size: 100% 20px;
+                }
+
+                .top-right {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_top-right.png') !important;
+                    width:66px;
+                }
+            }
+            .decoration-right {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_right-repeat.png') !important;
+
+                .right-repeat-top {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_right-repeat-top.png') !important;
+                }
+
+                .right-repeat-bottom {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_right-repeat-bottom.png') !important;
+                }
+            }
+
+            .decoration-bottom {
+
+                .bottom-left {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_bottom-left.png') !important;
+                }
+
+                .bottom-repeat {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_bottom-repeat.png') !important;
+                }
+
+                .bottom-right {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_bottom-right.png') !important;
+                }
+            }
+
+            .decoration-left {
+                background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_left-repeat.png') !important;
+
+                .left-repeat-top {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_left-repeat-top.png') !important;
+                }
+
+                .left-repeat-bottom {
+                    background-image:url('/img/themes_copyright/atlas-kraken/gem_frame_left-repeat-bottom.png') !important;
+                }
+            }
+        }
+
+        &.big {
+            .decoration-top {
+                .top-left {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_top-left.png');
+                }
+
+                .top-repeat {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_top-repeat.png');
+                }
+
+                .top-right {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_top-right.png');
+                }
+            }
+
+            .decoration-right {
+                background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_right-repeat.png');
+
+                .right-repeat-top {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_right-repeat-top.png');
+                }
+
+                .right-repeat-bottom {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_right-repeat-bottom.png');
+                }
+            }
+
+            .decoration-bottom {
+                .bottom-left {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_bottom-left.png');
+                }
+
+                .bottom-repeat {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_bottom-repeat.png');
+                }
+
+                .bottom-right {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_bottom-right.png');
+                }
+            }
+
+            .decoration-left {
+                background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_left-repeat.png');
+
+                .left-repeat-top {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_left-repeat-top.png');
+                }
+
+                .left-repeat-bottom {
+                    background-image:url('/img/themes_copyright/atlas-kraken/rock_frame_left-repeat-bottom.png');
+                }
+            }
+        }
+    }
+
+    .btn-theme {
+
+        background-image:url('/img/themes_copyright/atlas-kraken/button.png');
+
+        &:hover {
+            background-image:url('/img/themes_copyright/atlas-kraken/button_hover.png');
+        }
+
+
+        &.btn-theme-gem {
+            background-image:url('/img/themes_copyright/atlas-kraken/button_gem.png');
+
+            &:hover {
+                background-image:url('/img/themes_copyright/atlas-kraken/button_gem_hover.png');
+            }
+        }
+
+        &.btn-theme-rock {
+            background-image:url('/img/themes_copyright/atlas-kraken/button_rock.png');
+
+            &:hover {
+                background-image:url('/img/themes_copyright/atlas-kraken/button_rock_hover.png');
+            }
+        }
+    }
 }

@@ -70,9 +70,7 @@
         border-color:$white;
         background:var(--primary-color);
         border:0;
-        border-color: $white;
         background: transparent !important;
-        text-shadow: 1px 1px 13px #000;
         font-size: 22px;
         z-index: 5;
         margin-top:12px;
@@ -121,17 +119,16 @@
         }
 
         > li {
-            font-size: 16px;
+            font-size: 1rem;
 
             > a,
             > span,
             > .dropdown > a,
             > .dropdown > span {
-                color: $white;
+                color: var(--navigation-text-color);
                 padding: 10px 20px;
                 line-height: 30px;
                 text-decoration: none;
-                text-shadow: 1px 1px 13px #000;
 
                 @media (max-width:1199px) {
                     padding-right:10px;
@@ -140,10 +137,6 @@
 
                 @media (max-width:991px) {
                     font-size:14px;
-                }
-
-                @media (max-width: 767px) {
-                    text-shadow: none;
                 }
 
                 @include transition(all .2s);
@@ -156,7 +149,6 @@
                     margin-left: 20px;
                     margin-right: 12px;
                     border: 1px $white solid;
-                    text-shadow: none;
                     outline:none;
 
                     @include transition(background .2s);
@@ -171,7 +163,6 @@
                 &.login {
                     &:hover {
                         color: var(--primary-color);
-                        text-shadow: 1px 1px 13px #000;
                         border: 1px var(--primary-color) solid;
 
                         strong {
@@ -180,7 +171,6 @@
 
                         @media (max-width: 767px) {
                             color: $white;
-                            text-shadow: none;
                             border: 1px $white solid;
                         }
                     }
@@ -210,7 +200,6 @@
 
                     &:hover {
                         color: var(--primary-color);
-                        text-shadow: 1px 1px 13px #000;
                         border: 1px var(--primary-color) solid;
                         background:transparent;
 
@@ -220,16 +209,13 @@
 
                         @media (max-width: 767px) {
                             color: $white;
-                            text-shadow: none;
                             border: 1px $white solid;
                         }
                     }
 
                     &:focus {
                         color: var(--primary-color);
-                        text-shadow: 1px 1px 13px #000;
                         border: 1px var(--primary-color) solid;
-                        text-shadow: none;
                         background:transparent;
 
                         .caret {
@@ -238,7 +224,6 @@
 
                         @media (max-width: 767px) {
                             color: $white;
-                            text-shadow: none;
                             border: 1px $white solid;
                         }
                     }
@@ -271,7 +256,6 @@
                         float: right;
                         margin: 4px 0 0 10px;
                         padding: .4em .6em;
-                        text-shadow: none;
                     }
                 }
 
@@ -293,18 +277,15 @@
 
                 &.active {
                     color:var(--primary-color);
-                    text-shadow: 1px 1px 3px #000;
 
                     @media (max-width: 767px) {
                         color:$grey;
-                        text-shadow: none;
                     }
 
                     .label {
                         background: transparent;
                         border:1px var(--primary-color) solid;
                         color:var(--primary-color);
-                        text-shadow: 1px 1px 3px #000;
                     }
                 }
 
@@ -424,6 +405,10 @@
 
     .navbar-collapse {
         margin-top:4px;
+    }
+
+    .navbar-right ul.dropdown-menu {
+        min-width:200px;
     }
 }
 
@@ -589,5 +574,6 @@
 }
 
 .nav-filler {
-    display: none;
+    display:block;
+    height:60px;
 }

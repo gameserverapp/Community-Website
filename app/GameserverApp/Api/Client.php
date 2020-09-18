@@ -207,7 +207,7 @@ class Client
     
     public function messages($box, $route)
     {
-        $response = $this->api()->authRequest('get', 'messages/' . $box, [], false);
+        $response = $this->api()->authRequest('get', 'messages/' . $box . '?page='. request('page', 1), [], false);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -248,11 +248,7 @@ class Client
 
     public function calendar($id)
     {
-        if(auth()->check()) {
-            return CalendarTransformer::transform($this->api()->authRequest('get', 'calendar/' . $id, [], 2));
-        }
-
-        return CalendarTransformer::transform($this->api()->guestRequest('get', 'calendar/' . $id, [], 2));
+        return CalendarTransformer::transform($this->api()->authRequest('get', 'calendar/' . $id, [], 2));
     }
 
     public function participateCalendarEvent($id)
@@ -260,6 +256,20 @@ class Client
         $this->clearCache('get', 'calendar/' . $id);
 
         return $this->api()->authRequest('post', 'calendar/' . $id . '/participate');
+    }
+
+    public function relatedNews($id)
+    {
+        return NewsTransformer::transformMultiple(
+            $this->api()->guestRequest('get', 'news/' . $id . '/related', [], 2)
+        );
+    }
+
+    public function relatedCalendarEvents($id)
+    {
+        return CalendarTransformer::transformMultiple(
+            $this->api()->guestRequest('get', 'calendar/' . $id . '/related', [], 2)
+        );
     }
 
     public function allNews($route, $args = [])
@@ -336,9 +346,9 @@ class Client
         return SupportTierTransformer::transform($this->api()->guestRequest('get', 'supporter-tier/' . $id));
     }
 
-    public function allSupporterTiers($route)
+    public function allSupporterTiers($route, $page = 1)
     {
-        $response = $this->api()->guestRequest('get', 'supporter-tier');
+        $response = $this->api()->guestRequest('get', 'supporter-tier?page=' . $page);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -413,9 +423,9 @@ class Client
         return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/cancel');
     }
 
-    public function shopItems($route)
+    public function shopItems($route, $category = '')
     {
-        $response = $this->api()->authRequest('get', 'shop?page=' . request()->get('page', null));
+        $response = $this->api()->authRequest('get', 'shop?page=' . request()->get('page', null) . '&category=' . $category);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -436,11 +446,7 @@ class Client
 
     public function shopItem($id)
     {
-        if(auth()->check()) {
-            return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], 2));
-        }
-
-        return ShopTransformer::transform($this->api()->guestRequest('get', 'shop/' . $id, [], 2));
+        return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], 2));
     }
 
     public function purchaseShopItem($id, $characterId)
@@ -454,7 +460,7 @@ class Client
 
     public function shopOrders($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/orders');
+        $response = $this->api()->authRequest('get', 'user/me/orders?page=' . request()->get('page', null));
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -636,7 +642,7 @@ class Client
 
     private function paginatedResponse($response, $path = null)
     {
-        return new LengthAwarePaginator(
+        $class = new LengthAwarePaginator(
             $response->items,
             $response->total,
             $response->per_page,
@@ -645,5 +651,11 @@ class Client
                 'path' => $path
             ]
         );
+
+        if(isset($response->categories)) {
+            $class->categories = $response->categories;
+        }
+
+        return $class;
     }
 }

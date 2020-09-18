@@ -1,14 +1,7 @@
-.defaultcontent {
-    h1,h2,h3,h4,h5,h6 {
-        color: var(--primary-color);
-        margin-bottom:1rem;
-    }
-}
-
-.nav-filler {
-    display:block;
-    height:60px;
-}
-
 @import 'theme-extinction',
-'theme-atlas-kraken';
+'theme-atlas-kraken',
+'theme-aberration',
+'theme-aberration-gold',
+'theme-aberration-silver',
+'theme-aberration-silver-red',
+'theme-aberration-silver-green';

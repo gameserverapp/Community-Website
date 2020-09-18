@@ -4,6 +4,7 @@ namespace GameserverApp\Models;
 
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
+use Illuminate\Support\Str;
 
 class SupportTier extends Model implements LinkableInterface
 {
@@ -17,6 +18,11 @@ class SupportTier extends Model implements LinkableInterface
     public function description()
     {
         return $this->description;
+    }
+
+    public function summary()
+    {
+        return Str::limit(strip_tags($this->description()));
     }
 
     public function totalPrice()

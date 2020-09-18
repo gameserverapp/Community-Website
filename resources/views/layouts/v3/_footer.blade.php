@@ -50,21 +50,6 @@
                             <form style="display:inline-block" method="post" action="{{route('user.switch-theme')}}">
                                 {{csrf_field()}}
                                 <?php
-                                $themePath = base_path('resources/assets/sass/v2/layout/themes');
-                                $dirs = scandir($themePath);
-
-                                $dirs = array_filter($dirs, function($item) {
-                                    return !in_array($item, ['.', '..', 'index.scss']);
-                                });
-
-                                $dirs = array_map(function($item) {
-                                    if($item == 'basic') {
-                                        return 'default';
-                                    }
-
-                                    return $item;
-                                }, $dirs);
-
                                 $overrideCookie = 0;
                                 if(Cookie::has('override_theme')) {
                                     $overrideCookie = Cookie::get('override_theme');
@@ -74,7 +59,7 @@
                                 <select name="theme" onchange="submit();">
                                     <option @if($overrideCookie === '0') selected @endif value="0">- Inherit from settings -</option>
 
-                                    @foreach($dirs as $dir)
+                                    @foreach(themes() as $dir)
                                         <option  @if($overrideCookie === $dir) selected @endif value="{{$dir}}">{{$dir}}</option>
                                     @endforeach
                                 </select>
@@ -91,3 +76,7 @@
 
 <script async src="https://use.fontawesome.com/e8189963c5.js"></script>
 <script type="text/javascript" src="{{ mix('js/bundle.js') }}"></script>
+
+@if(config('app.env') == 'local')
+    <script src="http://localhost:35729/livereload.js"></script>
+@endif

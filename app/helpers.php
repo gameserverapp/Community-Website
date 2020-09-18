@@ -38,6 +38,14 @@ function mb_unserialize($string) {
     return unserialize($string2);
 }
 
+function calcPercentage($full, $calc)
+{
+    if($full == 0) {
+        return 0;
+    }
+
+    return $calc*100/$full;
+}
 
 function alertOnSlack($data, $channel = 'bugsnag')
 {
@@ -75,4 +83,17 @@ function alertOnSlack($data, $channel = 'bugsnag')
 function translate($key, $default = '')
 {
     return SiteHelper::translation($key, $default);
+}
+
+function themes() {
+    return [
+        'default',
+        'aberration',
+        'aberration-gold',
+        'aberration-silver',
+        'aberration-silver-red',
+        'aberration-silver-green',
+        'atlas-kraken',
+        'extinction',
+    ];
 }

@@ -132,7 +132,7 @@ class Character extends Model implements LinkableInterface
             $gear = 'riot';
         }
 
-        return $link . $gear . '.png';
+        return '/img/character/' . $link . $gear . '.png';
     }
 
     //linkable

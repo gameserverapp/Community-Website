@@ -45,50 +45,49 @@ use GameserverApp\Helpers\SiteHelper;
                         <br>
                     @endif
 
+                    <form method="post" action="{{$package->orderUrl()}}">
+                        {{csrf_field()}}
+                        
+                        @component('partials.v3.frame', [
+                            'type' => 'big'
+                        ])
+                            <h4>Order contents</h4>
 
+                            {!! Markdown::convertToHtml($package->description()) !!}
 
-                    @component('partials.v3.frame', [
-                        'type' => 'big'
-                    ])
-                        <h4>Order contents</h4>
-
-                        {!! Markdown::convertToHtml($package->description()) !!}
-
-                        @if($package->tokenPrice() > 0)
-                            <p>
-                                <strong>
-                                    Price: {{$package->displayTokenPrice()}}
-                                </strong>
-                            </p>
-                        @endif
-
-                        @if(auth()->check() and !$package->isEmptyPack())
-                            <hr>
-                            @if($package->hasCharacters())
-                                <div class="text-center">
-                                    <label>Deliver to:</label>
-                                    <select name="character_id">
-                                        @foreach($package->characters() as $character)
-                                            @if($character->status)
-                                                <option selected value="{{$character->id}}">{{$character->name()}} [online]</option>
-                                            @else
-                                                <option value="{{$character->id}}">{{$character->name()}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @else
-                                <div class="alert alert-danger">
-                                    You do not have a character to deliver this shop pack to.
-                                </div>
+                            @if($package->tokenPrice() > 0)
+                                <p>
+                                    <strong>
+                                        Price: {{$package->displayTokenPrice()}}
+                                    </strong>
+                                </p>
                             @endif
-                        @endif
-                    @endcomponent
+
+                            @if(auth()->check() and !$package->isEmptyPack())
+                                <hr>
+                                @if($package->hasCharacters())
+                                    <div class="text-center">
+                                        <label>Deliver to:</label>
+                                        <select name="character_id">
+                                            @foreach($package->characters() as $character)
+                                                @if($character->status)
+                                                    <option selected value="{{$character->id}}">{{$character->name()}} [online]</option>
+                                                @else
+                                                    <option value="{{$character->id}}">{{$character->name()}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @else
+                                    <div class="alert alert-danger">
+                                        You do not have a character to deliver this shop pack to.
+                                    </div>
+                                @endif
+                            @endif
+                        @endcomponent
 
 
-                    @if(auth()->check())
-                        <form method="post" action="{{$package->orderUrl()}}">
-                            {{csrf_field()}}
+                        @if(auth()->check())
 
                             <div class="row">
                                 <div class="col-md-8 center-block">
@@ -138,11 +137,11 @@ use GameserverApp\Helpers\SiteHelper;
                             </div>
 
 
-                        </form>
-                    @else
-                        <div class="alert alert-info">Please <a href="{{route('auth.login')}}">login</a> to continue</div>
-                    @endif
+                        @else
+                            <div class="alert alert-info">Please <a href="{{route('auth.login')}}">login</a> to continue</div>
+                        @endif
 
+                    </form>
                 </div>
             </div>
         </div>

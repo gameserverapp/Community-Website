@@ -47,7 +47,7 @@ use GameserverApp\Helpers\SiteHelper;
 
                     <form method="post" action="{{$package->orderUrl()}}">
                         {{csrf_field()}}
-                        
+
                         @component('partials.v3.frame', [
                             'type' => 'big'
                         ])
@@ -123,7 +123,7 @@ use GameserverApp\Helpers\SiteHelper;
 
                                         <h6>When do I get it?</h6>
                                         <p>
-                                            Your order is delivered automatically when you are online. This usually takes less than 1 minute. You're alerted in-game on the status.
+                                            Your order is delivered automatically when you are online. This usually takes less than 1 minute. You're notified in-game about the status.
                                         </p>
 
                                         <br>

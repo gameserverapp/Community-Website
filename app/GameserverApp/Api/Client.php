@@ -516,6 +516,11 @@ class Client
         $this->api()->clearCache($method, $route, $options);
     }
 
+    public function clearAllCacheForSite()
+    {
+        $this->api()->clearAllCache();
+    }
+
     public function myContacts()
     {
         return UserTransformer::transformMultiple(

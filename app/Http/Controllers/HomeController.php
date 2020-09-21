@@ -97,9 +97,7 @@ class HomeController extends Controller
 
     public function purge()
     {
-        $this->api->clearCache('get', 'domain/settings', [
-            'no_404_exception' => true
-        ]);
+        $this->api->clearAllCacheForSite();
     }
 
     public function verify(Request $request, $code)

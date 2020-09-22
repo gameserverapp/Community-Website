@@ -4,7 +4,7 @@
 @endif
 
 <?php
-$footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' class="btn champ small"><span>Submit</span></button>';
+$footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' class="btn btn-theme small"><span>Submit</span></button>';
 ?>
 
 @component('partials.v3.frame', ['title' => $block['name'], 'class' => 'formbuilder', 'footer' => $footer])

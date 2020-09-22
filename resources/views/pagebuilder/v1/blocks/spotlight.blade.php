@@ -1,40 +1,39 @@
 <article class="spotlight ">
 
-        <div class="row">
-            <div class="col-md-12 title">
-                <h1>
-                    Spotlight
-                </h1>
-            </div>
+    <div class="row">
+        <div class="col-md-12 title">
+            <h1>
+                Spotlight
+            </h1>
         </div>
+    </div>
 
-        <div class="row">
+    <div class="row">
 
-            @forelse( $spotlight as $item )
+        @forelse( $spotlight as $item )
 
-                @if( $item instanceof GameserverApp\Models\Character )
-                    <div class="col-sm-6 col-md-4">
-                        @include('pages.v1.partials.character-card', [
-                            'character' => $item
-                        ])
-                    </div>
-                @endif
-
-                @if( $item instanceof GameserverApp\Models\Tribe )
-                    <div class="col-sm-6 col-md-4">
-                        @include('pages.v1.partials.tribe-card', [
-                            'tribe' => $item
-                        ])
-                    </div>
-                @endif
-
-            @empty
-                <div class="col-md-12">
-                    <em>No spotlight items found</em>
+            @if( $item instanceof GameserverApp\Models\Character )
+                <div class="col-sm-6 col-md-4">
+                    @include('partials.v3.character-card', [
+                        'character' => $item
+                    ])
                 </div>
-            @endforelse
+            @endif
 
-        </div>
+            @if( $item instanceof GameserverApp\Models\Tribe )
+                <div class="col-sm-6 col-md-4">
+                    @include('partials.v3.group-card', [
+                        'tribe' => $item
+                    ])
+                </div>
+            @endif
+
+        @empty
+            <div class="col-md-12">
+                <em>No spotlight items found</em>
+            </div>
+        @endforelse
 
     </div>
+
 </article>

@@ -1,6 +1,6 @@
 .label-theme {
     color:var(--bg-color) !important;
-    background-color:var(--primary-color);
+    background-color:var(--secondary-color);
     text-decoration: none !important;
 
     a {
@@ -10,5 +10,12 @@
         &:hover {
             text-decoration: none;
         }
+    }
+
+    &.small {
+        font-size: .6rem;
+        padding: 0.1rem .3rem;
+        vertical-align: middle;
+        line-height: 0rem;
     }
 }

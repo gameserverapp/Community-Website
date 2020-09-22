@@ -1,47 +1,44 @@
 <article class="">
-
-        @if(isset($block['title']))
-        <header class="row rownav">
+    @if(isset($block['title']))
+        <header class="row">
             <div class="col-md-12">
-                <div>
-                    <h1 class="text-center">{{ $block['title'] }}</h1>
-                </div>
+                <h1>{{ $block['title'] }}</h1>
             </div>
         </header>
-        @endif
+    @endif
 
-        <div class="row tribe_list">
-            <div class="col-md-12">
-                <div class="slider owl-theme">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="slider owl-theme">
 
-                    <?php
-                    $count = 0;
-                    $limit = 3;
-                    ?>
-                    @foreach( $tribes as $group )
+                <?php
+                $count = 0;
+                $limit = 3;
+                ?>
+                @foreach( $tribes as $group )
 
-                        @if($count == 0)
-                            <div class="item">
-                                <div class="content row">
-                                    @endif
+                    @if($count == 0)
+                        <div class="item">
+                            <div class="content row">
+                                @endif
 
-                                    <?php $count++; ?>
+                                <?php $count++; ?>
 
-                                    <div class=" col-sm-4">
-                                        @include('partials.v3.group-card', [
-                                            'group' => $group
-                                        ])
-                                    </div>
-
-                                    @if( $count == $limit )
+                                <div class=" col-sm-4">
+                                    @include('partials.v3.group-card', [
+                                        'group' => $group
+                                    ])
                                 </div>
+
+                                @if( $count == $limit )
                             </div>
-                            <?php $count = 0; ?>
-                        @endif
+                        </div>
+                        <?php $count = 0; ?>
+                    @endif
 
-                    @endforeach
+                @endforeach
 
-                </div>
             </div>
         </div>
+    </div>
 </article>

@@ -1,7 +1,7 @@
 <?php
 return [
     'primary-color' => '#b326b0',
-    'secondary-color' => '#f00',
+    'secondary-color' => '#f00',//#337ab7',
 
     'bg-color' => '#222',
 

@@ -2,7 +2,7 @@ let mix  = require('laravel-mix');
 
 var browserify = require('browserify');
 var fs = require('fs');
-var LiveReloadPlugin = require('webpack-livereload-plugin');
+// var LiveReloadPlugin = require('webpack-livereload-plugin');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -14,11 +14,11 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
  |
  */
 
-mix.webpackConfig({
-    plugins: [
-        new LiveReloadPlugin()
-    ]
-});
+// mix.webpackConfig({
+//     plugins: [
+//         new LiveReloadPlugin()
+//     ]
+// });
 
 
 // mix.copy('./resources/assets/js/app.js', './public/build/js/app.js');

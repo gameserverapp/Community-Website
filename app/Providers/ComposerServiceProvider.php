@@ -64,7 +64,7 @@ class ComposerServiceProvider extends ServiceProvider
         ];
 
         foreach ($composers as $view => $composer) {
-            View::composer('pages.v1.page.blocks.' . $view, $composer);
+            View::composer('pagebuilder.v1.blocks.' . $view, $composer);
         }
     }
 }

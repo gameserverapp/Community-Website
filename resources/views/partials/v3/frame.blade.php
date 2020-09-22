@@ -11,6 +11,7 @@
                     <div class=" header" @isset($banner['image']) style="background-image:url('{{$banner['image']}}')" @endisset>
                         <h1 class="title">{{$banner['title']}}</h1>
 
+                        @if(isset($banner['category']) or isset($banner['date']))
                         <div class="meta">
 
                             @isset($banner['category'])
@@ -25,6 +26,7 @@
                                 </time>
                             @endif
                         </div>
+                        @endif
 
                     </div>
                 @endif
@@ -36,6 +38,12 @@
                 @endisset
 
                 {!! $slot !!}
+
+                @isset($footer)
+                    <div class="frame-footer">
+                        {!! $footer !!}
+                    </div>
+                @endif
             </td>
             <td class="decoration-right">
                 <div class="right-repeat-top"></div>

@@ -324,7 +324,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 //
         $class = $size . ' ' . implode(' ', $class);
 
-        return '<span title="' . $title . '" class="user-status  ' . $class . '"></span>';
+        return '<span title="' . $title . '" class="status  ' . $class . '"></span>';
     }
 
     public function indexRoute()

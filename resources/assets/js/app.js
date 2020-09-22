@@ -107,8 +107,8 @@ $(document).ready(function () {
             mouseDrag: false,
             touchDrag: false,
             itemsDesktop: false, //5 items between 1000px and 901px
-            itemsDesktopSmall: [991, 2], // betweem 900px and 601px
-            itemsTablet: [600, 1], //2 items between 600 and 0
+            itemsDesktopSmall: [1500, 2], // betweem 900px and 601px
+            itemsTablet: [767, 1], //2 items between 600 and 0
             dots: false
         });
     }
@@ -244,31 +244,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    if($(".server-block").length) {
-        $(".server-block").each(function(i, elm) {
-
-            var id = $(elm).data('id');
-
-            if(
-                id == undefined ||
-                $(elm).hasClass('loaded')
-            ) {
-                return;
-            }
-
-            $.get({
-                url: '/server/' + $(elm).data('id'),
-                success: function(data, textStatus, xhr) {
-                    $('.server-block-' + id).replaceWith(data);
-                }
-            }).fail(function(data) {
-                console.log('failed');
-            });
-        });
-    }
-
-
 
     if($(".server-block").length) {
         $(".server-block").each(function(i, elm) {

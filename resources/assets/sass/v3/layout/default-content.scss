@@ -36,11 +36,12 @@ h4,h5,h6 {
     line-height: 2rem;
 }
 
-p {
+p, li, label {
     color:var(--light-text)
 }
 
 a {
+    color:var(--primary-color);
     text-decoration: underline;
     
     &:hover {
@@ -49,7 +50,7 @@ a {
 }
 
 td a {
-    color:var(--primary-color)
+    color:var(--primary-color);
 }
 
 .btn-link {
@@ -82,6 +83,10 @@ input[type=text] {
 
 hr {
     border-color:var(--hr-color);
+}
+
+.table {
+    margin:0;
 }
 
 

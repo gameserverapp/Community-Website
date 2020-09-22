@@ -77,6 +77,6 @@
 <script async src="https://use.fontawesome.com/e8189963c5.js"></script>
 <script type="text/javascript" src="{{ mix('js/bundle.js') }}"></script>
 
-@if(config('app.env') == 'local')
-    <script src="http://localhost:35729/livereload.js"></script>
-@endif
+{{--@if(config('app.env') == 'local')--}}
+{{--    <script src="http://localhost:35729/livereload.js"></script>--}}
+{{--@endif--}}

@@ -1,0 +1,133 @@
+.server-block {
+    position: relative;
+    overflow: hidden;
+    background:var(--transparent-bg);
+
+    @include border-radius(5px);
+
+    .server-block-content {
+        position: relative;
+        z-index:1;
+        padding:5rem 2rem 4rem;
+        text-align: center;
+
+        .title {
+            text-align: center;
+            color:#fff;
+            text-shadow: 1px 1px 13px #000;
+        }
+
+        .join-btn {
+            margin-bottom:1rem;
+        }
+
+        .info {
+            position: absolute;
+            left:0;
+            bottom:1rem;
+            width:100%;
+            font-size:.8rem;
+
+            .label {
+                margin-right:1rem;
+            }
+        }
+    }
+
+    .top-nav {
+        position: absolute;
+        width:100%;
+        top:0;
+        left:0;
+        z-index:3;
+        padding:1rem 2rem 1rem 1rem;
+
+        .vote  {
+            display: inline-block;
+        }
+
+        .preload {
+            display: inline-block;
+        }
+
+        .status_message,
+        .version,
+        .status,
+        .status strong {
+            display: inline-block;
+            float:right;
+        }
+
+        .status_message {
+            padding-top:5px;
+        }
+    }
+
+    .server-block-content .info span:not(.label),
+    .status_message,
+    .version,
+    .version strong {
+        font-size:.8rem !important;
+        color:#fff;
+        text-shadow: 1px 1px 13px #000;
+    }
+
+    .background {
+        position: absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+        width:100%;
+        background-size: cover;
+
+        &:after {
+            position: absolute;
+            content: ' ';
+            width:110%;
+            min-height:110%;
+            top:-10px;
+            bottom:-10px;
+            left:-10px;
+            right:-10px;
+
+            background-color: #000;
+            opacity: 0.22;
+            transition: opacity ease .2s;
+        }
+    }
+
+    &:hover {
+        .background:after {
+            opacity:.62;
+        }
+    }
+
+    .status,
+    .preload {
+        position: absolute;
+        top:$inner-gutter;
+        right:$inner-gutter;
+    }
+
+    .preload {
+        top:8px;
+    }
+
+    .loader {
+        display: inline-block;
+        border: 2px solid var(--bg-color);
+        border-top: 2px solid var(--primary-color);
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        animation: spin 1s linear infinite;
+        margin-top:-2px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}

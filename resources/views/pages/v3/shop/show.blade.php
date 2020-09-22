@@ -136,7 +136,6 @@ use GameserverApp\Helpers\SiteHelper;
                                 </div>
                             </div>
 
-
                         @else
                             <div class="alert alert-info">Please <a href="{{route('auth.login')}}">login</a> to continue</div>
                         @endif

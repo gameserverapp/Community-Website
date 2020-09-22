@@ -1,0 +1,110 @@
+.big_banner_row {
+
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+
+    &:after {
+        content: ' ';
+        position: absolute;
+        width:100%;
+        min-height:100%;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:1;
+
+        background-color: #000;
+        opacity: 0.42;
+        mix-blend-mode: multiply;
+    }
+
+
+    .big_banner {
+        min-height: 80vh;
+
+        .content-wrapper {
+            position: relative;
+            text-align: center;
+            padding-top:25vh;
+
+            z-index:2;
+
+            h1 {
+                font-weight: bold;
+                font-size:110px;
+                line-height: 120px;
+                text-shadow: 1px 1px 13px #000;
+                margin-top:0;
+                margin-bottom:1rem;
+                color:#fff !important;
+            }
+
+            h2 {
+                font-size:40px;
+                line-height: 50px;
+                text-shadow: 1px 1px 6px #000;
+                color:#fff !important;
+                margin-top:0;
+                margin-bottom:2rem;
+                font-weight: normal;
+            }
+
+            .button-wrapper {
+                margin-top:20px;
+            }
+        }
+
+        @media (max-width:767px) {
+
+            min-height: auto;
+
+            .content-wrapper {
+                padding-top:60px;
+                padding-bottom:120px;
+
+                h1 {
+                    font-size:70px;
+                    line-height: 80px;
+                }
+
+                h2 {
+                    font-size:25px;
+                    line-height: 35px;
+                }
+            }
+        }
+
+        @media (max-width:500px) {
+
+            .content-wrapper {
+
+                h1 {
+                    font-size:30px;
+                    line-height: 40px;
+                    margin-bottom:10px;
+                }
+
+                h2 {
+                    font-size:20px;
+                    line-height: 30px;
+                }
+
+                .button-wrapper {
+                    margin-top:30px;
+                }
+            }
+        }
+    }
+
+    //.textcolor-dark {
+    //    .big_banner .content-wrapper {
+    //        h1, h2 {
+    //            color:#333 !important;
+    //            text-shadow: 1px 1px 13px #fff;
+    //        }
+    //    }
+    //}
+}
+

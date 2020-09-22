@@ -1,10 +1,10 @@
 <?php
 $title = 'Who\'s online?';
 
-if($characters->count() == 1) {
+if($totalOnline == 1) {
     $title .= ' <span class="label small label-theme">1 player online</span>';
 } else {
-    $title .= ' <span class="label small label-theme">' . $characters->count() . ' players online</span>';
+    $title .= ' <span class="label small label-theme">' . $totalOnline . ' players online</span>';
 }
 ?>
 

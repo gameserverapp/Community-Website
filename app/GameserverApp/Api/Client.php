@@ -139,6 +139,17 @@ class Client
             $characters = $this->api()->guestRequest('get', 'characters');
         }
 
+        if(isset($characters->total_online)) {
+            $totalOnline = $characters->total_online;
+
+            unset($characters->total_online);
+
+            return (object) [
+                'characters' => CharacterTransformer::transformMultiple($characters),
+                'total_online' => $totalOnline
+            ];
+        }
+
         return CharacterTransformer::transformMultiple($characters);
     }
 

@@ -12,7 +12,7 @@
     @foreach( $stats as $stat )
 
         <div class="col-md-{{$stat['col']}}">
-            @component('partials.v3.frame', ['title' => $stat['name']])
+            @component('partials.v3.frame', ['title' => $stat['name'], 'class' => 'tiny-padding'])
                 <div class="stat_canvas" data-value="" data-route="{{route('stat.index', $stat['route'])}}"><span>Loading...</span></div>
             @endcomponent
         </div>

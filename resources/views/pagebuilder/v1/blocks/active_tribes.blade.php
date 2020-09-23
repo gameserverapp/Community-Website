@@ -1,7 +1,7 @@
 <article class="">
     @if(isset($block['title']))
         <header class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 <h1>{{ $block['title'] }}</h1>
             </div>
         </header>

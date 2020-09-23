@@ -53,6 +53,25 @@
         }
     }
 
+    &.tiny-padding {
+
+        &.basic {
+            padding:.5rem;
+        }
+
+        &.basic,
+        &.simple,
+        &.big, {
+            .contentwrap {
+                padding: .5rem !important;
+            }
+
+            .frame-title {
+                margin: -.5rem -.5rem .5rem;
+            }
+        }
+    }
+
     &.no-padding {
 
         &.basic {

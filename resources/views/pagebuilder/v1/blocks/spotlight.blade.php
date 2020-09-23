@@ -1,7 +1,7 @@
 <article class="spotlight ">
 
     <div class="row">
-        <div class="col-md-12 title">
+        <div class="col-md-12 text-center">
             <h1>
                 Spotlight
             </h1>

@@ -1,0 +1,38 @@
+.news-activity {
+
+    ul, li {
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+
+    li {
+        margin-bottom:2rem;
+    }
+
+    .title-category {
+
+        .label {
+            display: inline-block;
+            margin-right:.5rem;
+        }
+
+        .title {
+            font-weight: bold;
+            display: inline-block;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    }
+    
+    .summary {
+        a {
+            text-decoration: none;
+
+            .description {
+                color: var(--content-text-color)
+            }
+        }
+    }
+}

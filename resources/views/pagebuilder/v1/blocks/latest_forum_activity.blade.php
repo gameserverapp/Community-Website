@@ -46,7 +46,8 @@ use GameserverApp\Helpers\SiteHelper;
         @endforelse
     </ul>
     @if($lastForumThreads)
-        <a href="{{route('forum.index')}}" class="btn champ ghost dark inverted small ">
+
+        <a href="{{route('forum.index')}}" class="btn btn-theme btn-theme-rock">
             <span>
                 Forum &raquo;
             </span>

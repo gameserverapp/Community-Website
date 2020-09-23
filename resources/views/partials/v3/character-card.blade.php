@@ -18,7 +18,7 @@ use GameserverApp\Helpers\SiteHelper;
             <div class="col-md-7 account">
 
                 <h5>
-                    {!! $character->showLink() !!}
+                    {!! $character->showLink(['limit' => 13]) !!}
                 </h5>
 
                 <div class="summary">

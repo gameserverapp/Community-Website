@@ -30,7 +30,7 @@ if($totalOnline == 1) {
                     <td></td>
                     <td>
                         {!! $character->showLink([
-                            'limit' => 12
+                            'limit' => 13
                         ]) !!}
                     </td>
                     <td>
@@ -38,7 +38,7 @@ if($totalOnline == 1) {
                     </td>
                     <td>
                         @if($character->hasServer())
-                            {{$character->server->name()}}
+                            {{$character->server->name(10)}}
                         @endif
                     </td>
                 </tr>

@@ -10,9 +10,9 @@ class Server extends Model implements LinkableInterface
 {
     use Linkable;
 
-    public function name()
+    public function name($limit = 16)
     {
-        return str_limit($this->name, 16, '');
+        return str_limit($this->name, $limit, '');
     }
 
     public function connectAddress()

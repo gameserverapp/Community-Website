@@ -21,12 +21,12 @@
                 <td></td>
                 <td>{{$count}}</td>
                 <td>
-                    {!! $character->showLink(['limit' => 12]) !!}
+                    {!! $character->showLink(['limit' => 13]) !!}
                 </td>
                 <td>{{$character->level}}</td>
                 <td>
                     @if($character->hasServer())
-                        {{$character->server->name()}}
+                        {{$character->server->name(10)}}
                     @endif
                 </td>
             </tr>

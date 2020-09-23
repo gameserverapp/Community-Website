@@ -17,7 +17,7 @@
                     <td></td>
                     <td>
                         {!! $character->showLink([
-                            'limit' => 12
+                            'limit' => 13
                         ]) !!}
                     </td>
                     <td>

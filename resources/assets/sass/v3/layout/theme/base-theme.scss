@@ -271,6 +271,8 @@
 
 .btn-theme {
 
+    @include border-radius(0);
+
     &.btn-theme-basic {
         background-image: none;
 
@@ -346,6 +348,7 @@
             height: 31px;
             padding: .5rem 0.3rem;
             margin-left: 0px;
+            line-height: 1rem;
 
             span {
                 font-size: .7rem;
@@ -359,6 +362,28 @@
 
                 span {
                     padding: 5px 0 0 8px;
+                }
+            }
+        }
+
+        &.tiny {
+            width: 99px;
+            height: 25px;
+            padding: .5rem 0.3rem;
+            margin-left: 0px;
+
+            span {
+                font-size: .6rem;
+            }
+
+            &.btn-theme-rock {
+                width: 107px;
+                height: 30px;
+                margin-top: -4px;
+                margin-left: -8px;
+
+                span {
+                    padding: 5px 0 0 9px;
                 }
             }
         }

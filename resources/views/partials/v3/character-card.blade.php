@@ -97,7 +97,7 @@ use GameserverApp\Helpers\SiteHelper;
                             @include('partials.v3.button', [
                                 'route' => route('message.create', $character->user->id),
                                 'title' => translate('recruit', 'Recruit'),
-                                'class' => 'btn-theme-rock small'
+                                'class' => 'btn-theme-rock tiny'
                             ])
                         @endif
 
@@ -116,7 +116,7 @@ use GameserverApp\Helpers\SiteHelper;
                             @include('partials.v3.button', [
                                 'route' => route('message.create', $character->user->id),
                                 'title' => translate('send_message', 'Send message'),
-                                'class' => 'small'
+                                'class' => 'tiny'
                             ])
                         @endif
                     </div>

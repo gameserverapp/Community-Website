@@ -40,10 +40,20 @@
     }
 
     &.small {
-        padding:.3rem .7rem;
+        padding:.4rem .7rem .5rem;
+        line-height: .7rem;
 
         span {
             font-size:.7rem;
+        }
+    }
+
+    &.tiny {
+        padding:.2rem .5rem .3rem;
+        line-height: .6rem;
+
+        span {
+            font-size:.6rem;
         }
     }
 }

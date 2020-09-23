@@ -9,7 +9,7 @@
         </h1>
 
         @if($character->hasServer())
-            <span class="label label-theme">{{$character->server->name()}}</span>
+            <span class="label label-theme alternative">{{$character->server->name()}}</span>
         @endif
     </a>
 </article>

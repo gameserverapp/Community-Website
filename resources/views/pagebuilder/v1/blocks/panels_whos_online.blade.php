@@ -2,9 +2,9 @@
 $title = 'Who\'s online?';
 
 if($totalOnline == 1) {
-    $title .= ' <span class="label small label-theme">1 player online</span>';
+    $title .= ' <span class="label label-theme alternative">1 player online</span>';
 } else {
-    $title .= ' <span class="label small label-theme">' . $totalOnline . ' players online</span>';
+    $title .= ' <span class="label label-theme alternative">' . $totalOnline . ' players online</span>';
 }
 ?>
 

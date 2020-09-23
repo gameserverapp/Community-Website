@@ -2,41 +2,43 @@
 use GameserverApp\Helpers\SiteHelper;
 ?>
 
-<div class="forum">
-    <h2>
+<div class="forum-activity">
+    <h1>
         Latest forum activity
-    </h2>
+    </h1>
 
     <ul>
         @forelse( $lastForumThreads as $thread )
             <li>
                 <article itemid="{{ Forum::route('thread.show', $thread) }}" itemscope itemtype="http://schema.org/DiscussionForumPosting">
-                    <h1 class="title">
-                        <a href="{{ Forum::route('thread.show', $thread->lastPost) }}">
-                            <span itemprop="headline">{{$thread->title}}</span>
-                            <div class="badge"  itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-                                <link itemprop="interactionType" href="http://schema.org/CommentAction" />
-                                <span itemprop="userInteractionCount">{{$thread->reply_count}}</span>
-                            </div>
-                        </a>
-                    </h1>
-                    <h3 class="category">
-                        Posted in
-                        <a href="{{ Forum::route('category.show', $thread->category) }}">
+                    <div class="title-category">
+                        <h1 class="title">
+                            <a href="{{ Forum::route('thread.show', $thread->lastPost) }}">
+                                <span itemprop="headline">{{$thread->title}}</span>
+                            </a>
+                        </h1>
+                        <div class="count badge"  itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+                            <link itemprop="interactionType" href="http://schema.org/CommentAction" />
+                            <span itemprop="userInteractionCount">{{$thread->reply_count}}</span>
+                        </div>
+                    </div>
+
+                    <div class="meta">
+                        <a class="category label label-theme alternative" href="{{ Forum::route('category.show', $thread->category) }}">
                             {{$thread->category->title}}
                         </a>
-                    </h3>
-                    <span class="author" itemprop="author">
-                        @if(SiteHelper::featureEnabled('user_page'))
-                            By {!! $thread->lastPost->author->showLink() !!}
-                        @else
-                            By {!! $thread->lastPost->author->showName() !!}
-                        @endif
-                    </span>
-                    |
-                    <time datetime="{{$thread->lastPost->date('updated_at')->toDateTimeString()}}" itemprop="datePublished">
-                        {{ $thread->lastPost->date('updated_at')->diffForHumans() }}
-                    </time>
+
+                        <time datetime="{{$thread->lastPost->date('updated_at')->toDateTimeString()}}" itemprop="datePublished">
+                            {{ $thread->lastPost->date('updated_at')->diffForHumans() }}
+                        </time>
+                        <span class="author" itemprop="author">
+                            @if(SiteHelper::featureEnabled('user_page'))
+                                by {!! $thread->lastPost->author->showLink() !!}
+                            @else
+                                by {!! $thread->lastPost->author->showName() !!}
+                            @endif
+                        </span>
+                    </div>
                 </article>
             </li>
         @empty

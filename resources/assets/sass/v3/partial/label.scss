@@ -2,6 +2,7 @@
     color:var(--bg-color) !important;
     background-color:var(--secondary-color);
     text-decoration: none !important;
+    padding:.2rem .4rem;
 
     a {
         color:var(--bg-color) !important;
@@ -17,5 +18,10 @@
         padding: 0.1rem .3rem;
         vertical-align: middle;
         line-height: 0rem;
+    }
+
+    &.alternative {
+        background-color:var(--transparent-bg);
+        color:var(--secondary-color) !important;
     }
 }

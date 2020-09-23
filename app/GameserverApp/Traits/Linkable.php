@@ -14,8 +14,10 @@ trait Linkable
         return $this->linkableTemplate($this->showRoute(), $options);
     }
 
-    public function showName()
+    public function showName($options = [])
     {
-        return $this->showLink(['disable_link' => true]);
+        $options['disable_link'] = true;
+
+        return $this->showLink($options);
     }
 }

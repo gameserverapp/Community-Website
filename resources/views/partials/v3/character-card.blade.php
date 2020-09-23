@@ -52,7 +52,7 @@ use GameserverApp\Helpers\SiteHelper;
                     <div>
                         Server:
                         @if($character->hasServer())
-                            {{$character->server->name()}}
+                            {{$character->server->name(13)}}
                         @endif
                     </div>
 
@@ -70,7 +70,7 @@ use GameserverApp\Helpers\SiteHelper;
                             {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}}:
                             @if( $character->hasTribe() )
                                 <span itemprop="memberOf">
-                                    {!! $character->tribes[0]->showLink(['limit' => 18]) !!}
+                                    {!! $character->tribes[0]->showLink(['limit' => 13]) !!}
                                 </span>
                             @endif
                         </div>

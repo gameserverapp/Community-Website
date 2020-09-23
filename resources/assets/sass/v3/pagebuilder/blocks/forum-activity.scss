@@ -18,6 +18,10 @@
             font-size:1.5rem;
             line-height: 1.5rem;
             margin-bottom:0;
+
+            a {
+                color:var(--content-text-color) !important;
+            }
         }
 
         .count {

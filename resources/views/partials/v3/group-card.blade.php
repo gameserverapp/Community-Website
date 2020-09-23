@@ -53,7 +53,7 @@
                                     @if( $character->tribeOwner($group) )
                                         <span class="label label-theme alternative">Owner</span>
                                     @elseif($character->tribeAdmin($group))
-                                        <span class="label label-theme alternative">Admin</span>
+                                        <span class="label label-theme alternative">Manager</span>
                                     @endif
                                 </td>
                                 @if($group->hasGame() and $group->game->supportLevel())

@@ -1,4 +1,4 @@
-<article class="">
+<article class="active-tribes">
     @if(isset($block['title']))
         <header class="row">
             <div class="col-md-12 text-center">

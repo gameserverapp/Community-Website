@@ -3,7 +3,7 @@ $settings = [
     'settings' => 'tiny-padding no-bottom-margin'
 ];
 
-if(isset($block['title'])) {
+if(isset($block['title']) and !empty($block['title'])) {
     $settings['title'] = $block['title'];
 }
 ?>

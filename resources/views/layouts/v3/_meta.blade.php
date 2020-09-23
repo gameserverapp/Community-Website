@@ -54,9 +54,9 @@
         .navbar-brand h1 {
             background-image:url({{GameserverApp\Helpers\SiteHelper::logo()}});
             background-repeat:no-repeat;
-            background-size: cover;
+            background-size: contain;
             width: 200px;
-            height:auto;
+            height:100%;
             max-height:52px;
             text-indent: -99999px;
         }

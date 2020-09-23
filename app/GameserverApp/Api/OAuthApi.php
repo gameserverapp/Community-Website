@@ -230,6 +230,6 @@ class OAuthApi
 
     private static function domain()
     {
-        return strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
+        return domain();
     }
 }

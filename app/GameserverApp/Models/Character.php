@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use GameserverApp\Helpers\SiteHelper;
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
+use Illuminate\Support\Facades\Cache;
 
 class Character extends Model implements LinkableInterface
 {
@@ -96,43 +97,29 @@ class Character extends Model implements LinkableInterface
     public function characterImage()
     {
         if ($this->gender) {
-            $link = 'male/';
+            $gender = 'male';
         } else {
-            $link = 'female/';
+            $gender = 'female';
         }
 
-        //selecting gear based on level
-        $gear = 'naked';
+        $level = $this->level;
 
-        if ($this->level > 3) {
-            $gear = 'fiber';
+        $cacheKey = domain() . $gender . $level;
+
+        if(Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
         }
 
-        if ($this->level > 20) {
-            $gear = 'hide';
-        }
+        $set = (array) SiteHelper::customCharacterImages()->$gender;
+        $options = array_keys($set);
 
-        if ($this->level > 25) {
-            $gear = 'fur';
-        }
+        $key = getReached($level, $options);
 
-        if ($this->level > 30) {
-            $gear = 'chitin';
-        }
+        $url = $set[$key];
 
-        if ($this->level > 35) {
-            $gear = 'ghilli';
-        }
+        Cache::put($key, $url, Carbon::now()->addMinutes(1));
 
-        if ($this->level > 45) {
-            $gear = 'flak';
-        }
-
-        if ($this->level > 80) {
-            $gear = 'riot';
-        }
-
-        return '/img/character/' . $link . $gear . '.png';
+        return $url;
     }
 
     //linkable

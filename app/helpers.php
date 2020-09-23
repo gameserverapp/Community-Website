@@ -97,3 +97,29 @@ function themes() {
         'extinction',
     ];
 }
+
+function getClosest($search, $arr) {
+    $closest = null;
+    foreach ($arr as $item) {
+        if ($closest === null || abs($search - $closest) > abs($item - $search)) {
+            $closest = $item;
+        }
+    }
+    return $closest;
+}
+
+function getReached($search, $arr) {
+    $closest = null;
+    foreach ($arr as $item) {
+        if ($search >= $item) {
+            $closest = $item;
+        }
+    }
+
+    return $closest;
+}
+
+function domain()
+{
+    return strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
+}

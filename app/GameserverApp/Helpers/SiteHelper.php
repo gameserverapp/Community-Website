@@ -20,6 +20,11 @@ class SiteHelper extends Helper
         return $translations->$key;
     }
 
+    public static function customCharacterImages()
+    {
+        return self::api()->domain('custom_character_images');
+    }
+
     public static function logo()
     {
         return self::api()->domain('logo');

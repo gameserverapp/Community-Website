@@ -1,3 +1,11 @@
+{{--
+available CSS styling classes:
+
+.no-padding -> removes padding from contentwrap
+.center-title -> center-aligns .frame-title
+
+--}}
+
 <div class="frame {{$type or 'simple'}} {{$class or ''}}">
     <table class="">
         <tr class="decoration-middle">

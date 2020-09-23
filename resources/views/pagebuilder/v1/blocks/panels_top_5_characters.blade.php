@@ -1,4 +1,7 @@
-@component('partials.v3.frame', ['title' => '<i class="fa fa-trophy"></i> Top 5 characters', 'class' => 'no-padding'])
+@component('partials.v3.frame', [
+    'title' => '<i class="fa fa-trophy"></i> Top 5 characters',
+    'class' => 'no-padding center-title'
+])
     <table class="table">
         <thead>
         <tr>

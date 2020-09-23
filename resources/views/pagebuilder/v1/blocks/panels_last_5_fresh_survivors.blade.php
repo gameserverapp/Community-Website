@@ -1,4 +1,7 @@
-@component('partials.v3.frame', ['title' => '<i class="fa fa-hand-spock-o" aria-hidden="true"></i> Fresh survivors', 'class' => 'no-padding'])
+@component('partials.v3.frame', [
+    'title' => '<i class="fa fa-hand-spock-o" aria-hidden="true"></i> Fresh survivors',
+    'class' => 'no-padding center-title'
+])
     <table class="table">
         <thead>
         <tr>

@@ -8,7 +8,10 @@ if($totalOnline == 1) {
 }
 ?>
 
-@component('partials.v3.frame', ['title' => $title, 'class' => 'no-padding'])
+@component('partials.v3.frame', [
+    'title' => $title,
+    'class' => 'no-padding center-title'
+])
     <table class="table">
         <thead>
         <tr>

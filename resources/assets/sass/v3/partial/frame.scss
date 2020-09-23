@@ -72,6 +72,17 @@
         }
     }
 
+    &.center-title {
+
+        &.basic,
+        &.simple,
+        &.big, {
+            .frame-title {
+                text-align: center;
+            }
+        }
+    }
+
     &.simple,
     &.big {
         position: relative;

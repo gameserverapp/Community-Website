@@ -134,8 +134,13 @@
     &.simple,
     &.big {
         margin-top: 20px;
+        //margin-bottom:20px;
         box-shadow: none;
 
+
+        &.no-bottom-margin {
+            margin-bottom:20px;
+        }
 
         //frame
         > table {

@@ -11,6 +11,6 @@ if(isset($block['height']) and !empty($block['height'])) {
 }
 ?>
 
-@component('partials.v3.frame', ['class' => 'no-padding img', 'type' => 'basic'])
+@component('partials.v3.frame', ['class' => 'no-padding img no-bottom-margin', 'type' => 'basic'])
     <img width="{{$width}}" height="{{$height}}" src="{{$value}}">
 @endcomponent

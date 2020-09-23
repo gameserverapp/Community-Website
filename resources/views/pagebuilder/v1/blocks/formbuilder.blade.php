@@ -7,7 +7,7 @@
 $footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' class="btn btn-theme small"><span>Submit</span></button>';
 ?>
 
-@component('partials.v3.frame', ['title' => $block['name'], 'class' => 'formbuilder', 'footer' => $footer])
+@component('partials.v3.frame', ['title' => $block['name'], 'class' => 'formbuilder no-bottom-margin', 'footer' => $footer])
 
     @if(!auth()->check())
         <div class="alert alert-warning">

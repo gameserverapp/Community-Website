@@ -1,6 +1,6 @@
 @component('partials.v3.frame', [
     'title' => '<i class="fa fa-trophy"></i> Top 5 characters',
-    'class' => 'no-padding center-title'
+    'class' => 'no-padding center-title no-bottom-margin'
 ])
     <table class="table">
         <thead>

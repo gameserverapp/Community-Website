@@ -1,6 +1,6 @@
 @component('partials.v3.frame', [
     'title' => '<i class="fa fa-hand-spock-o" aria-hidden="true"></i> Fresh survivors',
-    'class' => 'no-padding center-title'
+    'class' => 'no-padding center-title no-bottom-margin'
 ])
     <table class="table">
         <thead>

@@ -1,6 +1,6 @@
 <?php
 $settings = [
-    'settings' => 'tiny-padding'
+    'settings' => 'tiny-padding no-bottom-margin'
 ];
 
 if(isset($block['title'])) {

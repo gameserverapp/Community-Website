@@ -12,7 +12,16 @@
     @foreach( $stats as $stat )
 
         <div class="col-md-{{$stat['col']}}">
-            @component('partials.v3.frame', ['title' => $stat['name'], 'class' => 'tiny-padding'])
+
+            <?php
+            $class = 'tiny-padding';
+
+            if($stat['col'] == 12) {
+                $class .= '  no-bottom-margin';
+            }
+            ?>
+
+            @component('partials.v3.frame', ['title' => $stat['name'], 'class' => $class])
                 <div class="stat_canvas" data-value="" data-route="{{route('stat.index', $stat['route'])}}"><span>Loading...</span></div>
             @endcomponent
         </div>

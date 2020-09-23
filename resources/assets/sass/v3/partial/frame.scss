@@ -12,7 +12,7 @@
         position: relative;
         background-color:var(--transparent-bg);
         padding:1rem;
-        margin-bottom:30px;
+        margin-bottom:2rem;
         overflow: hidden;
 
         //@include box-shadow(0 0 30px -15px #000);
@@ -102,10 +102,19 @@
         }
     }
 
+    &.no-bottom-margin {
+
+        &.basic,
+        &.simple,
+        &.big, {
+            margin-bottom:0;
+        }
+    }
+
     &.simple,
     &.big {
         position: relative;
-        margin-bottom: 60px;
+        margin-bottom: 4rem;
 
         @include box-shadow(0 0 60px -15px #000);
 

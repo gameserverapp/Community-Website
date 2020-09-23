@@ -1,0 +1,40 @@
+.character-image {
+    position: relative;
+    text-align: center;
+    padding:1rem 0;
+
+    a:not(.btn) {
+        color: var(--primary-color);
+        text-decoration: none;
+
+        .picture_wrap {
+            margin: 1rem 0;
+            height: 340px;
+            @include transition(all .2s);
+            padding:3rem 0;
+
+            div {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                height:100%;
+                width:auto;
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0;
+            line-height:2rem;
+            height:50px;
+            @include transition(all .2s);
+        }
+
+        &:hover {
+            .picture_wrap {
+                padding:0;
+            }
+        }
+    }
+}

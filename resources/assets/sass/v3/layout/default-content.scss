@@ -68,7 +68,8 @@ td a {
 select,
 select:focus,
 select:active,
-input[type=text] {
+input[type=text],
+textarea {
     background-color:var(--transparent-bg);
     color:var(--primary-color);
     border:1px var(--primary-color) solid;

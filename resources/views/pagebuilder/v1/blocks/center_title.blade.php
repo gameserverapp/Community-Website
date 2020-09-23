@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-8 text-center center-block">
+    <div class="col-md-8 text-center center-title center-block">
         <h1>
             @if(empty($value))
                 {{$title}}

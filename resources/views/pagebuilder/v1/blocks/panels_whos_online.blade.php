@@ -30,7 +30,7 @@ if($totalOnline == 1) {
                     <td></td>
                     <td>
                         {!! $character->showLink([
-                            'limit' => 13
+                            'limit' => 12
                         ]) !!}
                     </td>
                     <td>

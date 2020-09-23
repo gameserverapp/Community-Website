@@ -1,3 +1,9 @@
 .stat_canvas {
     height:300px;
+
+    color:var(--content-text-color);
+
+    .legend {
+        color:var(--content-text-color);
+    }
 }

@@ -21,7 +21,7 @@
                 <td></td>
                 <td>{{$count}}</td>
                 <td>
-                    {!! $character->showLink(['limit' => 13]) !!}
+                    {!! $character->showLink(['limit' => 12]) !!}
                 </td>
                 <td>{{$character->level}}</td>
                 <td>

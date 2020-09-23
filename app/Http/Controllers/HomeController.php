@@ -28,14 +28,6 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        if ($request->has('autoreload')) {
-            return redirect(route('home.index'))->with('alert', [
-                'status'  => 'info',
-                'message' => 'Automatic-reload feature enabled :)',
-                'stay'    => true
-            ]);
-        }
-
         if(RouteHelper::home()) {
 
             switch(RouteHelper::home()) {
@@ -48,51 +40,7 @@ class HomeController extends Controller
             }
         }
 
-        $top = $this->api->characters('top');
-        
-        $fresh = $this->api->characters('fresh');
-
-        $online = $this->api->characters('online');
-
-        try {
-            $servers = $this->api->allServers();
-        } catch (\Exception $e) {
-            $servers = $this->api->allServers(false);
-        }
-
-        $spotlight = $this->api->spotlight('character');
-
-        $articles = $this->api->latestNews();
-        $forumPosts = $this->api->latestForumThreads();
-
-        $stats = [];
-
-        if ($newCharacters = $this->api->stats('domain', 'new-characters')) {
-            $stats['Fresh survivors'] = (array) $newCharacters;
-            $stats['Fresh survivors']['col'] = 6;
-        }
-
-        if ($onlinePlayers = $this->api->stats('domain', 'online-players')) {
-            $stats['Online players'] = (array) $onlinePlayers;
-            $stats['Online players']['col'] = 6;
-        }
-        if ($hoursPlayed = $this->api->stats('domain', 'hours-played')) {
-            $stats['Hours played per day'] = (array) $hoursPlayed;
-            $stats['Hours played per day']['col'] = 12;
-        }
-
-        return view('pages.v1.home.default.index',[
-            'characters' => [
-                'top' => $top,
-                'fresh' => $fresh,
-                'online' => $online
-            ],
-            'servers' => $servers,
-            'spotlight' => $spotlight,
-            'lastForumThreads' => $forumPosts,
-            'lastNewsPosts' => $articles,
-            'stats' => $stats
-        ]);
+        return view('pages.v3.default-template.home');
     }
 
     public function purge()

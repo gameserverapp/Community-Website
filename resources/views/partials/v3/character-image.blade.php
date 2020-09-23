@@ -5,7 +5,7 @@
         </div>
 
         <h1>
-            {!! $character->showName(['limit' => 13]) !!} ({{$character->level}})
+            {!! $character->showName(['limit' => 12]) !!} ({{$character->level}})
         </h1>
 
         @if($character->hasServer())

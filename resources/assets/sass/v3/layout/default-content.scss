@@ -88,6 +88,14 @@ hr {
 
 .table {
     margin:0;
+
+    th {
+        border-bottom-color: var(--transparent-bg);
+    }
+
+    td {
+        border-top-color: var(--transparent-bg);
+    }
 }
 
 

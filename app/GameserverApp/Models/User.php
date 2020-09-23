@@ -194,7 +194,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         }
 
         if ($this->donated()) {
-            $output .= '<a href="' . route('supporter-tier.index') . '" class="label label-theme">Supporter <3</a> &nbsp;';
+            $output .= '<a href="' . route('supporter-tier.index') . '" class="label label-theme alternative">Supporter <3</a> &nbsp;';
         }
 
         return $output;

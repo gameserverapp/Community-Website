@@ -3,7 +3,7 @@ return [
     'primary-color' => '#b326b0',
     'secondary-color' => '#f00',//#337ab7',
 
-    'bg-color' => '#222',
+    'bg-color' => '#040917',//#222',
 
     'hr-color' => '#1b2226',
 

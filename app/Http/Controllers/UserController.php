@@ -28,13 +28,11 @@ class UserController extends Controller
     
     public function show(Request $request, $id)
     {
-        $character = $this->api->user($id)->lastCharacter();
+        $user = $this->api->user($id);
 
-        if($character instanceof Character) {
-            return redirect(route('character.show', $character->id));
-        }
-
-        abort(404);
+        return view('pages.v3.user.index', [
+            'user' => $user
+        ]);
     }
 
     public function settings(Request $request)

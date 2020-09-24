@@ -24,37 +24,37 @@ use GameserverApp\Helpers\SiteHelper;
                                 </span>
                             &nbsp;
                             <div class="char_pic"
-                                 style="background-image:url('{{$navChar->characterImage()}}')"></div>
+                                 style="background-image:url('{{$navChar->image()}}')"></div>
                         </a>
                     </li>
                 @endif
 
                 @if(SiteHelper::featureEnabled('tribe_page'))
 
-                    @if($navChar->hasTribe())
+                    @if($navChar->hasGroup())
                         <?php
-                        $tribes = auth()->user()->lastCharacter()->tribes
+                        $groups = auth()->user()->lastCharacter()->groups;
                         ?>
 
-                        @foreach($tribes as $tribe)
+                        @foreach($groups as $group)
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="{{route('tribe.show', $tribe->id)}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('tribe.show', $tribe->id) ? 'orange' : '' }}">
-                                    {!! $tribe->showLink(['disable_link' => true]) !!}
+                                <a href="{{$group->showRoute()}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('group.show', $group->id) ? 'orange' : '' }}">
+                                    {!! $group->showLink(['disable_link' => true]) !!}
 
-                                    @if($tribe->hasServer())
+                                    @if($group->hasServer())
                                         &nbsp;
                                         &nbsp;
                                         <span class="label label-default">
-                                            {{$tribe->server->name()}}
+                                            {{$group->server->name()}}
                                         </span>
                                     @endif
                                 </a>
                             </li>
-                            @if($navChar->tribeAdmin($tribe))
+                            @if($navChar->groupAdmin($group))
                                 <li>
-                                    <a href="{{route('tribe.settings', $tribe->id)}}">
-                                        Tribe settings
+                                    <a href="{{route('group.settings', $group->id)}}">
+                                        Group settings
                                     </a>
                                 </li>
                             @endif

@@ -2,12 +2,14 @@
 
 namespace GameserverApp\Models;
 
+use Carbon\Carbon;
+use GameserverApp\Helpers\SiteHelper;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
 
-class Tribe extends Model implements LinkableInterface
+class Group extends Model implements LinkableInterface
 {
     use Linkable;
 
@@ -20,9 +22,29 @@ class Tribe extends Model implements LinkableInterface
         return $this->name;
     }
 
+    public function about()
+    {
+        return $this->about;
+    }
+
+    public function motd()
+    {
+        return $this->motd;
+    }
+
     public function online()
     {
         $this->online;
+    }
+
+    public function memberCount()
+    {
+        return $this->member_count;
+    }
+
+    public function foundedYear()
+    {
+        return Carbon::parse($this->created_at)->format('Y');
     }
 
     public function discordSetup()
@@ -32,7 +54,7 @@ class Tribe extends Model implements LinkableInterface
 
     public function discordChannelSetup()
     {
-        return isset($this->discord['channel']) and !is_null($this->discord['channel']);
+        return $this->discord_connected;
     }
 
     public function discordServerName()
@@ -99,47 +121,25 @@ class Tribe extends Model implements LinkableInterface
 
     public function countAllMembers()
     {
-        if(!$this->hasMembers()) {
-            return 0;
-        }
-
-        return $this->members->count();
+        return $this->memberCount();
     }
 
-    public function bannerBackground($max_count = 390)
+    public function logo()
     {
-        $cacheKey = md5($this->id);
-
-        if(Cache::has($cacheKey)) {
-            return Cache::get($cacheKey);
+        if(isset($this->images['logo']) and !is_null($this->images['logo'])) {
+            return $this->images['logo'];
         }
 
-        $members = [];
-        $output = '';
+        return 'http://premiumark-gui.qikkerlocal.nl/img/token_packs/100-tokens.png';
+    }
 
-        if (! $this->hasMembers()) {
-            return;
+    public function backgroundImage()
+    {
+        if(isset($this->images['background']) and !is_null($this->images['background'])) {
+            return $this->images['background'];
         }
 
-        foreach ($this->members as $character) {
-            $members[] = $character->user->avatar;
-        }
-
-        $max_rand = count($members) - 1;
-
-        $output = '<div class="imgcontainer">';
-
-        for ($i = 0; $i <= $max_count; $i++) {
-            $output .= '<div class="memberimage">' .
-                '<img src="' . $members[rand(0, $max_rand)] . '">' .
-                '</div>';
-        }
-
-        $output .= '</div>';
-
-        Cache::put($cacheKey, $output, config('gameserverapp.cache.tribe_background'));
-
-        return $output;
+        return SiteHelper::background();
     }
 
     public function hasMembers()
@@ -198,7 +198,7 @@ class Tribe extends Model implements LinkableInterface
 
     public function showRoute()
     {
-        return route('tribe.show', $this->id);
+        return route('group.show', $this->id);
     }
 
     public static function createFromApiCollection(Collection $collection)

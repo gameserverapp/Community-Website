@@ -40,36 +40,12 @@
         &.purple {
             background-color:#6441a4;
         }
-
-        .display-table {
-
-            > div {
-                @media (max-width:991px) {
-                    margin-bottom:30px;
-                }
-            }
-        }
     }
 
     .simplemde-content,
     .wysiwyg-content {
         h1, h2, h3, h4, h5, h6 {
             margin-top:2rem;
-        }
-    }
-
-    .valign {
-
-        &-top .table-cell {
-            vertical-align: top;
-        }
-
-        &-center .table-cell {
-            vertical-align: center;
-        }
-
-        &-bottom .table-cell {
-            vertical-align: bottom;
         }
     }
 

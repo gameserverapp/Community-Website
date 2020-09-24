@@ -5,7 +5,7 @@ if(
     isset($row['settings']['vertical_align']) and
     $row['settings']['vertical_align']
 ) {
-    $classes[] = 'display-table nowidth valign-' . $row['settings']['vertical_align'];
+    $classes[] = 'display-table valign-' . $row['settings']['vertical_align'];
 }
 
 if(isset($row['settings']['text_color'])) {

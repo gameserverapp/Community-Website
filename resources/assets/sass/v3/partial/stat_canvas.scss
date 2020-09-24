@@ -7,4 +7,22 @@
     .flot-text {
         color:var(--content-text-color) !important;
     }
+
+    .legend {
+
+        > div {
+            background-color: transparent !important;
+        }
+
+        table {
+
+            td {
+                background-color: transparent !important;
+
+                &.legendLabel {
+                    padding-left:5px;
+                }
+            }
+        }
+    }
 }

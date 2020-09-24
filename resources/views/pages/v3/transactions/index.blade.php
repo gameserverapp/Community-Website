@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-md-10 center-block">
 
-            @component('partials.v3.frame')
+            @component('partials.v3.frame', ['class' => 'no-padding'])
                 <table class="table">
                     <thead>
                     <tr>

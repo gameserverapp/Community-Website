@@ -1,4 +1,6 @@
-
+<?php
+try {
+    ?>
     @if ( isset( $errors ) and count($errors) > 0)
         <div class="flash alert alert-danger">
             <ul>
@@ -51,3 +53,7 @@
             {!! $error_msg['message'] or ''!!}
         </div>
     @endif
+<?php
+} catch(Exception $e) {
+
+}

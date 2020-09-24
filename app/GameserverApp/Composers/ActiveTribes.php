@@ -2,7 +2,7 @@
 namespace GameserverApp\Composers;
 
 use Illuminate\View\View;
-use GameserverApp\Transformers\TribeTransformer;
+use GameserverApp\Transformers\GroupTransformer;
 
 class ActiveTribes extends AbstractStatsComposer
 {
@@ -11,7 +11,7 @@ class ActiveTribes extends AbstractStatsComposer
     {
         $data = $this->basicStats($view, 'active-tribes');
 
-        $tribes = TribeTransformer::transformMultiple($data);
+        $tribes = GroupTransformer::transformMultiple($data);
 
         $view->with([
             'tribes' => $tribes

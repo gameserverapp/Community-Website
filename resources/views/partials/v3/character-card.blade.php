@@ -11,7 +11,7 @@ use GameserverApp\Helpers\SiteHelper;
 
             <div class="col-md-5 character text-center">
                 <a href="{{route('character.show', $character->id)}}">
-                    <img src="{{$character->characterImage()}}" class="image">
+                    <img src="{{$character->image()}}" class="image">
                 </a>
             </div>
 
@@ -65,12 +65,12 @@ use GameserverApp\Helpers\SiteHelper;
                         @endif
                     </div>
 
-                    @if( $character->hasTribe() )
+                    @if( $character->hasGroup() )
                         <div  class="tribe">
                             {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}}:
-                            @if( $character->hasTribe() )
+                            @if( $character->hasGroup() )
                                 <span itemprop="memberOf">
-                                    {!! $character->tribes[0]->showLink(['limit' => 13]) !!}
+                                    {!! $character->groups[0]->showLink(['limit' => 13]) !!}
                                 </span>
                             @endif
                         </div>
@@ -82,7 +82,7 @@ use GameserverApp\Helpers\SiteHelper;
 
                     <div class="buttons">
                         @if(
-                            !$character->hasTribe() and
+                            !$character->hasGroup() and
                             $character->hasUser() and
                             (
                                 (

@@ -24,6 +24,15 @@ class RouteHelper extends Helper
         return false;
     }
 
+    public static function isCurrentUrl($url)
+    {
+        if (app('request')->url() == $url) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static function inspector()
     {
         return 'inspector';

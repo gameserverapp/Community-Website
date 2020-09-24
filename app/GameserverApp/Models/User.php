@@ -155,31 +155,31 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->donated;
     }
 
-    public function hasTribe($serverId = false)
+    public function hasGroup($serverId = false)
     {
         if (! $this->hasCharacters()) {
             return false;
         }
 
         $characters = $this->characters->filter(function ($item) use ($serverId) {
-            if ($serverId and $item->hasTribe() and $item->hasServer()) {
+            if ($serverId and $item->hasGroup() and $item->hasServer()) {
                 return $item->tribe->server->id == $serverId;
             }
 
-            return $item->hasTribe();
+            return $item->hasGroup();
         });
 
         return $characters->count() > 0;
     }
 
-    public function isTribeMember(Tribe $tribe)
+    public function isGroupMember(Group $tribe)
     {
         if (! $this->hasCharacters()) {
             return false;
         }
 
         $characters = $this->characters->filter(function ($item) use ($tribe) {
-            return $item->hasTribe($tribe);
+            return $item->hasGroup($tribe);
         });
 
         return $characters->count() > 0;

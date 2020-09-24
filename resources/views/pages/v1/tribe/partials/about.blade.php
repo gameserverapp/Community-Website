@@ -29,7 +29,7 @@
                 {{--)--}}
             {{--)--}}
                 {{--<br><br>--}}
-                {{--<a href="{{route('tribe.settings', $tribe->id)}}">--}}
+                {{--<a href="{{route('group.settings', $tribe->id)}}">--}}
                     {{--Write a "about" message &raquo;--}}
                 {{--</a>--}}
             {{--@endif--}}

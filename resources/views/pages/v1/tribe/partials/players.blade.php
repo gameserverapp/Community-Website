@@ -29,10 +29,10 @@
                         {!! $char->showLink() !!}
                     </td>
                     <td>
-                        @if( $char->tribeOwner($tribe) )
+                        @if( $char->groupOwner($tribe) )
                             <span class="label label-default">Owner</span>
-                        @elseif($char->tribeAdmin($tribe))
-                            <span class="label label-admin">Admin</span>
+                        @elseif($char->groupAdmin($tribe))
+                            <span class="label label-admin">Manager</span>
                         @endif
                     </td>
                     @if($tribe->hasGame() and $tribe->game->supportLevel())

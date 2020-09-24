@@ -79,6 +79,20 @@
         &.big, {
             .contentwrap {
                 padding: 0 !important;
+
+                .table {
+                    tr {
+                        th:first-child,
+                        td:first-child {
+                            padding-left:1.3rem;
+                        }
+
+                        th:last-child,
+                        td:last-child {
+                            padding-right:1.3rem;
+                        }
+                    }
+                }
             }
 
             .frame-title {

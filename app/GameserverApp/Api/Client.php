@@ -6,9 +6,10 @@ use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Transformers\CalendarTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use GameserverApp\Models\Model;
-use GameserverApp\Models\Tribe;
+use GameserverApp\Models\Group;
 use GameserverApp\Models\User;
 use GameserverApp\Transformers\CharacterTransformer;
 use GameserverApp\Transformers\Forum\ThreadTransformer;
@@ -20,7 +21,7 @@ use GameserverApp\Transformers\ServerTransformer;
 use GameserverApp\Transformers\ShopTransformer;
 use GameserverApp\Transformers\TokenTransformer;
 use GameserverApp\Transformers\TransactionTransformer;
-use GameserverApp\Transformers\TribeTransformer;
+use GameserverApp\Transformers\GroupTransformer;
 use GameserverApp\Transformers\UserTransformer;
 use function GuzzleHttp\Psr7\build_query;
 
@@ -160,7 +161,7 @@ class Client
         );
     }
 
-    public function tribe($id, $with = [])
+    public function group($id, $with = [])
     {
         $query = '';
 
@@ -172,12 +173,12 @@ class Client
         }
 
         if(isset($with['auth']) and $with['auth']) {
-            return TribeTransformer::transform(
+            return GroupTransformer::transform(
                 $this->api()->authRequest('get', 'group/' . $id . $query)
             );
         }
 
-        return TribeTransformer::transform(
+        return GroupTransformer::transform(
             $this->api()->guestRequest('get', 'group/' . $id . $query)
         );
     }
@@ -197,7 +198,7 @@ class Client
         ]);
     }
 
-    public function tribeLog($id, $route, $page = 1)
+    public function groupLog($id, $route, $page = 1)
     {
         $response = $this->api()->authRequest('get', 'group/' . $id . '/log?page=' . $page, [], 2);
 
@@ -500,25 +501,42 @@ class Client
         ]);
     }
 
-    public function saveTribeSettings(Tribe $tribe, $data)
+    public function saveGroupSettings(Group $group, $data)
     {
-        $this->clearCache('get', 'group/' . $tribe->id . '?settings=1', []);
+        $this->clearCache('get', 'group/' . $group->id, []);
+        $this->clearCache('get', 'group/' . $group->id . '?settings=1', []);
 
-        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/settings', [
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/settings', [
             'form_params' => $data
         ]);
     }
 
-    public function saveTribeDiscordChannel(Tribe $tribe, $data)
+    public function uploadGroupVisuals(Group $group, $type, UploadedFile $file)
     {
-        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/discord', [
+        $this->clearCache('get', 'group/' . $group->id, []);
+        $this->clearCache('get', 'group/' . $group->id . '?settings=1', []);
+
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/upload/' . $type, [
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => fopen($file, 'r'),
+                    'filename' => $file->getClientOriginalName() . '.' . $file->getExtension()
+                ]
+            ]
+        ]);
+    }
+
+    public function saveGroupDiscordChannel(Group $group, $data)
+    {
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/discord', [
             'form_params' => $data
         ]);
     }
 
-    public function disconnectTribeDiscordChannel(Tribe $tribe)
+    public function disconnectGroupDiscordChannel(Group $group)
     {
-        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/discord/disconnect');
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/discord/disconnect');
     }
 
     public function clearCache($method, $route, $options = [])
@@ -566,8 +584,8 @@ class Client
     public function spotlight($type = false)
     {
         switch ($type) {
-            case 'tribe':
-                return TribeTransformer::transformMultiple(
+            case 'group':
+                return GroupTransformer::transformMultiple(
                     $this->api()->guestRequest('get', 'groups/spotlight')
                 );
 
@@ -593,7 +611,9 @@ class Client
             $url = $model . '/' . $id . '/stats/'. $type;
         }
 
-        return $this->api()->guestRequest('get', $url);
+        $stat = $this->api()->guestRequest('get', $url);
+
+        return graphColorTweak($stat);
     }
 
     public static function domain($key = false, $default = null)
@@ -641,7 +661,7 @@ class Client
         }
 
         if( $options['search_type'] == 'tribe' ) {
-            $items = TribeTransformer::transformMultiple($response->items);
+            $items = GroupTransformer::transformMultiple($response->items);
         } else {
             $items = CharacterTransformer::transformMultiple($response->items);
         }

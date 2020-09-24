@@ -4,7 +4,7 @@ namespace GameserverApp\Composers;
 use Illuminate\View\View;
 use GameserverApp\Api\Client;
 use GameserverApp\Transformers\CharacterTransformer;
-use GameserverApp\Transformers\TribeTransformer;
+use GameserverApp\Transformers\GroupTransformer;
 
 class OnlineCountLast7Days extends AbstractStatsComposer
 {

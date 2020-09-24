@@ -1,0 +1,88 @@
+&.group-single {
+
+    header {
+
+        .logo {
+            text-align: center;
+
+
+            img {
+                width:100%;
+                height:auto;
+                max-width: 200px;
+            }
+        }
+
+        .title {
+            @media (max-width:991px) {
+                margin-top:2rem;
+                text-align: center;
+            }
+
+            h1 {
+                margin-bottom:.5rem
+            }
+
+
+            .meta {
+                color:var(--content-text-color);
+                margin-bottom:.5rem;
+
+                .member-count {
+                    display: inline-block;
+                }
+
+                .related {
+                    display: inline-block;
+                }
+
+                .founded {
+                    display: inline-block;
+                    color:var(--content-text-color);
+                }
+
+                .divider {
+                    margin-right:.5rem;
+                    margin-left:.5rem;
+                    //font-size:.7rem;
+                    //line-height: 1rem;
+                    //vertical-align: text-bottom;
+                    color:var(--transparent-bg)
+                }
+            }
+        }
+
+        .actions {
+            @media (max-width:991px) {
+                margin-top:2rem;
+                text-align: center;
+            }
+        }
+    }
+
+    .members {
+
+        .table {
+
+            tr {
+
+                th {
+                    padding:1rem;
+                }
+
+                td {
+                    padding:1rem;
+
+                    a.characterlink {
+                        font-size:1.2rem;
+                    }
+
+                    .image {
+                        margin-right:1rem;
+                    }
+                }
+            }
+        }
+    }
+
+}

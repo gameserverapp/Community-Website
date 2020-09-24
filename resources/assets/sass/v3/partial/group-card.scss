@@ -34,7 +34,9 @@
                 max-width:80%;
                 margin:25px auto 1rem;
                 text-decoration: none;
-                
+                text-shadow: 1px 1px 13px  #000;
+
+
                 a {
                     text-decoration: none;
                 }
@@ -57,53 +59,17 @@
 
         .background {
             position: absolute;
+            background-size:cover;
+            background-position: center center;
             top: 0;
             bottom:0;
             left:0;
             right:0;
-            opacity: .09;
-
-            @include transition(opacity .2s);
-
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            overflow: hidden;
-
-            .imgcontainer {
-                margin: -$inner-gutter 0 0 -30px;
-                width: 120%;
-                opacity: .7;
-
-                .memberimage {
-                    display: inline-block;
-                    height: 50px;
-                    margin: 0;
-                    padding: 0;
-
-                    @include transition(height .2s);
-
-                    img {
-                        height: 100%;
-                        width: auto;
-                    }
-                }
-            }
+            opacity: .5;
         }
     }
 
     &:hover {
-        .background {
-            opacity:0.15;
-        }
-
-        .background {
-            .imgcontainer {
-                .memberimage {
-                    height: 51px;
-                }
-            }
-
-        }
 
         header .more {
             opacity: 1;

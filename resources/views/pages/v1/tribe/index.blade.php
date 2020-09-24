@@ -32,11 +32,11 @@
 
                     <div class="col-sm-6">
 
-                        @if(auth()->check() and auth()->user()->isTribeMember($tribe))
+                        @if(auth()->check() and auth()->user()->isGroupMember($tribe))
                             @include('pages.v1.tribe.partials.motd')
 
                             <div class="text-center">
-                                <a href="{{route('tribe.promote', $tribe->id)}}" class="btn champ inverted small tinytosmall">
+                                <a href="{{route('group.promote', $tribe->id)}}" class="btn champ inverted small tinytosmall">
                                     Promote your {{ GameserverApp\Helpers\SiteHelper::groupName()}} &raquo;
                                 </a>
                             </div>
@@ -57,7 +57,7 @@
 
                 </div>
 
-                @if(auth()->check() and auth()->user()->isTribeMember($tribe))
+                @if(auth()->check() and auth()->user()->isGroupMember($tribe))
                     <div class="row">
 
                         <div class="col-sm-12">

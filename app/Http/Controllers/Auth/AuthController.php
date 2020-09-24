@@ -35,7 +35,14 @@ class AuthController extends Controller
         $this->api = $api;
     }
 
-    public function login()
+    public function login(Request $request)
+    {
+        session()->put('url.intended', url()->previous());
+
+        return redirect(route('auth.redirect'));
+    }
+
+    public function redirect(Request $request)
     {
         return redirect(config('gameserverapp.connection.url') .
             'oauth/authorize?client_id=' . PremiumHostedHelper::clientId() .
@@ -79,7 +86,7 @@ class AuthController extends Controller
                 return redirect()->intended()->setTargetUrl($targetUrl);
             }
 
-            return redirect()->intended();
+            return redirect($targetUrl);
         }
 
         return redirect('/');

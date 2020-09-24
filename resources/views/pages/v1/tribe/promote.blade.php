@@ -52,7 +52,7 @@
                     )
                         <p>
                             Since you are the {{ GameserverApp\Helpers\SiteHelper::groupName()}} owner, you can setup the 'About' message, on the <a
-                                    href="{{route('tribe.settings', $tribe->id)}}">settingspage of your {{ GameserverApp\Helpers\SiteHelper::groupName()}}</a>.
+                                    href="{{route('group.settings', $tribe->id)}}">settingspage of your {{ GameserverApp\Helpers\SiteHelper::groupName()}}</a>.
                         </p>
                     @endif
                 </div>
@@ -70,7 +70,7 @@
                     <h2>Your {{ GameserverApp\Helpers\SiteHelper::groupName()}} share URL:</h2>
                     <input class="shareurl"
                            onClick="this.setSelectionRange(0, this.value.length)"
-                           type="text" value="{{route('tribe.show', $tribe->id)}}">
+                           type="text" value="{{route('group.show', $tribe->id)}}">
                 </div>
 
             </div>

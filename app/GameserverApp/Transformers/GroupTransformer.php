@@ -2,15 +2,15 @@
 namespace GameserverApp\Transformers;
 
 use GameserverApp\Interfaces\ModelTransformerInterface;
-use GameserverApp\Models\Tribe;
+use GameserverApp\Models\Group;
 use GameserverApp\Models\User;
 
-class TribeTransformer extends ModelTransformer implements ModelTransformerInterface
+class GroupTransformer extends ModelTransformer implements ModelTransformerInterface
 {
 
     public static function model(array $args)
     {
-        return new Tribe($args);
+        return new Group($args);
     }
 
     public static function transformableInput($args)
@@ -20,11 +20,25 @@ class TribeTransformer extends ModelTransformer implements ModelTransformerInter
             'name' => $args->name,
             'about' => $args->about,
             'motd' => $args->motd,
-            'online' => $args->online
+            'online' => $args->online,
+            'member_count' => $args->member_count,
+            'created_at' => $args->created_at,
+            'discord_connected' => $args->discord_connected
         ];
 
         if(isset($args->members)) {
             $data['members'] = CharacterTransformer::transformMultiple($args->members);
+        }
+
+        if(isset($args->images)) {
+
+            if (isset($args->images->logo)) {
+                $data['images']['logo'] = $args->images->logo;
+            }
+
+            if (isset($args->images->background)) {
+                $data['images']['background'] = $args->images->background;
+            }
         }
 
         if(isset($args->discord)) {

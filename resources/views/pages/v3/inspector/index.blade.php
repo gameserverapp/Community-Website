@@ -44,7 +44,7 @@ use GameserverApp\Helpers\SiteHelper;
                 <?php
                 $chunkSize = 2;
 
-                if ($results->first() instanceof GameserverApp\Models\Tribe) {
+                if ($results->first() instanceof GameserverApp\Models\Group) {
                     $chunkSize = 2;
                 }
                 ?>
@@ -60,7 +60,7 @@ use GameserverApp\Helpers\SiteHelper;
                                 </div>
                             @endif
 
-                            @if( $result instanceof GameserverApp\Models\Tribe)
+                            @if( $result instanceof GameserverApp\Models\Group)
                                 <div class="col-sm-6 results">
                                     @include('partials.v3.group-card', [
                                         'group' => $result

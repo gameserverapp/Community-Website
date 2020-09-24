@@ -123,3 +123,47 @@ function domain()
 {
     return strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
 }
+
+function color($key = 'primary-color')
+{
+    return config('theme-colors')[$key];
+}
+
+function graphColorTweak($graphData)
+{
+    if(isset($graphData->options->grid->backgroundColor)) {
+        $graphData->options->grid->backgroundColor = 'transparent';
+    }
+
+    if(isset($graphData->options->lines)) {
+        $graphData->options->lines = (object) [
+            'show'      => true,
+            'fill'      => true,
+            'fillColor' => [
+                'colors' => [
+                    [
+                        'opacity' => 0
+                    ],
+                    [
+                        'opacity' => .4
+                    ],
+                ]
+            ]
+        ];
+    }
+
+    if(isset($graphData->data)) {
+
+        $count = count($graphData->data);
+
+        if($count > 5) {
+            $graphData->options->legend->show = false;
+        } elseif($count == 1) {
+            $graphData->options->colors = [
+                color('primary-color')
+            ];
+        }
+    }
+
+    return $graphData;
+}

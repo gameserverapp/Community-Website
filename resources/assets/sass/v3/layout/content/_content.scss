@@ -15,7 +15,7 @@
     top: 0;
     right: 0;
     left: 0;
-    filter: blur(4px) brightness(50%);
+    filter: blur(3px) brightness(80%);
     background-size: cover;
     background-repeat:no-repeat;
     background-position: top center;
@@ -30,7 +30,43 @@
     @import "./../default-content";
 }
 
+.display-table {
+
+    @media (min-width:992px) {
+        display: table;
+        width:100%;
+
+        &.row {
+            margin-left:-15px;
+            margin-right:-15px;
+            width:calc(100% + 30px);
+        }
+
+        .table-cell {
+            display: table-cell;
+            float: none;
+            vertical-align: middle;
+        }
+    }
+}
+
+.valign {
+
+    &-top .table-cell {
+        vertical-align: top;
+    }
+
+    &-center .table-cell {
+        vertical-align: center;
+    }
+
+    &-bottom .table-cell {
+        vertical-align: bottom;
+    }
+}
+
 @import "article-single",
 'package-single',
 'inspector',
-'message';
+'message',
+'group-single';

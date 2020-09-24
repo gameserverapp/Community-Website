@@ -2,8 +2,8 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            @if( $character->hasTribe() )
-                <a href="{{route('tribe.view', [$character->tribe['uuid']])}}">
+            @if( $character->hasGroup() )
+                <a href="{{route('group.view', [$character->tribe['uuid']])}}">
                     {!! tribeLink($character->tribe) !!}
                 </a>
 
@@ -15,7 +15,7 @@
             @endif
         </h3>
     </div>
-    @if( $character->hasTribe() )
+    @if( $character->hasGroup() )
         <table class="table">
             <thead>
             <tr>
@@ -72,11 +72,11 @@
         @if(
             auth()->check() and
             auth()->user()->id != $character->user->id and
-            auth()->user()->hasTribe()
+            auth()->user()->hasGroup()
         )
             @if(
                 $character->hasServer() and
-                auth()->user()->hasTribe( $character->server->id ) and
+                auth()->user()->hasGroup( $character->server->id ) and
                 auth()->user()->characterOnServer($character->server)
             )
                 <div class="panel-footer text-right">

@@ -58,12 +58,12 @@
                     </span>
                     &nbsp;
                     <div class="char_pic"
-                         style="background-image:url('/img/character/{{$navChar->characterImage()}}')"></div>
+                         style="background-image:url('/img/character/{{$navChar->image()}}')"></div>
                 </a>
             </li>
             <li>
                 @if($tribe = auth()->user()->getLastActiveTribe())
-                    <a href="{{route('tribe.view', $tribe->uuid)}}"  class="{{ isCurrentRoute('tribe.view', $tribe->uuid) ? 'orange' : '' }}">
+                    <a href="{{route('group.view', $tribe->uuid)}}"  class="{{ isCurrentroute('group.view', $tribe->uuid) ? 'orange' : '' }}">
                         {!! tribeName($tribe) !!}
                     </a>
                 @else

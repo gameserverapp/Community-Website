@@ -1,7 +1,7 @@
 <article class="character-image">
     <a href="{{$character->showRoute()}}">
         <div class="picture_wrap">
-            <div style="background-image:url('{{$character->characterImage()}}')"></div>
+            <div style="background-image:url('{{$character->image()}}')"></div>
         </div>
 
         <h1>

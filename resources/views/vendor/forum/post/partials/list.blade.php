@@ -60,7 +60,7 @@ use GameserverApp\Helpers\SiteHelper;
                 <ul>
                     @foreach( $post->author->characters->take(3) as $char )
                         <li class="character">
-                            <div class="char_pic" style="background-image:url('{{$char->characterImage()}}')"></div>
+                            <div class="char_pic" style="background-image:url('{{$char->image()}}')"></div>
                             {!! $char->showLink(['suffix' => ' (' . $char->level . ')']) !!}
                         </li>
 

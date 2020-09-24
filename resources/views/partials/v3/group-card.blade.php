@@ -20,7 +20,7 @@
                 </h1>
                 <div class="more">
                     @include('partials.v3.button', [
-                        'route' => route('tribe.show', $group->id),
+                        'route' => route('group.show', $group->id),
                         'title' => translate('more_details', 'More details'),
                         'class' => 'small'
                     ])
@@ -29,9 +29,7 @@
             </div>
 
 
-            <div class="background">
-                {!! $group->bannerBackground() !!}
-            </div>
+            <div class="background" style="background-image:url({{$group->backgroundImage()}})"></div>
         </header>
         <div class="content">
             <table class="table">
@@ -50,9 +48,9 @@
                             <tr>
                                 <td itemprop="member">
                                     {!! $character->showLink() !!}
-                                    @if( $character->tribeOwner($group) )
+                                    @if( $character->groupOwner($group) )
                                         <span class="label label-theme alternative">Owner</span>
-                                    @elseif($character->tribeAdmin($group))
+                                    @elseif($character->groupAdmin($group))
                                         <span class="label label-theme alternative">Manager</span>
                                     @endif
                                 </td>
@@ -67,7 +65,7 @@
                         @if( count($group->members) > 4 )
                             <tr>
                                 <td colspan="4" class="text-right more">
-                                    <a href="{{route('tribe.show', $group->id)}}"
+                                    <a href="{{route('group.show', $group->id)}}"
                                        onClick="ga('send', 'event', 'Button', 'click', 'See all online players');">
                                         See all {{ GameserverApp\Helpers\SiteHelper::groupName()}} members &raquo;
                                     </a>

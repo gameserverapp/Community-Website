@@ -20,7 +20,7 @@
                 </div>
             @endif
 
-            @if( $item instanceof GameserverApp\Models\Tribe )
+            @if( $item instanceof GameserverApp\Models\Group )
                 <div class="col-sm-6 col-md-4">
                     @include('partials.v3.group-card', [
                         'tribe' => $item

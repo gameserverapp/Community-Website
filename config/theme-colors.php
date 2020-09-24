@@ -20,6 +20,18 @@ return [
     'content-bg-color' => '#333',
     'content-title-bg-color' => '#222',
 
+    //label
+
+    //custom-nav
+        'custom-nav-link-color' => '#ccc',
+        'custom-nav-link-active-color' => '#222',
+        'custom-nav-link-active-bg' => '#b326b0',
+
+        //hover
+        'custom-nav-link-hover-color' => '#b326b0',
+        'custom-nav-link-active-hover-color' => '#b326b0',
+        'custom-nav-link-active-hover-bg' => '#222',
+
 
     //btn
     'btn-color' => '#253138',

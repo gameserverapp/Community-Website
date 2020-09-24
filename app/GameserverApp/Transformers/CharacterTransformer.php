@@ -35,9 +35,9 @@ class CharacterTransformer extends ModelTransformer implements ModelTransformerI
             $data['game'] = GameTransformer::transform($args->game);
         }
 
-        if (isset($args->tribes)) {
-            foreach($args->tribes as $tribe) {
-                $data['tribes'][] = TribeTransformer::transform($tribe);
+        if (isset($args->groups)) {
+            foreach($args->groups as $group) {
+                $data['groups'][] = GroupTransformer::transform($group);
             }
         }
 

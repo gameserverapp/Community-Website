@@ -85,6 +85,19 @@ class Character extends Model implements LinkableInterface
         return isset($this->groups) and count($this->groups) > 0;
     }
 
+    public function isGroupMember(Group $group)
+    {
+        if(!$this->hasGroup()) {
+            return false;
+        }
+
+        $groups = array_filter($this->groups, function($item) use ($group) {
+            return $group->id == $item->id;
+        });
+
+        return count($groups) > 0;
+    }
+
     public function hasGame()
     {
         return isset($this->game);

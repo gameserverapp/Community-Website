@@ -172,14 +172,14 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $characters->count() > 0;
     }
 
-    public function isGroupMember(Group $tribe)
+    public function isGroupMember(Group $group)
     {
         if (! $this->hasCharacters()) {
             return false;
         }
 
-        $characters = $this->characters->filter(function ($item) use ($tribe) {
-            return $item->hasGroup($tribe);
+        $characters = $this->characters->filter(function ($item) use ($group) {
+            return $item->isGroupMember($group);
         });
 
         return $characters->count() > 0;

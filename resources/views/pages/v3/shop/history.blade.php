@@ -32,7 +32,7 @@ use GameserverApp\Models\Order;
     <div class="row">
         <div class="col-md-8 center-block">
 
-            @component('partials.v3.frame')
+            @component('partials.v3.frame', ['class' => 'no-padding'])
                 <table class="table">
                     <thead>
                     <tr>

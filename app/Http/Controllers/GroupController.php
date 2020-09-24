@@ -63,7 +63,10 @@ class GroupController extends Controller
 
         if(
             !auth()->check() or
-            ( auth()->user() and !auth()->user()->isGroupMember($group) )
+            (
+                auth()->check() and
+                !auth()->user()->isGroupMember($group)
+            )
         ) {
             return view('pages.v3.group.restricted', [
                 'group' => $group

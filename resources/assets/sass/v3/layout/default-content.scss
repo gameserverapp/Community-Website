@@ -69,6 +69,8 @@ select,
 select:focus,
 select:active,
 input[type=text],
+input[type=email],
+input[type=number],
 textarea {
     background-color:var(--transparent-bg);
     color:var(--primary-color);

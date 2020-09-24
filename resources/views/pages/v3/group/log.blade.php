@@ -49,9 +49,11 @@
                                 </td>
                             </tr>
                         @empty
-                            <div class="list-group-item message-item text-center">
-                                <em>No logs...</em>
-                            </div>
+                            <tr>
+                                <td colspan="2">
+                                    <em>No logs...</em>
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>

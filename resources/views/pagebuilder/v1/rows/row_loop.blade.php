@@ -5,7 +5,16 @@ if(
     isset($row['settings']['vertical_align']) and
     $row['settings']['vertical_align']
 ) {
-    $classes[] = 'display-table valign-' . $row['settings']['vertical_align'];
+
+    $blocked = config('gameserverapp.pagebuilder.disable_vertical_align_for_blocks');
+
+    $hasBlockedBlocksAsChild = array_filter($row['content'], function($item) use ($blocked) {
+        return in_array($item['type'], $blocked);
+    });
+
+    if(!count($hasBlockedBlocksAsChild)) {
+        $classes[] = 'display-table valign-' . $row['settings']['vertical_align'];
+    }
 }
 
 if(isset($row['settings']['text_color'])) {

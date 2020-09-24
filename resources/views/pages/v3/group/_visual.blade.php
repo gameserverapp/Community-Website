@@ -27,7 +27,7 @@
         @include('partials.v3.button', [
             'type' => 'submit',
             'element' => 'button',
-            'title' => translate('save_settings', 'Save settings'),
+            'title' => translate('upload', 'Upload'),
             'class' => 'center'
         ])
 

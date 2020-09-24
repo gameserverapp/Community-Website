@@ -16,6 +16,16 @@ return [
         'tribe_background' => 20
     ],
 
+    'pagebuilder' => [
+        'disable_vertical_align_for_blocks' => [
+            'server_slider',
+            'active_tribes',
+            'newbies',
+            'last_online',
+            'top_players'
+        ]
+    ],
+
     'upload' => [
         'limit' => 500, //upload limit in KB
     ]

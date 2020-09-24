@@ -301,15 +301,6 @@
 
         transition: background-image 0.2s ease;
 
-        &:active,
-        &:focus,
-        &:hover {
-            background-color: transparent;
-            box-shadow: none;
-            border: none;
-            outline: 0;
-        }
-
         &.disabled {
             cursor: pointer;
         }
@@ -318,13 +309,26 @@
             display: block;
             padding: 0;
             font-weight: bold;
-            color: #fff !important;
+            color: rgba(240,240,240,.9) !important;
             text-transform: uppercase;
             text-align: center;
             overflow: hidden;
             opacity: .9;
 
             transition: color 0.2s ease;
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            background-color: transparent;
+            box-shadow: none;
+            border: none;
+            outline: 0;
+
+            span {
+                color: rgba(0,0,0,.7) !important;
+            }
         }
 
         &.btn-theme-gem {

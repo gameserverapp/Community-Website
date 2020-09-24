@@ -14,8 +14,12 @@ class News extends Model implements LinkableInterface
     
     use Linkable;
 
-    public function title()
+    public function title($limit = false)
     {
+        if($limit) {
+            return str_limit($this->title, $limit);
+        }
+
         return $this->title;
     }
 

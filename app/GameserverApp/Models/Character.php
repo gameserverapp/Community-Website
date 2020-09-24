@@ -2,6 +2,7 @@
 
 namespace GameserverApp\Models;
 
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use GameserverApp\Helpers\SiteHelper;
@@ -96,30 +97,34 @@ class Character extends Model implements LinkableInterface
 
     public function characterImage()
     {
-        if ($this->gender) {
-            $gender = 'male';
-        } else {
-            $gender = 'female';
+        try {
+            if ($this->gender) {
+                $gender = 'male';
+            } else {
+                $gender = 'female';
+            }
+
+            $level = $this->level;
+
+            $cacheKey = domain() . $gender . $level;
+
+            if(Cache::has($cacheKey)) {
+                return Cache::get($cacheKey);
+            }
+
+            $set = (array) SiteHelper::customCharacterImages()->$gender;
+            $options = array_keys($set);
+
+            $key = getReached($level, $options);
+
+            $url = $set[$key];
+
+            Cache::put($key, $url, Carbon::now()->addMinutes(1));
+
+            return $url;
+        } catch( \Exception $e) {
+            Bugsnag::notifyException($e);
         }
-
-        $level = $this->level;
-
-        $cacheKey = domain() . $gender . $level;
-
-        if(Cache::has($cacheKey)) {
-            return Cache::get($cacheKey);
-        }
-
-        $set = (array) SiteHelper::customCharacterImages()->$gender;
-        $options = array_keys($set);
-
-        $key = getReached($level, $options);
-
-        $url = $set[$key];
-
-        Cache::put($key, $url, Carbon::now()->addMinutes(1));
-
-        return $url;
     }
 
     //linkable

@@ -24,7 +24,7 @@ use GameserverApp\Helpers\SiteHelper;
                                 </span>
                             &nbsp;
                             <div class="char_pic"
-                                 style="background-image:url('/img/character/{{$navChar->characterImage()}}')"></div>
+                                 style="background-image:url('{{$navChar->characterImage()}}')"></div>
                         </a>
                     </li>
                 @endif

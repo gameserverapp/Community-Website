@@ -13,7 +13,7 @@
                         @endif
                         <h1 class="title">
                             <a href="{{ route('news.show', [$news->id, $news->slug() ])}}"  itemprop="headline url">
-                                {!! $news->title() !!}
+                                {!! $news->title(40) !!}
                             </a>
                         </h1>
                     </div>

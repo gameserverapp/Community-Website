@@ -53,8 +53,8 @@ class Handler extends ExceptionHandler
         } else {
             // Custom error 500 view on production
             if (
-                in_array($exception, $this->dontReport) and
-                app()->environment() == 'production'
+                !in_array($exception, $this->dontReport) and
+                !config('app.debug')
             ) {
                 return response()->view('errors.500', [], 500);
             }

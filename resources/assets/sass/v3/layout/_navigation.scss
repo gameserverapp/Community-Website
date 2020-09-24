@@ -450,12 +450,14 @@
         position: absolute;
         width:calc(100% + 3px);
         margin-left:-15px;
+        overflow: auto;
 
         .navbar-nav {
             height:100vh;
             overflow-y:auto;
             z-index:auto;
             background: var(--primary-color);
+            padding-bottom: 4rem;
 
             li {
                 padding-right: $gutter;

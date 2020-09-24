@@ -1,74 +1,42 @@
-@extends('layouts.v2.banner', [
+@extends('layouts.v3.default', [
     'page' => [
-        'title' => 'Join ' . GameserverApp\Helpers\SiteHelper::name(),//'Access restricted',
+        'title' => 'Join ' . GameserverApp\Helpers\SiteHelper::name(),
         'description' => '',
-        'class' => 'login restricted'
+        'class' => 'error pagebuilder'
     ],
-    'banner' => [
-        'size' => 'small',
-        'down-button' => false,
-        'animated' => true,
-        'text-only' => true,
-        'vertical-align' => true
-    ]
 ])
 
-
 @section('banner_content')
-    <i class="fa fa-child"></i>Join {{GameserverApp\Helpers\SiteHelper::name()}}
 @stop
 
 @section('page_content')
 
 
-    <div class="container introtext">
-        <div class="row">
-            <div class="col-md-6 center-block  text-center">
+    <div class="row padding-2">
+        <div class="col-md-6 center-block">
+            @component('partials.v3.frame', ['class' => 'text-center no-bottom-margin', 'type' => 'big'])
+                <h1>
+                    <i class="fa fa-child"></i>
+                    Join {{GameserverApp\Helpers\SiteHelper::name()}}
+                </h1>
 
-                <div class="well">
-                    <h2>
-                        {{-- This content is only visible for members. Please log in! --}}
-                        Log in with STEAM
-                    </h2>
-                    <p>
-                        To view this page, you need to login.
-                    </p>
-                    <br/>
-                    <p>
-                        <a href="{{route('auth.login')}}" class="btn btn-default champ">
-                            <i class="fa fa-lock"></i> Secure login with <strong>STEAM</strong>
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+                <p>
+                    <strong>To view this page, you need to log in.</strong>
+                    <br><br>
+                    You can log in using your STEAM account. This is quick and secure.<br/>
+                    Even when you haven't played on one of our servers yet.
+                </p>
 
-
-    {{--
-        <div class="container-fluid fulldark">
-            <div class="container">
+                <br>
                 <div class="row">
-                    <div class="col-md-7 center-block text-center">
-                        <h2>
-                            New to Champion ARK?
-                        </h2>
-                        <p>
-                            Don't worry, you can log in using your STEAM account. This is quick and safe!<br/>Even when you
-                            haven't played on one of our servers yet!
-                        </p>
-                        <p>
-                            More information <a href="{{route('page.steam')}}">about STEAM login</a>.
-                        </p>
-                        <p>
-                            <small>
-                                PS: Welcome to Champion, enjoy! :)
-                            </small>
-                        </p>
+                    <div class="col-md-12 text-center">
+                        <a class="btn btn-theme btn-theme-rock" href="{{route('auth.login')}}">
+                            <span>Login with STEAM</span>
+                        </a>
                     </div>
                 </div>
-            </div>
+            @endcomponent
         </div>
-     --}}
+    </div>
 @stop
 

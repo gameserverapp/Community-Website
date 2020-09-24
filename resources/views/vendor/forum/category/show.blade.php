@@ -46,7 +46,7 @@
         @endcan
 
         @if ($category->threadsEnabled)
-            @component('partials.v3.frame', ['type' => 'basic', 'class' => 'forum-thread-table'])
+            @component('partials.v3.frame', ['type' => 'basic', 'class' => 'forum-thread-table no-padding'])
                 <div class="frame-title">
                     <div class="row">
                         <div class="col-xs-7">

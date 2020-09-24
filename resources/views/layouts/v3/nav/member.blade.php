@@ -105,6 +105,12 @@ use GameserverApp\Helpers\SiteHelper;
             <li role="separator" class="divider"></li>
         @endif
 
+        <li>
+            <a href="{{route('user.show', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.show', auth()->id()) ? 'orange' : '' }}">
+                Profile
+            </a>
+        </li>
+
         @if(SiteHelper::featureEnabled('messages'))
             <li class="hidden-sm">
                 <a href="{{route('message.index')}}"

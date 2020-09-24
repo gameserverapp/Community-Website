@@ -1,58 +1,36 @@
-@extends('layouts.v2.banner', [
+@extends('layouts.v3.default', [
     'page' => [
         'title' => 'Whoops',
         'description' => '',
-        'class' => 'page404'
+        'class' => 'error pagebuilder'
     ],
-    'banner' => [
-        'size' => 'small',
-        'animated' => true,
-        'text-only' => true,
-        'vertical-align' => true
-    ]
 ])
-
-
-@section('banner_content')
-    <i class="fa fa-bug"></i> A wild bug appeared
-@stop
 
 @section('page_content')
 
-    <div class="container introtext">
-        <div class="row">
-            <div class="col-md-8 center-block text-center">
-                <h2>
-                    Ohh boy, seems like something went wrong.
-                </h2>
-                <p>
-                    A report was send to the developers, to clean up their mess!
-                </p>
+    <div class="row padding-2">
+        <div class="col-md-6 center-block">
+            @component('partials.v3.frame', ['class' => 'text-center no-bottom-margin'])
                 <img src="https://media3.giphy.com/media/3oKIPwoeGErMmaI43S/giphy.gif">
-            </div>
-        </div>
-    </div>
+                <br><br><br>
+                <h1>A wild bug appeared!</h1>
 
-    <div class="container-fluid defaultcontent">
+                <p>
+                    Ohh boy, seems like something went wrong.<br>
+                    A report was send to the developers, to check it out!
+                </p>
 
-        <div class="container ">
-            <div class="row">
-                <div class="col-md-4 center-block">
-                    <p>
-                        There are a couple of things you can do:
-                    </p>
-
-                    <ul>
-                        <li>
-                            Go <a href="{{url()->previous()}}">back to where you came from</a>
-                        </li>
-                        <li>
-                            Go to the <a href="/">homepage</a> and start over.
-                        </li>
-                    </ul>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <a class="btn btn-theme" href="{{url()->previous()}}"><span>Previous page</span></a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a class="btn btn-theme btn-theme-rock" href="/"><span>Home</span></a>
+                    </div>
                 </div>
-            </div>
+            @endcomponent
         </div>
     </div>
-
 @stop

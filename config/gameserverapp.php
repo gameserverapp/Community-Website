@@ -5,7 +5,9 @@ return [
         'client_id' => env('GSA_CLIENT_ID'),
         'client_secret' => env('GSA_CLIENT_SECRET'),
         'redirect' => env('GSA_REDIRECT_URL'),
-        'timeout' => env('GSA_API_TIMEOUT', 20)
+        'timeout' => env('GSA_API_TIMEOUT', 20),
+
+        'oauth_base_url' => env('GSA_OAUTH_BASE_URL', 'https://dash.gameserverapp.com/'),
     ],
 
     'cache' => [

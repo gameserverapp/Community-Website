@@ -8,34 +8,13 @@
         border-collapse: separate;
     }
 
-    &.basic {
-        position: relative;
-        background-color:var(--transparent-bg);
-        padding:1rem;
-        margin-bottom:2rem;
-        overflow: hidden;
-
-        //@include box-shadow(0 0 30px -15px #000);
-
-        @include border-radius(5px);
-        @include box-shadow(0 0 60px -15px #000);
-
-        &.forum-thread-table {
-            padding-bottom:0;
-
-            .frame-title {
-                margin-bottom:0;
-            }
-        }
-    }
-
     &.basic,
     &.simple,
     &.big {
         .frame-title {
             background: var(--content-title-bg-color);
             padding:1rem 2rem;
-            margin:-1rem -2rem 2rem;
+            margin:-2rem -2rem 2rem;
 
             .title {
                 font-size:1.3rem;
@@ -51,6 +30,23 @@
             padding:1rem 2rem;
             margin: 2rem -2rem -2rem;
         }
+    }
+
+    &.basic {
+        position: relative;
+        background-color:var(--transparent-bg);
+        padding:1rem;
+        margin-bottom:2rem;
+        overflow: hidden;
+
+        .frame-title {
+            margin-top:-1rem;
+        }
+
+        //@include box-shadow(0 0 30px -15px #000);
+
+        @include border-radius(5px);
+        @include box-shadow(0 0 60px -15px #000);
     }
 
     &.tiny-padding {

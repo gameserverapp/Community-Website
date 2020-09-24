@@ -79,37 +79,5 @@
     .content {
         width:calc(100% + 42px);
         margin:0px -21px -15px;
-
-
-        .table {
-            margin-bottom: 0;
-
-            thead {
-                background-color: var(--transparent-bg);
-
-                th {
-                    border: 0;
-                    padding-left:25px;
-                    padding-right:25px;
-                }
-            }
-
-            tbody {
-
-                tr:first-child td {
-                    border: 0;
-                }
-
-                td {
-                    padding-left:25px;
-                    padding-right:25px;
-
-                    .label {
-                        float: right;
-                        margin-top: 3px;
-                    }
-                }
-            }
-        }
     }
 }

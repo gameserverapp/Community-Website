@@ -1,5 +1,5 @@
 @component('partials.v3.frame', ['class' => 'no-padding members', 'type' => 'basic'])
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th class="text-center">Name</th>

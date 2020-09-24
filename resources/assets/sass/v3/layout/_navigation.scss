@@ -445,11 +445,12 @@
         height: 100vh;
         min-height: 100vh;
         max-height: 100vh;
-        margin-top:0;
+        margin:0;
+        padding:0;
+        left:0;
+        right:0;
         border:none;
         position: absolute;
-        width:calc(100% + 3px);
-        margin-left:-15px;
         overflow: auto;
 
         .navbar-nav {
@@ -457,7 +458,7 @@
             overflow-y:auto;
             z-index:auto;
             background: var(--primary-color);
-            padding-bottom: 4rem;
+            padding-bottom: 5rem;
 
             li {
                 padding-right: $gutter;

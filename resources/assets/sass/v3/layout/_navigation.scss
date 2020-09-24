@@ -73,7 +73,7 @@
         background: transparent !important;
         font-size: 22px;
         z-index: 5;
-        margin-top:12px;
+        margin-top:16px;
         margin-right:0;
         @include border-radius(0);
         @include transition(all .2s);
@@ -84,11 +84,11 @@
             @include transition(all .2s);
 
             width: 40px;
-            height: 4px;
+            height: 3px;
 
 
             & + .icon-bar {
-                margin-top: 10px;
+                margin-top: 8px;
             }
 
             &:first-child {

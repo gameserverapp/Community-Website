@@ -20,8 +20,8 @@
                     <span class="summary">
                         <a href="{{ route('news.show', [$news->id, $news->slug() ])}}">
                             <time itemprop="datePublished" datetime="{{$news->date('published_at')->toDateTimeString()}}">
-                                {{ $news->date('published_at')->format('d F Y') }}
-                            </time> -
+                                <em>{{ $news->date('published_at')->format('d F Y') }}</em> -
+                            </time>
                             <span class="description" itemprop="description">
                                 {!! $news->summary() !!}
                             </span>

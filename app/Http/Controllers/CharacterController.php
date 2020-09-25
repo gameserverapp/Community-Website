@@ -24,19 +24,18 @@ class CharacterController extends Controller
         $character = $this->api->character($id);
 
         if( $hoursplayed = $this->api->stats('character', 'hours-played', $id) ) {
-            $stats['Online'] = (array) $hoursplayed;
+            $stats['hours-played'] = (array) $hoursplayed;
         }
 
         if($character->hasGame() and $character->game->supportLevel()) {
             if( $levelsGained = $this->api->stats('character', 'levels-gained', $id) ) {
-                $stats['Level progress'] = (array) $levelsGained;
+                $stats['levels-gained'] = (array) $levelsGained;
             }
 
             if( $expAmount = $this->api->stats('character', 'xp-gained', $id) ) {
-                $stats['EXP progress'] = (array) $expAmount;
+                $stats['xp-gained'] = (array) $expAmount;
             }
         }
-
 
         return view('pages.v3.character.index', [
             'character' => $character,

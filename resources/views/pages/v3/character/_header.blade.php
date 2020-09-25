@@ -81,7 +81,7 @@ use GameserverApp\Helpers\SiteHelper;
     $menu = [
          [
              'title' => 'Statistics',
-             'route' => route('group.statistics', $character->id)
+             'route' => route('character.show', $character->id)
          ]
      ];
 
@@ -176,12 +176,12 @@ use GameserverApp\Helpers\SiteHelper;
                     auth()->user()->characterOnServer($character->server)
                 ) {
                     $dropdown[] = [
-                        'title' => 'Invite ' . $character->name . ' to ' . auth()->user()->characterOnServer($character->server)->groupForServer($character->server)->name,
+                        'title' => 'Invite <u>' . $character->name . '</u> to <u>' . auth()->user()->characterOnServer($character->server)->groupForServer($character->server)->name . '</u>',
                         'route' => route('message.create', $character->user->id)
                     ];
                 } else {
                     $dropdown[] = [
-                        'title' => 'Start group on ' . $character->server->name(),
+                        'title' => 'Start group on <u>' . $character->server->name() . '</u>',
                         'route' => route('message.create', $character->user->id)
                     ];
                 }

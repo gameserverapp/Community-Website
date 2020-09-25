@@ -42,9 +42,9 @@ class Group extends Model implements LinkableInterface
         return $this->member_count;
     }
 
-    public function foundedYear()
+    public function foundedDate()
     {
-        return Carbon::parse($this->created_at)->format('Y');
+        return Carbon::parse($this->created_at)->format('M. Y');
     }
 
     public function discordSetup()

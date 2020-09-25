@@ -34,6 +34,21 @@ class HomeController extends Controller
                 case 'forum':
                     return redirect('/forum');
 
+                case 'news':
+                    return redirect('/news');
+
+                case 'calendar':
+                    return redirect('/calendar');
+
+                case 'inspector':
+                    return redirect('/inspector');
+
+                case 'shop':
+                    return redirect('/shop');
+
+                case 'supporter-tier':
+                    return redirect('/supporter-tier');
+
                 default:
                     $pageController = app(PageController::class);
                     return $pageController->show(RouteHelper::home());

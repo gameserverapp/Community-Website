@@ -23,7 +23,7 @@
                         <span class="divider">|</span>
 
                         <div class="founded">
-                            Founded {{$group->foundedYear()}}
+                            Founded {{$group->foundedDate()}}
                         </div>
 
                         <span class="divider">|</span>

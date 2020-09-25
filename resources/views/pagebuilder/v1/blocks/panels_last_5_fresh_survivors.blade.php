@@ -1,6 +1,7 @@
 @component('partials.v3.frame', [
     'title' => '<i class="fa fa-hand-spock-o" aria-hidden="true"></i> Fresh survivors',
-    'class' => 'no-padding center-title no-bottom-margin'
+    'class' => 'no-padding center-title no-bottom-margin',
+    'content_style' => 'min-height: 300px;'
 ])
     <table class="table">
         <thead>

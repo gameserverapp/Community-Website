@@ -10,7 +10,8 @@ if($totalOnline == 1) {
 
 @component('partials.v3.frame', [
     'title' => $title,
-    'class' => 'no-padding center-title no-bottom-margin'
+    'class' => 'no-padding center-title no-bottom-margin',
+    'content_style' => 'min-height: 300px;'
 ])
     <table class="table">
         <thead>

@@ -13,7 +13,7 @@ available CSS styling classes:
                 <div class="left-repeat-top"></div>
                 <div class="left-repeat-bottom"></div>
             </td>
-            <td class="contentwrap">
+            <td class="contentwrap" @isset($content_style) style="{{$content_style}}" @endisset>
 
                 @isset($banner)
                     <div class=" header" @isset($banner['image']) style="background-image:url('{{$banner['image']}}')" @endisset>

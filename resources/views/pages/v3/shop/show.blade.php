@@ -26,7 +26,7 @@ use GameserverApp\Helpers\SiteHelper;
     <div class="row">
 
         <div class="col-md-8 center-block">
-            <h2 class="text-center title">
+            <h2 class="text-center title main-title">
                 <img src="{{$package->image()}}" alt="{{$package->image()}}">
                 <span>
                     {{$package->name()}}

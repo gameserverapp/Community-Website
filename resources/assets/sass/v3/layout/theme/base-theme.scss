@@ -159,7 +159,7 @@
             margin: -2px -5px !important;
 
             @include border-radius(0);
-            @include box-shadow(0 0 60px -15px #000);
+            @include box-shadow(var(--frame-shadow));
             overflow: visible;
 
             @media (min-width: 768px) {

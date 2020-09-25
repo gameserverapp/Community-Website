@@ -1,9 +1,9 @@
 <?php
 return [
-    'primary-color' => '#b326b0',
-    'secondary-color' => '#f00',//#337ab7',
+    'primary-color' => '#b06b45',
+    'secondary-color' => '#9d4810',//#337ab7',
 
-    'bg-color' => '#040917',//#222',
+    'bg-color' => '#1d4771',//#040917',//#222',
 
     'hr-color' => '#1b2226',
 
@@ -11,6 +11,8 @@ return [
     'medium-text' => '#999',
     'darker-text' => '#333',
     'dark-text' => '#111',
+
+    'title-shadow' => '1px 1px 9px rgba(0,0,0,0.1)',
 
     //background
     'transparent-bg' => 'rgba(0,0,0,.5)',
@@ -32,6 +34,10 @@ return [
         'custom-nav-link-active-hover-color' => '#b326b0',
         'custom-nav-link-active-hover-bg' => '#222',
 
+    //frame
+    'frame-shadow' => '0px 10px 30px -15px #000',
+    //0 0 30px -15px #000 - old news
+    //0px 10px 30px -15px #000
 
     //btn
     'btn-color' => '#253138',

@@ -19,7 +19,7 @@
 @section('page_content')
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1>{{translate('subscriptions', 'Subscriptions')}}</h1>
+            <h1 class="main-title">{{translate('subscriptions', 'Subscriptions')}}</h1>
         </div>
     </div>
 

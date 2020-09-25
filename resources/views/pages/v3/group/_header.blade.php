@@ -7,7 +7,7 @@
                     <img src="{{$group->logo()}}">
                 </div>
                 <div class="col-sm-8 title table-cell">
-                    <h1>{{$group->name()}}</h1>
+                    <h1 class="main-title">{{$group->name()}}</h1>
 
                     <div class="meta">
                         <div class="member-count">

@@ -15,7 +15,7 @@
 @section('page_content')
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1>{{translate('your_settings', 'Your settings')}}</h1>
+            <h1 class="main-title">{{translate('your_settings', 'Your settings')}}</h1>
         </div>
     </div>
 

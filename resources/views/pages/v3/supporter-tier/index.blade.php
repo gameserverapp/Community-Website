@@ -17,7 +17,7 @@
 <div class="row">
 
     <div class="col-md-12 text-center title">
-        <h1>{{translate('supporter_tiers', 'Supporter tiers')}}</h1>
+        <h1 class="main-title">{{translate('supporter_tiers', 'Supporter tiers')}}</h1>
     </div>
 </div>
 <div class="row">

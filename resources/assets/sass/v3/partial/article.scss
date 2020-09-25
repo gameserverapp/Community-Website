@@ -10,7 +10,7 @@
             position: relative;
             overflow: hidden;
 
-            @include box-shadow(0 0 30px -15px #000);
+            @include box-shadow(var(--frame-shadow));
 
             @include border-radius(5px);
 

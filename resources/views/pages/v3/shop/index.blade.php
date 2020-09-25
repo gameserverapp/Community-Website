@@ -28,7 +28,7 @@ use GameserverApp\Helpers\SiteHelper;
             </div>
             <div class="col-sm-4">
 
-                <h1 class="title">{{translate('reward_shop', 'Reward shop')}}</h1>
+                <h1 class="title main-title">{{translate('reward_shop', 'Reward shop')}}</h1>
                 @if($categories)
                     <select onchange="if (this.value) window.location.href=this.value">
                         <option value="{{route('shop.index')}}">All packages</option>

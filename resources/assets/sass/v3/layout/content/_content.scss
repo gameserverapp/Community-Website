@@ -15,7 +15,7 @@
     top: 0;
     right: 0;
     left: 0;
-    filter: blur(3px) brightness(80%);
+    filter: blur(6px) brightness(80%);
     background-size: cover;
     background-repeat:no-repeat;
     background-position: top center;
@@ -28,6 +28,10 @@
 
 
     @import "./../default-content";
+
+    .main-title {
+        text-shadow: var(--title-shadow);
+    }
 }
 
 .display-table {

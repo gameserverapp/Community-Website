@@ -6,8 +6,8 @@
 
         th {
             border: 0;
-            padding-left:25px;
-            padding-right:25px;
+            //padding-left:25px;
+            //padding-right:25px;
         }
     }
 
@@ -18,8 +18,8 @@
         }
 
         td {
-            padding-left:25px;
-            padding-right:25px;
+            //padding-left:25px;
+            //padding-right:25px;
 
             .label {
                 float: right;
@@ -30,5 +30,21 @@
 
     &.table-striped > tbody > tr:nth-of-type(odd) {
         background-color: rgba(255,255,255,0.05);
+    }
+
+    &.table-padding {
+        thead {
+            th {
+                padding-left:25px;
+                padding-right:25px;
+            }
+        }
+
+        tbody {
+            td {
+                padding-left:25px;
+                padding-right:25px;
+            }
+        }
     }
 }

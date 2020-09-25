@@ -37,7 +37,7 @@ if($title == 'Inbox') {
 
         </div>
         <div class="col-md-4 text-center">
-            <h1>{{$title}}</h1>
+            <h1 class="main-title">{{$title}}</h1>
         </div>
 
         <div class="col-md-4 text-right">

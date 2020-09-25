@@ -2,6 +2,18 @@
     @import 'base-theme';
 
     .main-nav {
+        @media (min-width:767px) {
+            .navbar-collapse {
+                margin-top:6px;
+            }
+        }
+
+
+        .navbar-header {
+            height:64px;
+            padding-top:4px;
+        }
+
         background-image:url('/img/themes_copyright/atlas-kraken/menu-repeat.png') !important;
 
         &.passed-banner:before,

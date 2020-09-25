@@ -24,7 +24,7 @@
 
         </div>
         <div class="col-sm-4 text-center">
-            <h1>{{auth()->user()->displayTokenBalance()}}</h1>
+            <h1 class="main-title">{{auth()->user()->displayTokenBalance()}}</h1>
         </div>
         <div class="col-sm-4">
             @include('partials.v3.button', [

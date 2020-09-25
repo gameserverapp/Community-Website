@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Request;
     <div class="row">
 
         <div class="col-md-8 center-block text-center">
-            <h1>
+            <h1 class="main-title">
                 New message
             </h1>
         </div>

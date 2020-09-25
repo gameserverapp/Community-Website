@@ -47,7 +47,7 @@ if(auth()->id() == $message->receiver->id) {
     <div class="row">
 
         <div class="col-md-8 center-block text-center">
-            <h1>
+            <h1 class="main-title">
                 <div>
                     {{$message->subject}}
                 </div>

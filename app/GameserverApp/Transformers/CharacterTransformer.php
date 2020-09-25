@@ -36,9 +36,7 @@ class CharacterTransformer extends ModelTransformer implements ModelTransformerI
         }
 
         if (isset($args->groups)) {
-            foreach($args->groups as $group) {
-                $data['groups'][] = GroupTransformer::transform($group);
-            }
+            $data['groups'] = GroupTransformer::transformMultiple($args->groups);
         }
 
         if (isset($args->user)) {

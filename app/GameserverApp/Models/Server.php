@@ -58,6 +58,11 @@ class Server extends Model implements LinkableInterface
         return isset($this->update_at) or isset($this->shutdown_at) or isset($this->restart_at);
     }
 
+    public function displayLabel()
+    {
+        return '<div class="label label-theme alternative server">' . $this->name() . '</div>';
+    }
+
     public function online()
     {
         return isset($this->online) ? $this->online : null;

@@ -26,6 +26,8 @@
                         Owner
                     @elseif($char->groupAdmin($group))
                         Manager
+                    @else
+                        Member
                     @endif
                 </td>
             </tr>

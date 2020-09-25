@@ -1,4 +1,4 @@
-&.group-single {
+&.character-single {
 
     header {
 
@@ -9,8 +9,8 @@
             img {
                 width:auto;
                 height:auto;
-                max-width: 200px;
                 max-height:200px;
+                max-width: 200px;
             }
         }
 
@@ -30,6 +30,14 @@
                 color:var(--content-text-color);
                 margin-bottom:.5rem;
 
+                .level {
+                    display: inline-block;
+                }
+
+                .current-status {
+                    display: inline-block;
+                }
+
                 .member-count {
                     display: inline-block;
                 }
@@ -43,6 +51,11 @@
                     color:var(--content-text-color);
                 }
 
+                .hours-played {
+                    display: inline-block;
+                    color:var(--content-text-color);
+                }
+
                 .divider {
                     margin-right:.5rem;
                     margin-left:.5rem;
@@ -50,6 +63,17 @@
                     //line-height: 1rem;
                     //vertical-align: text-bottom;
                     color:var(--transparent-bg)
+                }
+            }
+
+            .roles {
+
+                .label {
+                    margin-right:.5rem;
+
+                    &:last-child {
+                        margin-right:0;
+                    }
                 }
             }
         }

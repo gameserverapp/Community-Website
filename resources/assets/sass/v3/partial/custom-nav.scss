@@ -33,6 +33,37 @@
                     background-color:var(--custom-nav-link-active-hover-bg);
                 }
             }
+            
+            &.dropdown {
+
+                ul.dropdown-menu {
+                    min-width:300px;
+
+                    li {
+
+                        a {
+                            padding:5px 20px;
+
+                            .char_pic {
+                                display: inline-block;
+                                vertical-align: middle;
+                                width: 20px;
+                                height: 20px;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            }
+
+                            text-decoration: none;
+
+                            .label {
+                                float:right;
+                                vertical-align: middle;
+                                margin-top:3px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

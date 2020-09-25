@@ -94,13 +94,12 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
             return false;
         }
 
-        foreach ($this->characters as $character) {
-            if (
-                $character->hasServer() and
-                $character->server->id == $server->id
-            ) {
-                return $character;
-            }
+        $characters = $this->characters->filter(function($character) use ($server) {
+            return $character->hasServer() and $character->server->id == $server->id;
+        });
+
+        if($characters->count()) {
+            return $characters->first();
         }
 
         return false;
@@ -155,19 +154,21 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->donated;
     }
 
-    public function hasGroup($serverId = false)
+    public function hasGroup($server = false)
     {
         if (! $this->hasCharacters()) {
             return false;
         }
 
-        $characters = $this->characters->filter(function ($item) use ($serverId) {
-            if ($serverId and $item->hasGroup() and $item->hasServer()) {
-                return $item->tribe->server->id == $serverId;
-            }
-
-            return $item->hasGroup();
-        });
+        if(!$server) {
+            $characters = $this->characters->filter(function ($item) {
+                return $item->hasGroup();
+            });
+        } else {
+            $characters = $this->characters->filter(function ($item) use ($server) {
+                return $item->groupForServer($server);
+            });
+        }
 
         return $characters->count() > 0;
     }
@@ -194,7 +195,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         }
 
         if ($this->donated()) {
-            $output .= '<a href="' . route('supporter-tier.index') . '" class="label label-theme alternative">Supporter <3</a> &nbsp;';
+            $output .= '<a href="' . route('supporter-tier.index') . '" class="label label-theme alternative">Supporter <3</a>';
         }
 
         return $output;
@@ -278,11 +279,11 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 
         if (isset($options['disable_link'])) {
             $output[] = '<span class="accountlink-name">';
-            $output[] = '<span itemprop="name">' . str_limit($this->name(14), $options['limit'], '...') . '</span>';
+            $output[] = '<span itemprop="name">' . $this->name($options['limit']) . '</span>';
             $output[] = '</span>';
         } else {
             $output[] = '<a class="accountlink" href="' . $url . '" itemprop="url">';
-            $output[] = '<span itemprop="name">' . str_limit($this->name(14), $options['limit'], '...') . '</span>';
+            $output[] = '<span itemprop="name">' . $this->name($options['limit']) . '</span>';
             $output[] = '</a>';
         }
 

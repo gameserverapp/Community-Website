@@ -16,7 +16,7 @@ class CharacterController extends Controller
     public function show(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('character_page')) {
-            return view('pages.v1.character.disabled');
+            return view('pages.v3.character.disabled');
         }
 
         $stats = [];
@@ -38,7 +38,7 @@ class CharacterController extends Controller
         }
 
 
-        return view('pages.v1.character.index', [
+        return view('pages.v3.character.index', [
             'character' => $character,
             'stats' => $stats
         ]);

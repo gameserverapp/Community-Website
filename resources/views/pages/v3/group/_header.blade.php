@@ -1,12 +1,12 @@
 <header>
     <div class="row display-table">
-        <div class="col-md-8 table-cell">
+        <div class="col-md-12 table-cell">
 
             <div class="row display-table">
-                <div class="col-sm-4 logo table-cell">
+                <div class="col-sm-4 col-lg-3 logo table-cell">
                     <img src="{{$group->logo()}}">
                 </div>
-                <div class="col-sm-8 title table-cell">
+                <div class="col-sm-8 col-lg-9 title table-cell">
                     <h1 class="main-title">{{$group->name()}}</h1>
 
                     <div class="meta">
@@ -44,31 +44,27 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 table-cell actions text-right">
-
-            @if(
-                $group->hasOwners() and
-                (
-                    !auth()->check() or
-                    (
-                        auth()->user()->canSendMessage() and
-                        !auth()->user()->isGroupMember($group)
-                    )
-                )
-            )
-                <a class="btn btn-theme" href="{{route('message.create', $group->owners[0])}}">
-                    <span>
-                        Contact owner &raquo;
-                    </span>
-                </a>
-            @endif
-
-        </div>
 
     </div>
 
     <?php
     $right = [];
+
+    if(
+        $group->hasOwners() and
+        (
+            !auth()->check() or
+            (
+                auth()->user()->canSendMessage() and
+                !auth()->user()->isGroupMember($group)
+            )
+        )
+    ) {
+        $right[] = [
+            'title' => 'Contact owner',
+            'route' => route('message.create', $group->owners[0])
+        ];
+    }
 
     if(
         auth()->check() and

@@ -28,13 +28,7 @@
             <ul class="nav navbar-nav">
 
                 @forelse($menu as $item)
-                    <?php
-                    $active = GameserverApp\Helpers\RouteHelper::isCurrentUrl($item['route']);
-                    ?>
-
-                    <li class="{{ $active ? 'active' : '' }}">
-                        <a href="{{$item['route']}}">{!! $item['title'] !!}@if($active)<span class="sr-only">(current)</span>@endif</a>
-                    </li>
+                    @include('partials.v3.helpers.nav-item')
                 @empty
 
                 @endforelse
@@ -43,13 +37,7 @@
             @isset($right)
                 <ul class="nav navbar-nav navbar-right">
                     @forelse($right as $item)
-                        <?php
-                        $active = GameserverApp\Helpers\RouteHelper::isCurrentUrl($item['route']);
-                        ?>
-
-                        <li class="{{ $active ? 'active' : '' }}">
-                            <a href="{{$item['route']}}">{!! $item['title'] !!}@if($active)<span class="sr-only">(current)</span>@endif</a>
-                        </li>
+                        @include('partials.v3.helpers.nav-item')
                     @empty
 
                     @endforelse

@@ -32,7 +32,7 @@
             <div class="background" style="background-image:url({{$group->backgroundImage()}})"></div>
         </header>
         <div class="content">
-            <table class="table table-padding">
+            <table class="table table-padding table-striped">
                 <thead>
                 <tr>
                     <th>Name</th>

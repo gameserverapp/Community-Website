@@ -1,9 +1,15 @@
 <?php
-return [
-    'primary-color' => '#b06b45',
-    'secondary-color' => '#9d4810',//#337ab7',
 
-    'bg-color' => '#1d4771',//#040917',//#222',
+$primary = '#b06b45';
+$secondary = '#9d4810';
+
+$bgColor = '#1d4771';
+
+return [
+    'primary-color' => $primary,
+    'secondary-color' => $secondary,//#337ab7',
+
+    'bg-color' => $bgColor,//#040917',//#222',
 
     'hr-color' => '#1b2226',
 
@@ -27,11 +33,11 @@ return [
     //custom-nav
         'custom-nav-link-color' => '#ccc',
         'custom-nav-link-active-color' => '#222',
-        'custom-nav-link-active-bg' => '#b326b0',
+        'custom-nav-link-active-bg' => $primary,
 
         //hover
-        'custom-nav-link-hover-color' => '#b326b0',
-        'custom-nav-link-active-hover-color' => '#b326b0',
+        'custom-nav-link-hover-color' => $primary,
+        'custom-nav-link-active-hover-color' => $primary,
         'custom-nav-link-active-hover-bg' => '#222',
 
     //frame
@@ -40,7 +46,7 @@ return [
     //0px 10px 30px -15px #000
 
     //btn
-    'btn-color' => '#253138',
+    'btn-color' => $primary,
     'btn-bg' => '#FF4B3E',
 
     //header

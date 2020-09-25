@@ -167,7 +167,7 @@ class GroupController extends Controller
 
         $group = $this->api->group($id);
 
-        $response = $this->api->uploadGroupVisuals(
+        $response = $this->api->saveGroupSettings(
             $group,
             $request->only([
                 'motd',

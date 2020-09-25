@@ -126,16 +126,23 @@ class Group extends Model implements LinkableInterface
 
     public function logo()
     {
-        if(isset($this->images['logo']) and !is_null($this->images['logo'])) {
+        if(
+            isset($this->images['logo']) and
+            !is_null($this->images['logo'])
+        ) {
             return $this->images['logo'];
         }
 
-        return 'http://premiumark-gui.qikkerlocal.nl/img/token_packs/100-tokens.png';
+        return 'https://dash.gameserverapp.com/img/default-group-logo.png';
     }
 
     public function backgroundImage()
     {
-        if(isset($this->images['background']) and !is_null($this->images['background'])) {
+        if(
+            isset($this->images['background']) and
+            !is_null($this->images['background']) and
+            SiteHelper::featureEnabled('tribe_image_upload')
+        ) {
             return $this->images['background'];
         }
 

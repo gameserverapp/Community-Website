@@ -41,7 +41,7 @@ use GameserverApp\Helpers\SiteHelper;
                             <span class="divider">|</span>
 
                             <div class="hours-played">
-                                Hours played {{$character->hoursPlayed()}}
+                                Played <strong>{{$character->hoursPlayed()}} hours</strong>
                             </div>
                         @endif
 

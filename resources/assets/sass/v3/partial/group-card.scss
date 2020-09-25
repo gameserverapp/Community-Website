@@ -79,5 +79,12 @@
     .content {
         width:calc(100% + 42px);
         margin:0px -21px -15px;
+
+        .table {
+            .label {
+                float: right;
+                margin-top: 3px;
+            }
+        }
     }
 }

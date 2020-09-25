@@ -15,6 +15,17 @@ Route::group([
         'uses' => 'UserController@show'
     ]);
 
+    Route::get('/{uuid}/about', [
+        'as'   => 'user.about',
+        'uses' => 'UserController@about'
+    ]);
+
+    Route::get('/{uuid}/order-history', [
+        'as'   => 'shop.orders',
+        'uses' => 'UserController@orderHistory',
+        'middleware' => 'auth'
+    ]);
+
     Route::get('/{uuid}/settings', [
         'as'   => 'user.settings',
         'uses' => 'UserController@settings',
@@ -26,6 +37,77 @@ Route::group([
         'uses' => 'UserController@storeSettings',
         'middleware' => 'auth'
     ]);
+
+    Route::group([
+        'prefix' => '/{uuid}/subscription',
+        'middleware' => 'auth'
+    ], function ($router) {
+
+        Route::get('/', [
+            'as'   => 'subscription.index',
+            'uses' => 'SubscriptionController@index',
+        ]);
+
+        Route::post('/{id}/change_character', [
+            'as'   => 'subscription.change_character',
+            'uses' => 'SubscriptionController@changeCharacter'
+        ]);
+
+        Route::post('/{id}/cancel', [
+            'as'   => 'subscription.cancel',
+            'uses' => 'SubscriptionController@cancel'
+        ]);
+    });
+
+    Route::group([
+        'prefix' => '/{uuid}/message',
+        'middleware' => 'auth'
+    ], function ($router) {
+
+        Route::get('/', [
+            'as'   => 'message.index',
+            'uses' => 'MessageController@index'
+        ]);
+
+        Route::get('/inbox', [
+            'as'   => 'message.inbox',
+            'uses' => 'MessageController@inbox'
+        ]);
+
+        Route::get('/outbox', [
+            'as'   => 'message.outbox',
+            'uses' => 'MessageController@outbox'
+        ]);
+
+        Route::get('/create', [
+            'as'   => 'message.create',
+            'uses' => 'MessageController@create'
+        ]);
+
+        Route::post('/create', [
+            'as'   => 'message.send',
+            'uses' => 'MessageController@send'
+        ]);
+
+        Route::get('/show/{id}', [
+            'as'   => 'message.show',
+            'uses' => 'MessageController@show'
+        ]);
+
+    });
+
+    Route::group([
+        'prefix' => '/{uuid}/token',
+        'middleware' => 'auth'
+    ], function ($router) {
+
+        Route::get('/', [
+            'as'   => 'token.index',
+            'uses' => 'TokenController@index'
+        ]);
+
+    });
+
 
     Route::post('/{uuid}/accept_rules', [
         'as'   => 'user.accept_rules',

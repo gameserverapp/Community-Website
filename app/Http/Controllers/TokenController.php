@@ -26,23 +26,14 @@ class TokenController extends Controller
     public function index()
     {
         if(! SiteHelper::featureEnabled('tokens')) {
-            return view('pages.v3.transactions.disabled');
+            return view('pages.v3.user.disabled');
         }
 
-        $transactions = $this->client->allUserTransactions(route('token.index'));
+        $transactions = $this->client->allUserTransactions(route('token.index', auth()->id()));
 
-        return view('pages.v3.transactions.index', [
-            'transactions' => $transactions
+        return view('pages.v3.user.transactions.index', [
+            'transactions' => $transactions,
+            'user' => auth()->user()
         ]);
-    }
-
-    public function buy()
-    {
-        return redirect(route('supporter-tier.index'));
-    }
-
-    public function show(Request $request, $id)
-    {
-        return redirect(route('supporter-tier.index'));
     }
 }

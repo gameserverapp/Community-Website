@@ -7,6 +7,10 @@
 
     @include border-radius(3px);
 
+    .navbar-nav > li > a {
+        line-height:1.5rem !important;
+    }
+
     ul.nav {
         > li {
             > a {
@@ -59,6 +63,27 @@
                                 float:right;
                                 vertical-align: middle;
                                 margin-top:3px;
+                            }
+                        }
+
+
+
+                        &:hover {
+
+                            > a {
+                                color:var(--custom-nav-link-hover-color);
+                            }
+                        }
+
+                        &.active {
+                            > a {
+                                color:var(--custom-nav-link-active-color);
+                                background-color:var(--custom-nav-link-active-bg);
+                            }
+
+                            &:hover > a {
+                                color:var(--custom-nav-link-active-hover-color);
+                                background-color:var(--custom-nav-link-active-hover-bg);
                             }
                         }
                     }

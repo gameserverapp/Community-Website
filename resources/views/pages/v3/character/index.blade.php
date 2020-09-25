@@ -13,6 +13,8 @@
     <div class="row">
         <div class="col-md-12">
 
+{{--            todo add stream block--}}
+
 
             @if(isset($stats['levels-gained']) or isset($stats['xp-gained']))
                 <div class="row">

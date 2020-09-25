@@ -1,6 +1,8 @@
 <?php
 use GameserverApp\Helpers\SiteHelper;
 use Illuminate\Support\Facades\Request;
+$user = auth()->user();
+$user = auth()->user();
 
 if($title == 'Inbox') {
     $breadcrumb = [
@@ -17,50 +19,17 @@ if($title == 'Inbox') {
     'page' => [
         'title' => translate('messages', 'Messages'),
         'description' => 'Send a message to fellow players.',
-        'class' => 'message'
+        'class' => 'message user-single'
     ],
-
-    'breadcrumbs' => [
-        [
-            'title' => auth()->user()->name(),
-            'route' => route('user.settings', 'me')
-        ],
-        $breadcrumb
-    ]
 ])
 
 @section('page_content')
 
-    <div class="row">
-
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4 text-center">
-            <h1 class="main-title">{{$title}}</h1>
-        </div>
-
-        <div class="col-md-4 text-right">
-
-
-            @if($title == 'Inbox')
-                @include('partials.v3.button', [
-                    'route' => route('message.outbox'),
-                    'title' => translate('outbox', 'Outbox'),
-                ])
-            @else
-                @include('partials.v3.button', [
-                    'route' => route('message.inbox'),
-                    'title' => translate('inbox', 'Inbox'),
-                ])
-            @endif
-        </div>
-
-    </div>
+    @include('pages.v3.user._header')
     <div class="row">
         <div class="col-md-9">
 
-            @component('partials.v3.frame')
+            @component('partials.v3.frame', ['class' => 'tiny-padding'])
 
                 @forelse($messages as $message)
 
@@ -120,7 +89,7 @@ if($title == 'Inbox') {
         <div class="col-md-3 text-right">
 
             @if($contacts and auth()->user()->canSendMessage())
-                @include('pages.v3.message._new-button')
+                @include('pages.v3.user.message._new-button')
             @endif
 
         </div>

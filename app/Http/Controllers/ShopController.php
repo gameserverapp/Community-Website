@@ -68,15 +68,7 @@ class ShopController extends Controller
 
     public function orders()
     {
-        if(! SiteHelper::featureEnabled('shop')) {
-            return view('pages.v3.shop.disabled');
-        }
-
-        $orders = $this->client->shopOrders(route('shop.orders'));
-
-        return view('pages.v3.shop.history', [
-            'orders' => $orders
-        ]);
+        return redirect(route('user.order-history', auth()->user()->id));
     }
 
     public function purchase(Request $request, $id)

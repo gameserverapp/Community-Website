@@ -1,5 +1,28 @@
 @isset($item['dropdown'])
-    <li class="dropdown">
+
+    <?php
+    $active = false;
+
+    if(isset($item['route'])) {
+
+        if(is_array($item['route'])) {
+
+            $active = false;
+
+            foreach($item['route'] as $route) {
+                $active = GameserverApp\Helpers\RouteHelper::isCurrentUrl($route);
+
+                if($active) {
+                    break;
+                }
+            }
+        } else {
+            $active = GameserverApp\Helpers\RouteHelper::isCurrentUrl($item['route']);
+        }
+    }
+    ?>
+
+    <li class="dropdown {{ $active ? 'active' : '' }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{!! $item['title'] !!} <span class="caret"></span></a>
         <ul class="dropdown-menu">
 
@@ -9,7 +32,10 @@
                         <li role="separator" class="divider"></li>
                     @endif
                 @else
-                    <li>
+                    <?php
+                    $subActive = GameserverApp\Helpers\RouteHelper::isCurrentUrl($subItem['route']);
+                    ?>
+                    <li class="{{ $subActive ? 'active' : '' }}">
                         <a href="{{$subItem['route']}}">{!! $subItem['title'] !!}</a>
                     </li>
                 @endisset

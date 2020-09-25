@@ -2,31 +2,18 @@
     'page' => [
         'title' => translate('your_settings', 'Your settings'),
         'description' => 'Manage your settings',
-        'class' => 'article-index'
+        'class' => 'user-single'
     ],
-
-    'breadcrumbs' => [
-        [
-            'title' => auth()->user()->name(),
-            'route' => route('user.settings', 'me')
-        ],
-        [
-            'title' => translate('your_settings', 'Your settings')
-        ]
-    ]
 ])
 
 @section('page_content')
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h1 class="main-title">{{translate('your_settings', 'Your settings')}}</h1>
-        </div>
-    </div>
+    @include('pages.v3.user._header')
 
     <div class="row">
 
         <div class="col-md-8">
             <form method="post" action="{{route('user.settings.store', auth()->id())}}">
+                {{csrf_field()}}
 
                 @component('partials.v3.frame', ['title' => 'Notifications'])
                     <strong>

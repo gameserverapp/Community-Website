@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use GameserverApp\Helpers\SiteHelper;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Api\OAuthApi;
@@ -25,13 +26,38 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    
+
     public function show(Request $request, $id)
     {
+        return redirect(route('user.about', $id));
+
         $user = $this->api->user($id);
 
         return view('pages.v3.user.index', [
             'user' => $user
+        ]);
+    }
+
+    public function about(Request $request, $id)
+    {
+        $user = $this->api->user($id);
+
+        return view('pages.v3.user.about', [
+            'user' => $user
+        ]);
+    }
+
+    public function orderHistory()
+    {
+        if(! SiteHelper::featureEnabled('shop')) {
+            return view('pages.v3.user.disabled');
+        }
+
+        $orders = $this->api->shopOrders(route('shop.orders', auth()->id()));
+
+        return view('pages.v3.user.history', [
+            'orders' => $orders,
+            'user' => auth()->user()
         ]);
     }
 

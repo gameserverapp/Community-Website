@@ -109,7 +109,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('supporter_tiers'))
             <li>
-                <a href="{{route('subscription.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index') ? 'orange' : '' }}">
+                <a href="{{route('subscription.index', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index', auth()->id()) ? 'orange' : '' }}">
                     Subscriptions
                 </a>
             </li>
@@ -165,7 +165,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('messages'))
             <li class="hidden-sm">
-                <a href="{{route('message.index')}}"
+                <a href="{{route('message.index', auth()->id())}}"
                    class="inbox {{ ( Request::is('message/*')) ? 'active' : '' }}">
                     Messages
                     <span class="label label-default right">

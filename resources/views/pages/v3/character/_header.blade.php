@@ -7,11 +7,11 @@ use GameserverApp\Helpers\SiteHelper;
         <div class="col-md-12 table-cell">
 
             <div class="row display-table">
-                <div class="col-sm-4 col-lg-3 logo table-cell">
+                <div class="col-sm-4 col-lg-3 logo table-cell text-center">
                     <img src="{{$character->image()}}">
                 </div>
                 <div class="col-sm-8 col-lg-9 title table-cell">
-                    <h1 class="main-title">{!! $character->showName(['limit' => 40]) !!}</h1>
+                    <h1 class="main-title">{!! $character->showName() !!}</h1>
 
                     <div class="meta">
 

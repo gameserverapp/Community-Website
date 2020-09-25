@@ -40,7 +40,7 @@
             </table>
 
             @if(!$subscription->expired())
-                <form method="post" action="{{route('subscription.cancel', $subscription->id())}}">
+                <form method="post" action="{{route('subscription.cancel', ['uuid' => auth()->id(), 'id' => $subscription->id()])}}">
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-xs btn-danger">Cancel subscription</button>
                 </form>
@@ -66,7 +66,7 @@
                         </div>
                     @endif
 
-                    <form method="post" action="{{route('subscription.change_character', $subscription->id())}}">
+                    <form method="post" action="{{route('subscription.change_character', ['uuid' => auth()->id(), 'id' => $subscription->id()])}}">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label>

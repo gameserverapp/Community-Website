@@ -2,31 +2,17 @@
     'page' => [
         'title' => translate('subscriptions', 'Subscriptions'),
         'description' => 'Manage your subscriptions',
-        'class' => 'article-index'
-    ],
-
-    'breadcrumbs' => [
-        [
-            'title' => auth()->user()->name(),
-            'route' => route('user.settings', 'me')
-        ],
-        [
-            'title' => translate('subscriptions', 'Subscriptions')
-        ]
+        'class' => 'user-single article-index'
     ]
 ])
 
 @section('page_content')
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h1 class="main-title">{{translate('subscriptions', 'Subscriptions')}}</h1>
-        </div>
-    </div>
+    @include('pages.v3.user._header')
 
     <div class="row">
         <div class="col-md-10 center-block">
             @forelse($subscriptions as $subscription)
-                @include('pages.v3.subscription._subscription')
+                @include('pages.v3.user.subscription._subscription')
             @empty
 
                 @component('partials.v3.frame')

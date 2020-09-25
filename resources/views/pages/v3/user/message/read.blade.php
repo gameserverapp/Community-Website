@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Request;
 ?>
 
 <?php
+$user = auth()->user();
+
 if(auth()->id() == $message->receiver->id) {
     $title = 'from ' . $message->sender->showLink();
 
@@ -27,7 +29,7 @@ if(auth()->id() == $message->receiver->id) {
     'page' => [
         'title' => translate('read_message', 'Read message'),
         'description' => 'Send a message to fellow players.',
-        'class' => 'message read'
+        'class' => 'message read user-single'
     ],
 
     'breadcrumbs' => [
@@ -71,7 +73,7 @@ if(auth()->id() == $message->receiver->id) {
 
             @if(auth()->id() != $message->sender->id)
                 @if($message->receiver->canSendMessage())
-                    @include('pages.v3.message._form', ['reply' => $message])
+                    @include('pages.v3.user.message._form', ['reply' => $message])
                 @else
                     <div class="text-center">
                         <div class="alert alert-info">Replying to this message is disabled.</div>

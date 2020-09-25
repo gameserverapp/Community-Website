@@ -49,7 +49,7 @@
                                 <td itemprop="member">
                                     {!! $character->showLink() !!}
                                     @if( $character->groupOwner($group) )
-                                        <span class="label label-theme alternative">Owner</span>
+                                        <span class="label label-theme">Owner</span>
                                     @elseif($character->groupAdmin($group))
                                         <span class="label label-theme alternative">Manager</span>
                                     @endif

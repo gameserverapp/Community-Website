@@ -107,13 +107,13 @@ use GameserverApp\Helpers\SiteHelper;
 
         <li>
             <a href="{{route('user.show', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.show', auth()->id()) ? 'orange' : '' }}">
-                Profile
+                Account profile
             </a>
         </li>
 
         @if(SiteHelper::featureEnabled('messages'))
             <li class="hidden-sm">
-                <a href="{{route('message.index')}}"
+                <a href="{{route('message.index', auth()->id())}}"
                    class="inbox {{ ( Request::is('message/*')) ? 'active' : '' }}">
                     Messages
                     <span class="label label-default right">
@@ -128,7 +128,7 @@ use GameserverApp\Helpers\SiteHelper;
                 <li role="separator" class="divider"></li>
             @endif
             <li>
-                <a href="{{route('token.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index') ? 'orange' : '' }}">
+                <a href="{{route('token.index', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index', auth()->id()) ? 'orange' : '' }}">
                     Tokens
                     <span class="label label-default right">
                     {{auth()->user()->tokenBalance()}}
@@ -140,15 +140,15 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('shop'))
             <li>
-                <a href="{{route('shop.orders')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.orders') ? 'orange' : '' }}">
-                    Shop history
+                <a href="{{route('shop.orders', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.orders', auth()->id()) ? 'orange' : '' }}">
+                    Orders
                 </a>
             </li>
         @endif
 
         @if(SiteHelper::featureEnabled('supporter_tiers'))
             <li>
-                <a href="{{route('subscription.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index') ? 'orange' : '' }}">
+                <a href="{{route('subscription.index', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index', auth()->id()) ? 'orange' : '' }}">
                     Subscriptions
                 </a>
             </li>

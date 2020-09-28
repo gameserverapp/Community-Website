@@ -16,7 +16,9 @@
             @empty
 
                 @component('partials.v3.frame')
-                    <h3>You don't have any subscriptions yet</h3>
+                    <div class="text-center">
+                        <em>You don't have any subscriptions yet</em>
+                    </div>
                 @endcomponent
             @endforelse
         </div>

@@ -28,7 +28,7 @@ use GameserverApp\Models\Order;
                     </thead>
                     <tbody>
 
-                    @foreach($orders as $item)
+                    @forelse($orders as $item)
                         <tr>
                             <td>
                                 <?php
@@ -55,7 +55,11 @@ use GameserverApp\Models\Order;
                             <td>{{$item->name()}}</td>
                             <td>{{$item->id}}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="3"><em>No deliveries yet.</em></td>
+                        </tr>
+                    @endforelse
 
                     </tbody>
                 </table>

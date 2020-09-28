@@ -113,7 +113,8 @@
 
     &.about {
 
-        .image {
+        .image,
+        .image img {
             width:auto;
             height:auto;
             max-width: 200px;

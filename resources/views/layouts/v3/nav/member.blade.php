@@ -69,7 +69,10 @@ use GameserverApp\Helpers\SiteHelper;
 
                 @endif
 
-                @if(SiteHelper::featureEnabled('character_page') or SiteHelper::featureEnabled('tribe_page'))
+                @if(
+                    SiteHelper::featureEnabled('character_page') or
+                    SiteHelper::featureEnabled('tribe_page')
+                )
                     <li role="separator" class="divider"></li>
                 @endif
 

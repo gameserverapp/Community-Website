@@ -29,7 +29,7 @@ class UserController extends Controller
 
     public function show(Request $request, $id)
     {
-        return redirect(route('user.about', $id));
+        return redirect(route('user.activity', $id));
 
         $user = $this->api->user($id);
 
@@ -38,14 +38,27 @@ class UserController extends Controller
         ]);
     }
 
-    public function about(Request $request, $id)
+    public function activity(Request $request, $id)
     {
-        $user = $this->api->user($id);
+        $data = $this->api->userActivity($id);
 
-        return view('pages.v3.user.about', [
-            'user' => $user
+        $user = $data['user'];
+        $activity = $data['activity'];
+
+        return view('pages.v3.user.activity', [
+            'user' => $user,
+            'activity' => $activity
         ]);
     }
+
+//    public function about(Request $request, $id)
+//    {
+//        $user = $this->api->user($id);
+//
+//        return view('pages.v3.user.about', [
+//            'user' => $user
+//        ]);
+//    }
 
     public function orderHistory()
     {

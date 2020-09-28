@@ -16,48 +16,48 @@ use GameserverApp\Helpers\SiteHelper;
                     <div class="meta">
 
 
-{{--                        @if($character->game->supportLevel())--}}
-{{--                            <div class="level">--}}
-{{--                                Level <strong>{{$character->level}}</strong>--}}
-{{--                            </div>--}}
-{{--                            <span class="divider">|</span>--}}
-{{--                        @endif--}}
+                        {{--                        @if($character->game->supportLevel())--}}
+                        {{--                            <div class="level">--}}
+                        {{--                                Level <strong>{{$character->level}}</strong>--}}
+                        {{--                            </div>--}}
+                        {{--                            <span class="divider">|</span>--}}
+                        {{--                        @endif--}}
 
-{{--                        <div class="current-status">--}}
-{{--                            @if($character->online())--}}
-{{--                                Online since--}}
-{{--                            @else--}}
-{{--                                Last seen--}}
-{{--                            @endif--}}
+                        {{--                        <div class="current-status">--}}
+                        {{--                            @if($character->online())--}}
+                        {{--                                Online since--}}
+                        {{--                            @else--}}
+                        {{--                                Last seen--}}
+                        {{--                            @endif--}}
 
-{{--                            @if( !is_null( $character->status_since ) )--}}
-{{--                                {{$character->date('status_since')->diffForHumans()}}--}}
-{{--                            @else--}}
-{{--                                Never--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
+                        {{--                            @if( !is_null( $character->status_since ) )--}}
+                        {{--                                {{$character->date('status_since')->diffForHumans()}}--}}
+                        {{--                            @else--}}
+                        {{--                                Never--}}
+                        {{--                            @endif--}}
+                        {{--                        </div>--}}
 
-{{--                        @if( $character->hoursPlayed() > 0.5 )--}}
-{{--                            <span class="divider">|</span>--}}
+                        {{--                        @if( $character->hoursPlayed() > 0.5 )--}}
+                        {{--                            <span class="divider">|</span>--}}
 
-{{--                            <div class="hours-played">--}}
-{{--                                Played <strong>{{$character->hoursPlayed()}} hours</strong>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
+                        {{--                            <div class="hours-played">--}}
+                        {{--                                Played <strong>{{$character->hoursPlayed()}} hours</strong>--}}
+                        {{--                            </div>--}}
+                        {{--                        @endif--}}
 
-{{--                        <span class="divider">|</span>--}}
+                        {{--                        <span class="divider">|</span>--}}
 
-{{--                        <div class="related">--}}
-{{--                            @if($character->hasServer())--}}
-{{--                                {!! $character->server->displayLabel() !!}--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
+                        {{--                        <div class="related">--}}
+                        {{--                            @if($character->hasServer())--}}
+                        {{--                                {!! $character->server->displayLabel() !!}--}}
+                        {{--                            @endif--}}
+                        {{--                        </div>--}}
 
-{{--                        <span class="divider">|</span>--}}
+                        {{--                        <span class="divider">|</span>--}}
 
-{{--                        <div class="founded">--}}
-{{--                            Created {{$character->date('created_at')->format('F Y')}}--}}
-{{--                        </div>--}}
+                        {{--                        <div class="founded">--}}
+                        {{--                            Created {{$character->date('created_at')->format('F Y')}}--}}
+                        {{--                        </div>--}}
 
 
                     </div>
@@ -78,17 +78,17 @@ use GameserverApp\Helpers\SiteHelper;
 
     <?php
     $menu = [
-         [
-             'title' => 'About',
-             'route' => route('user.about', $user->id)
-         ]
-     ];
+        [
+            'title' => 'Activity',
+            'route' => route('user.activity', $user->id)
+        ]
+    ];
 
-    if($user->hasCharacters()) {
-        $characters = $user->characters->map(function($char) {
+    if ($user->hasCharacters()) {
+        $characters = $user->characters->map(function ($char) {
             $name = '<span class="char_pic" style="background-image:url(' . $char->image() . ')"></span>' . $char->showName();
 
-            if($char->hasServer()) {
+            if ($char->hasServer()) {
                 $name .= $char->server->displayLabel();
             }
 
@@ -99,16 +99,38 @@ use GameserverApp\Helpers\SiteHelper;
         });
 
         $menu[] = [
-            'title' => 'Characters',
+            'title'    => 'Characters',
             'dropdown' => $characters
         ];
+
+
+        $groups = $user->characters->filter(function($character) {
+            return $character->hasGroup();
+        })->flatMap(function ($char) {
+            return $char->groups;
+        })->unique(function($item) {
+            return $item->id;
+        })->map(function($item) {
+            return [
+                'title' => $item->name . ' ' . $item->displayServerClusterLabel(),
+                'route' => route('group.show', $item->id)
+            ];
+        });
+
+
+        if($groups->count()) {
+            $menu[] = [
+                'title'    => 'Groups',
+                'dropdown' => $groups
+            ];
+        }
 
     }
 
     $right = [];
 
-    if(
-        !auth()->check() or
+    if (
+        ! auth()->check() or
         (
             auth()->user()->canSendMessage() and
             $user->id != auth()->id()
@@ -120,16 +142,16 @@ use GameserverApp\Helpers\SiteHelper;
         ];
     }
 
-    if(
+    if (
         auth()->check() and
         $user->id == auth()->id()
     ) {
 
-        if(SiteHelper::featureEnabled('messages')) {
+        if (SiteHelper::featureEnabled('messages')) {
 
             $right[] = [
-                'title' => 'Messages <span class="badge">' . auth()->user()->unreadMessagesCount() . '</span>',
-                'route' => [
+                'title'    => 'Messages <span class="badge">' . auth()->user()->unreadMessagesCount() . '</span>',
+                'route'    => [
                     route('message.inbox', auth()->id()),
                     route('message.outbox', auth()->id())
                 ],
@@ -146,7 +168,7 @@ use GameserverApp\Helpers\SiteHelper;
             ];
         }
 
-        if(SiteHelper::featureEnabled('tokens')) {
+        if (SiteHelper::featureEnabled('tokens')) {
 
             $dropdown = [
                 [
@@ -155,7 +177,7 @@ use GameserverApp\Helpers\SiteHelper;
                 ]
             ];
 
-            if(SiteHelper::featureEnabled('supporter_tiers')) {
+            if (SiteHelper::featureEnabled('supporter_tiers')) {
                 $dropdown[] = [
                     'title' => 'Get tokens',
                     'route' => route('supporter-tier.index', $user->id)
@@ -163,13 +185,13 @@ use GameserverApp\Helpers\SiteHelper;
             }
 
             $right[] = [
-                'title' => 'Tokens <span class="badge">' . auth()->user()->tokenBalance() . '</span>',
-                'route' => route('token.index', auth()->id()),
+                'title'    => 'Tokens <span class="badge">' . auth()->user()->tokenBalance() . '</span>',
+                'route'    => route('token.index', auth()->id()),
                 'dropdown' => $dropdown
             ];
         }
 
-        if(SiteHelper::featureEnabled('shop')) {
+        if (SiteHelper::featureEnabled('shop')) {
             $right[] = [
                 'title' => 'Orders',
                 'route' => route('shop.orders', $user->id)
@@ -185,7 +207,6 @@ use GameserverApp\Helpers\SiteHelper;
             'title' => 'Settings',
             'route' => route('user.settings', $user->id)
         ];
-
     }
     ?>
 

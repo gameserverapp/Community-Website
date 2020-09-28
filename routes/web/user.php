@@ -15,6 +15,11 @@ Route::group([
         'uses' => 'UserController@show'
     ]);
 
+    Route::get('/{uuid}/activity', [
+        'as'   => 'user.activity',
+        'uses' => 'UserController@activity'
+    ]);
+
     Route::get('/{uuid}/about', [
         'as'   => 'user.about',
         'uses' => 'UserController@about'

@@ -4,6 +4,7 @@ namespace GameserverApp\Api;
 
 use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Transformers\CalendarTransformer;
+use GameserverApp\Transformers\Forum\PostTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
 use Illuminate\Http\UploadedFile;
@@ -188,6 +189,21 @@ class Client
         return UserTransformer::transform(
             $this->api()->guestRequest('get', 'user/' . $id)
         );
+    }
+
+    public function userActivity($id, $page = 1)
+    {
+        $data = $this->api()->guestRequest('get', 'user/' . $id . '/activity?page=' . $page);
+
+        $user = $data->user;
+        unset($data->user);
+
+        $data->items = PostTransformer::transformMultiple($data->items);
+
+        return [
+            'user' => UserTransformer::transform($user),
+            'activity' => $this->paginatedResponse($data)
+        ];
     }
 
     public function updateUser($id, $data)

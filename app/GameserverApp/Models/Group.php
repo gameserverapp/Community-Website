@@ -169,6 +169,17 @@ class Group extends Model implements LinkableInterface
         return isset($this->game);
     }
 
+    public function displayServerClusterLabel()
+    {
+        if($this->hasServer()) {
+            return '<div class="label label-theme alternative">' . $this->server->name() . '</div>';
+        }
+
+        if($this->hasCluster()) {
+            return '<div class="label label-theme alternative">' . $this->cluster->name() . '</div>';
+        }
+    }
+
     public function linkableTemplate($url, $options = [])
     {
         if (! isset($options['limit'])) {

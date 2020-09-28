@@ -2,15 +2,7 @@
     <article class="group-card" itemscope itemtype="http://schema.org/Organization">
 
         <div class="tag">
-            @if($group->hasServer())
-                <div class="label label-theme">
-                    {{$group->server->name()}}
-                </div>
-            @elseif($group->hasCluster())
-                <div class="label label-theme">
-                    {{$group->cluster->name()}}
-                </div>
-            @endif
+            {!! $group->displayServerClusterLabel() !!}
         </div>
 
         <header>

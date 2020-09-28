@@ -34,7 +34,7 @@ class Group extends Model implements LinkableInterface
 
     public function online()
     {
-        $this->online;
+        return $this->online;
     }
 
     public function memberCount()
@@ -207,6 +207,27 @@ class Group extends Model implements LinkableInterface
         $output[] = '</span>';
 
         return implode('', $output);
+    }
+
+    private function statusIndicator($size = 'small')
+    {
+        $title = '';
+        $class = [
+            'aftername',
+            'online'
+        ];
+
+        $onlineText = '1 member';
+
+        if($count = $this->countOnlineMembers()) {
+            $onlineText = $count . ' members';
+        }
+
+        $title .= 'Online with ' . $onlineText;
+
+        $class = $size . ' ' . implode(' ', $class);
+
+        return '<span title="' . $title . '" class="status  ' . $class . '"></span>';
     }
 
     public function indexRoute()

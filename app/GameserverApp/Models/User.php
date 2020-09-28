@@ -41,6 +41,11 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
     {
     }
 
+    public function hoursPlayed()
+    {
+        return number_format($this->hours_played, 2);
+    }
+
     public function avatar()
     {
         if(is_null($this->avatar)) {
@@ -256,6 +261,8 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         if($this->banned()) {
             return false;
         }
+
+        return true;
     }
 
     public function lastCharacter()
@@ -286,7 +293,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 
         $output[] = '<span class="linkwrapper" itemscope itemtype="http://schema.org/Person">';
 
-        if (isset($options['disable_link'])) {
+        if (isset($options['disable_link']) or !SiteHelper::featureEnabled('user_page')) {
             $output[] = '<span class="accountlink-name">';
             $output[] = '<span itemprop="name">' . $this->name($options['limit']) . '</span>';
             $output[] = '</span>';

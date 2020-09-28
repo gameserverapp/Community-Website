@@ -14,52 +14,17 @@ use GameserverApp\Helpers\SiteHelper;
                     <h1 class="main-title">{!! $user->showName() !!}</h1>
 
                     <div class="meta">
+                        <div class="founded">
+                            Joined {{$user->date('created_at')->format('F Y')}}
+                        </div>
 
+                        @if( $user->hoursPlayed() > 0.5 )
+                            <span class="divider">|</span>
 
-                        {{--                        @if($character->game->supportLevel())--}}
-                        {{--                            <div class="level">--}}
-                        {{--                                Level <strong>{{$character->level}}</strong>--}}
-                        {{--                            </div>--}}
-                        {{--                            <span class="divider">|</span>--}}
-                        {{--                        @endif--}}
-
-                        {{--                        <div class="current-status">--}}
-                        {{--                            @if($character->online())--}}
-                        {{--                                Online since--}}
-                        {{--                            @else--}}
-                        {{--                                Last seen--}}
-                        {{--                            @endif--}}
-
-                        {{--                            @if( !is_null( $character->status_since ) )--}}
-                        {{--                                {{$character->date('status_since')->diffForHumans()}}--}}
-                        {{--                            @else--}}
-                        {{--                                Never--}}
-                        {{--                            @endif--}}
-                        {{--                        </div>--}}
-
-                        {{--                        @if( $character->hoursPlayed() > 0.5 )--}}
-                        {{--                            <span class="divider">|</span>--}}
-
-                        {{--                            <div class="hours-played">--}}
-                        {{--                                Played <strong>{{$character->hoursPlayed()}} hours</strong>--}}
-                        {{--                            </div>--}}
-                        {{--                        @endif--}}
-
-                        {{--                        <span class="divider">|</span>--}}
-
-                        {{--                        <div class="related">--}}
-                        {{--                            @if($character->hasServer())--}}
-                        {{--                                {!! $character->server->displayLabel() !!}--}}
-                        {{--                            @endif--}}
-                        {{--                        </div>--}}
-
-                        {{--                        <span class="divider">|</span>--}}
-
-                        {{--                        <div class="founded">--}}
-                        {{--                            Created {{$character->date('created_at')->format('F Y')}}--}}
-                        {{--                        </div>--}}
-
-
+                            <div class="hours-played">
+                                Played <strong>{{$user->hoursPlayed()}} hours</strong>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="roles">
@@ -77,12 +42,17 @@ use GameserverApp\Helpers\SiteHelper;
     </div>
 
     <?php
-    $menu = [
-        [
-            'title' => 'Activity',
-            'route' => route('user.activity', $user->id)
-        ]
-    ];
+
+    $menu = [];
+
+    if(SiteHelper::featureEnabled('user_page')) {
+        $menu = [
+            [
+                'title' => 'Activity',
+                'route' => route('user.activity', $user->id)
+            ]
+        ];
+    }
 
     if ($user->hasCharacters()) {
         $characters = $user->characters->map(function ($char) {
@@ -98,11 +68,12 @@ use GameserverApp\Helpers\SiteHelper;
             ];
         });
 
-        $menu[] = [
-            'title'    => 'Characters',
-            'dropdown' => $characters
-        ];
-
+        if(SiteHelper::featureEnabled('character_page')) {
+            $menu[] = [
+                'title'    => 'Characters',
+                'dropdown' => $characters
+            ];
+        }
 
         $groups = $user->characters->filter(function($character) {
             return $character->hasGroup();
@@ -118,13 +89,15 @@ use GameserverApp\Helpers\SiteHelper;
         });
 
 
-        if($groups->count()) {
+        if(
+            SiteHelper::featureEnabled('tribe_page') and
+            $groups->count()
+            ) {
             $menu[] = [
                 'title'    => 'Groups',
                 'dropdown' => $groups
             ];
         }
-
     }
 
     $right = [];
@@ -153,7 +126,8 @@ use GameserverApp\Helpers\SiteHelper;
                 'title'    => 'Messages <span class="badge">' . auth()->user()->unreadMessagesCount() . '</span>',
                 'route'    => [
                     route('message.inbox', auth()->id()),
-                    route('message.outbox', auth()->id())
+                    route('message.outbox', auth()->id()),
+                    '/user/' . auth()->id() . '/message*'
                 ],
                 'dropdown' => [
                     [

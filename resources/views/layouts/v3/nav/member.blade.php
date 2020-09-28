@@ -27,6 +27,7 @@ use GameserverApp\Helpers\SiteHelper;
                                  style="background-image:url('{{$navChar->image()}}')"></div>
                         </a>
                     </li>
+                    <li role="separator" class="divider"></li>
                 @endif
 
                 @if(SiteHelper::featureEnabled('tribe_page'))
@@ -37,10 +38,9 @@ use GameserverApp\Helpers\SiteHelper;
                         ?>
 
                         @foreach($groups as $group)
-                            <li role="separator" class="divider"></li>
                             <li>
                                 <a href="{{$group->showRoute()}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('group.show', $group->id) ? 'orange' : '' }}">
-                                    {!! $group->showLink(['disable_link' => true]) !!}
+                                    {!! $group->showName() !!}
 
                                     @if($group->hasServer())
                                         &nbsp;
@@ -58,6 +58,8 @@ use GameserverApp\Helpers\SiteHelper;
                                     </a>
                                 </li>
                             @endif
+
+                            <li role="separator" class="divider"></li>
                         @endforeach
                     @elseif($navChar)
                         <li>
@@ -65,15 +67,10 @@ use GameserverApp\Helpers\SiteHelper;
                                 Find a {{ GameserverApp\Helpers\SiteHelper::groupName()}} &raquo;
                             </a>
                         </li>
+
+                    <li role="separator" class="divider"></li>
                     @endif
 
-                @endif
-
-                @if(
-                    SiteHelper::featureEnabled('character_page') or
-                    SiteHelper::featureEnabled('tribe_page')
-                )
-                    <li role="separator" class="divider"></li>
                 @endif
 
                 <?php
@@ -102,17 +99,18 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(
             SiteHelper::featureEnabled('supporter_tiers') or
-            SiteHelper::featureEnabled('shop') or
-            SiteHelper::featureEnabled('tokens')
+            SiteHelper::featureEnabled('shop')
         )
             <li role="separator" class="divider"></li>
         @endif
 
-        <li>
-            <a href="{{route('user.show', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.show', auth()->id()) ? 'orange' : '' }}">
-                Account profile
-            </a>
-        </li>
+        @if(SiteHelper::featureEnabled('user_page'))
+            <li>
+                <a href="{{route('user.show', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.show', auth()->id()) ? 'orange' : '' }}">
+                    Account profile
+                </a>
+            </li>
+        @endif
 
         @if(SiteHelper::featureEnabled('messages'))
             <li class="hidden-sm">
@@ -127,9 +125,6 @@ use GameserverApp\Helpers\SiteHelper;
         @endif
 
         @if(SiteHelper::featureEnabled('tokens'))
-            @if(!SiteHelper::featureEnabled('shop'))
-                <li role="separator" class="divider"></li>
-            @endif
             <li>
                 <a href="{{route('token.index', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index', auth()->id()) ? 'orange' : '' }}">
                     Tokens

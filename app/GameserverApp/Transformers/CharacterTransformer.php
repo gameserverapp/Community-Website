@@ -27,6 +27,11 @@ class CharacterTransformer extends ModelTransformer implements ModelTransformerI
             'created_at'   => $args->created_at
         ];
 
+        if (isset($args->about)) {
+            $data['about'] = $args->about->content;
+            $data['about_image_url'] = $args->about->image_url;
+        }
+
         if (isset($args->server)) {
             $data['server'] = ServerTransformer::transform($args->server);
         }

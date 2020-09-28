@@ -3,6 +3,7 @@
 namespace GameserverApp\Api;
 
 use App\Http\Controllers\SupporterTierController;
+use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
 use GameserverApp\Transformers\Forum\PostTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
@@ -160,6 +161,33 @@ class Client
         return CharacterTransformer::transform(
             $this->api()->guestRequest('get', 'character/' . $id)
         );
+    }
+
+    public function saveCharacterAbout(Character $character, $about, $file = false)
+    {
+        $this->clearCache('get', 'character/' . $character->id, []);
+
+        if($file) {
+            return $this->api()->authRequest('post', 'character/' . $character->id . '/about', [
+                'multipart' => [
+                    [
+                        'name' => 'about',
+                        'contents' => $about
+                    ],
+                    [
+                        'name'     => 'file',
+                        'contents' => fopen($file, 'r'),
+                        'filename' => $file->getClientOriginalName() . '.' . $file->getExtension()
+                    ]
+                ]
+            ]);
+        } else {
+            return $this->api()->authRequest('post', 'character/' . $character->id . '/about', [
+                'form_params' => [
+                    'about' => $about
+                ]
+            ]);
+        }
     }
 
     public function group($id, $with = [])

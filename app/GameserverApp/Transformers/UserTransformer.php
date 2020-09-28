@@ -24,6 +24,8 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             'donated'    => $args->donated,
             'created_at' => $args->meta->created_at,
 
+            'hours_played' => $args->meta->total_hours_played,
+
             'role' => $args->role->id,
             'role_label' => $args->role->label
         ];

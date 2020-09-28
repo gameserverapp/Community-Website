@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\GameserverApp\Exceptions\UploadExceededFileSizeLimitException;
+use App\GameserverApp\Exceptions\UploadMimeTypeNotAcceptedException;
+use App\GameserverApp\Helpers\UploadHelper;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Helpers\SiteHelper;
@@ -12,10 +15,31 @@ class CharacterController extends Controller
     {
         $this->api = app(Client::class);
     }
-    
+
     public function show(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('character_page')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        if( SiteHelper::featureEnabled('player_about')) {
+            return redirect(route('character.about', $id));
+        }
+
+        if( SiteHelper::featureEnabled('player_stats')) {
+            return redirect(route('character.statistics', $id));
+        }
+
+        return view('pages.v3.character.disabled');
+    }
+    
+    public function statistics(Request $request, $id)
+    {
+        if(! SiteHelper::featureEnabled('character_page')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        if(! SiteHelper::featureEnabled('player_stats')) {
             return view('pages.v3.character.disabled');
         }
 
@@ -37,9 +61,94 @@ class CharacterController extends Controller
             }
         }
 
-        return view('pages.v3.character.index', [
+        return view('pages.v3.character.statistics', [
             'character' => $character,
             'stats' => $stats
+        ]);
+    }
+
+    public function about(Request $request, $id)
+    {
+        if(! SiteHelper::featureEnabled('character_page')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        if(! SiteHelper::featureEnabled('player_about')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        $character = $this->api->character($id);
+
+        return view('pages.v3.character.about', [
+            'character' => $character
+        ]);
+    }
+
+    public function aboutEdit(Request $request, $id)
+    {
+        if(! SiteHelper::featureEnabled('character_page')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        if(! SiteHelper::featureEnabled('player_about')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        $character = $this->api->character($id);
+
+        if($character->user->id != auth()->id()) {
+            return redirectBackWithAlert('You can not do that', 'danger');
+        }
+
+        return view('pages.v3.character.about.edit', [
+            'character' => $character
+        ]);
+    }
+
+    public function aboutStore(Request $request, $id)
+    {
+        if(! SiteHelper::featureEnabled('character_page')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        if(! SiteHelper::featureEnabled('player_about')) {
+            return view('pages.v3.character.disabled');
+        }
+
+        $character = $this->api->character($id);
+
+        if($character->user->id != auth()->id()) {
+            return redirectBackWithAlert('You can not do that', 'danger');
+        }
+
+        try {
+            $file = UploadHelper::validate($request, 'image');
+        } catch (UploadExceededFileSizeLimitException $e) {
+            return redirectBackWithAlert('The image you tried to upload exceeded the upload size limit.', 'danger');
+        } catch (UploadMimeTypeNotAcceptedException $e) {
+            return redirectBackWithAlert('The image you tried to upload is not of the supported type.', 'danger');
+        }
+
+        $response = $this->api->saveCharacterAbout(
+            $character,
+            $request->input('about'),
+            $file
+        );
+
+        if(
+            $response instanceof \Exception or
+            is_null($response)
+        ) {
+            $error = json_decode($response->getResponse()->getBody());
+
+            return redirect()->back()->withErrors($error)->withInput();
+        }
+
+        return redirect(route('character.about', $character->id))->with([
+            'alert' => [
+                'status' => 'success',
+                'message' => 'About information updated!'
+            ]
         ]);
     }
 }

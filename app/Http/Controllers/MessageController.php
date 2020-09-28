@@ -50,7 +50,7 @@ class MessageController extends Controller
         ]);
     }
 
-    public function show(Request $request, $id)
+    public function show(Request $request, $uuid, $id)
     {
         if(! SiteHelper::featureEnabled('messages')) {
             return view('pages.v3.user.disabled');

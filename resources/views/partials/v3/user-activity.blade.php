@@ -4,7 +4,9 @@
 ])
 
     <p>
-        {{str_limit($item->content, 200)}}
+        {{str_limit(strip_tags(
+            Markdown::convertToHtml($item->content)
+        ), 200)}}
     </p>
 
     <div class="meta">

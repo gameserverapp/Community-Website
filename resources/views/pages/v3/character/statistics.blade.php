@@ -1,6 +1,6 @@
 @extends('layouts.v3.default', [
     'page' => [
-        'title' => $character->name(),
+        'title' => 'Statistics - ' . $character->name(),
         'description' => '',
         'class' => 'character-single',
         //'bg' => $character->backgroundImage()

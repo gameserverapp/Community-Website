@@ -7,7 +7,7 @@
                     <img src="{{$group->logo()}}">
                 </div>
                 <div class="col-sm-8 col-lg-9 title table-cell">
-                    <h1 class="main-title">{{$group->name()}}</h1>
+                    <h1 class="main-title">{!! $group->showName() !!}</h1>
 
                     <div class="meta">
                         <div class="member-count">
@@ -86,12 +86,19 @@
         }
     }
 
+
+    $onlineCount = $group->countOnlineMembers();
+    if($onlineCount) {
+        $badgeContent = $group->countOnlineMembers() . ' / ' . $group->memberCount();
+    } else {
+        $badgeContent = $group->memberCount();
+    }
     ?>
 
     @include('partials.v3.custom-nav', [
         'menu' => [
             [
-                'title' => 'Group &nbsp; <span class="badge">' . $group->countOnlineMembers() . ' / ' . $group->memberCount() . '</span>',
+                'title' => 'Group &nbsp; <span class="badge">' . $badgeContent . '</span>',
                 'route' => route('group.show', $group->id)
             ],
             [

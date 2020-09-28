@@ -29,17 +29,19 @@ class UserController extends Controller
 
     public function show(Request $request, $id)
     {
+        if(!SiteHelper::featureEnabled('user_page')) {
+            return view('pages.v3.user.disabled');
+        }
+
         return redirect(route('user.activity', $id));
-
-        $user = $this->api->user($id);
-
-        return view('pages.v3.user.index', [
-            'user' => $user
-        ]);
     }
 
     public function activity(Request $request, $id)
     {
+        if(!SiteHelper::featureEnabled('user_page')) {
+            return view('pages.v3.user.disabled');
+        }
+
         $data = $this->api->userActivity($id);
 
         $user = $data['user'];

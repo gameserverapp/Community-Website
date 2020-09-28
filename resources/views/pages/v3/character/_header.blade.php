@@ -15,37 +15,43 @@ use GameserverApp\Helpers\SiteHelper;
 
                     <div class="meta">
 
-
-                        @if($character->game->supportLevel())
+                        @if(
+                            SiteHelper::featureEnabled('player_stats') and
+                            $character->game->supportLevel()
+                        )
                             <div class="level">
                                 Level <strong>{{$character->level}}</strong>
                             </div>
                             <span class="divider">|</span>
                         @endif
 
-                        <div class="current-status">
-                            @if($character->online())
-                                Online since
-                            @else
-                                Last seen
-                            @endif
+                        @if(SiteHelper::featureEnabled('player_status'))
+                            <div class="current-status">
+                                @if($character->online())
+                                    Online since
+                                @else
+                                    Last seen
+                                @endif
 
-                            @if( !is_null( $character->status_since ) )
-                                {{$character->date('status_since')->diffForHumans()}}
-                            @else
-                                Never
-                            @endif
-                        </div>
-
-                        @if( $character->hoursPlayed() > 0.5 )
+                                @if( !is_null( $character->status_since ) )
+                                    {{$character->date('status_since')->diffForHumans()}}
+                                @else
+                                    Never
+                                @endif
+                            </div>
                             <span class="divider">|</span>
+                        @endif
+
+                        @if(
+                            SiteHelper::featureEnabled('player_stats') and
+                            $character->hoursPlayed() > 0.5
+                        )
 
                             <div class="hours-played">
                                 Played <strong>{{$character->hoursPlayed()}} hours</strong>
                             </div>
+                            <span class="divider">|</span>
                         @endif
-
-                        <span class="divider">|</span>
 
                         <div class="related">
                             @if($character->hasServer())
@@ -78,12 +84,21 @@ use GameserverApp\Helpers\SiteHelper;
     </div>
 
     <?php
-    $menu = [
-         [
-             'title' => 'Statistics',
-             'route' => route('character.show', $character->id)
-         ]
-     ];
+    $menu = [];
+
+    if(SiteHelper::featureEnabled('player_about')) {
+        $menu[] = [
+            'title' => 'About',
+            'route' => route('character.about', $character->id)
+        ];
+    }
+
+    if(SiteHelper::featureEnabled('player_stats')) {
+        $menu[] = [
+            'title' => 'Statistics',
+            'route' => route('character.statistics', $character->id)
+        ];
+    }
 
     $right = [];
 

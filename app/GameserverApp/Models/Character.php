@@ -32,6 +32,26 @@ class Character extends Model implements LinkableInterface
         return (bool)$this->status;
     }
 
+    public function hasAbout()
+    {
+        return isset($this->about) and !is_null($this->about) and !empty($this->about);
+    }
+
+    public function hasAboutImage()
+    {
+        return isset($this->about_image_url) and $this->about_image_url;
+    }
+
+    public function about()
+    {
+        return $this->about;
+    }
+
+    public function aboutImageUrl()
+    {
+        return $this->about_image_url;
+    }
+
     public function streaming()
     {
         return (bool)$this->streaming;

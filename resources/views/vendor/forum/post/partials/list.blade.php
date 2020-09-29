@@ -24,8 +24,8 @@ use GameserverApp\Helpers\SiteHelper;
                 @endif
             </div>
 
-            <div class="text-center">
-                <h5>
+            <div class="name">
+                <h5 class="title">
                     @if($post->author->banned() or !SiteHelper::featureEnabled('user_page'))
                         {!! $post->author->showName() !!}
                     @else

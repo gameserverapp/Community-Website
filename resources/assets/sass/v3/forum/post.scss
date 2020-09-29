@@ -1,12 +1,22 @@
 .forum-post {
-    display: table;
+    @media (min-width:768px) {
+        display: table;
+    }
 
     .persona {
-        display: table-cell;
-        width:20%;
+        @media (min-width:768px) {
+            display: table-cell;
+            width: 20%;
+        }
 
         background-color:var(--content-title-bg-color);
         padding:2rem;
+
+        @media (min-width:768px) {
+            .name {
+                text-align: center;
+            }
+        }
 
         .role {
             text-align: center;
@@ -48,14 +58,59 @@
                 }
             }
         }
+
+        @media (max-width:767px) {
+            padding:1rem 2rem;
+
+            .person-data {
+
+                .thumbnail {
+                    display:block;
+                    float:left;
+                    padding:1px;
+                    width:30px;
+                    margin-bottom:0;
+
+                    img {
+
+                    }
+                }
+
+                .name {
+                    display: inline-block;
+                    margin-left:1rem;
+
+                    .title {
+                        margin:0;
+                    }
+                }
+
+                .role {
+                    float:right;
+                    margin-top:3px;
+                }
+
+                .meta {
+                    display:none;
+                }
+            }
+
+            .characters {
+                display:none;
+            }
+        }
     }
 
     .post-content {
-        display: table-cell;
-        width:80%;
         padding:1.8rem;
         margin-bottom:3rem;
         vertical-align: top;
+
+        @media (min-width:768px) {
+
+            display: table-cell;
+            width:80%;
+        }
 
         .bottom-nav {
             position: absolute;

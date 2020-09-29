@@ -5,7 +5,7 @@
         @if(isset($category) and is_array($category))
             <div class="category-wrapper">
                 @foreach($category as $label)
-                    <div class="label label-theme category">
+                    <div class="label label-theme category @if($label == translate('currently_active', 'Currently active')) alternative @endif">
                         {!! $label !!}
                     </div>
                 @endforeach

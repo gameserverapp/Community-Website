@@ -126,7 +126,7 @@ function domain()
 
 function color($key = 'primary-color')
 {
-    return config('theme-colors')[$key];
+    return SiteHelper::themeColors()->$key;
 }
 
 function graphColorTweak($graphData)

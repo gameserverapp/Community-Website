@@ -30,6 +30,10 @@
             padding:1rem 2rem;
             margin: 2rem -2rem -2rem;
         }
+
+        .contentwrap {
+            @import "./../layout/default-content";
+        }
     }
 
     &.basic {
@@ -138,8 +142,6 @@
             overflow: hidden;
 
             @include border-radius(5px);
-
-            @import "./../layout/default-content";
 
             p:last-child {
                 margin-bottom: 0 !important;

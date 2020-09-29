@@ -1,4 +1,4 @@
-p,h1,h2,h3,h4,h5,h6,ol,ul,li,em,strong,time, td {
+p,h1,h2,h3,h4,h5,h6,ol,ul,li,em,strong,time,td,label {
     color:var(--content-text-color);
     font-size:1rem;
     line-height: 1.5rem;
@@ -36,9 +36,12 @@ h4,h5,h6 {
     line-height: 2rem;
 }
 
-p, li, label {
-    color:var(--light-text)
+&:not(.contentwrap):not(.form) {
+    p, li, label, strong {
+        color:var(--light-text)
+    }
 }
+
 
 a {
     color:var(--primary-color);

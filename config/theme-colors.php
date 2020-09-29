@@ -26,6 +26,7 @@ return [
     //content
     'content-text-color' => '#ccc',
     'content-bg-color' => '#333',
+    'content-title-color' => '#9d4810',
     'content-title-bg-color' => '#222',
 
     //label
@@ -56,5 +57,5 @@ return [
     //footer
     'footer-bg-color' => '#545754',
     'footer-primary-color' => '#a1a5a0',
-    'footer-secundary-color' => '#838782',
+    'footer-secondary-color' => '#838782',
 ];

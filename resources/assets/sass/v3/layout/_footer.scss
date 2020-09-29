@@ -47,10 +47,10 @@ footer.footer {
         }
 
         P {
-            color: var(--footer-secundary-color);
+            color: var(--footer-secondary-color);
 
             a {
-                color: var(--footer-secundary-color);
+                color: var(--footer-secondary-color);
             }
         }
 
@@ -66,12 +66,12 @@ footer.footer {
                     width: 25px;
                     font-size: 20px;
                     line-height: 1px;
-                    color: var(--footer-secundary-color);
+                    color: var(--footer-secondary-color);
                     @include transition(all .2s);
                 }
 
                 a {
-                    color: var(--footer-secundary-color);
+                    color: var(--footer-secondary-color);
                     text-decoration: none;
 
                     &.highlight {
@@ -91,7 +91,7 @@ footer.footer {
 
         hr {
             display: block;
-            background: var(--footer-secundary-color);
+            background: var(--footer-secondary-color);
             height: 1px;
             border: 0;
             margin: 2rem 0;
@@ -100,7 +100,7 @@ footer.footer {
 
     .colofon {
         padding: 1rem 0;
-        background: var(--footer-secundary-color);
+        background: var(--footer-secondary-color);
         margin-right: -15px;
         margin-left: -15px;
 

@@ -66,6 +66,11 @@ class SiteHelper extends Helper
         return self::api()->domain('custom_css');
     }
 
+    public static function themeColors()
+    {
+        return self::api()->domain('theme_colors');
+    }
+
     public static function customMenuItems()
     {
         return self::api()->domain('custom_menu');

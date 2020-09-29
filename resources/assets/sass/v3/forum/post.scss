@@ -103,21 +103,30 @@
 
     .post-content {
         padding:1.8rem;
-        margin-bottom:3rem;
         vertical-align: top;
 
         @media (min-width:768px) {
-
+            margin-bottom:3rem;
             display: table-cell;
             width:80%;
+        }
+
+        @media (max-width:767px) {
+            padding-bottom:3rem;
         }
 
         .bottom-nav {
             position: absolute;
             bottom:1.8rem;
 
+            @media (max-width:767px) {
+                line-height: .7rem;
+                bottom:1rem;
+            }
+
             span, time, a {
                 font-size:.7rem;
+                line-height: .7rem;
             }
 
             time {

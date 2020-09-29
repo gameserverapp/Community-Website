@@ -313,7 +313,7 @@
             display: block;
             padding: 0;
             font-weight: bold;
-            color: rgba(240,240,240,.9) !important;
+            color: rgba(240,240,240,.9);
             text-transform: uppercase;
             text-align: center;
             overflow: hidden;
@@ -331,7 +331,7 @@
             outline: 0;
 
             span {
-                color: rgba(0,0,0,.7) !important;
+                color: rgba(0,0,0,.7);
             }
         }
 

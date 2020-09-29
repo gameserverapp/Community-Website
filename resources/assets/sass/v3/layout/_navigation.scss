@@ -277,7 +277,7 @@
                 }
 
                 &.active {
-                    color: var(--primary-color);
+                    color: var(--navigation-active-color);
 
                     @media (max-width: 767px) {
                         color: $grey;
@@ -291,7 +291,7 @@
                 }
 
                 &:hover {
-                    color: var(--primary-color);
+                    color: var(--navigation-active-color);
 
                     strong {
                         color: $grey;

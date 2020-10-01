@@ -16,7 +16,6 @@ if($totalOnline == 1) {
     <table class="table">
         <thead>
         <tr>
-            <th></th>
             <th>Name</th>
             <th>Level</th>
             <th>Playing on</th>
@@ -28,7 +27,6 @@ if($totalOnline == 1) {
 
             @foreach( $characters->slice(0,5) as $character )
                 <tr>
-                    <td></td>
                     <td>
                         {!! $character->showLink([
                             'limit' => 13

@@ -6,20 +6,13 @@
     <table class="table">
         <thead>
         <tr>
-            <th></th>
-            <th>#</th>
             <th>Name</th>
             <th>Amount</th>
         </tr>
         </thead>
         <tbody>
-        <?php
-        $count = 1;
-        ?>
         @forelse( $sales as $sale )
             <tr>
-                <td></td>
-                <td>{{$count}}</td>
                 <td>
                     {!! $sale->user()->showLink() !!}
                 </td>
@@ -27,10 +20,6 @@
                     {{$sale->currency()}} {{$sale->amount()}}
                 </td>
             </tr>
-
-            <?php
-            $count++;
-            ?>
         @empty
             <tr>
                 <td colspan="5" class="text-center">

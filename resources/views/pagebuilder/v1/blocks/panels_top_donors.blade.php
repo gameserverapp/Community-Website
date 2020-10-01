@@ -6,7 +6,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th></th>
             <th>#</th>
             <th>Name</th>
             <th>Total donated</th>
@@ -18,7 +17,6 @@
         ?>
         @forelse( $users as $user )
             <tr>
-                <td></td>
                 <td>{{$count}}</td>
                 <td>
                     {!! $user->showLink() !!}

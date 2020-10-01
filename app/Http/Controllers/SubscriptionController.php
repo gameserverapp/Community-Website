@@ -24,11 +24,7 @@ class SubscriptionController extends Controller
 
     public function index(Request $request)
     {
-        if(! SiteHelper::featureEnabled('supporter_tiers')) {
-            return view('pages.v1.supporter-tier.disabled');
-        }
-
-        $subscriptions = $this->client->allUserSubscriptions(route('subscription.index'));
+        $subscriptions = $this->client->allUserSubscriptions(route('subscription.index', auth()->id()));
 
         if($request->has('status') == 'success') {
             session()->flash('alert', [
@@ -38,15 +34,16 @@ class SubscriptionController extends Controller
             ]);
         }
 
-        return view('pages.v1.subscription.index', [
-            'subscriptions' => $subscriptions
+        return view('pages.v3.user.subscription.index', [
+            'subscriptions' => $subscriptions,
+            'user' => auth()->user()
         ]);
     }
 
     public function changeCharacter(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {
-            return view('pages.v1.supporter-tier.disabled');
+            return view('pages.v3.supporter-tier.disabled');
         }
 
         $this->validate($request, [
@@ -69,7 +66,7 @@ class SubscriptionController extends Controller
     public function cancel(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {
-            return view('pages.v1.supporter-tier.disabled');
+            return view('pages.v3.supporter-tier.disabled');
         }
 
         $response = $this->client->cancelSubscription($id);

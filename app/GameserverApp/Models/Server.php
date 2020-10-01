@@ -10,9 +10,9 @@ class Server extends Model implements LinkableInterface
 {
     use Linkable;
 
-    public function name()
+    public function name($limit = 16)
     {
-        return str_limit($this->name, 16, '');
+        return str_limit($this->name, $limit, '');
     }
 
     public function connectAddress()
@@ -56,6 +56,11 @@ class Server extends Model implements LinkableInterface
     public function isScheduled()
     {
         return isset($this->update_at) or isset($this->shutdown_at) or isset($this->restart_at);
+    }
+
+    public function displayLabel()
+    {
+        return '<div class="label label-theme alternative server">' . $this->name() . '</div>';
     }
 
     public function online()

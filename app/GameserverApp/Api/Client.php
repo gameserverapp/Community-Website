@@ -3,12 +3,16 @@
 namespace GameserverApp\Api;
 
 use App\Http\Controllers\SupporterTierController;
+use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
+use GameserverApp\Transformers\Forum\PostTransformer;
+use GameserverApp\Transformers\SaleTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use GameserverApp\Models\Model;
-use GameserverApp\Models\Tribe;
+use GameserverApp\Models\Group;
 use GameserverApp\Models\User;
 use GameserverApp\Transformers\CharacterTransformer;
 use GameserverApp\Transformers\Forum\ThreadTransformer;
@@ -20,8 +24,9 @@ use GameserverApp\Transformers\ServerTransformer;
 use GameserverApp\Transformers\ShopTransformer;
 use GameserverApp\Transformers\TokenTransformer;
 use GameserverApp\Transformers\TransactionTransformer;
-use GameserverApp\Transformers\TribeTransformer;
+use GameserverApp\Transformers\GroupTransformer;
 use GameserverApp\Transformers\UserTransformer;
+use function GuzzleHttp\Psr7\build_query;
 
 class Client
 {
@@ -138,6 +143,17 @@ class Client
             $characters = $this->api()->guestRequest('get', 'characters');
         }
 
+        if(isset($characters->total_online)) {
+            $totalOnline = $characters->total_online;
+
+            unset($characters->total_online);
+
+            return (object) [
+                'characters' => CharacterTransformer::transformMultiple($characters),
+                'total_online' => $totalOnline
+            ];
+        }
+
         return CharacterTransformer::transformMultiple($characters);
     }
 
@@ -148,7 +164,53 @@ class Client
         );
     }
 
-    public function tribe($id, $with = [])
+    public function userStats($type)
+    {
+        $data = $this->api()->guestRequest('get', 'user/general-stats/' . $type);
+
+        return UserTransformer::transformMultiple($data);
+    }
+
+    public function saleStats($type)
+    {
+        $data = $this->api()->guestRequest('get', 'sale/stats/' . $type);
+
+        return SaleTransformer::transformMultiple($data);
+    }
+
+    public function monthlyTarget()
+    {
+        return $this->api()->guestRequest('get', 'sale/stats/monthly-target');
+    }
+
+    public function saveCharacterAbout(Character $character, $about, $file = false)
+    {
+        $this->clearCache('get', 'character/' . $character->id, []);
+
+        if($file) {
+            return $this->api()->authRequest('post', 'character/' . $character->id . '/about', [
+                'multipart' => [
+                    [
+                        'name' => 'about',
+                        'contents' => $about
+                    ],
+                    [
+                        'name'     => 'file',
+                        'contents' => fopen($file, 'r'),
+                        'filename' => $file->getClientOriginalName() . '.' . $file->getExtension()
+                    ]
+                ]
+            ]);
+        } else {
+            return $this->api()->authRequest('post', 'character/' . $character->id . '/about', [
+                'form_params' => [
+                    'about' => $about
+                ]
+            ]);
+        }
+    }
+
+    public function group($id, $with = [])
     {
         $query = '';
 
@@ -160,12 +222,12 @@ class Client
         }
 
         if(isset($with['auth']) and $with['auth']) {
-            return TribeTransformer::transform(
+            return GroupTransformer::transform(
                 $this->api()->authRequest('get', 'group/' . $id . $query)
             );
         }
 
-        return TribeTransformer::transform(
+        return GroupTransformer::transform(
             $this->api()->guestRequest('get', 'group/' . $id . $query)
         );
     }
@@ -177,6 +239,21 @@ class Client
         );
     }
 
+    public function userActivity($id, $page = 1)
+    {
+        $data = $this->api()->guestRequest('get', 'user/' . $id . '/activity?page=' . $page);
+
+        $user = $data->user;
+        unset($data->user);
+
+        $data->items = PostTransformer::transformMultiple($data->items);
+
+        return [
+            'user' => UserTransformer::transform($user),
+            'activity' => $this->paginatedResponse($data)
+        ];
+    }
+
     public function updateUser($id, $data)
     {
         return $this->api()->authRequest('post', 'user/' . $id . '/settings', [
@@ -185,7 +262,7 @@ class Client
         ]);
     }
 
-    public function tribeLog($id, $route, $page = 1)
+    public function groupLog($id, $route, $page = 1)
     {
         $response = $this->api()->authRequest('get', 'group/' . $id . '/log?page=' . $page, [], 2);
 
@@ -206,7 +283,7 @@ class Client
     
     public function messages($box, $route)
     {
-        $response = $this->api()->authRequest('get', 'messages/' . $box, [], false);
+        $response = $this->api()->authRequest('get', 'messages/' . $box . '?page='. request('page', 1), [], false);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -247,11 +324,7 @@ class Client
 
     public function calendar($id)
     {
-        if(auth()->check()) {
-            return CalendarTransformer::transform($this->api()->authRequest('get', 'calendar/' . $id, [], 2));
-        }
-
-        return CalendarTransformer::transform($this->api()->guestRequest('get', 'calendar/' . $id, [], 2));
+        return CalendarTransformer::transform($this->api()->authRequest('get', 'calendar/' . $id, [], 2));
     }
 
     public function participateCalendarEvent($id)
@@ -261,9 +334,23 @@ class Client
         return $this->api()->authRequest('post', 'calendar/' . $id . '/participate');
     }
 
-    public function allNews($route)
+    public function relatedNews($id)
     {
-        $response = $this->api()->guestRequest('get', 'news');
+        return NewsTransformer::transformMultiple(
+            $this->api()->guestRequest('get', 'news/' . $id . '/related', [], 2)
+        );
+    }
+
+    public function relatedCalendarEvents($id)
+    {
+        return CalendarTransformer::transformMultiple(
+            $this->api()->guestRequest('get', 'calendar/' . $id . '/related', [], 2)
+        );
+    }
+
+    public function allNews($route, $args = [])
+    {
+        $response = $this->api()->guestRequest('get', 'news?' . build_query($args), [], 2);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -335,9 +422,9 @@ class Client
         return SupportTierTransformer::transform($this->api()->guestRequest('get', 'supporter-tier/' . $id));
     }
 
-    public function allSupporterTiers($route)
+    public function allSupporterTiers($route, $page = 1)
     {
-        $response = $this->api()->guestRequest('get', 'supporter-tier');
+        $response = $this->api()->guestRequest('get', 'supporter-tier?page=' . $page);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -412,9 +499,9 @@ class Client
         return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/cancel');
     }
 
-    public function shopItems($route)
+    public function shopItems($route, $category = '')
     {
-        $response = $this->api()->authRequest('get', 'shop?page=' . request()->get('page', null));
+        $response = $this->api()->authRequest('get', 'shop?page=' . request()->get('page', null) . '&category=' . $category);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -435,11 +522,7 @@ class Client
 
     public function shopItem($id)
     {
-        if(auth()->check()) {
-            return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], 2));
-        }
-
-        return ShopTransformer::transform($this->api()->guestRequest('get', 'shop/' . $id, [], 2));
+        return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], 2));
     }
 
     public function purchaseShopItem($id, $characterId)
@@ -453,7 +536,7 @@ class Client
 
     public function shopOrders($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/orders');
+        $response = $this->api()->authRequest('get', 'user/me/orders?page=' . request()->get('page', null));
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
@@ -482,31 +565,53 @@ class Client
         ]);
     }
 
-    public function saveTribeSettings(Tribe $tribe, $data)
+    public function saveGroupSettings(Group $group, $data)
     {
-        $this->clearCache('get', 'group/' . $tribe->id . '?settings=1', []);
+        $this->clearCache('get', 'group/' . $group->id, []);
+        $this->clearCache('get', 'group/' . $group->id . '?settings=1', []);
 
-        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/settings', [
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/settings', [
             'form_params' => $data
         ]);
     }
 
-    public function saveTribeDiscordChannel(Tribe $tribe, $data)
+    public function uploadGroupVisuals(Group $group, $type, UploadedFile $file)
     {
-        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/discord', [
+        $this->clearCache('get', 'group/' . $group->id, []);
+        $this->clearCache('get', 'group/' . $group->id . '?settings=1', []);
+
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/upload/' . $type, [
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => fopen($file, 'r'),
+                    'filename' => $file->getClientOriginalName() . '.' . $file->getExtension()
+                ]
+            ]
+        ]);
+    }
+
+    public function saveGroupDiscordChannel(Group $group, $data)
+    {
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/discord', [
             'form_params' => $data
         ]);
     }
 
-    public function disconnectTribeDiscordChannel(Tribe $tribe)
+    public function disconnectGroupDiscordChannel(Group $group)
     {
-        return $this->api()->authRequest('post', 'group/' . $tribe->id . '/discord/disconnect');
+        return $this->api()->authRequest('post', 'group/' . $group->id . '/discord/disconnect');
     }
 
     public function clearCache($method, $route, $options = [])
     {
         $this->api()->clearCache($method, $route, $options, true);
         $this->api()->clearCache($method, $route, $options);
+    }
+
+    public function clearAllCacheForSite()
+    {
+        $this->api()->clearAllCache();
     }
 
     public function myContacts()
@@ -543,8 +648,8 @@ class Client
     public function spotlight($type = false)
     {
         switch ($type) {
-            case 'tribe':
-                return TribeTransformer::transformMultiple(
+            case 'group':
+                return GroupTransformer::transformMultiple(
                     $this->api()->guestRequest('get', 'groups/spotlight')
                 );
 
@@ -570,7 +675,9 @@ class Client
             $url = $model . '/' . $id . '/stats/'. $type;
         }
 
-        return $this->api()->guestRequest('get', $url);
+        $stat = $this->api()->guestRequest('get', $url);
+
+        return graphColorTweak($stat);
     }
 
     public static function domain($key = false, $default = null)
@@ -618,7 +725,7 @@ class Client
         }
 
         if( $options['search_type'] == 'tribe' ) {
-            $items = TribeTransformer::transformMultiple($response->items);
+            $items = GroupTransformer::transformMultiple($response->items);
         } else {
             $items = CharacterTransformer::transformMultiple($response->items);
         }
@@ -635,7 +742,7 @@ class Client
 
     private function paginatedResponse($response, $path = null)
     {
-        return new LengthAwarePaginator(
+        $class = new LengthAwarePaginator(
             $response->items,
             $response->total,
             $response->per_page,
@@ -644,5 +751,11 @@ class Client
                 'path' => $path
             ]
         );
+
+        if(isset($response->categories)) {
+            $class->categories = $response->categories;
+        }
+
+        return $class;
     }
 }

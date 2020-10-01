@@ -30,13 +30,13 @@
 
                 @if(
                     auth()->check() and
-                    auth()->user()->isTribeMember($tribe) and
+                    auth()->user()->isGroupMember($tribe) and
                     (
                         $tribe->isOwner(auth()->user()) and
                         !$tribe->discordSetup()
                     )
                 )
-                    <div class="alert alert-info">Read the logs on your Discord server. <a href="{{route('tribe.settings', $tribe->id)}}">Setup Discord &raquo;</a></div>
+                    <div class="alert alert-info">Read the logs on your Discord server. <a href="{{route('group.settings', $tribe->id)}}">Setup Discord &raquo;</a></div>
                 @endif
 
                 <h2>

@@ -28,10 +28,16 @@ class ShopController extends Controller
     public function index(Request $request)
     {
         if(! SiteHelper::featureEnabled('shop')) {
-            return view('pages.v1.shop.disabled');
+            return view('pages.v3.shop.disabled');
         }
 
-        $packs = $this->client->shopItems(route('shop.index'));
+        $packs = $this->client->shopItems(route('shop.index'), $request->get('category', ''));
+
+        $categories = false;
+
+        if(isset($packs->categories)) {
+            $categories = $packs->categories;
+        }
 
         if($request->has('status') == 'success') {
             session()->flash('alert', [
@@ -41,35 +47,28 @@ class ShopController extends Controller
             ]);
         }
 
-        return view('pages.v1.shop.index', [
+        return view('pages.v3.shop.index', [
             'packs' => $packs,
+            'categories' => $categories
         ]);
     }
 
     public function show(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('shop')) {
-            return view('pages.v1.shop.disabled');
+            return view('pages.v3.shop.disabled');
         }
 
         $pack = $this->client->shopItem($id);
 
-        return view('pages.v1.shop.show', [
-            'pack' => $pack
+        return view('pages.v3.shop.show', [
+            'package' => $pack
         ]);
     }
 
     public function orders()
     {
-        if(! SiteHelper::featureEnabled('shop')) {
-            return view('pages.v1.shop.disabled');
-        }
-
-        $orders = $this->client->shopOrders(route('shop.index'));
-
-        return view('pages.v1.shop.history', [
-            'orders' => $orders
-        ]);
+        return redirect(route('user.order-history', auth()->user()->id));
     }
 
     public function purchase(Request $request, $id)

@@ -26,6 +26,7 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             'description'  => $args->description,
             'limit'        => $args->limit,
             'limit_days'   => $args->limit_days,
+            'usage'        => $args->usage,
             'token_price'  => $args->token_price,
             'cluster'      => $args->cluster,
             'image'        => $args->image,

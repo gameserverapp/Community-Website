@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/purge_cache', [
+Route::get('/purge_all_cache', [
     'uses' => 'HomeController@purge'
 ]);
 

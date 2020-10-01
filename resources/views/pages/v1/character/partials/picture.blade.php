@@ -1,1 +1,1 @@
-<div class="picture_wrap" style="background-image:url('/img/character/{{$character->characterImage()}}')"></div>
+<div class="picture_wrap" style="background-image:url('/img/character/{{$character->image()}}')"></div>

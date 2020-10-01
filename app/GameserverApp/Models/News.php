@@ -2,6 +2,7 @@
 
 namespace GameserverApp\Models;
 
+use Carbon\Carbon;
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
 
@@ -13,8 +14,12 @@ class News extends Model implements LinkableInterface
     
     use Linkable;
 
-    public function title()
+    public function title($limit = false)
     {
+        if($limit) {
+            return str_limit($this->title, $limit);
+        }
+
         return $this->title;
     }
 
@@ -48,6 +53,11 @@ class News extends Model implements LinkableInterface
         return $this->image;
     }
 
+    public function publishedAt()
+    {
+        return Carbon::parse($this->published_at);
+    }
+
     public function hasType()
     {
         if($this->type == '0') {
@@ -61,16 +71,33 @@ class News extends Model implements LinkableInterface
     {
         switch($this->type) {
             case self::MAINTENANCE:
-                return '<span class="label label-maintenance">Maintenance</span>';
+                return '<span class="label label-theme">Maintenance</span>';
 
             case self::EVENT:
-                return '<span class="label label-vip">Event</span>';
+                return '<span class="label label-theme">Event</span>';
 
             case self::IMPORTANT:
-                return '<span class="label label-important">Important</span>';
+                return '<span class="label label-theme alternative">Important</span>';
 
             default:
                 return;
+        }
+    }
+
+    public function category()
+    {
+        switch($this->type) {
+            case self::MAINTENANCE:
+                return [translate('maintenance', 'Maintenance')];
+
+            case self::EVENT:
+                return [translate('event', 'Event')];
+
+            case self::IMPORTANT:
+                return [translate('important', 'Important')];
+
+            default:
+                return [];
         }
     }
 
@@ -81,11 +108,11 @@ class News extends Model implements LinkableInterface
 
     public function indexRoute()
     {
-        // TODO: Implement indexRoute() method.
+        return route('news.index');
     }
 
     public function showRoute()
     {
-        // TODO: Implement showRoute() method.
+        return route('news.show', ['id' => $this->id, 'slug' => $this->slug()]);
     }
 }

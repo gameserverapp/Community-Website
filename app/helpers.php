@@ -1,6 +1,7 @@
 <?php
 
 use GameserverApp\Helpers\RichColor;
+use GameserverApp\Helpers\SiteHelper;
 use GuzzleHttp\Client;
 
 function redirectBackWithAlert($msg, $status = 'success')
@@ -37,6 +38,14 @@ function mb_unserialize($string) {
     return unserialize($string2);
 }
 
+function calcPercentage($full, $calc)
+{
+    if($full == 0) {
+        return 0;
+    }
+
+    return $calc*100/$full;
+}
 
 function alertOnSlack($data, $channel = 'bugsnag')
 {
@@ -69,4 +78,92 @@ function alertOnSlack($data, $channel = 'bugsnag')
     } catch( Exception $e) {
 //        Bugsnag::notifyException($e);
     }
+}
+
+function translate($key, $default = '')
+{
+    return SiteHelper::translation($key, $default);
+}
+
+function themes() {
+    return [
+        'default',
+        'aberration',
+        'aberration-gold',
+        'aberration-silver',
+        'aberration-silver-red',
+        'aberration-silver-green',
+        'atlas-kraken',
+        'extinction',
+    ];
+}
+
+function getClosest($search, $arr) {
+    $closest = null;
+    foreach ($arr as $item) {
+        if ($closest === null || abs($search - $closest) > abs($item - $search)) {
+            $closest = $item;
+        }
+    }
+    return $closest;
+}
+
+function getReached($search, $arr) {
+    $closest = null;
+    foreach ($arr as $item) {
+        if ($search >= $item) {
+            $closest = $item;
+        }
+    }
+
+    return $closest;
+}
+
+function domain()
+{
+    return strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
+}
+
+function color($key = 'primary-color')
+{
+    return SiteHelper::themeColors()->$key;
+}
+
+function graphColorTweak($graphData)
+{
+    if(isset($graphData->options->grid->backgroundColor)) {
+        $graphData->options->grid->backgroundColor = 'transparent';
+    }
+
+    if(isset($graphData->options->lines)) {
+        $graphData->options->lines = (object) [
+            'show'      => true,
+            'fill'      => true,
+            'fillColor' => [
+                'colors' => [
+                    [
+                        'opacity' => 0
+                    ],
+                    [
+                        'opacity' => .4
+                    ],
+                ]
+            ]
+        ];
+    }
+
+    if(isset($graphData->data)) {
+
+        $count = count($graphData->data);
+
+        if($count > 5) {
+            $graphData->options->legend->show = false;
+        } elseif($count == 1) {
+            $graphData->options->colors = [
+                color('primary-color')
+            ];
+        }
+    }
+
+    return $graphData;
 }

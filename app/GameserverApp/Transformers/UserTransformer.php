@@ -24,6 +24,8 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             'donated'    => $args->donated,
             'created_at' => $args->meta->created_at,
 
+            'hours_played' => $args->meta->total_hours_played,
+
             'role' => $args->role->id,
             'role_label' => $args->role->label
         ];
@@ -73,6 +75,14 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
 
         if (isset($args->tokens)) {
             $data['tokens'] = $args->tokens;
+        }
+
+        if (isset($args->votes)) {
+            $data['votes'] = $args->votes;
+        }
+
+        if (isset($args->donated_amount)) {
+            $data['donated_amount'] = $args->donated_amount;
         }
 
         return $data;

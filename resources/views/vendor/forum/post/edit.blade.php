@@ -1,36 +1,26 @@
 @extends ('forum::master', ['breadcrumb_other' => trans('forum::posts.edit')])
 
 @section ('content')
-    <h2>{{ trans('forum::posts.edit') }} ({{ $thread->title }})</h2>
 
-    <hr>
+    <div class="row">
+        <div class="col-md-8 center-block">
 
-    @if (!$post->isFirst)
-        @can ('delete', $post)
-            <form action="{{ Forum::route('post.update', $post) }}" method="POST" data-actions-form>
+            <form method="POST" action="{{ Forum::route('post.update', $post) }}">
                 {!! csrf_field() !!}
-                {!! method_field('delete') !!}
+                {!! method_field('patch') !!}
 
-                @include ('forum::post.partials.actions')
+                @component('partials.v3.frame', ['title' => trans('forum::posts.edit') . ' - ' . $thread->title])
+                    <div class="form-group">
+                        <textarea name="content" rows="13" class="form-control simplemde">{{ !is_null(old('content')) ? old('content') : $post->content }}</textarea>
+                    </div>
+                @endcomponent
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-theme btn-theme-rock">
+                        <span>Update post</span>
+                    </button>
+                </div>
             </form>
-        @endcan
-    @endif
-
-    @if ($post->parent)
-        <h3>{{ trans('forum::general.response_to', ['item' => $post->parent->authorName]) }}...</h3>
-
-        @include ('forum::post.partials.excerpt', ['post' => $post->parent])
-    @endif
-
-    <form method="POST" action="{{ Forum::route('post.update', $post) }}">
-        {!! csrf_field() !!}
-        {!! method_field('patch') !!}
-
-        <div class="form-group">
-            <textarea name="content" rows="13" class="form-control simplemde">{{ !is_null(old('content')) ? old('content') : $post->content }}</textarea>
         </div>
-
-        <button type="submit" class="btn champ small pull-right">Update post</button>
-        <a href="{{ URL::previous() }}" class="btn btn-default">{{ trans('forum::general.cancel') }}</a>
-    </form>
+    </div>
 @stop

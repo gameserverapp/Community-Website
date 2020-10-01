@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use GameserverApp\Helpers\SiteHelper;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Api\OAuthApi;
@@ -25,21 +26,59 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    
+
     public function show(Request $request, $id)
     {
-        $character = $this->api->user($id)->lastCharacter();
-
-        if($character instanceof Character) {
-            return redirect(route('character.show', $character->id));
+        if(!SiteHelper::featureEnabled('user_page')) {
+            return view('pages.v3.user.disabled');
         }
 
-        abort(404);
+        return redirect(route('user.activity', $id));
+    }
+
+    public function activity(Request $request, $id)
+    {
+        if(!SiteHelper::featureEnabled('user_page')) {
+            return view('pages.v3.user.disabled');
+        }
+
+        $data = $this->api->userActivity($id);
+
+        $user = $data['user'];
+        $activity = $data['activity'];
+
+        return view('pages.v3.user.activity', [
+            'user' => $user,
+            'activity' => $activity
+        ]);
+    }
+
+//    public function about(Request $request, $id)
+//    {
+//        $user = $this->api->user($id);
+//
+//        return view('pages.v3.user.about', [
+//            'user' => $user
+//        ]);
+//    }
+
+    public function orderHistory()
+    {
+        if(! SiteHelper::featureEnabled('shop')) {
+            return view('pages.v3.user.disabled');
+        }
+
+        $orders = $this->api->shopOrders(route('shop.orders', auth()->id()));
+
+        return view('pages.v3.user.history', [
+            'orders' => $orders,
+            'user' => auth()->user()
+        ]);
     }
 
     public function settings(Request $request)
     {
-        return view('pages.v1.user.settings', [
+        return view('pages.v3.user.settings', [
             'user' => auth()->user()
         ]);
     }

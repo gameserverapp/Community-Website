@@ -2,11 +2,13 @@
 
 namespace GameserverApp\Models;
 
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use GameserverApp\Helpers\SiteHelper;
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
+use Illuminate\Support\Facades\Cache;
 
 class Character extends Model implements LinkableInterface
 {
@@ -30,6 +32,26 @@ class Character extends Model implements LinkableInterface
         return (bool)$this->status;
     }
 
+    public function hasAbout()
+    {
+        return isset($this->about) and !is_null($this->about) and !empty($this->about);
+    }
+
+    public function hasAboutImage()
+    {
+        return isset($this->about_image_url) and $this->about_image_url;
+    }
+
+    public function about()
+    {
+        return $this->about;
+    }
+
+    public function aboutImageUrl()
+    {
+        return $this->about_image_url;
+    }
+
     public function streaming()
     {
         return (bool)$this->streaming;
@@ -42,30 +64,30 @@ class Character extends Model implements LinkableInterface
         }
     }
 
-    public function tribeOwner($tribe)
+    public function groupOwner($group)
     {
-        if(!isset($tribe->owners)) {
+        if(!isset($group->owners)) {
             return false;
         }
 
-        $ownerIds = $tribe->owners;
+        $ownerIds = $group->owners;
 
         return in_array($this->user->id, $ownerIds);
     }
 
-    public function tribeAdmin($tribe)
+    public function groupAdmin($group)
     {
-        if($this->tribeOwner($tribe)) {
+        if($this->groupOwner($group)) {
             return true;
         }
 
-        if(!isset($tribe->admins)) {
+        if(!isset($group->admins)) {
             return false;
         }
 
-        $ownerIds = $tribe->admins;
+        $ownerIds = $group->admins;
 
-        return in_array($this->id, $ownerIds);
+        return in_array($this->user->id, $ownerIds);
     }
 
     public function hasServer()
@@ -78,9 +100,39 @@ class Character extends Model implements LinkableInterface
         return isset($this->user);
     }
 
-    public function hasTribe()
+    public function hasGroup()
     {
-        return isset($this->tribes) and count($this->tribes) > 0;
+        return isset($this->groups) and count($this->groups) > 0;
+    }
+
+    public function groupForServer(Server $server)
+    {
+        if(!$this->hasGroup() or !$this->hasServer()) {
+            return false;
+        }
+
+        $groups = $this->groups->filter(function($group) use ($server) {
+            return $group->hasServer() and $group->server->id == $server->id;
+        });
+
+        if($groups->count()) {
+            return $groups->first();
+        }
+
+        return false;
+    }
+
+    public function isGroupMember(Group $group)
+    {
+        if(!$this->hasGroup()) {
+            return false;
+        }
+
+        $groups = $this->groups->filter(function($item) use ($group) {
+            return $group->id == $item->id;
+        });
+
+        return $groups->count() > 0;
     }
 
     public function hasGame()
@@ -93,46 +145,36 @@ class Character extends Model implements LinkableInterface
         return $this->hours_played;
     }
 
-    public function characterImage()
+    public function image()
     {
-        if ($this->gender) {
-            $link = 'male/';
-        } else {
-            $link = 'female/';
+        try {
+            if ($this->gender) {
+                $gender = 'male';
+            } else {
+                $gender = 'female';
+            }
+
+            $level = $this->level;
+
+            $cacheKey = domain() . $gender . $level;
+
+            if(Cache::has($cacheKey)) {
+                return Cache::get($cacheKey);
+            }
+
+            $set = (array) SiteHelper::customCharacterImages()->$gender;
+            $options = array_keys($set);
+
+            $key = getReached($level, $options);
+
+            $url = $set[$key];
+
+            Cache::put($key, $url, Carbon::now()->addMinutes(1));
+
+            return $url;
+        } catch( \Exception $e) {
+            Bugsnag::notifyException($e);
         }
-
-        //selecting gear based on level
-        $gear = 'naked';
-
-        if ($this->level > 3) {
-            $gear = 'fiber';
-        }
-
-        if ($this->level > 20) {
-            $gear = 'hide';
-        }
-
-        if ($this->level > 25) {
-            $gear = 'fur';
-        }
-
-        if ($this->level > 30) {
-            $gear = 'chitin';
-        }
-
-        if ($this->level > 35) {
-            $gear = 'ghilli';
-        }
-
-        if ($this->level > 45) {
-            $gear = 'flak';
-        }
-
-        if ($this->level > 80) {
-            $gear = 'riot';
-        }
-
-        return $link . $gear . '.png';
     }
 
     //linkable

@@ -4,6 +4,7 @@ namespace GameserverApp\Models;
 
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
+use Illuminate\Support\Str;
 
 class Shop extends Model implements LinkableInterface
 {
@@ -19,6 +20,11 @@ class Shop extends Model implements LinkableInterface
         return $this->description;
     }
 
+    public function summary()
+    {
+        return Str::limit(strip_tags($this->description()));
+    }
+
     public function hasCharacters()
     {
         return $this->characters;
@@ -27,6 +33,15 @@ class Shop extends Model implements LinkableInterface
     public function characters()
     {
         return $this->characters;
+    }
+
+    public function usage()
+    {
+        if(!$this->usage) {
+            return 0;
+        }
+
+        return $this->usage;
     }
 
     public function limit()
@@ -62,9 +77,53 @@ class Shop extends Model implements LinkableInterface
         return $this->tokenPrice() . ' tokens';
     }
 
+    public function hasLimits()
+    {
+        if($this->limit() == 0 and $this->limitDays() == 0) {
+            return 1;
+        }
+
+        if($this->limit() == 1 and $this->limitDays() == 365) {
+            return 2;
+        }
+
+        if($this->limit() == 1 and $this->limitDays() != 365) {
+            return 3;
+        }
+
+        if($this->limit() != 1 and $this->limitDays() > 0) {
+            return 4;
+        }
+
+
+        return 1;
+    }
+
+    public function displayLimits()
+    {
+        switch($this->hasLimits()) {
+            case 1:
+                return 'Unlimited';
+
+            case 2:
+                return 'Once per year';
+
+            case 3:
+                return 'Once per ' . $this->limitDays() . ' day(s)';
+
+            default:
+                return $this->limit() . ' per ' . $this->limitDays() . ' day(s)';
+        }
+    }
+
     public function image()
     {
         return $this->image;
+    }
+
+    public function orderUrl()
+    {
+        return route('shop.purchase', $this->id);
     }
 
     public function linkableTemplate($url, $options = [])

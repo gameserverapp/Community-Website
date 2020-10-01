@@ -20,11 +20,5 @@ Route::group([
         'middleware' => 'auth'
     ]);
 
-    Route::get('/orders', [
-        'as'   => 'shop.orders',
-        'uses' => 'ShopController@orders',
-        'middleware' => 'auth'
-    ]);
-
 });
 

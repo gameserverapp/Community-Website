@@ -1,0 +1,94 @@
+.custom-nav {
+    margin-top:3rem;
+    margin-bottom:3rem;
+
+    background-color:var(--transparent-bg);
+    border:1px var(--transparent-bg) solid;
+
+    @include border-radius(3px);
+
+    .navbar-nav > li > a {
+        line-height:1.5rem !important;
+    }
+
+    ul.nav {
+        > li {
+            > a {
+                color:var(--custom-nav-link-color);
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            &:hover {
+
+                > a {
+                    color:var(--custom-nav-link-hover-color);
+                }
+            }
+
+            &.active {
+                > a {
+                    color:var(--custom-nav-link-active-color);
+                    background-color:var(--custom-nav-link-active-bg);
+                }
+
+                &:hover > a {
+                    color:var(--custom-nav-link-active-hover-color);
+                    background-color:var(--custom-nav-link-active-hover-bg);
+                }
+            }
+            
+            &.dropdown {
+
+                ul.dropdown-menu {
+                    min-width:300px;
+
+                    li {
+
+                        a {
+                            padding:5px 20px;
+
+                            .char_pic {
+                                display: inline-block;
+                                vertical-align: middle;
+                                width: 20px;
+                                height: 20px;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            }
+
+                            text-decoration: none;
+
+                            .label {
+                                float:right;
+                                vertical-align: middle;
+                                margin-top:3px;
+                            }
+                        }
+
+
+
+                        &:hover {
+
+                            > a {
+                                color:var(--custom-nav-link-hover-color);
+                            }
+                        }
+
+                        &.active {
+                            > a {
+                                color:var(--custom-nav-link-active-color);
+                                background-color:var(--custom-nav-link-active-bg);
+                            }
+
+                            &:hover > a {
+                                color:var(--custom-nav-link-active-hover-color);
+                                background-color:var(--custom-nav-link-active-hover-bg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

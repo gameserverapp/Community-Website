@@ -1,0 +1,27 @@
+&.package-single {
+
+    .title {
+        span {
+            display:block;
+        }
+
+        img {
+            display: inline-block;
+            max-width:100%;
+            height:auto;
+            margin-bottom:1rem;
+        }
+
+        @media (min-width:768px) {
+            img {
+                max-width:200px;
+                margin-left: -200px;
+                margin-bottom:0;
+            }
+
+            span {
+                display: inline-block;
+            }
+        }
+    }
+}

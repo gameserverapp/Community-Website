@@ -25,10 +25,10 @@ class SupporterTierController extends Controller
     public function index(Request $request)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {
-            return view('pages.v1.supporter-tier.disabled');
+            return view('pages.v3.supporter-tier.disabled');
         }
 
-        $packages = $this->client->allSupporterTiers(route('supporter-tier.index'));
+        $packages = $this->client->allSupporterTiers(route('supporter-tier.index'), request()->get('page', 1));
 
         if($request->has('status') == 'success') {
             session()->flash('alert', [
@@ -38,7 +38,7 @@ class SupporterTierController extends Controller
             ]);
         }
 
-        return view('pages.v1.supporter-tier.index', [
+        return view('pages.v3.supporter-tier.index', [
             'packages' => $packages
         ]);
     }
@@ -46,7 +46,7 @@ class SupporterTierController extends Controller
     public function show(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {
-            return view('pages.v1.supporter-tier.disabled');
+            return view('pages.v3.supporter-tier.disabled');
         }
 
         $package = $this->client->supporterTier($id);
@@ -95,7 +95,7 @@ class SupporterTierController extends Controller
             }
         }
 
-        return view('pages.v1.supporter-tier.show', [
+        return view('pages.v3.supporter-tier.show', [
             'package' => $package
         ]);
     }

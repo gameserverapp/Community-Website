@@ -24,14 +24,14 @@ use GameserverApp\Helpers\SiteHelper;
                                 </span>
                             &nbsp;
                             <div class="char_pic"
-                                 style="background-image:url('/img/character/{{$navChar->characterImage()}}')"></div>
+                                 style="background-image:url('/img/character/{{$navChar->image()}}')"></div>
                         </a>
                     </li>
                 @endif
 
                 @if(SiteHelper::featureEnabled('tribe_page'))
 
-                    @if($navChar->hasTribe())
+                    @if($navChar->hasGroup())
                         <?php
                         $tribes = auth()->user()->lastCharacter()->tribes
                         ?>
@@ -39,7 +39,7 @@ use GameserverApp\Helpers\SiteHelper;
                         @foreach($tribes as $tribe)
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="{{route('tribe.show', $tribe->id)}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('tribe.show', $tribe->id) ? 'orange' : '' }}">
+                                <a href="{{route('group.show', $tribe->id)}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentroute('group.show', $tribe->id) ? 'orange' : '' }}">
                                     {!! $tribe->showLink(['disable_link' => true]) !!}
 
                                     @if($tribe->hasServer())
@@ -51,9 +51,9 @@ use GameserverApp\Helpers\SiteHelper;
                                     @endif
                                 </a>
                             </li>
-                            @if($navChar->tribeAdmin($tribe))
+                            @if($navChar->groupAdmin($tribe))
                                 <li>
-                                    <a href="{{route('tribe.settings', $tribe->id)}}">
+                                    <a href="{{route('group.settings', $tribe->id)}}">
                                         Tribe settings
                                     </a>
                                 </li>
@@ -109,7 +109,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('supporter_tiers'))
             <li>
-                <a href="{{route('subscription.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index') ? 'orange' : '' }}">
+                <a href="{{route('subscription.index', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index', auth()->id()) ? 'orange' : '' }}">
                     Subscriptions
                 </a>
             </li>
@@ -165,7 +165,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('messages'))
             <li class="hidden-sm">
-                <a href="{{route('message.index')}}"
+                <a href="{{route('message.index', auth()->id())}}"
                    class="inbox {{ ( Request::is('message/*')) ? 'active' : '' }}">
                     Messages
                     <span class="label label-default right">

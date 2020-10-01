@@ -1,0 +1,34 @@
+.alert {
+    a {
+        color:var(--primary-color);
+        text-decoration: underline;
+    }
+
+
+    &.flash {
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index:999999;
+        line-height:20px;
+
+        @include box-shadow(0 0 60px -15px #000);
+    }
+
+    &.alert-success * {
+        color:#3c763d !important;
+    }
+
+    &.alert-warning * {
+        color:#8a6d3b !important;
+    }
+
+    &.alert-danger * {
+        color:#a94442 !important;
+    }
+
+    &.alert-info * {
+        color:#31708f !important;
+    }
+}

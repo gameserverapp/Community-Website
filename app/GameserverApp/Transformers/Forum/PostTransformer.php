@@ -34,6 +34,10 @@ class PostTransformer extends ModelTransformer implements ModelTransformerInterf
             'deleted_at'   => $args->deleted_at
         ];
 
+        if(isset($args->url)) {
+            $data['url'] = $args->url;
+        }
+
         if (isset($args->thread)) {
             $data['thread'] = ThreadTransformer::transform($args->thread);
         }

@@ -8,6 +8,28 @@ use Illuminate\Support\Facades\Cookie;
 class SiteHelper extends Helper
 {
 
+
+    public static function translation($key, $default = '')
+    {
+        $translations = self::api()->domain('translate');
+
+        if(!isset($translations->$key)) {
+            return $default;
+        }
+
+        return $translations->$key;
+    }
+
+    public static function customCharacterImages()
+    {
+        return self::api()->domain('custom_character_images');
+    }
+
+    public static function logo()
+    {
+        return self::api()->domain('logo');
+    }
+
     public static function name()
     {
         return self::api()->domain('name');
@@ -42,6 +64,11 @@ class SiteHelper extends Helper
     public static function customCss()
     {
         return self::api()->domain('custom_css');
+    }
+
+    public static function themeColors()
+    {
+        return self::api()->domain('theme_colors');
     }
 
     public static function customMenuItems()

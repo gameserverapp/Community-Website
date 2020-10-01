@@ -55,6 +55,16 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->avatar;
     }
 
+    public function votes()
+    {
+        return $this->votes;
+    }
+
+    public function donatedAmount()
+    {
+        return $this->donated_amount;
+    }
+
     public function tokenBalance()
     {
         return $this->tokens;

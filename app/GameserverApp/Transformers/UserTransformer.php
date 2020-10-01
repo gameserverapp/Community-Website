@@ -77,6 +77,14 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['tokens'] = $args->tokens;
         }
 
+        if (isset($args->votes)) {
+            $data['votes'] = $args->votes;
+        }
+
+        if (isset($args->donated_amount)) {
+            $data['donated_amount'] = $args->donated_amount;
+        }
+
         return $data;
     }
 }

@@ -35,16 +35,18 @@
                             <div class="alert alert-danger">
                                 You need to <a href="{{route('user.settings', auth()->user()->id)}}">setup your Discord</a> to receive this package.
                             </div>
+                            <br>
                         @endif
                     @endif
 
                     @if($package->cluster)
                         <div class="alert alert-warning">
-                                <span>
-                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                    Only deliverable on the <strong>{{$package->cluster}}</strong> cluster!
-                                </span>
+                            <span>
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                Only deliverable on the <strong>{{$package->cluster}}</strong> cluster!
+                            </span>
                         </div>
+                        <br>
                     @endif
 
                     @component('partials.v3.frame', [
@@ -59,7 +61,7 @@
                                 @if($package->isSubscription())
                                     Costs:
                                 @else
-                                    Total price:
+                                    Total:
                                 @endif
 
                                 {{$package->displayTotalPrice()}}</strong>

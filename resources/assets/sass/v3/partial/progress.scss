@@ -1,0 +1,18 @@
+.progress-big {
+    position: relative;
+    margin-bottom:0;
+    background-color:var(--bg-color);
+    height:2rem;
+
+    .progress-bar {
+        background-color:var(--secondary-color);
+    }
+
+    .percentage {
+        position: absolute;
+        width:100%;
+        text-align: center;
+        left:0;
+        line-height: 2rem;
+    }
+}

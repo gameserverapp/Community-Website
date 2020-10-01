@@ -1,16 +1,13 @@
 <article class="server-slider"  id="servers">
-    <div class="row ">
-        <div class="col-md-12 text-center">
-            <h1>
-                {{GameserverApp\Helpers\SiteHelper::name()}}
-                @if(count($servers) == 1)
-                    Server
-                @else
-                    Servers
-                @endif
-            </h1>
+    @if(isset($block['title']) and !empty($block['title']))
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>
+                    {{$block['title']}}
+                </h1>
+            </div>
         </div>
-    </div>
+    @endif
     <div class="row">
         <div class=" owl-theme" id="serverSlider">
             @forelse($servers as $server)

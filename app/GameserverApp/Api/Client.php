@@ -6,6 +6,7 @@ use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
 use GameserverApp\Transformers\Forum\PostTransformer;
+use GameserverApp\Transformers\SaleTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
 use Illuminate\Http\UploadedFile;
@@ -161,6 +162,25 @@ class Client
         return CharacterTransformer::transform(
             $this->api()->guestRequest('get', 'character/' . $id)
         );
+    }
+
+    public function userStats($type)
+    {
+        $data = $this->api()->guestRequest('get', 'user/general-stats/' . $type);
+
+        return UserTransformer::transformMultiple($data);
+    }
+
+    public function saleStats($type)
+    {
+        $data = $this->api()->guestRequest('get', 'sale/stats/' . $type);
+
+        return SaleTransformer::transformMultiple($data);
+    }
+
+    public function monthlyTarget()
+    {
+        return $this->api()->guestRequest('get', 'sale/stats/monthly-target');
     }
 
     public function saveCharacterAbout(Character $character, $about, $file = false)

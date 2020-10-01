@@ -22,7 +22,8 @@ return [
             'active_tribes',
             'newbies',
             'last_online',
-            'top_players'
+            'top_players',
+            'big_banner'
         ]
     ],
 

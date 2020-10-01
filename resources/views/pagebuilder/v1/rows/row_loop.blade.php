@@ -14,6 +14,8 @@ if(
 
     if(!count($hasBlockedBlocksAsChild)) {
         $classes[] = 'display-table valign-' . $row['settings']['vertical_align'];
+    } else {
+        unset($row['settings']['vertical_align']);
     }
 }
 

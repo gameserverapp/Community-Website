@@ -6,7 +6,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th></th>
             <th>Name</th>
             <th>Level</th>
             <th></th>
@@ -15,7 +14,6 @@
         <tbody>
             @forelse( $characters as $character )
                 <tr>
-                    <td></td>
                     <td>
                         {!! $character->showLink([
                             'limit' => 13

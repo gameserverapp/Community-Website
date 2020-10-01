@@ -25,5 +25,10 @@ Route::group([
         'middleware' => 'auth'
     ]);
 
+
+    Route::get('{id}-{slug}/purge_cache', [
+        'as'   => 'calendar.purge',
+        'uses' => 'CalendarController@purge'
+    ]);
 });
 

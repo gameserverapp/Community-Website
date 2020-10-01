@@ -65,4 +65,9 @@ class CalendarController extends Controller
 
         return redirectBackWithAlert('Your participation status was updated!');
     }
+
+    public function purge($id)
+    {
+        $this->client->clearCache('get', 'calendar/' . $id);
+    }
 }

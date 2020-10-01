@@ -46,21 +46,23 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        if ($this->isHttpException($exception)) {
-            return $this->renderHttpException($exception);
-        } else {
-            // Custom error 500 view on production
-            if (
-                !in_array($exception, $this->dontReport) and
-                !config('app.debug')
-            ) {
-                return response()->view('errors.500', [], 500);
+        if ($this->isHttpException($e)) {
+            return $this->renderHttpException($e);
+        }
+            if (!config('app.debug')) {
+
+                if($e instanceof AuthenticationException) {
+                    return response()->view('errors.restricted', [], 401);
+                }
+
+                if(!in_array($e, $this->dontReport)) {
+                    return response()->view('errors.500', [], 500);
+                }
             }
 
-            return parent::render($request, $exception);
-        }
+        return parent::render($request, $e);
     }
     
     protected function convertExceptionToResponse(Exception $e)

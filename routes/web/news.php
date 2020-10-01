@@ -14,5 +14,9 @@ Route::group([
         'uses' => 'NewsController@show'
     ]);
 
+    Route::get('/news/{id}-{slug}/purge_cache', [
+        'as'   => 'news.purge',
+        'uses' => 'NewsController@purge'
+    ]);
 });
 

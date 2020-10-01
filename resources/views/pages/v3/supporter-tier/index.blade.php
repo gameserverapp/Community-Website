@@ -38,10 +38,12 @@
         </div>
     @endforelse
 
+</div>
+
+<div class="row">
     <div class="paginate">
         {!! $packages->links() !!}
     </div>
-
 </div>
 
 @stop

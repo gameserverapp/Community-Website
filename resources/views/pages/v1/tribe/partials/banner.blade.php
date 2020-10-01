@@ -2,7 +2,7 @@
 
 @if(
     auth()->check() and
-    !auth()->user()->isTribeMember($tribe) and
+    !auth()->user()->isGroupMember($tribe) and
     $tribe->hasOwners()
  )
     <div class="promote">

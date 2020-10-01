@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-
 use GameserverApp\Api\Client;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -20,17 +20,32 @@ class NewsController extends Controller
         $this->client = $client;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.v1.news.index', [
-            'posts' => $this->client->allNews(route('news.index'))
+        $items = $this->client->allNews(
+            route('news.index'),
+            [
+                'page' => $request->get('page', 1),
+                'skip_latest' => true
+            ]
+        );
+
+        $latest = $this->client->latestNews();
+        $hero = $latest->first();
+        $latest->shift();
+
+        return view('pages.v3.news.index', [
+            'items' => $items,
+            'latest' => $latest,
+            'hero' => $hero
         ]);
     }
 
     public function show($id)
     {
-        return view('pages.v1.news.show', [
-            'post' => $this->client->news($id)
+        return view('pages.v3.news.show', [
+            'item' => $this->client->news($id),
+            'items' => $this->client->relatedNews($id)
         ]);
     }
 }

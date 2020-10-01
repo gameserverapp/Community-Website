@@ -1,0 +1,113 @@
+p,h1,h2,h3,h4,h5,h6,ol,ul,li,em,strong,time,td,label {
+    color:var(--content-text-color);
+    font-size:1rem;
+    line-height: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color:var(--primary-color);
+    font-weight: bold;
+    margin-top:0;
+    margin-bottom:1rem;
+
+    a {
+        color:var(--primary-color);
+    }
+}
+
+h1 {
+    font-size:3rem;
+    line-height: 3.5rem;
+    margin-bottom:2rem;
+}
+
+h2 {
+    font-size:2rem;
+    line-height: 2.5rem;
+}
+
+h3 {
+    font-size:2rem;
+    line-height: 2.3rem;
+}
+
+h4,h5,h6 {
+    font-size:1.5rem;
+    line-height: 2rem;
+}
+
+&:not(.contentwrap):not(.form) {
+    p, li, label, strong {
+        color:var(--light-text)
+    }
+}
+
+
+a {
+    color:var(--primary-color);
+    text-decoration: underline;
+    
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+td a {
+    color:var(--primary-color);
+}
+
+.btn-link {
+    display:inline-block;
+    color:var(--primary-color);
+    text-decoration: underline;
+    padding:0;
+    margin:0;
+    
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+select,
+select:focus,
+select:active,
+input[type=text],
+input[type=email],
+input[type=number],
+textarea {
+    background-color:var(--transparent-bg);
+    color:var(--primary-color);
+    border:1px var(--primary-color) solid;
+    padding:6px;
+    vertical-align: bottom;
+    outline:none;
+
+    width:100%;
+    margin-bottom:1rem;
+    @include border-radius(4px);
+}
+
+hr {
+    border-color:var(--hr-color);
+}
+
+.table {
+    margin:0;
+
+    th {
+        border-bottom-color: var(--transparent-bg);
+    }
+
+    td {
+        border-top-color: var(--transparent-bg);
+    }
+}
+
+
+@media (max-width:767px) {
+    h1 {
+        font-size:1.9rem;
+        line-height: 2.4rem;
+        margin-bottom:1rem;
+    }
+}

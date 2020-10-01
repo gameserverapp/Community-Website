@@ -41,6 +41,30 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
     {
     }
 
+    public function hoursPlayed()
+    {
+        return number_format($this->hours_played, 2);
+    }
+
+    public function avatar()
+    {
+        if(is_null($this->avatar)) {
+            return config('gameserverapp.connection.oauth_base_url') . 'img/default-group-logo.png';
+        }
+
+        return $this->avatar;
+    }
+
+    public function votes()
+    {
+        return $this->votes;
+    }
+
+    public function donatedAmount()
+    {
+        return $this->donated_amount;
+    }
+
     public function tokenBalance()
     {
         return $this->tokens;
@@ -94,13 +118,12 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
             return false;
         }
 
-        foreach ($this->characters as $character) {
-            if (
-                $character->hasServer() and
-                $character->server->id == $server->id
-            ) {
-                return $character;
-            }
+        $characters = $this->characters->filter(function($character) use ($server) {
+            return $character->hasServer() and $character->server->id == $server->id;
+        });
+
+        if($characters->count()) {
+            return $characters->first();
         }
 
         return false;
@@ -155,31 +178,33 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->donated;
     }
 
-    public function hasTribe($serverId = false)
+    public function hasGroup($server = false)
     {
         if (! $this->hasCharacters()) {
             return false;
         }
 
-        $characters = $this->characters->filter(function ($item) use ($serverId) {
-            if ($serverId and $item->hasTribe() and $item->hasServer()) {
-                return $item->tribe->server->id == $serverId;
-            }
-
-            return $item->hasTribe();
-        });
+        if(!$server) {
+            $characters = $this->characters->filter(function ($item) {
+                return $item->hasGroup();
+            });
+        } else {
+            $characters = $this->characters->filter(function ($item) use ($server) {
+                return $item->groupForServer($server);
+            });
+        }
 
         return $characters->count() > 0;
     }
 
-    public function isTribeMember(Tribe $tribe)
+    public function isGroupMember(Group $group)
     {
         if (! $this->hasCharacters()) {
             return false;
         }
 
-        $characters = $this->characters->filter(function ($item) use ($tribe) {
-            return $item->hasTribe($tribe);
+        $characters = $this->characters->filter(function ($item) use ($group) {
+            return $item->isGroupMember($group);
         });
 
         return $characters->count() > 0;
@@ -190,11 +215,11 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         $output = '';
 
         if ($this->role('Admin') or $this->role('Super Admin')) {
-            $output .= '<span class="label label-admin">Admin</span>';
+            $output .= '<span class="label label-theme">Admin</span>';
         }
 
         if ($this->donated()) {
-            $output .= '<a href="' . route('token.buy') . '" class="label label-donor">Supporter <3</a> &nbsp;';
+            $output .= '<a href="' . route('supporter-tier.index') . '" class="label label-theme alternative">Supporter <3</a>';
         }
 
         return $output;
@@ -232,6 +257,24 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->unread_messages;
     }
 
+    public function canSendMessage()
+    {
+        if(!SiteHelper::featureEnabled('messages_send')) {
+
+            if($this->role(self::ROLE_MODERATOR)) {
+                return true;
+            }
+
+            return false;
+        }
+
+        if($this->banned()) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function lastCharacter()
     {
         if (! $this->characters->count()) {
@@ -254,19 +297,19 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 
         $output = [];
 
-        if(!$this->hasCharacters()) {
-            $options['disable_link'] = true;
-        }
+//        if(!$this->hasCharacters()) {
+//            $options['disable_link'] = true;
+//        }
 
         $output[] = '<span class="linkwrapper" itemscope itemtype="http://schema.org/Person">';
 
-        if (isset($options['disable_link'])) {
+        if (isset($options['disable_link']) or !SiteHelper::featureEnabled('user_page')) {
             $output[] = '<span class="accountlink-name">';
-            $output[] = '<span itemprop="name">' . str_limit($this->name(14), $options['limit'], '...') . '</span>';
+            $output[] = '<span itemprop="name">' . $this->name($options['limit']) . '</span>';
             $output[] = '</span>';
         } else {
             $output[] = '<a class="accountlink" href="' . $url . '" itemprop="url">';
-            $output[] = '<span itemprop="name">' . str_limit($this->name(14), $options['limit'], '...') . '</span>';
+            $output[] = '<span itemprop="name">' . $this->name($options['limit']) . '</span>';
             $output[] = '</a>';
         }
 

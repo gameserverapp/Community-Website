@@ -1,0 +1,23 @@
+&.inspector {
+
+    .title {
+        display: inline-block;
+        line-height: 3.3rem;
+        vertical-align: middle;
+        margin-right:1rem;
+    }
+
+    .search {
+        display: inline-block;
+        font-size:1.5rem;
+        padding:.5rem 1rem !important;
+        height:auto;
+        width:50% !important;
+    }
+
+    .filter {
+        h5 {
+            line-height: 4rem;
+        }
+    }
+}

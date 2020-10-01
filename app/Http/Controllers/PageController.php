@@ -28,31 +28,38 @@ class PageController extends Controller
         $page = $this->client->page($id);
 
         if($page->isBuilder()) {
-            $template = 'builder';
-            $class = 'pagebuilder';
             $content = $page->decodedContent();
         } else {
-            $template = 'default';
-            $class = 'non-pagebuilder';
-            $content = Markdown::convertToHtml($page->content());
+            $content = [
+                [
+                    'content' => [
+                        [
+                            'value' => Markdown::convertToHtml($page->content()),
+                            'type' => 'wysiwyg',
+                            'size' => 12
+                        ]
+                    ],
+                    'settings' => [
+                        'padding' => 2,
+                        'vertical_align' => 'top',
+                        'background_color' => 'white',
+                        'background_image' => null,
+                        'text-color' => 'dark'
+                    ]
+                ]
+            ];
         }
 
-        return view('pages.v1.page.' . $template, [
+//        dd($content);
+
+        return view('pages.v3.page.builder', [
             'title' => $page->title(),
             'content' => $content,
             'meta' => [
-                'description' => ''
+                'description' => $page->metaDescription()
             ],
             'settings' => [
-                'icon' => '',//'fa fa-rocket',
-                'class' => $class,
-                'banner' => [
-                    'size' => 'small',
-                    //'down-button' => true,
-                    //'animated' => true,
-                    'text-only' => true,
-                    'vertical-align' => true
-                ],
+                'icon' => '',
                 'rules' => $page->isRulePage()
             ]
         ]);

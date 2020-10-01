@@ -35,7 +35,7 @@ class ServerController extends Controller
             return response('Could not retrieve data', 500);
         }
 
-        return view('pages.v1.partials.server', [
+        return view('partials.v3.server', [
             'server' => $server,
             'status' => true
         ]);

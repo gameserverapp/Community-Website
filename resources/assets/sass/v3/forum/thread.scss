@@ -1,0 +1,124 @@
+.forum-thread-table {
+    .frame-title {
+        .flag {
+            display: inline-block;
+            width:2.5rem;
+        }
+    }
+}
+
+.table-thread {
+
+    .thread-list-item {
+        //margin-left:-20px;
+        //margin-right:-20px;
+        padding:.8rem 1rem;
+
+
+        &:hover {
+            .title {
+                color:var(--primary-color);
+            }
+        }
+
+        .title-flag {
+            display: table;
+        }
+
+        .flag {
+            display: table-cell;
+            width:3rem;
+            vertical-align: middle;
+            text-align: center;
+            padding-right:.8rem;
+
+            .fa {
+                font-size:1rem;
+            }
+        }
+
+        .title {
+            display: table-cell;
+
+            h1 {
+                font-size:1rem;
+                line-height:1rem;
+                margin-bottom:0;
+
+                a {
+                    display: inline-block;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        &:nth-child(even) {
+            background-color:rgba(255,255,255,.1);
+        }
+
+        .last-post {
+            display:inline-block;
+            margin-left:10px;
+            font-size:.8rem;
+            color:var(--content-text-color);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .author {
+            font-size:.8rem;
+            line-height:1rem;
+            margin:0;
+            text-decoration: none;
+
+            .created {
+                color:var(--content-text-color);
+            }
+        }
+        
+        .meta {
+            vertical-align: middle;
+            padding-right:1rem;
+
+
+            a {
+                display: inline-block;
+                color:var(--content-text-color);
+                text-decoration: none;
+            }
+            
+            .replies {
+                font-size:.8rem;
+                line-height:1rem;
+
+                .fa {
+                    margin-right:5px;
+                }
+            }
+
+            .last-post {
+
+                font-size:.8rem;
+                line-height:1rem;
+
+                a {
+                    .linkwrapper {
+                        color:var(--content-text-color);
+                    }
+                }
+
+                .posted {
+                    color:var(--content-text-color);
+                }
+            }
+        }
+
+        
+    }
+
+}

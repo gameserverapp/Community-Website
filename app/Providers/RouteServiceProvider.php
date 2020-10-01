@@ -80,6 +80,12 @@ class RouteServiceProvider extends ServiceProvider
                 'middleware' => 'guest'
             ]);
 
+            $router->get('/auth/redirect', [
+                'as'         => 'auth.redirect',
+                'uses'       => 'AuthController@redirect',
+                'middleware' => 'guest'
+            ]);
+
             $router->get('/auth/callback', [
                 'as'         => 'auth.callback',
                 'uses'       => 'AuthController@callback',

@@ -19,8 +19,11 @@ class PanelsWhosOnline
 
     public function compose(View $view)
     {
+        $data = $this->api->characters('online');
+
         $view->with([
-            'characters' => $this->api->characters('online')
+            'characters' => $data->characters,
+            'totalOnline' => $data->total_online
         ]);
     }
 }

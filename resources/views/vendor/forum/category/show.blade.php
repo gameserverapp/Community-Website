@@ -3,27 +3,35 @@
 
 @section ('content')
 
-    @if (isset( $category ) and $category->threadsEnabled)
-        @can ('createThreads', $category)
-            <div class="create-wrapper">
-                <div class="create sendmessage">
-                    <a class="btn champ  small" href="{{ Forum::route('thread.create', $category) }}">
-                        {{ trans('forum::threads.new_thread') }}
+    <div class="row">
+        <div class="col-md-3 title-buttons">
+            @can('createCategories')
+                @include ('forum::category.partials.form-create')
+            @endcan
+
+            @can('manageCategories')
+                @include ('forum::category.partials.actions')
+            @endcan
+        </div>
+        <div class="col-md-6 text-center">
+            <h2>{{ $category->title }}</h2>
+
+            @if ($category->description)
+                <div class="category-description">{{ $category->description }}</div>
+            @endif
+        </div>
+        <div class="col-md-3 title-buttons text-right">
+            @if (isset( $category ) and $category->threadsEnabled)
+                @can ('createThreads', $category)
+                    <a class="btn btn-theme btn-theme-gem" href="{{ Forum::route('thread.create', $category) }}">
+                        <span>{{ trans('forum::threads.new_thread') }}</span>
                     </a>
-                </div>
-            </div>
-        @endcan
-    @endif
+                @endcan
+            @endif
+        </div>
+    </div>
 
     <div id="category">
-        {{--<h2>--}}
-            {{--{{ $category->title }}--}}
-            {{--@if ($category->description)--}}
-                {{--<small>{{ $category->description }}</small>--}}
-            {{--@endif--}}
-        {{--</h2>--}}
-
-        {{--<hr>--}}
 
         @if (!$category->children()->isEmpty())
             @foreach ($category->children() as $subcategory)
@@ -37,46 +45,52 @@
                 {!! method_field('delete') !!}
         @endcan
 
-                @if ($category->threadsEnabled)
-                    @include('partials.frame.simple-top')
-                    <article>
-                    <table class="table table-thread">
-                        <thead>
-                        <tr>
-                            <th class="flag"></th>
-                            <th>{{ trans('forum::general.subject') }}</th>
-                            <th class="col-xs-5 text-right top-navigation">
+        @if ($category->threadsEnabled)
+            @component('partials.v3.frame', ['type' => 'basic', 'class' => 'forum-thread-table no-padding'])
+                <div class="frame-title">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <div class="flag"> </div>
+                            {{ trans('forum::general.subject') }}
+                        </div>
+                        <div class="col-xs-5 text-right">
+                            <div class="paginate tiny">
                                 {!! $category->threadsPaginated->render() !!}
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if (!$category->threadsPaginated->isEmpty())
-                            @foreach ($category->threadsPaginated->items() as $thread)
-                                @include('vendor.forum.category.partials.list')
-                            @endforeach
-                        @else
-                            <tr>
-                                <td>
-                                    {{ trans('forum::threads.none_found') }}
-                                </td>
-                                <td class="text-right" colspan="3">
-                                    @can ('createThreads', $category)
-                                        <a href="{{ Forum::route('thread.create', $category) }}">{{ trans('forum::threads.post_the_first') }}</a>
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endif
-                        </tbody>
-                    </table>
-                    </article>
-                    @include('partials.frame.simple-bottom')
-                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        @can ('manageThreads', $category)
-                    @include ('forum::category.partials.thread-actions')
-            </form>
-        @endcan
+                <article class="table-thread">
+                    @if (!$category->threadsPaginated->isEmpty())
+                        @foreach ($category->threadsPaginated->items() as $thread)
+                            @include('vendor.forum.category.partials.list')
+                        @endforeach
+                    @else
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p></p>
+                                <p>
+                                    {{ trans('forum::threads.none_found') }}
+                                </p>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <p>
+
+                                </p>
+                                @can ('createThreads', $category)
+                                    <a href="{{ Forum::route('thread.create', $category) }}">{{ trans('forum::threads.post_the_first') }}</a>
+                                @endcan
+                            </div>
+                        </div>
+                    @endif
+                </article>
+            @endcomponent
+        @endif
+
+{{--        @can('manageThreads', $category)--}}
+{{--            @include ('vendor.forum.category.partials.thread-actions')--}}
+{{--        @endcan--}}
 
         <div class="row">
             <div class="col-xs-8 center-block text-center">
@@ -99,19 +113,5 @@
                 </div>
             @endcan
         @endif
-
-        @can ('createCategories')
-            <br>
-            @include ('forum::category.partials.form-create')
-        @endcan
-
-        @can ('manageCategories')
-            <form action="{{ Forum::route('category.update', $category) }}" method="POST" data-actions-form>
-                {!! csrf_field() !!}
-                {!! method_field('patch') !!}
-
-                @include ('forum::category.partials.actions')
-            </form>
-        @endcan
     </div>
 @stop

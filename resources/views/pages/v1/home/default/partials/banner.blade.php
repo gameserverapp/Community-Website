@@ -6,7 +6,7 @@
         @include('pages.v1.home.default.partials.newcharacters')
     </div>
     <div class="col-md-4 col-sm-6">
-        @include('pages.v1.home.default.partials.onlineplayers')
+        @include('pagebuilder.v1.blocks.panels_whos_online')
     </div>
 </div>
 {{--<div class="more text-center">--}}

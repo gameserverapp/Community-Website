@@ -168,6 +168,11 @@ class OAuthApi
         return self::cache()->forget($cacheKey);
     }
 
+    public static function clearAllCache()
+    {
+        return self::cache()->flush();
+    }
+
     public static function logout()
     {
         Cookie::queue(
@@ -196,6 +201,11 @@ class OAuthApi
         return $headers;
     }
 
+    private static function tags()
+    {
+        return self::domain();
+    }
+
     private static function client($auth = false)
     {
         $headers = self::getHeaders($auth);
@@ -215,11 +225,11 @@ class OAuthApi
 
     private static function cache()
     {
-        return app(CacheManager::class);
+        return app(CacheManager::class)->tags(self::tags());
     }
 
     private static function domain()
     {
-        return strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
+        return domain();
     }
 }

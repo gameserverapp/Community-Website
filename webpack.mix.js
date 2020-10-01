@@ -2,6 +2,7 @@ let mix  = require('laravel-mix');
 
 var browserify = require('browserify');
 var fs = require('fs');
+// var LiveReloadPlugin = require('webpack-livereload-plugin');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,12 +14,22 @@ var fs = require('fs');
  |
  */
 
+// mix.webpackConfig({
+//     plugins: [
+//         new LiveReloadPlugin()
+//     ]
+// });
+
 
 // mix.copy('./resources/assets/js/app.js', './public/build/js/app.js');
 
 var b = browserify();
 b.add('./resources/assets/js/app.js');
 b.bundle().pipe(fs.createWriteStream('./public/js/app.js'));
+
+
+mix.copy('node_modules/bootstrap/fonts', 'public/build/fonts')
+    .copy('resources/assets/vendor/owl.carousel/owl-carousel/*.gif', 'public/build/css/AjaxLoader.gif');
 
 mix.scripts([
     './public/js/app.js',
@@ -38,7 +49,3 @@ mix.sass('resources/assets/sass/style.scss', 'build/css')
             'public/build/css/style.css',
     ], 'public/css/style.css')
     .version();
-
-
-mix.copy('node_modules/bootstrap/fonts', 'public/build/fonts')
-    .copy('resources/assets/vendor/owl.carousel/owl-carousel/*.gif', 'public/build/css/AjaxLoader.gif');

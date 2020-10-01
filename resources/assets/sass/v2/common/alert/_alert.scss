@@ -12,19 +12,6 @@
         font-size:13px;
     }
 
-    &.flash {
-        position: absolute;
-        top: -100px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index:999999;
-        line-height:20px;
-
-        @include box-shadow(0 0 60px -15px #000);
-
-
-    }
-
     a {
         color: $black;
         text-decoration: underline;

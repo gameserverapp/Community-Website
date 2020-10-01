@@ -17,18 +17,19 @@ class MessageController extends Controller
 
     public function index()
     {
-        return redirect(route('message.inbox'));
+        return redirect(route('message.inbox', auth()->id()));
     }
 
     public function inbox()
     {
         if(! SiteHelper::featureEnabled('messages')) {
-            return view('pages.v1.message.disabled');
+            return view('pages.v3.user.disabled');
         }
 
-        $messages = $this->api->messages('inbox', route('message.outbox'));
+        $messages = $this->api->messages('inbox', route('message.inbox', auth()->id()));
 
-        return view('pages.v1.message.inbox',[
+        return view('pages.v3.user.message.mailbox', [
+            'title' => 'Inbox',
             'contacts' => $this->myContacts(),
             'messages' => $messages
         ]);
@@ -37,24 +38,25 @@ class MessageController extends Controller
     public function outbox()
     {
         if(! SiteHelper::featureEnabled('messages')) {
-            return view('pages.v1.message.disabled');
+            return view('pages.v3.user.disabled');
         }
 
-        $messages = $this->api->messages('outbox', route('message.outbox'));
+        $messages = $this->api->messages('outbox', route('message.outbox', auth()->id()));
 
-        return view('pages.v1.message.outbox',[
+        return view('pages.v3.user.message.mailbox',[
+            'title' => 'Outbox',
             'contacts' => $this->myContacts(),
             'messages' => $messages
         ]);
     }
 
-    public function show(Request $request, $id)
+    public function show(Request $request, $uuid, $id)
     {
         if(! SiteHelper::featureEnabled('messages')) {
-            return view('pages.v1.message.disabled');
+            return view('pages.v3.user.disabled');
         }
 
-        return view('pages.v1.message.read', [
+        return view('pages.v3.user.message.read', [
             'message' => $this->api->message($id)
         ]);
     }
@@ -62,18 +64,28 @@ class MessageController extends Controller
     public function create(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('messages')) {
-            return view('pages.v1.message.disabled');
+            return view('pages.v3.user.disabled');
         }
 
-        return view('pages.v1.message.create', [
-            'receiver' => $this->api->user($id)
+        if(!auth()->user()->canSendMessage()) {
+            return redirectBackWithAlert('You can not do this', 'danger');
+        }
+
+        $user = $this->api->user($id);
+
+        return view('pages.v3.user.message.create', [
+            'receiver' => $user
         ]);
     }
 
     public function send(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('messages')) {
-            return view('pages.v1.message.disabled');
+            return view('pages.v3.user.disabled');
+        }
+
+        if(!auth()->user()->canSendMessage()) {
+            return redirectBackWithAlert('You can not do this', 'danger');
         }
 
         $this->validate($request, [
@@ -87,7 +99,6 @@ class MessageController extends Controller
             $request->input('content')
         );
 
-
         if(
             $response instanceof \Exception or
             is_null($response)
@@ -95,21 +106,16 @@ class MessageController extends Controller
             $error = json_decode($response->getResponse()->getBody());
 
             if(isset($error->errors)) {
-                return redirect()->back()->withErrors($error->errors);
+                return redirect()->back()->withErrors($error->errors)->withInput();
             }
 
-            return redirect(route('message.inbox'))->with([
-                'alert' => [
-                    'status' => 'error',
-                    'message' => 'Something went wrong, please try again'
-                ]
-            ]);
+            return redirectBackWithAlert('Something went wrong. Please try again.', 'danger');
         }
 
-        return redirect(route('message.inbox'))->with([
+        return redirect(route('message.outbox', auth()->id()))->with([
             'alert' => [
                 'status' => 'success',
-                'message' => 'Message send!'
+                'message' => 'Message was sent'
             ]
         ]);
     }

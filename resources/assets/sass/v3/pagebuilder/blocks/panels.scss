@@ -1,0 +1,46 @@
+.panels_last_5_fresh_survivors,
+.panels_top_5_characters,
+.panels_whos_online {
+    &.panel {
+        //border:0;
+        margin:0 auto;
+
+        @media (max-width: 991px) {
+            margin-bottom:30px;
+        }
+    }
+
+    .panel-title {
+        text-align: center;
+        font-weight:normal;
+
+        color: #333;
+
+        .label {
+            background:$grey_light;
+            color:$white !important;
+            margin: 0 0 0 10px;
+            padding: .4em .6em;
+            vertical-align: middle;
+            font-size:11px;
+        }
+
+        .fa {
+            color: #333;
+            margin-right:3px;
+        }
+    }
+
+    .table {
+        text-align: left;
+
+        th, td {
+            color: #333;
+            font-weight:normal;
+
+            a, a span {
+                color:$orange;
+            }
+        }
+    }
+}

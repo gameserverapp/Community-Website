@@ -1,0 +1,14 @@
+.stats {
+
+    .guest & {
+        padding:$mega-gutter 0;
+    }
+
+    .buttons {
+        margin-top:0;
+
+        > div:first-child {
+            margin-bottom:$inner-gutter;
+        }
+    }
+}

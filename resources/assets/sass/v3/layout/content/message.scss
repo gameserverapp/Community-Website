@@ -1,0 +1,30 @@
+&.message {
+
+    .message-item {
+        padding:.5rem;
+        border-bottom:1px var(--hr-color) solid;
+
+        &:last-child {
+            border-bottom:0;
+        }
+        
+        a {
+            
+            &:hover {
+                .subject {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &.read {
+        h1 {
+
+            small {
+                display: inline-block;
+                font-size:1rem;
+            }
+        }
+    }
+}

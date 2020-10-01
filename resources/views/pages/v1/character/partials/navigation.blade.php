@@ -6,7 +6,7 @@
                 <li class="character {{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('character.show', $char->id) ? 'active' : '' }}">
                     <a href="{{route('character.show', $char->id)}}">
                         <div class="char_pic"
-                             style="background-image:url('/img/character/{{$char->characterImage()}}')"></div>
+                             style="background-image:url('/img/character/{{$char->image()}}')"></div>
                         {!! $char->showLink(['disable_link' => true]) !!}
 
                         @if($char->hasServer())

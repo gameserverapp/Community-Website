@@ -1,0 +1,45 @@
+.forum-activity {
+
+    ul, li {
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+
+    li {
+        margin-bottom:2rem;
+    }
+
+    .title-category {
+
+        .title {
+            font-weight: bold;
+            display: inline-block;
+            font-size:1.5rem;
+            line-height: 1.5rem;
+            margin-bottom:.5rem;
+
+            a {
+                color:var(--content-text-color) !important;
+            }
+        }
+
+        .count {
+            display: inline-block;
+            font-size:.8rem;
+            vertical-align: super;
+        }
+    }
+
+    .meta {
+        .category {
+            display: inline-block;
+            margin-right:.5rem;
+        }
+
+        time, .author {
+            color:var(--content-text-color);
+            font-size:.8rem
+        }
+    }
+}

@@ -35,7 +35,7 @@ class DiscordController extends Controller
                 'status'  => 'success',
                 'message' => 'Your Discord account is now connected!'
             ]);
-            return view('pages.v1.discord.success');
+            return view('pages.v3.discord-connect.success');
         }
 
         app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
@@ -68,7 +68,7 @@ class DiscordController extends Controller
                 'message' => $msg
             ]);
 
-            return view('pages.v1.discord.failed', [
+            return view('pages.v3.discord-connect.failed', [
                 'reason' => $request->get('reason', false)
             ]);
         }

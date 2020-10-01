@@ -1,0 +1,27 @@
+.label-theme {
+    color:var(--label-color) !important;
+    background-color:var(--label-bg);
+    text-decoration: none !important;
+    padding:.2rem .4rem;
+
+    a {
+        color:var(--label-color) !important;
+        text-decoration: underline;
+        
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &.small {
+        font-size: .6rem;
+        padding: 0.1rem .3rem;
+        vertical-align: middle;
+        line-height: 0rem;
+    }
+
+    &.alternative {
+        background-color:var(--label-color);
+        color:var(--label-bg) !important;
+    }
+}

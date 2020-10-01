@@ -5,6 +5,7 @@ namespace GameserverApp\Models;
 use GameserverApp\Helpers\RouteHelper;
 use GameserverApp\Interfaces\LinkableInterface;
 use GameserverApp\Traits\Linkable;
+use Illuminate\Support\Str;
 
 class Page extends Model implements LinkableInterface
 {
@@ -66,7 +67,7 @@ class Page extends Model implements LinkableInterface
 
     public function metaDescription()
     {
-        return '';//$this->meta_description;
+        return '';
     }
 
     public function linkableTemplate($url, $options = [])

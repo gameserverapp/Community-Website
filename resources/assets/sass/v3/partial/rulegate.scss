@@ -1,0 +1,19 @@
+.rulegate {
+    padding:2rem;
+
+    &.bg {
+        background-color:var(--primary-color);
+    }
+
+    &-form {
+
+    }
+
+    &-form-alert {
+        padding:1rem;
+
+        .alert {
+            margin-bottom: 0;
+        }
+    }
+}

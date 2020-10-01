@@ -3,7 +3,7 @@
         'title' => $page['title'],
         'class' => $page['class'],
         'description' => $page['description'],
-        'image' => isset($page['bg']) ? $page['bg'] : GameserverApp\Helpers\SiteHelper::background()
+        'image' => (isset($page['bg']) and $page['bg']) ? $page['bg'] : GameserverApp\Helpers\SiteHelper::background()
     ]
 ])
 

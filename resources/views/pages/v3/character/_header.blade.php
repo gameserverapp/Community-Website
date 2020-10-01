@@ -178,6 +178,7 @@ use GameserverApp\Helpers\SiteHelper;
 
             if(
                 ! $character->hasGroup() and
+                auth()->check() and
                 auth()->user()->hasGroup() and
                 auth()->user()->canSendMessage()
             ) {

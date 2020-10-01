@@ -56,7 +56,7 @@
             .wysiwyg-content {
 
                 p, li, strong, em, u {
-                    color:#333;
+                    color:#333 !important;
                 }
             }
         }
@@ -66,7 +66,7 @@
             .wysiwyg-content {
 
                 p, li, strong, em, u {
-                    color:#fff;
+                    color:#fff !important;
                 }
             }
         }

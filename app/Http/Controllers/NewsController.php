@@ -48,4 +48,10 @@ class NewsController extends Controller
             'items' => $this->client->relatedNews($id)
         ]);
     }
+
+    public function purge($id)
+    {
+        $this->client->clearCache('get', 'news');
+        $this->client->clearCache('get', 'news/' . $id);
+    }
 }

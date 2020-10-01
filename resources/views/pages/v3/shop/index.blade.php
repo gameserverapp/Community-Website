@@ -69,10 +69,12 @@ use GameserverApp\Helpers\SiteHelper;
         </div>
     @endforelse
 
+</div>
+
+<div class="row">
     <div class="paginate">
         {!! $packs->links() !!}
     </div>
-
 </div>
 
 @stop

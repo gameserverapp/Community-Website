@@ -23,7 +23,7 @@
 
         <div class="col-md-8 center-block">
             <h2 class="text-center main-title">
-                <img style="max-width:200px; height:auto; margin-left:-200px;" src="{{$package->image()}}"
+                <img src="{{$package->image()}}"
                      alt="{{$package->image()}}">
                 {{$package->name()}}
             </h2>

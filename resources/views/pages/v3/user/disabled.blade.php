@@ -1,7 +1,3 @@
-<?php
-$user = auth()->user();
-?>
-
 @extends('layouts.v3.default', [
     'page' => [
         'title' => $user->name(),

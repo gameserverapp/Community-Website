@@ -30,7 +30,9 @@ class UserController extends Controller
     public function show(Request $request, $id)
     {
         if(!SiteHelper::featureEnabled('user_page')) {
-            return view('pages.v3.user.disabled');
+            return view('pages.v3.user.disabled', [
+                'user' => $this->api->user($id)
+            ]);
         }
 
         return redirect(route('user.activity', $id));
@@ -39,7 +41,9 @@ class UserController extends Controller
     public function activity(Request $request, $id)
     {
         if(!SiteHelper::featureEnabled('user_page')) {
-            return view('pages.v3.user.disabled');
+            return view('pages.v3.user.disabled', [
+                'user' => $this->api->user($id)
+            ]);
         }
 
         $data = $this->api->userActivity($id);
@@ -65,7 +69,9 @@ class UserController extends Controller
     public function orderHistory()
     {
         if(! SiteHelper::featureEnabled('shop')) {
-            return view('pages.v3.user.disabled');
+            return view('pages.v3.user.disabled', [
+               'user' => auth()->user()
+            ]);
         }
 
         $orders = $this->api->shopOrders(route('shop.orders', auth()->id()));

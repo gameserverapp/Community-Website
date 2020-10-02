@@ -1,6 +1,8 @@
 &.package-single {
 
-    .title {
+    .main-title {
+        margin-bottom:2rem;
+
         span {
             display:block;
         }
@@ -9,13 +11,14 @@
             display: inline-block;
             max-width:100%;
             height:auto;
-            margin-bottom:1rem;
+            margin-bottom:0;
         }
 
         @media (min-width:768px) {
+            margin-bottom:2rem;
+
             img {
                 max-width:200px;
-                margin-left: -200px;
                 margin-bottom:0;
             }
 

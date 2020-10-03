@@ -14,14 +14,16 @@
 
 @section('page_content')
 
-    @include('partials.v3.article-horizontal', [
-        'title' => $hero->title(),
-        'summary' => $hero->summary(),
-        'category' => $hero->category(),
-        'route' => $hero->showRoute(),
-        'date' => $hero->publishedAt(),
-        'image' => $hero->image()
-    ])
+    @if($hero->title())
+        @include('partials.v3.article-horizontal', [
+            'title' => $hero->title(),
+            'summary' => $hero->summary(),
+            'category' => $hero->category(),
+            'route' => $hero->showRoute(),
+            'date' => $hero->publishedAt(),
+            'image' => $hero->image()
+        ])
+    @endif
 
     @forelse( $latest->chunk(2) as $chunk )
         <div class="row">

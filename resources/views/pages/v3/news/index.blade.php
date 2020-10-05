@@ -14,7 +14,7 @@
 
 @section('page_content')
 
-    @if($hero->title())
+    @if($hero)
         @include('partials.v3.article-horizontal', [
             'title' => $hero->title(),
             'summary' => $hero->summary(),

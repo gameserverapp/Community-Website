@@ -28,6 +28,8 @@ class GroupTransformer extends ModelTransformer implements ModelTransformerInter
 
         if(isset($args->members)) {
             $data['members'] = CharacterTransformer::transformMultiple($args->members);
+        } else {
+            $data['members'] = [];
         }
 
         if(isset($args->images)) {

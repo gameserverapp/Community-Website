@@ -145,6 +145,19 @@ class OAuthApi
             return $output;
 
         } catch (ClientException $e) {
+
+            if($e->getCode() == 404) {
+                try {
+                    $response = json_decode($e->getResponse()->getBody());
+
+                    if(isset($response->redirect_url)) {
+                        return redirect($response->redirect_url);
+                    }
+                } catch( \Exception $e) {
+                    
+                }
+            }
+
             if(!isset($options['no_404_exception']) and $e->getCode() == 404) {
                 throw new NotFoundHttpException($e);
             }

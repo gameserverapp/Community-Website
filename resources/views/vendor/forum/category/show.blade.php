@@ -67,7 +67,7 @@
                             @include('vendor.forum.category.partials.list')
                         @endforeach
                     @else
-                        <div class="row">
+                        <div class="row thread-list-item">
                             <div class="col-md-8">
                                 <p></p>
                                 <p>

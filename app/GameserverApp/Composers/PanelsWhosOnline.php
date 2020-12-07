@@ -21,7 +21,7 @@ class PanelsWhosOnline
     {
         $data = $this->api->characters('online');
 
-        $characters = [];
+        $characters = collect([]);
         $totalOnline = 0;
 
         if(isset($data->characters)) {

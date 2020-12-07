@@ -21,9 +21,20 @@ class PanelsWhosOnline
     {
         $data = $this->api->characters('online');
 
+        $characters = [];
+        $totalOnline = 0;
+
+        if(isset($data->characters)) {
+            $characters = $data->characters;
+        }
+
+        if(isset($data->total_online)) {
+            $totalOnline = $data->total_online;
+        }
+
         $view->with([
-            'characters' => $data->characters,
-            'totalOnline' => $data->total_online
+            'characters' => $characters,
+            'totalOnline' => $totalOnline
         ]);
     }
 }

@@ -155,7 +155,9 @@ class OAuthApi
                         throw new DomainNotFoundException($e);
                     }
                 } catch( \Exception $e) {
-                    dd($e);
+                    dd(
+                        $e->getResponse()
+                    );
                 }
             }
 

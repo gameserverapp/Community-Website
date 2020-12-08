@@ -133,6 +133,7 @@ class OAuthApi
             $output = $client->request($method, $uri, $options);
 
             if( $output->getStatusCode() != 200 ) {
+                alertOnSlack([$output]);
                 return $output;
             }
 
@@ -149,8 +150,6 @@ class OAuthApi
             if($e->getCode() == 404) {
                 try {
                     $response = json_decode($e->getResponse()->getBody());
-
-                    alertOnSlack([$response]);
 
                     if(isset($response->redirect_url)) {
                         throw new NotFoundHttpException($e);

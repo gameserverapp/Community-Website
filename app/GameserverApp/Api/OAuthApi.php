@@ -223,6 +223,8 @@ class OAuthApi
     {
         $headers = self::getHeaders($auth);
 
+        dd($headers);
+
         return new  \GuzzleHttp\Client([
             'base_uri' => config('gameserverapp.connection.url'),
             'headers'  => $headers,

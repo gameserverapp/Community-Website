@@ -121,10 +121,6 @@ function getReached($search, $arr) {
 
 function domain()
 {
-    dd(
-        app('request')->server('HTTP_HOST'),
-        strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))))
-    );
     return strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
 }
 

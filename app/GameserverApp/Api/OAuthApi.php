@@ -126,6 +126,7 @@ class OAuthApi
             $cache and
             self::cache()->has($cacheKey)
         ) {
+            dd('a');
             return self::cache()->get($cacheKey);
         }
 
@@ -133,7 +134,7 @@ class OAuthApi
             $output = $client->request($method, $uri, $options);
 
             if( $output->getStatusCode() != 200 ) {
-                alertOnSlack([$output]);
+                dd('b');
                 return $output;
             }
 
@@ -143,11 +144,13 @@ class OAuthApi
                 self::cache()->put( $cacheKey, $output, $cache );
             }
 
+            dd('c');
             return $output;
 
         } catch (ClientException $e) {
 
             if($e->getCode() == 404) {
+                dd('d');
                 try {
                     $response = json_decode($e->getResponse()->getBody());
 

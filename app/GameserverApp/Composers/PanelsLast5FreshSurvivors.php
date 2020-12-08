@@ -1,26 +1,29 @@
 <?php
 namespace GameserverApp\Composers;
 
+use App\GameserverApp\Composers\BaseComposer;
 use Illuminate\View\View;
 use GameserverApp\Api\Client;
 use GameserverApp\Api\OAuthApi;
 
-class PanelsLast5FreshSurvivors
+class PanelsLast5FreshSurvivors extends BaseComposer
 {
-    /**
-     * @var Client
-     */
-    private $api;
-
-    public function __construct()
+    protected function data()
     {
-        $this->api = app(Client::class);
+        return $this->api->characters('fresh');
     }
 
-    public function compose(View $view)
+    protected function defaultData()
     {
-        $view->with([
-            'characters' => $this->api->characters('fresh')
-        ]);
+        return [
+            'characters' => collect([])
+        ];
+    }
+
+    protected function output($data)
+    {
+        return [
+            'characters' => $data
+        ];
     }
 }

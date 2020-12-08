@@ -48,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if($e instanceof DomainNotFoundException) {
+            return redirect(config('gameserverapp.main_site'));
+        }
+
         if ($this->isHttpException($e)) {
             return $this->renderHttpException($e);
         }

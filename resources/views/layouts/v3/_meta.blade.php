@@ -40,9 +40,11 @@
     }
 
     :root {
-        @foreach(GameserverApp\Helpers\SiteHelper::themeColors() as $key => $color)
-            --{{$key}}: {{$color}};
-        @endforeach
+        @if(is_object(GameserverApp\Helpers\SiteHelper::themeColors()))
+            @foreach(GameserverApp\Helpers\SiteHelper::themeColors() as $key => $color)
+                --{{$key}}: {{$color}};
+            @endforeach
+        @endif
     }
 
     @if(!is_null(GameserverApp\Helpers\SiteHelper::logo()) and !empty(GameserverApp\Helpers\SiteHelper::logo()) )

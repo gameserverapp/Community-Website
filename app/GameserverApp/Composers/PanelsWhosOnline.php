@@ -1,29 +1,30 @@
 <?php
 namespace GameserverApp\Composers;
 
+use App\GameserverApp\Composers\BaseComposer;
 use Illuminate\View\View;
-use GameserverApp\Api\Client;
-use GameserverApp\Api\OAuthApi;
 
-class PanelsWhosOnline
+class PanelsWhosOnline extends BaseComposer
 {
-    /**
-     * @var Client
-     */
-    private $api;
 
-    public function __construct()
+    protected function data()
     {
-        $this->api = app(Client::class);
+        return $this->api->characters('online');
     }
 
-    public function compose(View $view)
+    protected function defaultData()
     {
-        $data = $this->api->characters('online');
+        return [
+            'characters' => collect([]),
+            'totalOnline' => 0
+        ];
+    }
 
-        $view->with([
+    protected function output($data)
+    {
+        return [
             'characters' => $data->characters,
-            'totalOnline' => $data->total_online
-        ]);
+            'totalOnline' => $data->totalOnline
+        ];
     }
 }

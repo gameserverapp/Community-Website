@@ -1,6 +1,7 @@
 <?php
 namespace GameserverApp\Api;
 
+use App\Exceptions\DomainNotFoundException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
@@ -147,14 +148,10 @@ class OAuthApi
         } catch (ClientException $e) {
 
             if($e->getCode() == 404) {
-                try {
-                    $response = json_decode($e->getResponse()->getBody());
+                $response = json_decode($e->getResponse()->getBody());
 
-                    if(isset($response->redirect_url)) {
-                        throw new NotFoundHttpException($e);
-                    }
-                } catch( \Exception $e) {
-
+                if(isset($response->redirect_url)) {
+                    throw new DomainNotFoundException($e);
                 }
             }
 

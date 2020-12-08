@@ -28,12 +28,14 @@ class BaseComposer
     {
         try {
             $data = $this->data();
-        } catch( DomainNotFoundException $e) {
-            $data = $this->defaultData();
+
+            $data = (object) $data;
+
+            $view->with($this->output($data));
+        } catch( \Throwable $e) {
+            $view->with(
+                $this->defaultData()
+            );
         }
-
-        $data = (object) $data;
-
-        $view->with($this->output($data));
     }
 }

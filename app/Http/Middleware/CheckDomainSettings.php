@@ -20,12 +20,15 @@ class CheckDomainSettings
     {
         $domainSettings = Client::domain();
 
+        dd($domainSettings);
+
         if(
             $domainSettings instanceof \Exception and
             $domainSettings->getCode() == 404
         ) {
 
             $response = json_decode($domainSettings->getResponse()->getBody());
+
 
             if(isset($response->redirect_url)) {
                 return redirect($response->redirect_url);

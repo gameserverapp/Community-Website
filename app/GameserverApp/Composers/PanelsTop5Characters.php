@@ -1,26 +1,26 @@
 <?php
 namespace GameserverApp\Composers;
 
-use Illuminate\View\View;
-use GameserverApp\Api\Client;
-use GameserverApp\Api\OAuthApi;
+use App\GameserverApp\Composers\BaseComposer;
 
-class PanelsTop5Characters
+class PanelsTop5Characters extends BaseComposer
 {
-    /**
-     * @var Client
-     */
-    private $api;
-
-    public function __construct()
+    protected function data()
     {
-        $this->api = app(Client::class);
+        return $this->api->characters('top');
     }
 
-    public function compose(View $view)
+    protected function defaultData()
     {
-        $view->with([
-            'characters' => $this->api->characters('top')
-        ]);
+        return [
+            'characters' => collect([])
+        ];
+    }
+
+    protected function output($data)
+    {
+        return [
+            'characters' => $data
+        ];
     }
 }

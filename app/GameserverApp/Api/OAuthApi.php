@@ -148,16 +148,10 @@ class OAuthApi
         } catch (ClientException $e) {
 
             if($e->getCode() == 404) {
-                try {
-                    $response = json_decode($e->getResponse()->getBody());
+                $response = json_decode($e->getResponse()->getBody());
 
-                    if(isset($response->redirect_url)) {
-                        throw new DomainNotFoundException($e);
-                    }
-                } catch( \Exception $e) {
-                    dd(
-                        $e->getResponse()
-                    );
+                if(isset($response->redirect_url)) {
+                    throw new DomainNotFoundException($e);
                 }
             }
 

@@ -155,7 +155,7 @@ class OAuthApi
                         throw new DomainNotFoundException($e);
                     }
                 } catch( \Exception $e) {
-                    dd('hier');
+                    dd($e);
                 }
             }
 

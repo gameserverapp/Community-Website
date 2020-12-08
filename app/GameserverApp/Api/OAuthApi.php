@@ -150,6 +150,8 @@ class OAuthApi
                 try {
                     $response = json_decode($e->getResponse()->getBody());
 
+                    alertOnSlack([$response]);
+
                     if(isset($response->redirect_url)) {
                         throw new NotFoundHttpException($e);
                     }

@@ -151,12 +151,9 @@ class OAuthApi
                     $response = json_decode($e->getResponse()->getBody());
 
                     if(isset($response->redirect_url)) {
-                        dd('F');
                         throw new NotFoundHttpException($e);
                     }
                 } catch( \Exception $e) {
-
-                    dd('E');
                 }
             }
 

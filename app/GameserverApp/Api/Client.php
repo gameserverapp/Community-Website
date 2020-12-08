@@ -683,7 +683,7 @@ class Client
     public static function domain($key = false, $default = null)
     {
         $settings = app(OAuthApi::class)->guestRequest('get', 'domain/settings', [
-            'no_404_exception' => true
+//            'no_404_exception' => true
         ], 60);
 
         try {

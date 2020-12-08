@@ -22,12 +22,6 @@ class CheckDomainSettings
         try {
             $domainSettings = Client::domain();
         } catch(DomainNotFoundException $e) {
-            $response = json_decode($e->getResponse()->getBody());
-
-            if(isset($response->redirect_url)) {
-                return redirect($response->redirect_url);
-            }
-
             return redirect(config('gameserverapp.main_site'));
         }
 

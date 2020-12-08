@@ -20,8 +20,6 @@ class CheckDomainSettings
     {
         $domainSettings = Client::domain();
 
-        dd($domainSettings);
-
         if(
             $domainSettings instanceof \Exception and
             $domainSettings->getCode() == 404

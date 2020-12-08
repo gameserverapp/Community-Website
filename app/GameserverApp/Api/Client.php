@@ -686,8 +686,6 @@ class Client
 //            'no_404_exception' => true
         ], 60);
 
-        alertOnSlack([$settings]);
-
         try {
             if ($key) {
                 if (isset($settings->{$key})) {

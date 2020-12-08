@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\DomainNotFoundException;
 use Closure;
 use GameserverApp\Api\Client;
 
@@ -18,7 +19,17 @@ class CheckDomainSettings
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $domainSettings = Client::domain();
+        try {
+            $domainSettings = Client::domain();
+        } catch(DomainNotFoundException $e) {
+            $response = json_decode($e->getResponse()->getBody());
+
+            if(isset($response->redirect_url)) {
+                return redirect($response->redirect_url);
+            }
+
+            return redirect(config('gameserverapp.main_site'));
+        }
 
         if(
             $domainSettings instanceof \Exception and
@@ -32,7 +43,7 @@ class CheckDomainSettings
                 return redirect($response->redirect_url);
             }
 
-            return redirect('https://www.gameserverapp.com/');
+            return redirect(config('gameserverapp.main_site'));
         }
 
         return $next($request);

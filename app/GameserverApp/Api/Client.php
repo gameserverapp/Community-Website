@@ -686,15 +686,20 @@ class Client
             'no_404_exception' => true
         ], 60);
 
-        if ($key) {
-            if (isset($settings->{$key})) {
-                return $settings->{$key};
+        try {
+            if ($key) {
+                if (isset($settings->{$key})) {
+                    return $settings->{$key};
+                }
+
+                return $default;
             }
 
-            return $default;
-        }
+            return $settings;
 
-        return $settings;
+        } catch( \Exception $e) {
+            return [];
+        }
     }
 
     public static function verifyDomain($code)

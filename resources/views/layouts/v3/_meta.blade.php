@@ -40,7 +40,10 @@
     }
 
     :root {
-        @foreach(GameserverApp\Helpers\SiteHelper::themeColors() as $key => $color)
+        <?php
+        $colors = GameserverApp\Helpers\SiteHelper::themeColors();
+        ?>
+        @foreach($colors as $key => $color)
             --{{$key}}: {{$color}};
         @endforeach
     }

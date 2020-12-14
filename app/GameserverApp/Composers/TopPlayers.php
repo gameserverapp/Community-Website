@@ -13,7 +13,11 @@ class TopPlayers extends AbstractStatsComposer
     {
         $data = $this->basicStats($view, 'top-players');
 
-        $characters = CharacterTransformer::transformMultiple($data);
+        try {
+            $characters = CharacterTransformer::transformMultiple($data);
+        } catch (\Exception $e) {
+            $characters = collect([]);
+        }
 
         $view->with([
             'characters' => $characters

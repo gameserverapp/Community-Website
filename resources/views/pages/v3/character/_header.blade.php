@@ -192,7 +192,7 @@ use GameserverApp\Helpers\SiteHelper;
                     auth()->user()->characterOnServer($character->server)
                 ) {
                     $dropdown[] = [
-                        'title' => 'Invite <u>' . $character->name . '</u> to <u>' . auth()->user()->characterOnServer($character->server)->groupForServer($character->server)->name . '</u>',
+                        'title' => 'Invite <u>' . $character->name() . '</u> to <u>' . auth()->user()->characterOnServer($character->server)->groupForServer($character->server)->name . '</u>',
                         'route' => route('message.create', $character->user->id)
                     ];
                 } else {

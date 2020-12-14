@@ -13,7 +13,11 @@ class LastOnline extends AbstractStatsComposer
     {
         $data = $this->basicStats($view, 'last-online');
 
-        $characters = CharacterTransformer::transformMultiple($data);
+        try {
+            $characters = CharacterTransformer::transformMultiple($data);
+        } catch (\Exception $e) {
+            $characters = collect([]);
+        }
 
         $view->with([
             'characters' => $characters

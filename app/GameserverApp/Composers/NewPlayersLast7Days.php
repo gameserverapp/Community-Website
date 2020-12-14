@@ -10,8 +10,12 @@ class NewPlayersLast7Days extends AbstractStatsComposer
 {
     public function compose(View $view)
     {
-        $data = $this->basicStats($view, 'new-players-last-7-days');
-
+        try {
+            $data = $this->basicStats($view, 'new-players-last-7-days');
+        } catch (\Exception $e) {
+            $data = [];
+        }
+        
         $view->with([
             'stat' => (array) $data
         ]);

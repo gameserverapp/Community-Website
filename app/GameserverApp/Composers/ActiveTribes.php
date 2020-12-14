@@ -11,7 +11,11 @@ class ActiveTribes extends AbstractStatsComposer
     {
         $data = $this->basicStats($view, 'active-tribes');
 
-        $tribes = GroupTransformer::transformMultiple($data);
+        try {
+            $tribes = GroupTransformer::transformMultiple($data);
+        } catch (\Exception $e) {
+            $tribes = collect([]);
+        }
 
         $view->with([
             'tribes' => $tribes

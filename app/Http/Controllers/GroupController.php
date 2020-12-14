@@ -247,6 +247,10 @@ class GroupController extends Controller
 
         $group = $this->api->group($id);
 
+        if($request->get('channel_id') == '-1') {
+            return redirectBackWithAlert('Please select a Discord channel', 'danger');
+        }
+
         $response = $this->api->saveGroupDiscordChannel(
             $group,
             $request->only([

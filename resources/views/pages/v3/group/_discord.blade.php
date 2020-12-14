@@ -28,7 +28,7 @@
             {{csrf_field()}}
 
             <select name="channel_id">
-                <option> - Select a Discord channel - </option>
+                <option value="-1"> - Select a Discord channel - </option>
                 @foreach($group->discord['available_channels'] as $id => $name)
                     @if($group->discordChannelSetup() and $id == $group->discord['channel'])
                         <option selected value="{{$id}}">{{$name}} [Current]</option>

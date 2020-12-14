@@ -115,7 +115,7 @@
                             </div>
 
                             <select name="channel_id">
-                                <option> - Select a Discord channel - </option>
+                                <option value="-1"> - Select a Discord channel - </option>
                                 @foreach($tribe->discord['available_channels'] as $id => $name)
                                     @if($tribe->discordChannelSetup() and $id == $tribe->discord['channel'])
                                         <option selected value="{{$id}}">{{$name}} [Current]</option>

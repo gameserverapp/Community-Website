@@ -15,7 +15,7 @@ class NewPlayersLast7Days extends AbstractStatsComposer
         } catch (\Exception $e) {
             $data = [];
         }
-        
+
         $view->with([
             'stat' => (array) $data
         ]);

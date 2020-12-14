@@ -11,8 +11,12 @@ class Newbies extends AbstractStatsComposer
     public function compose(View $view)
     {
         $data = $this->basicStats($view, 'newbies');
-        
-        $characters = CharacterTransformer::transformMultiple($data);
+
+        try {
+            $characters = CharacterTransformer::transformMultiple($data);
+        } catch (\Exception $e) {
+            $characters = collect([]);
+        }
 
         $view->with([
             'characters' => $characters

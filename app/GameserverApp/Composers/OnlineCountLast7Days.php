@@ -10,7 +10,11 @@ class OnlineCountLast7Days extends AbstractStatsComposer
 {
     public function compose(View $view)
     {
-        $data = $this->basicStats($view, 'online-count-last-7-days');
+        try {
+            $data = $this->basicStats($view, 'online-count-last-7-days');
+        } catch (\Exception $e) {
+            $data = [];
+        }
 
         $view->with([
             'stat' => (array) $data

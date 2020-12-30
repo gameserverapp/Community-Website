@@ -150,7 +150,7 @@ class Client
 
             return (object) [
                 'characters' => CharacterTransformer::transformMultiple($characters),
-                'total_online' => $totalOnline
+                'totalOnline' => $totalOnline
             ];
         }
 

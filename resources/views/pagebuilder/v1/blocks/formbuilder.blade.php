@@ -12,7 +12,7 @@ $footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' c
     @if(!auth()->check())
         <div class="alert alert-warning">
             Please <a href="{{route('auth.login')}}">login</a> to submit your application.<br>
-            You will be requested to log into your steam account, so we can determine which Steam ID to whitelist.
+            You will be requested to log into your steam account, so we can verify you own the Steam account.
         </div>
     @elseif(
         isset($block['form_type']) and

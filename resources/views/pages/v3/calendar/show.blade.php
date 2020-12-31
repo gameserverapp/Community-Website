@@ -49,7 +49,7 @@ if($item->hasImage()) {
 
             <strong>Starts:</strong>
             <time datetime="{{$item->startAt()->toDateTimeString()}}" itemprop="datePublished">
-                <span class="local-time" data-time="{{$item->start_at}}"></span>
+                <span class="local-time" data-time="{{$item->start_at}} UTC"></span>
             </time>
 
         </div>

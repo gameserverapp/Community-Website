@@ -34,7 +34,7 @@
                         @forelse($logs as $log)
                             <tr>
                                 <td>
-                                    <span class="local-time" data-time="{{$log->created_at}} UTC"></span>
+                                    <span class="local-time" data-time="{{$log->created_at}}"></span>
                                 </td>
                                 <td>
                                     <span style="@isset($log->rgba_color) color:rgba({{$log->rgba_color}}) @endisset">

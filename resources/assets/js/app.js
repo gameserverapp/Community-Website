@@ -203,6 +203,7 @@ $(document).ready(function () {
 
     if($('.calendar-js').length) {
         $('.calendar-js').fullCalendar({
+            timeZone: 'local',
             events: {
                 url: '/calendar/feed',
                 cache: true

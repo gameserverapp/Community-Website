@@ -62,15 +62,15 @@ if($item->hasImage()) {
     ])
 
     <div class="row">
-        @forelse($items as $item)
+        @forelse($items as $subItem)
             <div class="col-md-4">
                 @include('partials.v3.article-vertical', [
-                    'title' => $item->title(),
-                    'summary' => $item->summary(),
-                    'category' => $item->category(),
-                    'route' => $item->showRoute(),
-                    'date' => $item->publishedAt(),
-                    'image' => $item->image(),
+                    'title' => $subItem->title(),
+                    'summary' => $subItem->summary(),
+                    'category' => $subItem->category(),
+                    'route' => $subItem->showRoute(),
+                    'date' => $subItem->publishedAt(),
+                    'image' => $subItem->image(),
                     'class' => 'article-small'
                 ])
             </div>

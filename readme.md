@@ -12,7 +12,7 @@ In the wiki you can find a walk-through guide on how to [install the community w
 
 ## Install
 
-Rename `.env.example` to `.env`. Change the parameters in the `.env` to your GSA OAuth API keys as shown on your [API settings page](https://github.com/GameserverApp/community-website). 
+Rename `.env.example` to `.env`. Change the parameters in the `.env` to your GSA OAuth API keys as shown on your [API settings page](https://dash.gameserverapp.com/configure/api). 
 
 ### Command line installation
 Now we need to run a couple commands. Navigate into the project root.

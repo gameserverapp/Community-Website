@@ -82,14 +82,15 @@ $gaIds = GameserverApp\Helpers\SiteHelper::googleAnalyticsId();
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         @if(!is_array($gaIds))
-        ga('create', '{{$gaIds}}', 'auto');
+        ga('create', '{{$gaIds}}', {name: 'gsa'});
+        ga('gsa.send', 'pageview');
         @else
             @foreach($gaIds as $id)
-                ga('create', '{{$id}}', 'auto');
+                ga('create', '{{$id}}', {name: '{{md5($id)}}'});
+                ga('{{md5($id)}}.send', 'pageview');
             @endforeach
         @endif
 
-        ga('send', 'pageview');
 
     </script>
 @endif

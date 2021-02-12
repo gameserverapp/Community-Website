@@ -129,6 +129,10 @@ if($item->hasImage()) {
                     'image' => $item->image()
                 ])
             </div>
+
+            <?php
+            unset($item)
+            ?>
         @empty
             <div class="col-md-12 text-center">
                 <p>

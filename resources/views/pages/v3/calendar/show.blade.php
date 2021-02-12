@@ -118,21 +118,17 @@ if($item->hasImage()) {
     ])
 
     <div class="row">
-        @forelse($items as $item)
+        @forelse($items as $itemSub)
             <div class="col-md-4">
                 @include('partials.v3.article-vertical', [
-                    'title' => $item->title(),
-                    'summary' => $item->summary(),
-                    'category' => $item->displayLabel(),
-                    'route' => $item->showRoute(),
-                    'date' => $item->startAt(),
-                    'image' => $item->image()
+                    'title' => $itemSub->title(),
+                    'summary' => $itemSub->summary(),
+                    'category' => $itemSub->displayLabel(),
+                    'route' => $itemSub->showRoute(),
+                    'date' => $itemSub->startAt(),
+                    'image' => $itemSub->image()
                 ])
             </div>
-
-            <?php
-            unset($item)
-            ?>
         @empty
             <div class="col-md-12 text-center">
                 <p>

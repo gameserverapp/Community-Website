@@ -65,10 +65,8 @@ abstract class BaseController extends Controller implements ReceiverContract
             case 422:
                 $errors = json_decode($response->getBody());
 
-                alertOnSlack($errors);
-
                 throw new \Illuminate\Http\Exceptions\HttpResponseException(
-                    redirect()->back()->withInput($request->input())->withErrors($errors->errors)
+                    redirect()->back()->withInput($request->input())->withErrors($errors)
                 );
                 break;
 

@@ -19,8 +19,14 @@ class SupporterTier
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->supporterTier($view->getData()['value']);
+        } catch(\Throwable $e) {
+            $data = false;
+        }
+
         $view->with([
-            'supporterTier' => $this->api->supporterTier($view->getData()['value'])
+            'supporterTier' => $data
         ]);
     }
 }

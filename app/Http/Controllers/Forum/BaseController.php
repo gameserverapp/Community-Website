@@ -66,7 +66,7 @@ abstract class BaseController extends Controller implements ReceiverContract
                 $errors = json_decode($response->getBody());
 
                 throw new \Illuminate\Http\Exceptions\HttpResponseException(
-                    redirect()->back()->withInput($request->input())->withErrors($errors->errors)
+                    redirect()->back()->withInput($request->input())->withErrors($errors)
                 );
                 break;
 

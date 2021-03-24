@@ -19,8 +19,14 @@ class ShopPack
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->shopItem($view->getData()['value']);
+        } catch(\Throwable $e) {
+            $data = false;
+        }
+
         $view->with([
-            'shopPack' => $this->api->shopItem($view->getData()['value'])
+            'shopPack' => $data
         ]);
     }
 }

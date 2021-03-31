@@ -8,6 +8,7 @@
 <link rel="shortcut icon" type="image/png" href="{{GameserverApp\Helpers\SiteHelper::favicon()}}"/>
 <link rel="apple-touch-icon" href="/img/shortcut-icon.png">
 <meta name="apple-mobile-web-app-title" content="{{GameserverApp\Helpers\SiteHelper::name()}}">
+<meta property="og:image" content="{{GameserverApp\Helpers\SiteHelper::logo()}}">
 
 <meta name="description" content="{{$page['description'] or GameserverApp\Helpers\SiteHelper::seoDescription()}}">
 

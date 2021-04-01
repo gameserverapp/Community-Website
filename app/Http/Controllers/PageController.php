@@ -50,6 +50,8 @@ class PageController extends Controller
             ];
         }
 
+        $slug = strtolower($slug);
+
         return view('pages.v3.page.builder', [
             'title' => $page->title(),
             'content' => $content,

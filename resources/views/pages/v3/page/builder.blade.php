@@ -2,7 +2,7 @@
     'page' => [
         'title' => $title,
         'description' => $meta['description'],
-        'class' => 'pagebuilder'
+        'class' => 'pagebuilder ' . $meta['class']
     ],
 ])
 

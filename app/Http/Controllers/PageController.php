@@ -23,7 +23,7 @@ class PageController extends Controller
         $this->client = $client;
     }
 
-    public function show($id)
+    public function show($id, $slug = 'home')
     {
         $page = $this->client->page($id);
 
@@ -50,13 +50,12 @@ class PageController extends Controller
             ];
         }
 
-//        dd($content);
-
         return view('pages.v3.page.builder', [
             'title' => $page->title(),
             'content' => $content,
             'meta' => [
-                'description' => $page->metaDescription()
+                'description' => $page->metaDescription(),
+                'class' => 'page-' . $slug
             ],
             'settings' => [
                 'icon' => '',

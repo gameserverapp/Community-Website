@@ -7,7 +7,11 @@
 ])
 
 @section('page_content')
-    @if(isset($content) and count($content))
+    @if(
+        isset($content) and
+        is_array($content) and
+        count($content)
+    )
 
         @if(
             auth()->check() and !auth()->user()->acceptedRules() and

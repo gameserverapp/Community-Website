@@ -40,7 +40,7 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    public function changeCharacter(Request $request, $id)
+    public function changeCharacter(Request $request, $uuid,  $id)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {
             return view('pages.v3.supporter-tier.disabled');
@@ -53,11 +53,6 @@ class SubscriptionController extends Controller
         $charId = $request->input('character_id');
 
         $response = $this->client->changeSubscriptionCharacter($id, $charId);
-
-        dd(
-            $response,
-            $charId
-        );
 
         if(isset( $response->errors )) {
             return redirect()->back()->withErrors($response->errors);

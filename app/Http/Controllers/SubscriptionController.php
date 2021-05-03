@@ -50,7 +50,14 @@ class SubscriptionController extends Controller
             'character_id' => 'required'
         ]);
 
-        $response = $this->client->changeSubscriptionCharacter($id, $request->input('character_id'));
+        $charId = $request->input('character_id');
+
+        $response = $this->client->changeSubscriptionCharacter($id, $charId);
+
+        dd(
+            $response,
+            $charId
+        );
 
         if(isset( $response->errors )) {
             return redirect()->back()->withErrors($response->errors);

@@ -6,5 +6,6 @@ Route::get('/purge_all_cache', [
 
 
 Route::get('/verify/{code}', [
+    'as' => 'verify.domain',
     'uses' => 'HomeController@verify'
 ]);

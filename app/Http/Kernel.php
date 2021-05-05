@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckDomainSettings;
+use App\Http\Middleware\HttpRedirect;
 use App\Http\Middleware\RuleGate;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -37,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            HttpRedirect::class,
             RuleGate::class
         ],
 

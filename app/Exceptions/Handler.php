@@ -55,16 +55,17 @@ class Handler extends ExceptionHandler
         if ($this->isHttpException($e)) {
             return $this->renderHttpException($e);
         }
-            if (!config('app.debug')) {
 
-                if($e instanceof AuthenticationException) {
-                    return response()->view('errors.restricted', [], 401);
-                }
+        if (!config('app.debug')) {
 
-                if(!in_array($e, $this->dontReport)) {
-                    return response()->view('errors.500', [], 500);
-                }
+            if($e instanceof AuthenticationException) {
+                return response()->view('errors.restricted', [], 401);
             }
+
+            if(!in_array($e, $this->dontReport)) {
+                return response()->view('errors.500', [], 500);
+            }
+        }
 
         return parent::render($request, $e);
     }

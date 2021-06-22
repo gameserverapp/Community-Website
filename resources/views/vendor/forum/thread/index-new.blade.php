@@ -57,15 +57,15 @@
             </tbody>
         </table>
 
-        @can ('markNewThreadsAsRead')
-            <div class="text-center">
-                <form action="{{ Forum::route('mark-new') }}" method="POST" data-confirm>
-                    {!! csrf_field() !!}
-                    {!! method_field('patch') !!}
-                    <button class="btn btn-primary btn-small">{{ trans('forum::general.mark_read') }}</button>
-                </form>
-            </div>
-        @endcan
+{{--        @can ('markNewThreadsAsRead')--}}
+{{--            <div class="text-center">--}}
+{{--                <form action="{{ Forum::route('mark-new') }}" method="POST" data-confirm>--}}
+{{--                    {!! csrf_field() !!}--}}
+{{--                    {!! method_field('patch') !!}--}}
+{{--                    <button class="btn btn-primary btn-small">{{ trans('forum::general.mark_read') }}</button>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        @endcan--}}
     @else
         <p class="text-center">
             {{ trans('forum::threads.none_found') }}

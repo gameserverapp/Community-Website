@@ -67,9 +67,8 @@ abstract class BaseController extends Controller implements ReceiverContract
                 if(isset($errors->errors)) {
                     $errors = $errors->errors;
                 }
-
                 throw new \Illuminate\Http\Exceptions\HttpResponseException(
-                    redirect()->back()->withErrors($errors)
+                    redirect()->back()->withErrors($errors)->withInput()
                 );
 
             case 404:

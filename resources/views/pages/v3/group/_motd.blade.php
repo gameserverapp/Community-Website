@@ -4,8 +4,9 @@
             {!! nl2br(e($group->motd())) !!}
         @else
             <em>Nothing here yet...</em>
+        @endif
 
-            @if(
+        @if(
                 auth()->check() and
                 auth()->user()->isGroupMember($group) and
                 (
@@ -13,13 +14,12 @@
                     $group->isAdmin(auth()->user())
                 )
             )
-                <br><br><br>
-                @include('partials.v3.button', [
-                    'title' => translate('setmotd', 'Set MOTD'),
-                    'route' => route('group.settings', $group->id),
-                    'class' => 'center btn-theme-rock'
-                ])
-            @endif
+            <br><br><br>
+            @include('partials.v3.button', [
+                'title' => translate('setmotd', 'Set MOTD'),
+                'route' => route('group.settings', $group->id),
+                'class' => 'center btn-theme-rock'
+            ])
         @endif
     </p>
 @endcomponent

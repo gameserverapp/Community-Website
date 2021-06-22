@@ -60,15 +60,16 @@ abstract class BaseController extends Controller implements ReceiverContract
                 throw new \Illuminate\Http\Exceptions\HttpResponseException(
                     redirect()->back()->withInput($request->input())->withErrors($errors)
                 );
-                break;
 
             case 422:
                 $errors = json_decode($response->getBody());
 
+                if(isset($errors->errors)) {
+                    $errors = $errors->errors;
+                }
                 throw new \Illuminate\Http\Exceptions\HttpResponseException(
-                    redirect()->back()->withInput($request->input())->withErrors($errors)
+                    redirect()->back()->withErrors($errors)->withInput()
                 );
-                break;
 
             case 404:
                 abort(404);
@@ -76,11 +77,9 @@ abstract class BaseController extends Controller implements ReceiverContract
 
             case 403:
                 throw new NotFoundHttpException();
-                break;
 
             case 200:
                 return json_decode($response->getBody());
-                break;
 
             default:
                 abort(500);

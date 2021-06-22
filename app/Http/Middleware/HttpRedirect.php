@@ -20,6 +20,7 @@ class HttpRedirect
     public function handle($request, Closure $next, $guard = null)
     {
         if(
+            app()->environment('local') or
             $request->secure() or
             substr($request->path(), 0, 6) == 'verify'
         ) {

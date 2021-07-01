@@ -44,6 +44,9 @@ npm --prefix /var/www run production;
 
 chown -R www-data:www-data /var/www
 
+mkdir -p /var/www/public/js
+touch /var/www/public/js/app.js
+
 sed -i 's#/var/www/html#/var/www/public#g' /etc/nginx/sites-enabled/digitalocean
 
 php /var/www/artisan setup-community-website

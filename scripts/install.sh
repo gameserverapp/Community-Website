@@ -38,14 +38,14 @@ apt install composer zip unzip php-mbstring php-dom -y;
 rm -rf /var/www/*;
 git clone https://github.com/GameserverApp/Community-Website.git /var/www;
 
+mkdir -p /var/www/public/js
+touch /var/www/public/js/app.js
+
 composer install -d /var/www;
 npm --prefix /var/www install;
 npm --prefix /var/www run production;
 
 chown -R www-data:www-data /var/www
-
-mkdir -p /var/www/public/js
-touch /var/www/public/js/app.js
 
 sed -i 's#/var/www/html#/var/www/public#g' /etc/nginx/sites-enabled/digitalocean
 

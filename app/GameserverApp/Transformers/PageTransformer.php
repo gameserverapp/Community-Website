@@ -26,7 +26,6 @@ class PageTransformer extends ModelTransformer implements ModelTransformerInterf
         ];
 
         if(isset($args->pagebuilder)) {
-
             $data['pagebuilder'] = $args->pagebuilder;
         }
 

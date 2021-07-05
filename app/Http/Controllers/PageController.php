@@ -4,6 +4,8 @@
 use GrahamCampbell\Markdown\Facades\Markdown;
 use GameserverApp\Api\Client;
 use GameserverApp\Api\OAuthApi;
+use Illuminate\Http\Request;
+use function GuzzleHttp\Psr7\build_query;
 
 class PageController extends Controller
 {
@@ -23,9 +25,11 @@ class PageController extends Controller
         $this->client = $client;
     }
 
-    public function show($id, $slug = 'home')
+    public function show(Request $request, $id, $slug = 'home')
     {
-        $page = $this->client->page($id);
+        $page = $this->client->page($id, $request->only([
+            'report_player'
+        ]));
 
         if($page->isBuilder()) {
             $content = $page->decodedContent();

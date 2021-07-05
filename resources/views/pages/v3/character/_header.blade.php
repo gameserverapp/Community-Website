@@ -204,6 +204,13 @@ use GameserverApp\Helpers\SiteHelper;
             }
         }
 
+        if($reportRoute = GameserverApp\Helpers\RouteHelper::report()) {
+            $dropdown[] = [
+                'title' => 'Report this player',
+                'route' => $reportRoute . '?report_player=' . $character->id
+            ];
+        }
+
         if($characters) {
             $dropdown = array_merge($dropdown, $characters->toArray());
         }

@@ -33,7 +33,7 @@ source ~/.bashrc
 
 hash -r nvm
 
-apt install composer zip unzip php-mbstring php-dom -y;
+apt install composer zip unzip php-mbstring php-dom redis-server -y;
 
 rm -rf /var/www/*;
 git clone https://github.com/GameserverApp/Community-Website.git /var/www;

@@ -70,4 +70,15 @@ class RouteHelper extends Helper
 
         return false;
     }
+
+    public static function report()
+    {
+        $config = self::api()->domain('routes');
+
+        if(isset( $config->report )) {
+            return $config->report;
+        }
+
+        return false;
+    }
 }

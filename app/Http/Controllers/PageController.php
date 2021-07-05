@@ -25,9 +25,9 @@ class PageController extends Controller
         $this->client = $client;
     }
 
-    public function show(Request $request, $id, $slug = 'home')
+    public function show($id, $slug = 'home')
     {
-        $page = $this->client->page($id, $request->only([
+        $page = $this->client->page($id, request()->only([
             'report_player'
         ]));
 

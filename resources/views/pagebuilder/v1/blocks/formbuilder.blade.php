@@ -59,6 +59,6 @@ $footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' c
 
 @endcomponent
 
-@if(!auth()->check())
+@if(auth()->check())
     </form>
 @endif

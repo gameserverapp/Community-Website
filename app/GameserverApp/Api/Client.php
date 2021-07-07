@@ -91,6 +91,13 @@ class Client
         ]);
     }
 
+    public function submitReport($content)
+    {
+        return $this->api()->authRequest('post', 'report', [
+            'form_params' => $content
+        ]);
+    }
+
     public function twitchDisconnect()
     {
         return $this->api()->authRequest('post', 'user/me/twitch/disconnect');
@@ -307,9 +314,15 @@ class Client
         return MessageTransformer::transform($this->api()->authRequest('get', 'message/' . $id));
     }
 
-    public function page($id)
+    public function page($id, $args = false)
     {
-        return PageTransformer::transform($this->api()->guestRequest('get', 'page/' . $id));
+        $suffix = '';
+
+        if($args) {
+            $suffix = '?' . build_query($args);
+        }
+
+        return PageTransformer::transform($this->api()->guestRequest('get', 'page/' . $id . $suffix));
     }
 
     public function news($id)

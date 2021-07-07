@@ -622,6 +622,17 @@ class Client
     {
         $this->api()->clearCache($method, $route, $options, true);
         $this->api()->clearCache($method, $route, $options);
+
+
+        $this->api()->clearCache($method, $route, [
+            'query' => $options
+        ], true);
+        
+        $this->api()->clearCache($method, $route, [
+            'query' => $options
+        ]);
+
+
     }
 
     public function clearAllCacheForSite()

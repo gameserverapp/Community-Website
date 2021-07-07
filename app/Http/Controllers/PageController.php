@@ -72,6 +72,8 @@ class PageController extends Controller
 
     public function purge($id)
     {
-        $this->client->clearCache('get', 'page/' . $id);
+        $this->client->clearCache('get', 'page/' . $id, request()->only([
+            'report_player'
+        ]));
     }
 }

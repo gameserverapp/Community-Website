@@ -316,13 +316,15 @@ class Client
 
     public function page($id, $args = false)
     {
-        $suffix = '';
+//        $suffix = '';
+//
+//        if($args) {
+//            $suffix = '?' . build_query();
+//        }
 
-        if($args) {
-            $suffix = '?' . build_query($args);
-        }
-
-        return PageTransformer::transform($this->api()->guestRequest('get', 'page/' . $id . $suffix));
+        return PageTransformer::transform($this->api()->guestRequest('get', 'page/' . $id, [
+            'query' => $args
+        ]));
     }
 
     public function news($id)

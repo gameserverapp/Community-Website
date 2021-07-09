@@ -1,7 +1,7 @@
 @if($item)
     <div class="purchase-package package-small">
         @if($item->cluster)
-            <div class="label label-theme">
+            <div class="label label-theme top-left">
                 {{$item->cluster}} only
             </div>
         @endif
@@ -10,28 +10,32 @@
                 <img src="{{$item->image()}}" alt="{{$item->name()}}">
             </div>
 
+
             <h4 class="title"><span>{{str_limit($item->name(), 20)}}</span></h4>
-    {{--        <div class="costs">--}}
-    {{--            <span>{{$item->tokenPrice()}} tokens</span>--}}
-    {{--        </div>--}}
 
-            <?php
-            $percentage = calcPercentage($item->limit(), $item->usage());
-            ?>
+            @if($item->isSingle())
+                <?php
+                $percentage = calcPercentage($item->limit(), $item->usage());
+                ?>
 
-            <div class="progress">
-                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                     aria-valuemax="100" style="width: {{$percentage}}%">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                         aria-valuemax="100" style="width: {{$percentage}}%">
+                    </div>
+
+                    <div class="detail">
+                        {{$item->displayLimits()}}
+
+                        @if($item->limit())
+                            <i>({{$percentage}}%)</i>
+                        @endif
+                    </div>
                 </div>
-
-                <div class="detail">
-                    {{$item->displayLimits()}}
-
-                    @if($item->limit())
-                        <i>({{$percentage}}%)</i>
-                    @endif
+            @elseif($item->isCollection())
+                <div class="collection">
+                    <div class="label label-theme">Collection</div>
                 </div>
-            </div>
+            @endif
         </a>
 
     {{--    <a class="link" href="{{route('shop.show', $item->id)}}">{{translate('details', 'Details')}} &raquo;</a>--}}

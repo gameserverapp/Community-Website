@@ -25,6 +25,26 @@ class Shop extends Model implements LinkableInterface
         return Str::limit(strip_tags($this->description()));
     }
 
+    public function type()
+    {
+        return $this->type;
+    }
+
+    public function isSingle()
+    {
+        return $this->type() == 'single';
+    }
+
+    public function isCollection()
+    {
+        return $this->type() == 'collection';
+    }
+
+    public function requiresCharacterSelect()
+    {
+        return $this->requires_character;
+    }
+
     public function hasCharacters()
     {
         return $this->characters;
@@ -52,11 +72,6 @@ class Shop extends Model implements LinkableInterface
     public function limitDays()
     {
         return $this->limit_days;
-    }
-
-    public function isEmptyPack()
-    {
-        return is_null($this->content_type);
     }
 
     public function tokenPrice()

@@ -11,7 +11,7 @@
 
     @include border-radius(5px);
 
-    .label {
+    .label.top-left {
         position: absolute;
         top:1rem;
         left:1rem;
@@ -68,6 +68,11 @@
             font-weight: bold;
             color:var(--dark-text)
         }
+    }
+
+    .collection {
+        position: relative;
+        margin:1rem auto 2.86rem;
     }
 
     .link {

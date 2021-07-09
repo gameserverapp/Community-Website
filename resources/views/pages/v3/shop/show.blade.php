@@ -63,7 +63,7 @@ use GameserverApp\Helpers\SiteHelper;
                                 </p>
                             @endif
 
-                            @if(auth()->check() and !$package->isEmptyPack())
+                            @if(auth()->check() and $package->requiresCharacterSelect())
                                 <hr>
                                 @if($package->hasCharacters())
                                     <div class="text-center">

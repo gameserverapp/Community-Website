@@ -4,6 +4,10 @@
             <div class="label label-theme top-left">
                 {{$item->cluster}} only
             </div>
+        @elseif($item->hasLabel())
+            <div class="label label-theme top-left">
+                {{$item->label()}}
+            </div>
         @endif
         <a href="{{route('shop.show', $item->id)}}">
             <div class="image-container">

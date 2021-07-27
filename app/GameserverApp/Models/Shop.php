@@ -25,6 +25,16 @@ class Shop extends Model implements LinkableInterface
         return Str::limit(strip_tags($this->description()));
     }
 
+    public function hasLabel()
+    {
+        return !is_null($this->label);
+    }
+
+    public function label()
+    {
+        return $this->label;
+    }
+
     public function type()
     {
         return $this->type;
@@ -53,6 +63,16 @@ class Shop extends Model implements LinkableInterface
     public function characters()
     {
         return $this->characters;
+    }
+
+    public function hasChildren()
+    {
+        return isset($this->children);
+    }
+
+    public function children()
+    {
+        return $this->children;
     }
 
     public function usage()

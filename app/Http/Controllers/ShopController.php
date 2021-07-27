@@ -61,7 +61,13 @@ class ShopController extends Controller
 
         $pack = $this->client->shopItem($id);
 
-        return view('pages.v3.shop.show', [
+        if($pack->isCollection()) {
+            return view('pages.v3.shop.show-collection', [
+                'package' => $pack
+            ]);
+        }
+
+        return view('pages.v3.shop.show-single', [
             'package' => $pack
         ]);
     }

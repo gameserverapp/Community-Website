@@ -26,26 +26,27 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             'description' => $args->description,
             'type'        => $args->type,
             'cluster'     => $args->cluster,
-            'image'       => $args->image
+            'image'       => $args->image,
+            'label'       => $args->label
         ];
 
-        if(isset($args->limit)) {
+        if (isset($args->limit)) {
             $data['limit'] = $args->limit;
         }
 
-        if(isset($args->limit_days)) {
+        if (isset($args->limit_days)) {
             $data['limit_days'] = $args->limit_days;
         }
 
-        if(isset($args->usage)) {
+        if (isset($args->usage)) {
             $data['usage'] = $args->usage;
         }
 
-        if(isset($args->token_price)) {
+        if (isset($args->token_price)) {
             $data['token_price'] = $args->token_price;
         }
 
-        if(isset($args->requires_character)) {
+        if (isset($args->requires_character)) {
             $data['requires_character'] = $args->requires_character;
         }
 
@@ -53,6 +54,10 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['characters'] = CharacterTransformer::transformMultiple($args->characters);
         } else {
             $data['characters'] = false;
+        }
+
+        if (isset($args->children) and is_array($args->children) and count($args->children)) {
+            $data['children'] = ShopTransformer::transformMultiple($args->children);
         }
 
         return $data;

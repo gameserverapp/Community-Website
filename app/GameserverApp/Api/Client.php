@@ -537,7 +537,7 @@ class Client
 
     public function shopItem($id)
     {
-        return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], 2));
+        return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], false));
     }
 
     public function purchaseShopItem($id, $characterId)

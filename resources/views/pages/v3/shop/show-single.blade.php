@@ -30,7 +30,16 @@ use GameserverApp\Helpers\SiteHelper;
 
             <div class="col-md-4">
                 <div class="text-center">
-                    <img src="{{$package->image()}}">
+                    <div class="main-image">
+                        <img src="{{$package->image()}}">
+                    </div>
+
+                    @if($package->hasLabel())
+                        <div class="label label-theme top-left">
+                            {{$package->label()}}
+                        </div>
+                        <br>
+                    @endif
 
                     <div class="hidden-md hidden-lg main-title">
                         <h1 class="title">
@@ -65,18 +74,11 @@ use GameserverApp\Helpers\SiteHelper;
                             </strong>
                         </p>
                     @endif
-
-
-                    @if($package->hasLabel())
-                        <div class="label label-theme top-left">
-                            {{$package->label()}}
-                        </div>
-                        <br><br>
-                    @endif
                 </div>
 
                 <div class=" hidden-sm hidden-xs">
                     @if(auth()->check())
+                        <br>
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 @include('partials.v3.button', [
@@ -118,9 +120,6 @@ use GameserverApp\Helpers\SiteHelper;
                 @component('partials.v3.frame', [
                     'type' => 'big'
                 ])
-
-                    <h4>Order contents</h4>
-
                     {!! Markdown::convertToHtml($package->description()) !!}
 
                     <hr>
@@ -185,7 +184,9 @@ use GameserverApp\Helpers\SiteHelper;
                         <br>
                     </div>
                 @else
-                    <div class="alert alert-info">Please <a href="{{route('auth.login')}}">login</a> to place an order.</div>
+                    <div class="alert alert-info">
+                        Please <a href="{{route('auth.login')}}">login</a> to place an order.
+                    </div>
                 @endif
                 <br>
 

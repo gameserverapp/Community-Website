@@ -61,6 +61,10 @@ use GameserverApp\Helpers\SiteHelper;
                             @endif
                         </div>
                     </div>
+                @else
+                    <div class="alert alert-info">
+                        Please <a href="{{route('auth.login')}}">login</a> to place an order.
+                    </div>
                 @endif
             </div>
         </div>

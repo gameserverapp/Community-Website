@@ -542,7 +542,7 @@ class Client
 
     public function purchaseShopItem($id, $characterId)
     {
-        $this->clearCache('get', 'shop/' . $id);
+        $this->api()->clearCache('get', 'shop/' . $id, [], true);
 
         return $this->api()->authRequest('post', 'shop/' . $id . '/purchase',[
             'form_params' => [
@@ -625,7 +625,6 @@ class Client
         $this->api()->clearCache($method, $route, $options, true);
         $this->api()->clearCache($method, $route, $options);
 
-
         $this->api()->clearCache($method, $route, [
             'query' => $options
         ], true);
@@ -633,8 +632,6 @@ class Client
         $this->api()->clearCache($method, $route, [
             'query' => $options
         ]);
-
-
     }
 
     public function clearAllCacheForSite()

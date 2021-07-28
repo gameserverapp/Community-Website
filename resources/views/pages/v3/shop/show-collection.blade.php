@@ -50,22 +50,24 @@ use GameserverApp\Helpers\SiteHelper;
 
             <div class=" hidden-sm hidden-xs">
                 <br>
-                @if(auth()->check())
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            @if( SiteHelper::featureEnabled('tokens'))
-                                @include('partials.v3.button', [
-                                    'route' => route('supporter-tier.index'),
-                                    'title' => 'Get tokens',
-                                ])
-                            @endif
-                        </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+                        @if(!auth()->check())
+                            <div class="alert alert-info">
+                                Please <a href="{{route('auth.login')}}">login</a> to place an order.
+                            </div>
+                            <br>
+                        @endif
+
+                        @if( SiteHelper::featureEnabled('tokens'))
+                            @include('partials.v3.button', [
+                                'route' => route('supporter-tier.index'),
+                                'title' => 'Get tokens',
+                            ])
+                        @endif
                     </div>
-                @else
-                    <div class="alert alert-info">
-                        Please <a href="{{route('auth.login')}}">login</a> to place an order.
-                    </div>
-                @endif
+                </div>
             </div>
         </div>
 

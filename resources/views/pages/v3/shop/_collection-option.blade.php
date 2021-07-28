@@ -19,7 +19,7 @@
         </div>
         <div class="col-sm-9 col-lg-10">
             <div class="main-title">
-                
+
                 <h2 class="title">
                     <span>
                         {{$item->name()}}

@@ -103,6 +103,6 @@ class ShopController extends Controller
             'stay'    => true
         ]);
 
-        return redirect(route('shop.index'));
+        return redirect()->back();
     }
 }

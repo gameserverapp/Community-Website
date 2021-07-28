@@ -542,6 +542,8 @@ class Client
 
     public function purchaseShopItem($id, $characterId)
     {
+        $this->clearCache('get', 'shop/' . $id);
+
         return $this->api()->authRequest('post', 'shop/' . $id . '/purchase',[
             'form_params' => [
                 'character_id' => $characterId

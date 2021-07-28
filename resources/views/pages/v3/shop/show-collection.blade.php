@@ -49,8 +49,8 @@ use GameserverApp\Helpers\SiteHelper;
             </div>
 
             <div class=" hidden-sm hidden-xs">
+                <br>
                 @if(auth()->check())
-                    <br>
                     <div class="row">
                         <div class="col-md-12 text-center">
                             @if( SiteHelper::featureEnabled('tokens'))

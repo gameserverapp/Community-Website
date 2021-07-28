@@ -18,18 +18,22 @@
             </div>
         </div>
         <div class="col-sm-9 col-lg-10">
-            <h2 class="title">
-                <span>
-                    {{$item->name()}}
-                </span>
-            </h2>
-            @if($item->tokenPrice() > 0)
-                <p>
-                    <strong>
-                        Price: {{$item->displayTokenPrice()}}
-                    </strong>
-                </p>
-            @endif
+            <div class="main-title">
+                
+                <h2 class="title">
+                    <span>
+                        {{$item->name()}}
+                    </span>
+                </h2>
+                @if($item->tokenPrice() > 0)
+                    <p>
+                        <strong>
+                            Price: {{$item->displayTokenPrice()}}
+                        </strong>
+                    </p>
+                @endif
+
+            </div>
         </div>
     </div>
 

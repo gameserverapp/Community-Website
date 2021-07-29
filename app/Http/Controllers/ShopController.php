@@ -31,12 +31,19 @@ class ShopController extends Controller
             return view('pages.v3.shop.disabled');
         }
 
-        $packs = $this->client->shopItems(route('shop.index'), $request->get('category', ''));
+        $packs = $this->client->shopItems(route('shop.index'), [
+            'cluster' => $request->get('category', '')
+        ]);
 
-        $categories = false;
+        $clusters = false;
+        $filters = false;
 
-        if(isset($packs->categories)) {
-            $categories = $packs->categories;
+        if(isset($packs->clusters)) {
+            $clusters = $packs->clusters;
+        }
+
+        if(isset($packs->filters)) {
+            $filters = $packs->filters;
         }
 
         if($request->has('status') == 'success') {
@@ -49,7 +56,8 @@ class ShopController extends Controller
 
         return view('pages.v3.shop.index', [
             'packs' => $packs,
-            'categories' => $categories
+            'clusters' => $clusters,
+            'filters' => $filters
         ]);
     }
 

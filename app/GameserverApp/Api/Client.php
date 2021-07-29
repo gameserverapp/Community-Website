@@ -514,15 +514,23 @@ class Client
         return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/cancel');
     }
 
-    public function shopItems($route, $category = '')
+    public function shopItems($route, $query = [])
     {
-        $response = $this->api()->authRequest('get', 'shop?page=' . request()->get('page', null) . '&category=' . $category);
+        $query = array_merge($query, [
+            'page' => request()->get('page', null),
+            'cluster' => request()->get('cluster', null),
+            'filter' => request()->get('filter', null)
+        ]);
+
+        $response = $this->api()->authRequest('get', 'shop', [
+            'query' => $query
+        ], false);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
-                16,
+                12,
                 0,
                 [
                     'path' => $route
@@ -543,6 +551,7 @@ class Client
     public function purchaseShopItem($id, $characterId)
     {
         $this->api()->clearCache('get', 'shop/' . $id, [], true);
+        $this->api()->clearCache('get', 'shop', [], true);
 
         return $this->api()->authRequest('post', 'shop/' . $id . '/purchase',[
             'form_params' => [
@@ -782,8 +791,12 @@ class Client
             ]
         );
 
-        if(isset($response->categories)) {
-            $class->categories = $response->categories;
+        if(isset($response->clusters)) {
+            $class->clusters = $response->clusters;
+        }
+
+        if(isset($response->filters)) {
+            $class->filters = $response->filters;
         }
 
         return $class;

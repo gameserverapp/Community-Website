@@ -15,7 +15,7 @@
             </div>
 
 
-            <h4 class="title"><span>{{str_limit($item->name(), 20)}}</span></h4>
+            <h4 class="title"><span>{{$item->name()}}</span></h4>
 
             @if($item->isSingle())
                 <?php

@@ -519,7 +519,8 @@ class Client
         $query = array_merge($query, [
             'page' => request()->get('page', null),
             'cluster' => request()->get('cluster', null),
-            'filter' => request()->get('filter', null)
+            'filter' => request()->get('filter', null),
+            'search' => request()->get('search', null),
         ]);
 
         $response = $this->api()->authRequest('get', 'shop', [

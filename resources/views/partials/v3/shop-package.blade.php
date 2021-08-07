@@ -43,10 +43,16 @@
         </a>
 
     {{--    <a class="link" href="{{route('shop.show', $item->id)}}">{{translate('details', 'Details')}} &raquo;</a>--}}
+        <?php
+        $text = translate('details', 'Details');
 
+        if($item->isCollection()) {
+            $text = translate('choose', 'Choose');
+        }
+        ?>
         @include('partials.v3.button', [
             'route' => route('shop.show', $item->id),
-            'title' => translate('details', 'Details'),
+            'title' => $text,
             //'class' => 'btn-theme-gem'
         ])
     </div>

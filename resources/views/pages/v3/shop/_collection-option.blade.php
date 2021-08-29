@@ -49,6 +49,15 @@
                     </span>
                 </div>
             @endif
+
+            @if($item->gameserver)
+                <div class="alert alert-warning">
+                    <span>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        Only deliverable on the <strong>{{$item->gameserver}}</strong> server!
+                    </span>
+                </div>
+            @endif
         </div>
         <div class="col-lg-4">
             <br>

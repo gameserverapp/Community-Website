@@ -35,6 +35,7 @@ use GameserverApp\Helpers\SiteHelper;
                 <form method="get">
                     <input type="search" name="search" value="{{request()->get('search')}}" placeholder="Search...">
                     <input type="hidden" name="cluster" value="{{request()->get('cluster')}}">
+                    <input type="hidden" name="gameserver" value="{{request()->get('gameserver')}}">
                     <input type="hidden" name="filter" value="{{request()->get('filter')}}">
                 </form>
             </div>
@@ -46,7 +47,7 @@ use GameserverApp\Helpers\SiteHelper;
                     @if($filters)
                         <optgroup label="Filters">
                             @foreach($filters as $uuid => $name)
-                                <option @if(request()->get('filter') == $uuid) selected @endif value="{{route('shop.index')}}?search={{request()->get('search')}}&filter={{$uuid}}">{{$name}}</option>
+                                <option @if(urlencode(request()->get('filter')) == $uuid) selected @endif value="{{route('shop.index')}}?search={{request()->get('search')}}&filter={{$uuid}}">{{$name}}</option>
                             @endforeach
                         </optgroup>
                     @endif
@@ -55,6 +56,14 @@ use GameserverApp\Helpers\SiteHelper;
                         <optgroup label="Items for specific cluster">
                             @foreach($clusters as $uuid => $name)
                                 <option @if(request()->get('cluster') == $uuid) selected @endif value="{{route('shop.index')}}?search={{request()->get('search')}}&cluster={{$uuid}}">{{$name}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endif
+
+                    @if($gameservers)
+                        <optgroup label="Items for specific game server">
+                            @foreach($gameservers as $id => $name)
+                                <option @if(request()->get('gameserver') == $id) selected @endif value="{{route('shop.index')}}?search={{request()->get('search')}}&gameserver={{$id}}">{{$name}}</option>
                             @endforeach
                         </optgroup>
                     @endif

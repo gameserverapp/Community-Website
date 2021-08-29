@@ -133,6 +133,15 @@ use GameserverApp\Helpers\SiteHelper;
                         </div>
                     @endif
 
+                    @if($package->gameserver)
+                        <div class="alert alert-warning">
+                            <span>
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                Only deliverable on the <strong>{{$package->gameserver}}</strong> game server!
+                            </span>
+                        </div>
+                    @endif
+
                     @if(auth()->check() and $package->requiresCharacterSelect())
                         @if($package->hasCharacters())
                             <div class="text-center">

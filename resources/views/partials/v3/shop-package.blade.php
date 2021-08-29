@@ -4,6 +4,10 @@
             <div class="label label-theme top-left">
                 {{$item->cluster}} only
             </div>
+        @elseif($item->gameserver)
+            <div class="label label-theme top-left">
+                {{$item->gameserver}} only
+            </div>
         @elseif($item->hasLabel())
             <div class="label label-theme top-left">
                 {{$item->label()}}

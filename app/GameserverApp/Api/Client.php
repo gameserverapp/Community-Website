@@ -519,6 +519,7 @@ class Client
         $query = array_merge($query, [
             'page' => request()->get('page', null),
             'cluster' => request()->get('cluster', null),
+            'gameserver' => request()->get('gameserver', null),
             'filter' => request()->get('filter', null),
             'search' => request()->get('search', null),
         ]);
@@ -794,6 +795,10 @@ class Client
 
         if(isset($response->clusters)) {
             $class->clusters = $response->clusters;
+        }
+
+        if(isset($response->gameservers)) {
+            $class->gameservers = $response->gameservers;
         }
 
         if(isset($response->filters)) {

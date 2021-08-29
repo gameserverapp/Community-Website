@@ -26,20 +26,13 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             'description' => $args->description,
             'type'        => $args->type,
             'cluster'     => $args->cluster,
+            'gameserver'  => $args->gameserver,
             'image'       => $args->image,
             'label'       => $args->label
         ];
 
         if (isset($args->limit)) {
             $data['limit'] = $args->limit;
-        }
-
-        if (isset($args->limit_days)) {
-            $data['limit_days'] = $args->limit_days;
-        }
-
-        if (isset($args->usage)) {
-            $data['usage'] = $args->usage;
         }
 
         if (isset($args->token_price)) {

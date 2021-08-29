@@ -32,14 +32,19 @@ class ShopController extends Controller
         }
 
         $packs = $this->client->shopItems(route('shop.index'), [
-            'cluster' => $request->get('category', '')
+
         ]);
 
         $clusters = false;
+        $gameservers = false;
         $filters = false;
 
         if(isset($packs->clusters)) {
             $clusters = $packs->clusters;
+        }
+
+        if(isset($packs->gameservers)) {
+            $gameservers = $packs->gameservers;
         }
 
         if(isset($packs->filters)) {
@@ -57,6 +62,7 @@ class ShopController extends Controller
         return view('pages.v3.shop.index', [
             'packs' => $packs,
             'clusters' => $clusters,
+            'gameservers' => $gameservers,
             'filters' => $filters
         ]);
     }

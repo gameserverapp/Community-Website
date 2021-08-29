@@ -77,21 +77,21 @@ class Shop extends Model implements LinkableInterface
 
     public function usage()
     {
-        if(!$this->usage) {
+        if(!$this->limit->used) {
             return 0;
         }
 
-        return $this->usage;
+        return $this->limit->used;
     }
 
     public function limit()
     {
-        return $this->limit;
+        return $this->limit->limit;
     }
 
     public function limitDays()
     {
-        return $this->limit_days;
+        return $this->limit->limit_days;
     }
 
     public function tokenPrice()
@@ -136,19 +136,7 @@ class Shop extends Model implements LinkableInterface
 
     public function displayLimits()
     {
-        switch($this->hasLimits()) {
-            case 1:
-                return 'Unlimited';
-
-            case 2:
-                return 'Once per year';
-
-            case 3:
-                return 'Once per ' . $this->limitDays() . ' day(s)';
-
-            default:
-                return $this->limit() . ' per ' . $this->limitDays() . ' day(s)';
-        }
+        return $this->limit->limit_text;
     }
 
     public function image()

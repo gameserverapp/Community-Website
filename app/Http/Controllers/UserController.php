@@ -90,9 +90,9 @@ class UserController extends Controller
             ]);
         }
 
-        $orders = $this->api->deliveries(route('shop.orders', auth()->id()));
+        $orders = $this->api->deliveries(route('user.deliveries', auth()->id()));
 
-        return view('pages.v3.user.history', [
+        return view('pages.v3.user.deliveries', [
             'orders' => $orders,
             'user' => auth()->user()
         ]);

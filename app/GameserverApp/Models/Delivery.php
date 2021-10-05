@@ -7,10 +7,13 @@ use GameserverApp\Traits\Linkable;
 
 class Delivery extends Model
 {
-    const STATUS_PROCESSING = 'processing';
-    const STATUS_FULL_INVENTORY = 'inventory_full';
-    const STATUS_DELIVERED = 'delivered';
-    const STATUS_PICKEDUP = 'picked_up';
+    const STATUS_CREATED = 0;
+    const STATUS_IN_PROGRESS = 1;
+    const STATUS_ISSUE = 2;
+    const STATUS_SUCCESS = 3;
+    const STATUS_FULL_INVENTORY = 4;
+    const STATUS_WAITING_PLAYER_COME_ONLINE = 5;
+    const STATUS_UNDELIVERABLE = 999;
 
     public function name()
     {

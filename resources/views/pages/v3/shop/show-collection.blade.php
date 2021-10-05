@@ -86,7 +86,11 @@ use GameserverApp\Helpers\SiteHelper;
                     'item' => $child
                 ])
             @empty
-                <em>Nothing here...</em>
+                <div class="alert alert-warning">
+
+                    <em>This collection has no sub packages. Come back later...</em>
+                </div>
+                <br>
             @endif
 
             <div class=" hidden-lg hidden-md">

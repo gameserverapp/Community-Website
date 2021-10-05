@@ -31,6 +31,12 @@ Route::group([
         'middleware' => 'auth'
     ]);
 
+    Route::get('/{uuid}/deliveries', [
+        'as'   => 'user.deliveries',
+        'uses' => 'UserController@deliveries',
+        'middleware' => 'auth'
+    ]);
+
     Route::get('/{uuid}/settings', [
         'as'   => 'user.settings',
         'uses' => 'UserController@settings',

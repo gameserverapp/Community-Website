@@ -5,6 +5,7 @@ namespace GameserverApp\Api;
 use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
+use GameserverApp\Transformers\DeliveryTransformer;
 use GameserverApp\Transformers\Forum\PostTransformer;
 use GameserverApp\Transformers\SaleTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
@@ -579,6 +580,27 @@ class Client
         }
 
         $response->items = OrderTransformer::transformMultiple($response->items);
+
+        return $this->paginatedResponse($response, $route);
+    }
+
+    public function deliveries($route)
+    {
+        $response = $this->api()->authRequest('get', 'user/me/deliveries?page=' . request()->get('page', null));
+
+        if(!isset($response->items)) {
+            return new LengthAwarePaginator(
+                [],
+                0,
+                8,
+                0,
+                [
+                    'path' => $route
+                ]
+            );
+        }
+
+        $response->items = DeliveryTransformer::transformMultiple($response->items);
 
         return $this->paginatedResponse($response, $route);
     }

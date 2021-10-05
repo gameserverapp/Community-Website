@@ -167,8 +167,13 @@ use GameserverApp\Helpers\SiteHelper;
 
         if (SiteHelper::featureEnabled('shop')) {
             $right[] = [
-                'title' => 'Orders',
+                'title' => 'Orders (Deprecated)',
                 'route' => route('shop.orders', $user->id)
+            ];
+
+            $right[] = [
+                'title' => 'Deliveries',
+                'route' => route('user.deliveries', $user->id)
             ];
         }
 

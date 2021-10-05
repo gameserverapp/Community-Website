@@ -23,7 +23,7 @@ use GameserverApp\Models\Delivery;
                     <tr>
                         <th>Status</th>
                         <th>Package</th>
-                        <th>Order #</th>
+                        <th>Delivery ID</th>
                     </tr>
                     </thead>
                     <tbody>

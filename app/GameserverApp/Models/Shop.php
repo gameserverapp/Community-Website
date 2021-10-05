@@ -72,6 +72,10 @@ class Shop extends Model implements LinkableInterface
 
     public function children()
     {
+        if(!$this->hasChildren()) {
+            return [];
+        }
+
         return $this->children;
     }
 

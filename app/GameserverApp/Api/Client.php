@@ -586,7 +586,7 @@ class Client
 
     public function deliveries($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/deliveries?page=' . request()->get('page', null));
+        $response = $this->api()->authRequest('get', 'user/me/deliveries?page=' . request()->get('page', null), [], false);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(

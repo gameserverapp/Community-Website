@@ -47,6 +47,10 @@ use GameserverApp\Models\Delivery;
                                         print '<div class="label label-warning">Waiting for player</div>';
                                         break;
 
+                                    case Delivery::STATUS_SCHEDULED:
+                                        print '<div class="label label-default">Scheduled</div>';
+                                        break;
+
                                     case Delivery::STATUS_FULL_INVENTORY:
                                         print '<div class="label label-warning">Character / Dino in inventory</div>';
                                         break;

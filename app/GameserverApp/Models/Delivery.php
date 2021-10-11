@@ -13,6 +13,7 @@ class Delivery extends Model
     const STATUS_SUCCESS = 3;
     const STATUS_FULL_INVENTORY = 4;
     const STATUS_WAITING_PLAYER_COME_ONLINE = 5;
+    const STATUS_SCHEDULED = 6;
     const STATUS_UNDELIVERABLE = 999;
 
     public function name()

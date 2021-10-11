@@ -82,7 +82,11 @@
                 </div>
 
                 <div class="col-md-12 col-sm-6 col-xs-12">
-                    @if(auth()->check() and $item->requiresCharacterSelect())
+                    @if(!auth()->check())
+                        <div class="alert alert-info">
+                            Login to order.
+                        </div>
+                    @elseif($item->requiresCharacterSelect())
                         @if($item->hasCharacters())
                             <div class="text-center">
                                 <label>Deliver to:</label>
@@ -108,6 +112,13 @@
                                 You do not have a character to deliver this shop pack to.
                             </div>
                         @endif
+                    @else
+                        @include('partials.v3.button', [
+                            'element' => 'button',
+                            'type' => 'submit',
+                            'title' => 'Order now &raquo;',
+                            'class' => 'btn-theme-rock center'
+                        ])
                     @endif
                 </div>
             </div>

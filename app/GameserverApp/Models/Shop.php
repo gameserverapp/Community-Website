@@ -55,6 +55,11 @@ class Shop extends Model implements LinkableInterface
         return $this->requires_character;
     }
 
+    public function requiresDiscordConnected()
+    {
+        return $this->requires_discord;
+    }
+
     public function hasCharacters()
     {
         return $this->characters;

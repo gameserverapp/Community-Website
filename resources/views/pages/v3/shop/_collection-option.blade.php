@@ -86,6 +86,10 @@
                         <div class="alert alert-info">
                             Login to order.
                         </div>
+                    @elseif($item->requiresDiscordConnected() and !auth()->user()->hasDiscordSetup())
+                        <div class="alert alert-danger">
+                            You need to <a href="{{route('user.settings', auth()->user()->id)}}">connect your Discord</a> to order this package.
+                        </div>
                     @elseif($item->requiresCharacterSelect())
                         @if($item->hasCharacters())
                             <div class="text-center">

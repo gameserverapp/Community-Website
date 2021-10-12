@@ -43,6 +43,10 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['requires_character'] = $args->requires_character;
         }
 
+        if (isset($args->requires_discord)) {
+            $data['requires_discord'] = $args->requires_discord;
+        }
+
         if (isset($args->characters) and $args->characters) {
             $data['characters'] = CharacterTransformer::transformMultiple($args->characters);
         } else {

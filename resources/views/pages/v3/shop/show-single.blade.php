@@ -169,12 +169,22 @@ use GameserverApp\Helpers\SiteHelper;
                     <div class=" hidden-md hidden-lg">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                @include('partials.v3.button', [
-                                    'element' => 'button',
-                                    'type' => 'submit',
-                                    'title' => 'Order now &raquo;',
-                                    'class' => 'btn-theme-rock'
-                                ])
+                                @if(
+                                    $package->requiresDiscordSetup() and
+                                    !auth()->user()->hasDiscordSetup()
+                                )
+                                    <div class="alert alert-danger">
+                                        You need to <a href="{{route('user.settings', auth()->user()->id)}}">connect your Discord</a> to order this package.
+                                    </div>
+                                    <br>
+                                @else
+                                    @include('partials.v3.button', [
+                                        'element' => 'button',
+                                        'type' => 'submit',
+                                        'title' => 'Order now &raquo;',
+                                        'class' => 'btn-theme-rock'
+                                    ])
+                                @endif
                             </div>
 
                             <div class="col-md-12 text-center">

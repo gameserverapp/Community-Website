@@ -122,7 +122,23 @@ use GameserverApp\Helpers\SiteHelper;
                 ])
                     {!! Markdown::convertToHtml($package->description()) !!}
 
-                    <hr>
+                    @if(
+                        $package->cluster or
+                        $package->gameserver or
+                        (
+                            auth()->check() and
+                            (
+                                $package->requiresCharacterSelect()
+                                or
+                                (
+                                    $package->requiresDiscordConnected() and
+                                    !auth()->user()->hasDiscordSetup()
+                                )
+                            )
+                        )
+                    )
+                        <hr>
+                    @endif
 
                     @if($package->cluster)
                         <div class="alert alert-warning">

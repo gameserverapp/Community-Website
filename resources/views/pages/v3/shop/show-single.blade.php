@@ -170,7 +170,7 @@ use GameserverApp\Helpers\SiteHelper;
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 @if(
-                                    $package->requiresDiscordSetup() and
+                                    $package->requiresDiscordConnected() and
                                     !auth()->user()->hasDiscordSetup()
                                 )
                                     <div class="alert alert-danger">

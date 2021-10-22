@@ -11,7 +11,7 @@
 
     @include border-radius(5px);
 
-    .label {
+    .label.top-left {
         position: absolute;
         top:1rem;
         left:1rem;
@@ -26,6 +26,7 @@
         margin-bottom:3rem;
         max-width:100%;
         height:10rem;
+        max-height:150px;
 
         img {
             max-width:100%;
@@ -38,6 +39,8 @@
         margin-bottom:0;
         color: var(--light-text);
         //text-shadow: 1px 1px 13px #000;
+        max-height: 2rem;
+        overflow: hidden;
     }
 
     .costs {
@@ -68,6 +71,11 @@
             font-weight: bold;
             color:var(--dark-text)
         }
+    }
+
+    .collection {
+        position: relative;
+        margin:1rem auto 2.81rem;
     }
 
     .link {

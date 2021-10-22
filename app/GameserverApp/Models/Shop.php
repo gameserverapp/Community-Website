@@ -25,6 +25,41 @@ class Shop extends Model implements LinkableInterface
         return Str::limit(strip_tags($this->description()));
     }
 
+    public function hasLabel()
+    {
+        return !is_null($this->label);
+    }
+
+    public function label()
+    {
+        return $this->label;
+    }
+
+    public function type()
+    {
+        return $this->type;
+    }
+
+    public function isSingle()
+    {
+        return $this->type() == 'single';
+    }
+
+    public function isCollection()
+    {
+        return $this->type() == 'collection';
+    }
+
+    public function requiresCharacterSelect()
+    {
+        return $this->requires_character;
+    }
+
+    public function requiresDiscordConnected()
+    {
+        return $this->requires_discord;
+    }
+
     public function hasCharacters()
     {
         return $this->characters;
@@ -35,28 +70,37 @@ class Shop extends Model implements LinkableInterface
         return $this->characters;
     }
 
+    public function hasChildren()
+    {
+        return isset($this->children);
+    }
+
+    public function children()
+    {
+        if(!$this->hasChildren()) {
+            return [];
+        }
+
+        return $this->children;
+    }
+
     public function usage()
     {
-        if(!$this->usage) {
+        if(!$this->limit->used) {
             return 0;
         }
 
-        return $this->usage;
+        return $this->limit->used;
     }
 
     public function limit()
     {
-        return $this->limit;
+        return $this->limit->limit;
     }
 
     public function limitDays()
     {
-        return $this->limit_days;
-    }
-
-    public function isEmptyPack()
-    {
-        return is_null($this->content_type);
+        return $this->limit->limit_days;
     }
 
     public function tokenPrice()
@@ -101,19 +145,7 @@ class Shop extends Model implements LinkableInterface
 
     public function displayLimits()
     {
-        switch($this->hasLimits()) {
-            case 1:
-                return 'Unlimited';
-
-            case 2:
-                return 'Once per year';
-
-            case 3:
-                return 'Once per ' . $this->limitDays() . ' day(s)';
-
-            default:
-                return $this->limit() . ' per ' . $this->limitDays() . ' day(s)';
-        }
+        return $this->limit->limit_text;
     }
 
     public function image()

@@ -223,7 +223,8 @@ class OAuthApi
         return new  \GuzzleHttp\Client([
             'base_uri' => config('gameserverapp.connection.url'),
             'headers'  => $headers,
-            'timeout' => config('gameserverapp.connection.timeout')
+            'timeout' => config('gameserverapp.connection.timeout'),
+            'verify' => !app()->environment('dev')
             //'http_errors' => false
         ]);
     }

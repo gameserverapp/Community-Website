@@ -31,12 +31,24 @@ class ShopController extends Controller
             return view('pages.v3.shop.disabled');
         }
 
-        $packs = $this->client->shopItems(route('shop.index'), $request->get('category', ''));
+        $packs = $this->client->shopItems(route('shop.index'), [
 
-        $categories = false;
+        ]);
 
-        if(isset($packs->categories)) {
-            $categories = $packs->categories;
+        $clusters = false;
+        $gameservers = false;
+        $filters = false;
+
+        if(isset($packs->clusters)) {
+            $clusters = $packs->clusters;
+        }
+
+        if(isset($packs->gameservers)) {
+            $gameservers = $packs->gameservers;
+        }
+
+        if(isset($packs->filters)) {
+            $filters = $packs->filters;
         }
 
         if($request->has('status') == 'success') {
@@ -49,7 +61,9 @@ class ShopController extends Controller
 
         return view('pages.v3.shop.index', [
             'packs' => $packs,
-            'categories' => $categories
+            'clusters' => $clusters,
+            'gameservers' => $gameservers,
+            'filters' => $filters
         ]);
     }
 
@@ -61,7 +75,13 @@ class ShopController extends Controller
 
         $pack = $this->client->shopItem($id);
 
-        return view('pages.v3.shop.show', [
+        if($pack->isCollection()) {
+            return view('pages.v3.shop.show-collection', [
+                'package' => $pack
+            ]);
+        }
+
+        return view('pages.v3.shop.show-single', [
             'package' => $pack
         ]);
     }
@@ -97,6 +117,6 @@ class ShopController extends Controller
             'stay'    => true
         ]);
 
-        return redirect(route('shop.index'));
+        return redirect()->back();
     }
 }

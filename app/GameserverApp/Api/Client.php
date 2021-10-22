@@ -5,6 +5,7 @@ namespace GameserverApp\Api;
 use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
+use GameserverApp\Transformers\DeliveryTransformer;
 use GameserverApp\Transformers\Forum\PostTransformer;
 use GameserverApp\Transformers\SaleTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
@@ -514,15 +515,25 @@ class Client
         return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/cancel');
     }
 
-    public function shopItems($route, $category = '')
+    public function shopItems($route, $query = [])
     {
-        $response = $this->api()->authRequest('get', 'shop?page=' . request()->get('page', null) . '&category=' . $category);
+        $query = array_merge($query, [
+            'page' => request()->get('page', null),
+            'cluster' => request()->get('cluster', null),
+            'gameserver' => request()->get('gameserver', null),
+            'filter' => request()->get('filter', null),
+            'search' => request()->get('search', null),
+        ]);
+
+        $response = $this->api()->authRequest('get', 'shop', [
+            'query' => $query
+        ], false);
 
         if(!isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
-                16,
+                12,
                 0,
                 [
                     'path' => $route
@@ -537,11 +548,14 @@ class Client
 
     public function shopItem($id)
     {
-        return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], 2));
+        return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], false));
     }
 
     public function purchaseShopItem($id, $characterId)
     {
+        $this->api()->clearCache('get', 'shop/' . $id, [], true);
+        $this->api()->clearCache('get', 'shop', [], true);
+
         return $this->api()->authRequest('post', 'shop/' . $id . '/purchase',[
             'form_params' => [
                 'character_id' => $characterId
@@ -566,6 +580,27 @@ class Client
         }
 
         $response->items = OrderTransformer::transformMultiple($response->items);
+
+        return $this->paginatedResponse($response, $route);
+    }
+
+    public function deliveries($route)
+    {
+        $response = $this->api()->authRequest('get', 'user/me/deliveries?page=' . request()->get('page', null), [], false);
+
+        if(!isset($response->items)) {
+            return new LengthAwarePaginator(
+                [],
+                0,
+                8,
+                0,
+                [
+                    'path' => $route
+                ]
+            );
+        }
+
+        $response->items = DeliveryTransformer::transformMultiple($response->items);
 
         return $this->paginatedResponse($response, $route);
     }
@@ -623,7 +658,6 @@ class Client
         $this->api()->clearCache($method, $route, $options, true);
         $this->api()->clearCache($method, $route, $options);
 
-
         $this->api()->clearCache($method, $route, [
             'query' => $options
         ], true);
@@ -631,8 +665,6 @@ class Client
         $this->api()->clearCache($method, $route, [
             'query' => $options
         ]);
-
-
     }
 
     public function clearAllCacheForSite()
@@ -783,8 +815,16 @@ class Client
             ]
         );
 
-        if(isset($response->categories)) {
-            $class->categories = $response->categories;
+        if(isset($response->clusters)) {
+            $class->clusters = $response->clusters;
+        }
+
+        if(isset($response->gameservers)) {
+            $class->gameservers = $response->gameservers;
+        }
+
+        if(isset($response->filters)) {
+            $class->filters = $response->filters;
         }
 
         return $class;

@@ -164,10 +164,10 @@ use GameserverApp\Helpers\SiteHelper;
                                 <label>Deliver to:</label>
                                 <select name="character_id">
                                     @foreach($package->characters() as $character)
-                                        <option @if($character->status) selected @endif value="{{$character->id}}">
+                                        <option @if($character->online()) selected @endif value="{{$character->id}}">
                                             {{$character->name()}} [online]
 
-                                            @if($character->status) [online] @endif
+                                            @if($character->online()) [online] @endif
 
                                             @if($character->hasServer())
                                                 ({{$character->server->name}})

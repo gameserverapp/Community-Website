@@ -96,11 +96,15 @@
                                 <label>Deliver to:</label>
                                 <select name="character_id">
                                     @foreach($item->characters() as $character)
-                                        @if($character->status)
-                                            <option selected value="{{$character->id}}">{{$character->name()}} [online]</option>
-                                        @else
-                                            <option value="{{$character->id}}">{{$character->name()}}</option>
-                                        @endif
+                                        <option @if($character->status) selected @endif value="{{$character->id}}">
+                                            {{$character->name()}} [online]
+
+                                            @if($character->status) [online] @endif
+
+                                            @if($character->hasServer())
+                                                ({{$character->server->name}})
+                                            @endif
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

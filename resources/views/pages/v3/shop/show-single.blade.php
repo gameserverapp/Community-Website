@@ -165,7 +165,7 @@ use GameserverApp\Helpers\SiteHelper;
                                 <select name="character_id">
                                     @foreach($package->characters() as $character)
                                         <option @if($character->online()) selected @endif value="{{$character->id}}">
-                                            {{$character->name()}} [online]
+                                            {{$character->name()}}
 
                                             @if($character->online()) [online] @endif
 

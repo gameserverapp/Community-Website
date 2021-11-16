@@ -67,7 +67,7 @@ class Page extends Model implements LinkableInterface
 
     public function metaDescription()
     {
-        return '';
+        return $this->description;
     }
 
     public function linkableTemplate($url, $options = [])

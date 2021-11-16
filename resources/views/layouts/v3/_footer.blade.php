@@ -43,7 +43,7 @@
                     <i>//</i>
                     <a href="http://steampowered.com/" target="_blank" rel="nofollow">Powered by Steam Login</a>
                     <i>//</i>
-                    <a href="https://www.gameserverapp.com/?camp=fe&grp={{GameserverApp\Helpers\SiteHelper::slug()}}" target="_blank" rel="FOLLOW">Free game server website</a>
+                    <a href="https://www.gameserverapp.com/features/gameserver-community-website/?camp=fe&grp={{GameserverApp\Helpers\SiteHelper::slug()}}" target="_blank" rel="FOLLOW">Free game server website</a>
 
                     @if(config('app.debug'))
                         <span>

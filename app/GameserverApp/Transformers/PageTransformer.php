@@ -21,11 +21,12 @@ class PageTransformer extends ModelTransformer implements ModelTransformerInterf
             'id'           => $args->id,
             'slug'         => $args->slug,
             'title'        => $args->title,
+            'description'  => $args->description,
             'content'      => $args->content,
             'published_at' => $args->published_at
         ];
 
-        if(isset($args->pagebuilder)) {
+        if (isset($args->pagebuilder)) {
             $data['pagebuilder'] = $args->pagebuilder;
         }
 

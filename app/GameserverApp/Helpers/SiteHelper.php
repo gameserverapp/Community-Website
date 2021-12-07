@@ -122,6 +122,11 @@ class SiteHelper extends Helper
         return self::api()->domain('favicon');
     }
 
+    public static function embedImage()
+    {
+        return self::api()->domain('embed_image');
+    }
+
     public static function theme()
     {
         if(

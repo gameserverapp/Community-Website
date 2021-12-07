@@ -2,12 +2,19 @@
 $class = [];
 
 $hasSubtitle = (isset($block['subtitle']) and !empty($block['subtitle'])) or isset($block['subtitle']);
+$hasLogo = (isset($block['logo']) and !empty($block['logo'])) or isset($block['logo']);
 $hasButton = (isset($block['button_text']) and !empty($block['button_text'])) or isset($block['button_text']);
 
 if($hasSubtitle) {
     $class[] = 'with-subtitle';
 } else {
     $class[] = 'no-subtitle';
+}
+
+if($hasLogo) {
+    $class[] = 'with-logo';
+} else {
+    $class[] = 'no-logo';
 }
 
 if($hasButton) {
@@ -19,7 +26,12 @@ if($hasButton) {
 
 <div class="big_banner">
     <div class="content-wrapper {{implode(' ', $class)}}">
-        <h1>{{$value}}</h1>
+
+        @if($hasLogo)
+            <img src="{{$block['logo']}}" alt="{{$value}}" style="width:auto; height:auto;">
+        @else
+            <h1>{{$value}}</h1>
+        @endif
 
         @if($hasSubtitle)
             <h2>{{$block['subtitle']}}</h2>

@@ -49,7 +49,7 @@ $footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' c
         @endif
     @endif
 
-    @if(isset($block['description']))
+    @if(isset($block['description']) and !empty($block['description']))
         {!! Markdown::convertToHtml($block['description']) !!}
         <hr>
     @endif

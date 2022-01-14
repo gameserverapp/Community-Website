@@ -11,7 +11,7 @@ $footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' c
 
     @if(!auth()->check())
         <div class="alert alert-warning">
-            Please <a href="{{route('auth.login')}}">login</a> to submit your application.<br>
+            Please <a href="{{route('auth.login')}}">login</a> to submit this form.<br>
             You will be requested to log into your steam account, so we can verify you own the Steam account.
         </div>
     @elseif(
@@ -29,12 +29,15 @@ $footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' c
             <div class="alert alert-warning">
                 <i class="fa fa-exclamation-triangle" style="display:inline-block" aria-hidden="true"></i>
                 <span style="display:inline-block">
-                    You must have a confirmed <a href="{{route('user.settings', auth()->user()->id)}}">e-mail address setup</a> to submit this application. <em><a href="{{route('user.settings', auth()->user()->id)}}">Privacy information</a></em>
+                    You must have a confirmed <a href="{{route('user.settings', auth()->user()->id)}}">email address setup</a> to submit this form. <em><a href="{{route('user.settings', auth()->user()->id)}}">Privacy information</a></em>
                 </span>
             </div>
-        @else
+        @elseif(
+            auth()->user()->hasEmailSetup() and
+            auth()->user()->emailConfirmed()
+        )
             <div class="alert alert-success">
-                Updates about your application will be sent to your e-mailaddress.
+                Updates are sent to your email address.
             </div>
         @endif
 

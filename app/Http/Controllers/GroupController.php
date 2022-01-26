@@ -138,6 +138,22 @@ class GroupController extends Controller
                 ];
                 break;
 
+            case 'already-used':
+
+                $alert = [
+                    'status'  => 'danger',
+                    'message' => 'This Discord server is already connected to a GSA Dashboard.'
+                ];
+                break;
+
+            case 'already-used-group':
+
+                $alert = [
+                    'status'  => 'danger',
+                    'message' => 'This Discord server is already connected to another group.'
+                ];
+                break;
+
             case 'failed':
                 $alert = [
                     'status'  => 'danger',

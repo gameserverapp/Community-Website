@@ -126,7 +126,6 @@ class UserController extends Controller
             'notify_message',
             'notify_webalert',
             'notify_forum',
-            'twitch_username'
         ]));
 
         if($response instanceof \Exception) {

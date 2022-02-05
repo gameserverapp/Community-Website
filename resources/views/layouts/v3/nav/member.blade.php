@@ -138,15 +138,10 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('shop'))
             <li>
-                <a href="{{route('shop.orders', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.orders', auth()->id()) ? 'orange' : '' }}">
-                    Orders (Deprecated)
+                <a href="{{route('user.deliveries', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.deliveries', auth()->id()) ? 'orange' : '' }}">
+                    Deliveries
                 </a>
             </li>
-                <li>
-                    <a href="{{route('user.deliveries', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.deliveries', auth()->id()) ? 'orange' : '' }}">
-                        Deliveries
-                    </a>
-                </li>
         @endif
 
         @if(SiteHelper::featureEnabled('supporter_tiers'))

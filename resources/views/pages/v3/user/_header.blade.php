@@ -166,10 +166,6 @@ use GameserverApp\Helpers\SiteHelper;
         }
 
         if (SiteHelper::featureEnabled('shop')) {
-            $right[] = [
-                'title' => 'Orders (Deprecated)',
-                'route' => route('shop.orders', $user->id)
-            ];
 
             $right[] = [
                 'title' => 'Deliveries',

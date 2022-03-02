@@ -67,7 +67,7 @@
 
 
     @if(!is_null(GameserverApp\Helpers\SiteHelper::customCss()) and !empty(GameserverApp\Helpers\SiteHelper::customCss()) )
-        {{ GameserverApp\Helpers\SiteHelper::customCss() }}
+        {!! GameserverApp\Helpers\SiteHelper::customCss() !!}
     @endif
 </style>
 

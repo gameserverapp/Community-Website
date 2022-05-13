@@ -85,6 +85,14 @@ class SupporterTierController extends Controller
                     ]);
                     break;
 
+                case 'paypal-missing-product-id':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'The PayPal product ID was not properly set. Ask the admin to update the Supporter Tier.',
+                        'stay'    => true
+                    ]);
+                    break;
+
                 case 'not-available':
                     session()->flash('alert', [
                         'status'  => 'warning',

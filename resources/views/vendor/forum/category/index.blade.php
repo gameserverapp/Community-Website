@@ -25,7 +25,7 @@
             @empty
                 <div class="alert alert-info">
                     Nothing here yet!<br>
-                    To manage the forum, you must have the "admin" role. <a href="https://help.gameserverapp.com/article/45-assign-a-role-to-a-player" target="_blank">How to assign roles &raquo;</a>
+                    To manage the forum, you must link your Player account to your dashboard account. <a href="https://help.gameserverapp.com/article/248-link-a-player-to-an-admin" target="_blank">How to link a Player to an Addition admin &raquo;</a>
                 </div>
             @endforelse
         </div>

@@ -15,7 +15,7 @@ class PostPolicy
      */
     public function edit($user, Post $post)
     {
-        return $user->id === $post->author->id or $user->role('Admin');
+        return $user->id === $post->author->id or $user->hasPermission('manage_forum');
     }
 
     /**

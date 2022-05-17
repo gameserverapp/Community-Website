@@ -14,13 +14,6 @@ use Illuminate\Auth\Authenticatable;
 
 class User extends Model implements LinkableInterface, AuthenticatableContract, AuthorizableContract
 {
-    CONST ROLE_DISABLED = 0;
-    CONST ROLE_USER = 1;
-    CONST ROLE_VIP = 2;
-    CONST ROLE_MODERATOR = 3;
-    CONST ROLE_ADMIN = 4;
-    CONST ROLE_SUPERADMIN = 5;
-
     use Linkable, Authenticatable, Authorizable;
 
     public function name($limit = false)
@@ -148,7 +141,6 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->twitch['oauth_redirect'];
     }
 
-
     public function isStreaming()
     {
         return $this->twitch['streaming'];
@@ -210,46 +202,16 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $characters->count() > 0;
     }
 
-    public function displayRoleLabel()
+    public function hasPermission($key)
     {
-        $output = '';
-
-        if ($this->role('Admin') or $this->role('Super Admin')) {
-            $output .= '<span class="label label-theme">Admin</span>';
+        if(
+            !isset($this->permissions) or
+            !isset($this->permissions->$key)
+        ) {
+            return false;
         }
 
-        if ($this->donated()) {
-            $output .= '<a href="' . route('supporter-tier.index') . '" class="label label-theme alternative">Supporter <3</a>';
-        }
-
-        return $output;
-    }
-
-    public function role($role)
-    {
-        if (is_integer($role)) {
-            return $this->role >= $role;
-        }
-
-        return $this->role >= $this->availableRoles($role);
-    }
-
-    private function availableRoles($key = false)
-    {
-        $array = [
-            'Disabled'    => self::ROLE_DISABLED,
-            'User'        => self::ROLE_USER,
-            'VIP'         => self::ROLE_VIP,
-            'Moderator'   => self::ROLE_MODERATOR,
-            'Admin'       => self::ROLE_ADMIN,
-            'Super Admin' => self::ROLE_SUPERADMIN
-        ];
-
-        if ($key) {
-            return $array[$key];
-        }
-
-        return $array;
+        return $this->permissions->$key;
     }
 
     public function unreadMessagesCount()
@@ -260,12 +222,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
     public function canSendMessage()
     {
         if(!SiteHelper::featureEnabled('messages_send')) {
-
-            if($this->role(self::ROLE_MODERATOR)) {
-                return true;
-            }
-
-            return false;
+            return $this->hasPermission('send_message');
         }
 
         if($this->banned()) {

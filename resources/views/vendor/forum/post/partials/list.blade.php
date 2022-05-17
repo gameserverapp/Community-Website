@@ -34,10 +34,6 @@ use GameserverApp\Helpers\SiteHelper;
                 </h5>
             </div>
 
-            <div class="role">
-                {!! $post->author->displayRoleLabel() !!}
-            </div>
-
             <div class="meta">
                 @if($post->author->banned())
                     <div class="label label-default">Banned</div>

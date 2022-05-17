@@ -11,7 +11,7 @@ class ForumPolicy
      */
     public function createCategories($user)
     {
-        return $user->role('Admin');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -34,7 +34,7 @@ class ForumPolicy
      */
     public function moveCategories($user)
     {
-        return $user->role('Admin');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -45,7 +45,7 @@ class ForumPolicy
      */
     public function renameCategories($user)
     {
-        return $user->role('Admin');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -67,7 +67,7 @@ class ForumPolicy
      */
     public function viewTrashedThreads($user)
     {
-        return $user->role('Moderator');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -78,6 +78,6 @@ class ForumPolicy
      */
     public function viewTrashedPosts($user)
     {
-        return $user->role('Moderator');
+        return $user->hasPermission('manage_forum');
     }
 }

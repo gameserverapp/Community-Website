@@ -3,8 +3,6 @@
     <div class="panel-heading">
         <h3 class="panel-title">
             {{$character->name()}}
-
-            {!! $character->user->displayRoleLabel() !!}
         </h3>
     </div>
     <table class="table">

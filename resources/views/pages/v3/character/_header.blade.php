@@ -67,16 +67,6 @@ use GameserverApp\Helpers\SiteHelper;
 
 
                     </div>
-
-                    <div class="roles">
-
-                        <?php
-                        $roles = $character->user->displayRoleLabel()
-                        ?>
-                        @if(!empty($roles))
-                            {!! $roles !!}
-                        @endif
-                    </div>
                 </div>
             </div>
         </div>

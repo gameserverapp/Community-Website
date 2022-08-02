@@ -4,9 +4,6 @@ use GameserverApp\Helpers\SiteHelper;
 
 @component('partials.v3.frame', ['type' => 'basic'])
     <article class="character-card" itemscope itemtype="http://schema.org/Person">
-        <div class="tag">
-            {!! $character->user->displayRoleLabel() !!}
-        </div>
         <div class="row">
 
             <div class="col-md-5 character text-center">

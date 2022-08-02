@@ -15,7 +15,7 @@ class ThreadPolicy
      */
     public function deletePosts($user, Thread $thread)
     {
-        return $user->role('Moderator');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -27,7 +27,7 @@ class ThreadPolicy
      */
     public function rename($user, Thread $thread)
     {
-        return $user->id === $thread->firstPost->author->id or $user->role('Moderator');
+        return $user->id === $thread->firstPost->author->id or $user->hasPermission('manage_forum');
     }
 
     /**
@@ -39,7 +39,7 @@ class ThreadPolicy
      */
     public function reply($user, Thread $thread)
     {
-        return !$thread->locked or $user->role('Moderator');
+        return !$thread->locked or $user->hasPermission('manage_forum');
     }
 
     /**

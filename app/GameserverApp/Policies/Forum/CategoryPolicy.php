@@ -15,7 +15,7 @@ class CategoryPolicy
      */
     public function createThreads($user, Category $category)
     {
-        return $user->role('User');
+        return !$user->banned();
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoryPolicy
      */
     public function deleteThreads($user, Category $category)
     {
-        return $user->role('Moderator');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -55,7 +55,7 @@ class CategoryPolicy
      */
     public function enableThreads($user, Category $category)
     {
-        return $user->role('Moderator');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryPolicy
      */
     public function moveThreadsFrom($user, Category $category)
     {
-        return $user->role('Moderator');
+        return $user->hasPermission('manage_forum');
     }
 
     /**
@@ -79,7 +79,7 @@ class CategoryPolicy
      */
     public function moveThreadsTo($user, Category $category)
     {
-        return  $user->role('Moderator');
+        return  $user->hasPermission('manage_forum');
     }
 
     /**
@@ -91,7 +91,7 @@ class CategoryPolicy
      */
     public function lockThreads($user, Category $category)
     {
-        return  $user->role('Moderator');
+        return  $user->hasPermission('manage_forum');
     }
 
     /**
@@ -103,7 +103,7 @@ class CategoryPolicy
      */
     public function pinThreads($user, Category $category)
     {
-        return  $user->role('Moderator');
+        return  $user->hasPermission('manage_forum');
     }
 
     /**
@@ -115,7 +115,7 @@ class CategoryPolicy
      */
     public function view($user, Category $category)
     {
-        return  $user->role('Moderator');
+        return  $user->hasPermission('manage_forum');
     }
 
     /**
@@ -127,6 +127,6 @@ class CategoryPolicy
      */
     public function delete($user, Category $category)
     {
-        return  $user->role('Admin');
+        return  $user->hasPermission('manage_forum');
     }
 }

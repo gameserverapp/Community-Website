@@ -25,7 +25,7 @@
             @empty
                 <div class="alert alert-info">
                     Nothing here yet!<br>
-                    To manage the forum, you must link your Player account to your dashboard account. <a href="https://help.gameserverapp.com/article/248-link-a-player-to-an-admin" target="_blank">How to link a Player to an Addition admin &raquo;</a>
+                    To manage the forum, you must have the "Manage forum" permission. <a href="https://help.gameserverapp.com/article/45-grant-forum-permissions-to-additional-admin" target="_blank">Learn how to do this &raquo;</a>
                 </div>
             @endforelse
         </div>

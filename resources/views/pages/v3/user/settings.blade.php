@@ -109,6 +109,8 @@
 
             @include('pages.v3.user._twitch')
 
+            @include('pages.v3.user._patreon')
+
             @include('pages.v3.user._kick')
 
         </div>

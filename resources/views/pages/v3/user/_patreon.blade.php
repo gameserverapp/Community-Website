@@ -1,6 +1,6 @@
 @component('partials.v3.frame', ['title' => 'Connect your Patreon account'])
     <p>
-        Connect your Patreon account and receive benefits for your pledge.
+        Connect your Patreon account to receive benefits for your pledge.
     </p>
 
     @if( auth()->user()->hasPatreonSetup() )

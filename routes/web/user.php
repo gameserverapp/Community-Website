@@ -208,6 +208,33 @@ Route::group([
     });
 
     Route::group([
+        'prefix' => 'patreon'
+    ], function ($router) {
+
+        Route::get('/connect', [
+            'as'   => 'user.patreon.connect',
+            'uses' => 'PatreonController@connect',
+            'middleware' => 'auth'
+        ]);
+
+        Route::post('/disconnect', [
+            'as'   => 'user.patreon.disconnect',
+            'uses' => 'PatreonController@disconnect',
+            'middleware' => 'auth'
+        ]);
+
+        Route::get('/success', [
+            'as'   => 'user.patreon.success',
+            'uses' => 'PatreonController@success'
+        ]);
+
+        Route::get('/failed', [
+            'as'   => 'user.patreon.failed',
+            'uses' => 'PatreonController@failed'
+        ]);
+    });
+
+    Route::group([
         'prefix' => 'forum',
         'namespace' => 'Forum'
     ], function ($router) {

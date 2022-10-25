@@ -165,6 +165,27 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->discord['oauth_redirect'];
     }
 
+
+
+    public function hasPatreonSetup()
+    {
+        return ! is_null($this->patreon['username']);
+    }
+
+    public function patreonUsername()
+    {
+        return $this->patreon['username'];
+    }
+
+    public function patreonOAuthRedirect()
+    {
+        if(!isset($this->patreon['oauth_redirect'])) {
+            return false;
+        }
+
+        return $this->patreon['oauth_redirect'];
+    }
+
     public function donated()
     {
         return $this->donated;

@@ -66,6 +66,16 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             }
         }
 
+        if (isset($args->patreon)) {
+            $data['patreon'] = [
+                'username' => $args->patreon->username,
+            ];
+
+            if (isset($args->patreon->oauth_redirect)) {
+                $data['patreon']['oauth_redirect'] = $args->patreon->oauth_redirect;
+            }
+        }
+
         if (isset($args->unread_messages)) {
             $data['unread_messages'] = $args->unread_messages;
         }

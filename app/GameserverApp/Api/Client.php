@@ -109,6 +109,11 @@ class Client
         return $this->api()->authRequest('post', 'user/me/discord/disconnect');
     }
 
+    public function patreonDisconnect()
+    {
+        return $this->api()->authRequest('post', 'user/me/patreon/disconnect');
+    }
+
     public function twitchSync()
     {
         return $this->api()->authRequest('post', 'user/me/twitch/sync');

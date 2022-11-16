@@ -27,6 +27,7 @@ class SubscriptionTransformer extends ModelTransformer implements ModelTransform
             'requires_character' => $args->requires_character,
             'character'          => $args->character ? CharacterTransformer::transform($args->character) : false,
             'status'             => $args->status,
+            'gateway'            => $args->gateway,
             'created_at'         => $args->created_at,
             'expires_at'         => $args->expires_at
         ];

@@ -31,6 +31,14 @@
                 </tr>
                 <tr>
                     <td>
+                        Processor
+                    </td>
+                    <td>
+                        {{$subscription->gateway}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Started
                     </td>
                     <td>
@@ -39,7 +47,10 @@
                 </tr>
             </table>
 
-            @if(!$subscription->expired())
+            @if(
+                !$subscription->isPatreon() and
+                !$subscription->expired()
+            )
                 <form method="post" action="{{route('subscription.cancel', ['uuid' => auth()->id(), 'id' => $subscription->id()])}}">
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-xs btn-danger">Cancel subscription</button>
@@ -49,7 +60,10 @@
 
         <div class="col-md-6">
             <h4>Settings</h4>
-            @if($subscription->expired())
+            @if(
+                !$subscription->isPatreon() and
+                $subscription->expired()
+            )
                 <div class="alert alert-warning">
                     This subscription has been cancelled and can not longer be changed.
                 </div>
@@ -62,7 +76,7 @@
                         </div>
                     @else
                         <div class="alert alert-info">
-                            You can determine which character should receive the contents of this subscription. Certain subscriptions can only be purchased on specific clusters, which also limits which character(s) you can choose. You can switch characters at any time.
+                            You can determine which character should receive the contents of this subscription. Certain subscriptions can only deliver on specific clusters, which also limits which character(s) you can choose. You can switch characters at any time.
                         </div>
                     @endif
 

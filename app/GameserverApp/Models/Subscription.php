@@ -56,4 +56,14 @@ class Subscription extends Model
 
         return $this->available_characters;
     }
+
+    public function gateway()
+    {
+        return $this->gateway;
+    }
+
+    public function isPatreon()
+    {
+        return $this->gateway() == 'Patreon';
+    }
 }

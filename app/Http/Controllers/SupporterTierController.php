@@ -96,7 +96,7 @@ class SupporterTierController extends Controller
                 case 'not-available':
                     session()->flash('alert', [
                         'status'  => 'warning',
-                        'message' => 'Subscriptions are currently not supported.',
+                        'message' => 'This feature is currently not supported.',
                         'stay'    => true
                     ]);
                     break;

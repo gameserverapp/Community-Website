@@ -38,7 +38,7 @@ class SupportTier extends Model implements LinkableInterface
             $suffix = ' p/mo';
         }
 
-        return $this->displayCurrency() . '' . $this->totalPrice() . $suffix;
+        return $this->displayCurrency() . ' ' . $this->totalPrice() . $suffix;
     }
 
     public function requiresDiscordSetup()
@@ -66,6 +66,21 @@ class SupportTier extends Model implements LinkableInterface
         return $this->cluster;
     }
 
+    public function gateway()
+    {
+        return $this->gateway;
+    }
+
+    public function isPayPal()
+    {
+        return $this->gateway() == 'PayPal';
+    }
+
+    public function isStripe()
+    {
+        return $this->gateway() == 'Stripe';
+    }
+
     public function displayCurrency()
     {
         switch($this->currency()) {
@@ -83,6 +98,9 @@ class SupportTier extends Model implements LinkableInterface
 
             case 'CAD':
                 return 'C$';
+
+            case 'PLN':
+                return 'zł';
 
             default:
                 return '$';

@@ -107,38 +107,51 @@
                         <div class="row">
                             <div class="col-md-8 center-block">
                                 @component('partials.v3.frame', ['type' => 'basic'])
-                                <h4>Customer support</h4>
-                                <p>
-                                    You can easily contact the merchant via your PayPal transaction overview. There you can find a "contact merchant" form.
-                                </p>
-                                <hr>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h4>Security</h4>
+                                    @if($package->isStripe())
+
+                                        <h4>Payments via Stripe</h4>
                                         <p>
-                                            Before proceeding to PayPal, your STEAM identity will be verified.
+                                            We use Stripe to process payments.
                                         </p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <!-- PayPal Logo -->
-                                        <br>
-                                        <table style="margin-top:0px; margin-bottom:-20px;" border="0" cellpadding="10" cellspacing="0"
-                                               align="center">
-                                            <tr>
-                                                <td align="center"></td>
-                                            </tr>
-                                            <tr>
-                                                <td align="center"><a href="https://www.paypal.com/uk/webapps/mpp/paypal-popup"
-                                                                      title="How PayPal Works"
-                                                                      onclick="javascript:window.open('https://www.paypal.com/uk/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img
-                                                                src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"
-                                                                width="200" border="0" alt="PayPal Acceptance Mark"></a></td>
-                                            </tr>
-                                        </table>
-                                        <!-- PayPal Logo -->
-                                    </div>
-                                </div>
+                                        <p>
+                                            Before proceeding to Stripe, your Steam identity will be verified.
+                                        </p>
+                                    @elseif($package->isPayPal())
+
+                                        <h4>Customer support</h4>
+                                        <p>
+                                            You can easily contact the merchant via your PayPal transaction overview. There you can find a "contact merchant" form.
+                                        </p>
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Security</h4>
+                                                <p>
+                                                    Before proceeding to PayPal, your Steam identity will be verified.
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- PayPal Logo -->
+                                                <br>
+                                                <table style="margin-top:0px; margin-bottom:-20px;" border="0" cellpadding="10" cellspacing="0"
+                                                       align="center">
+                                                    <tr>
+                                                        <td align="center"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center"><a href="https://www.paypal.com/uk/webapps/mpp/paypal-popup"
+                                                                              title="How PayPal Works"
+                                                                              onclick="javascript:window.open('https://www.paypal.com/uk/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img
+                                                                        src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"
+                                                                        width="200" border="0" alt="PayPal Acceptance Mark"></a></td>
+                                                    </tr>
+                                                </table>
+                                                <!-- PayPal Logo -->
+                                            </div>
+                                        </div>
+                                    @endif
 
                                 @endcomponent
                             </div>

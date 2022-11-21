@@ -71,6 +71,9 @@ class Token extends Model implements LinkableInterface
             case 'CAD':
                 return 'C$';
 
+            case 'PLN':
+                return 'zł';
+
             default:
                 return '$';
         }

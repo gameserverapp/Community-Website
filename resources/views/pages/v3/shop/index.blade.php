@@ -4,14 +4,14 @@ use GameserverApp\Helpers\SiteHelper;
 
 @extends('layouts.v3.default', [
     'page' => [
-        'title' => translate('token_shop', 'Token shop'),
+        'title' => translate('reward_shop', 'Reward shop'),
         'description' => 'Your orders are delivered in real-time.',
         'class' => 'shop'
     ],
 
     'breadcrumbs' => [
         [
-            'title' => translate('token_shop', 'Token shop')
+            'title' => translate('reward_shop', 'Reward shop')
         ]
     ]
 ])
@@ -24,7 +24,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         <div class="row">
             <div class="col-sm-8 center-block">
-                <h1 class="title main-title">{{translate('token_shop', 'Token shop')}}</h1>
+                <h1 class="title main-title">{{translate('reward_shop', 'Reward shop')}}</h1>
             </div>
         </div>
 

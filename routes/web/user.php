@@ -104,7 +104,6 @@ Route::group([
             'as'   => 'message.show',
             'uses' => 'MessageController@show'
         ]);
-
     });
 
     Route::group([
@@ -115,6 +114,16 @@ Route::group([
         Route::get('/', [
             'as'   => 'token.index',
             'uses' => 'TokenController@index'
+        ]);
+
+        Route::get('/send', [
+            'as'   => 'token.send',
+            'uses' => 'TokenController@send'
+        ]);
+
+        Route::post('/send', [
+            'as'   => 'token.send-submit',
+            'uses' => 'TokenController@sendSubmit'
         ]);
 
     });

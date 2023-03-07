@@ -240,6 +240,11 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->unread_messages;
     }
 
+    public function canSendTokens()
+    {
+        return SiteHelper::featureEnabled('send_tokens');
+    }
+
     public function canSendMessage()
     {
         if(!SiteHelper::featureEnabled('messages_send')) {

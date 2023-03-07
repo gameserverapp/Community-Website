@@ -624,8 +624,8 @@ class Client
 
     public function sendTokens($uuid, $amount, $message)
     {
-
         $this->api()->clearCache('get', 'user/me/transactions', [], true);
+        $this->api()->clearCache('get', 'user/me', [], true);
 
         return $this->api()->authRequest('post', 'user/' . $uuid . '/send_tokens', [
             'form_params' => [

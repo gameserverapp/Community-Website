@@ -1,7 +1,7 @@
 @extends('layouts.v3.default', [
     'page' => [
         'title' => 'Send tokens to player - ' . $user->name(),
-        'description' => '',
+        'description' => 'Send tokens to fellow players.',
         'class' => 'user-single'
     ]
 ])
@@ -13,7 +13,7 @@
         <div class="col-md-8 center-block">
 
             @component('partials.v3.frame', ['title' => $title, 'type' => 'basic'])
-                <form method="post" action="{{route('token.send', $target->id)}}">
+                <form method="post" action="{{route('token.send', $user->id)}}">
                     {{csrf_field()}}
 
                     <div class="form-group">

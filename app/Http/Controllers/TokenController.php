@@ -42,12 +42,11 @@ class TokenController extends Controller
             return view('pages.v3.user.disabled');
         }
 
-        $target = $this->client->user($uuid);
+        $user = $this->client->user($uuid);
 
         return view('pages.v3.user.send-tokens', [
-            'target' => $target,
-            'user' => auth()->user(),
-            'title' => 'Send tokens to ' . $target->name
+            'user' => $user,
+            'title' => 'Send tokens to ' . $user->name
         ]);
     }
 

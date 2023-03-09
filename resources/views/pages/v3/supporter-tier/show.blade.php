@@ -23,10 +23,20 @@
 
         <div class="col-md-8 center-block">
             <h2 class="text-center main-title">
+
+
+                @if($package->hasLabel())
+                    <div class="label label-theme top-left">
+                        {{$package->label()}}
+                    </div>
+                    <br>
+                @endif
+
                 <img src="{{$package->image()}}"
                      alt="{{$package->image()}}">
                 {{$package->name()}}
             </h2>
+
             <div class="row">
                 <div class="col-md-12">
 
@@ -56,16 +66,40 @@
 
                         {!! Markdown::convertToHtml($package->description()) !!}
 
-                        <p>
-                            <strong>
-                                @if($package->isSubscription())
-                                    Costs:
-                                @else
-                                    Total:
-                                @endif
+                            @if($package->discount())
+                                <br>
+                                <h4>
+                                    @if($package->isSubscription())
+                                        Costs
+                                    @else
+                                        Price
+                                    @endif
 
-                                {{$package->displayTotalPrice()}}</strong>
-                        </p>
+                                    @if($package->hasLabel())
+                                        <div class="label label-theme top-left">
+                                            {{$package->label()}}
+                                        </div>
+                                    @endif
+                                </h4>
+                                <p>
+                                    <strong>
+                                        {!! $package->displayTotalPrice() !!}
+                                    </strong>
+                                </p>
+                            @else
+                                <p>
+                                    <strong>
+                                        @if($package->isSubscription())
+                                            Costs:
+                                        @else
+                                            Total:
+                                        @endif
+
+                                        {!! $package->displayTotalPrice() !!}
+                                    </strong>
+                                </p>
+                            @endif
+
                     @endcomponent
 
                     @if(auth()->check())

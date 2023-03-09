@@ -25,13 +25,6 @@
                         {{$item->name()}}
                     </span>
                 </h2>
-                @if($item->tokenPrice() > 0)
-                    <p>
-                        <strong>
-                            Price: {{$item->displayTokenPrice()}}
-                        </strong>
-                    </p>
-                @endif
 
             </div>
         </div>
@@ -60,7 +53,28 @@
             @endif
         </div>
         <div class="col-lg-4">
-            <br>
+
+
+
+            @if($item->tokenPrice() > 0)
+                <div class="text-center">
+                    <h4>
+                        Price
+                        @if($item->hasLabel())
+                            <div class="label label-theme top-left">
+                                {{$item->label()}}
+                            </div>
+                        @endif
+                    </h4>
+
+                    <p>
+                        <strong>
+                            {!! $item->displayTokenPrice() !!}
+                        </strong>
+                    </p>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-12 col-sm-6 col-xs-12">
                     <?php

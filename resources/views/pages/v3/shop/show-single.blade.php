@@ -70,7 +70,14 @@ use GameserverApp\Helpers\SiteHelper;
                     @if($package->tokenPrice() > 0)
                         <p>
                             <strong>
-                                Price: {{$package->displayTokenPrice()}}
+
+                                @if($package->discount())
+                                    Price<br>
+                                    {!! $package->displayTokenPrice() !!}
+                                @else
+                                    Price: {!! $package->displayTokenPrice() !!}
+                                @endif
+
                             </strong>
                         </p>
                     @endif

@@ -30,11 +30,6 @@ class OAuthApi
         ]);
     }
 
-    public static function isAuth()
-    {
-        return self::hasAuthCookies() and self::user();
-    }
-
     public static function user()
     {
         if( !$headers['Authorization'] = self::authHeader()) {
@@ -79,7 +74,10 @@ class OAuthApi
 
     public static function authRequest($method, $uri, $options = [], $cacheTtl = true)
     {
-        $cacheKey = self::cacheKey([[$method, $uri, $options], self::getHeaders(true)]);
+        $cacheKey = self::cacheKey([
+            [$method, $uri, $options],
+            self::getHeaders(true)
+        ]);
 
         if($cacheTtl === true) {
             $cacheTtl = config('gameserverapp.cache.default_cache_ttl');
@@ -97,14 +95,27 @@ class OAuthApi
 
     public static function guestRequest($method, $uri, $options = [], $cacheTtl = true)
     {
-        $cacheKey = self::cacheKey([[$method, $uri, $options], self::getHeaders(false)]);
+        $cacheKey = self::cacheKey([
+            [$method, $uri, $options],
+            self::getHeaders()
+        ]);
+
+//        if(!in_array($uri, [
+//            'domain/settings'
+//        ])) {
+//            dd(
+//                [$method, $uri, $options],
+//                self::getHeaders()
+//            );
+//        }
+
 
         if($cacheTtl === true) {
             $cacheTtl = config('gameserverapp.cache.default_cache_ttl');
         }
 
         return self::request(
-            self::client(false),
+            self::client(),
             $method,
             $uri,
             $options,
@@ -173,7 +184,10 @@ class OAuthApi
 
     public static function clearCache($method, $uri, $options = [], $auth = false)
     {
-        $cacheKey = self::cacheKey([[$method, $uri, $options], self::getHeaders($auth)]);
+        $cacheKey = self::cacheKey([
+            [$method, $uri, $options],
+            self::getHeaders($auth)
+        ]);
 
         return self::cache()->forget($cacheKey);
     }
@@ -190,14 +204,17 @@ class OAuthApi
         );
     }
     
-    public static function getHeaders($auth = false)
+    public static function getHeaders($auth = null)
     {
         $headers = [
-            'User-Agent'     => 'GameserverApp-Frontend/1.0',
+            'User-Agent'     => 'GameServerApp-Frontend/1.1',
             'Accept'         => 'application/json',
         ];
 
-        if ($auth and self::hasAuthCookies()) {
+        if (
+            (is_null($auth) and self::hasAuthCookies()) or
+            $auth
+        ) {
             $headers['Authorization'] = self::authHeader();
         }
 
@@ -216,7 +233,7 @@ class OAuthApi
         return self::domain();
     }
 
-    private static function client($auth = false)
+    private static function client($auth = null)
     {
         $headers = self::getHeaders($auth);
 

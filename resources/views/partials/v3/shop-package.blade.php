@@ -22,6 +22,7 @@
             <h4 class="title"><span>{{$item->name()}}</span></h4>
 
             @if($item->isSingle())
+
                 <?php
                 $percentage = calcPercentage($item->limit(), $item->usage());
                 ?>
@@ -39,6 +40,10 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="costs">
+                    <span>{!! $item->displayTokenPrice() !!}</span>
+                </div>
             @elseif($item->isCollection())
                 <div class="collection">
                     <div class="label label-theme">Collection</div>
@@ -51,7 +56,7 @@
         $text = translate('details', 'Details');
 
         if($item->isCollection()) {
-            $text = translate('choose', 'Choose');
+            $text = translate('see_items', 'See items');
         }
         ?>
         @include('partials.v3.button', [

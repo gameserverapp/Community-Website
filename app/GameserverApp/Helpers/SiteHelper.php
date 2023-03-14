@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Cookie;
 class SiteHelper extends Helper
 {
 
-
     public static function translation($key, $default = '')
     {
         $translations = self::api()->domain('translate');
@@ -125,6 +124,11 @@ class SiteHelper extends Helper
     public static function embedImage()
     {
         return self::api()->domain('embed_image');
+    }
+
+    public static function navAlert()
+    {
+        return self::api()->domain('nav_alert');
     }
 
     public static function theme()

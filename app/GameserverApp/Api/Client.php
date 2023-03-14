@@ -439,12 +439,26 @@ class Client
 
     public function supporterTier($id)
     {
-        return SupportTierTransformer::transform($this->api()->guestRequest('get', 'supporter-tier/' . $id));
+        $options = [];
+
+        if(request()->has('coupon')) {
+            $options['query']['coupon'] = request('coupon');
+        }
+
+        return SupportTierTransformer::transform(
+            $this->api()->guestRequest('get', 'supporter-tier/' . $id, $options, false)
+        );
     }
 
     public function allSupporterTiers($route, $page = 1)
     {
-        $response = $this->api()->guestRequest('get', 'supporter-tier?page=' . $page);
+        $options = [];
+
+        if(request()->has('coupon')) {
+            $options['query']['coupon'] = request('coupon');
+        }
+
+        $response = $this->api()->guestRequest('get', 'supporter-tier?page=' . $page, $options, false);
 
         if (! isset($response->items)) {
             return new LengthAwarePaginator(
@@ -487,8 +501,12 @@ class Client
 
     public function allUserSubscriptions($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/subscriptions?page=' . request()->get('page', null), [],
-            false);
+        $response = $this->api()->authRequest(
+            'get',
+            'user/me/subscriptions?page=' . request()->get('page', null),
+            [],
+            false
+        );
 
         if (! isset($response->items)) {
             return new LengthAwarePaginator(

@@ -2,7 +2,7 @@
     'page' => [
         'title' => $package->name(),
         'description' => $package->summary(),
-        'class' => 'package-single',
+        'class' => 'package-single supporter-tier',
         'attributes' => ''
     ],
 
@@ -66,39 +66,60 @@
 
                         {!! Markdown::convertToHtml($package->description()) !!}
 
-                            @if($package->discount())
-                                <br>
-                                <h4>
-                                    @if($package->isSubscription())
-                                        Costs
-                                    @else
-                                        Price
-                                    @endif
 
-                                    @if($package->hasLabel())
-                                        <div class="label label-theme top-left">
-                                            {{$package->label()}}
-                                        </div>
-                                    @endif
-                                </h4>
-                                <p>
-                                    <strong>
-                                        {!! $package->displayTotalPrice() !!}
-                                    </strong>
-                                </p>
-                            @else
-                                <p>
-                                    <strong>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6">
+
+                                @if($package->discount())
+                                    <h4>
                                         @if($package->isSubscription())
-                                            Costs:
+                                            Costs
                                         @else
-                                            Total:
+                                            Price
                                         @endif
 
-                                        {!! $package->displayTotalPrice() !!}
-                                    </strong>
-                                </p>
-                            @endif
+                                        @if($package->hasLabel())
+                                            <div class="label label-theme top-left">
+                                                {{$package->label()}}
+                                            </div>
+                                        @endif
+                                    </h4>
+                                    <p>
+                                        <strong>
+                                            {!! $package->displayTotalPrice() !!}
+                                        </strong>
+                                    </p>
+                                @else
+                                    <p>
+                                        <strong>
+                                            @if($package->isSubscription())
+                                                Costs:
+                                            @else
+                                                Total:
+                                            @endif
+
+                                            {!! $package->displayTotalPrice() !!}
+                                        </strong>
+                                    </p>
+                                @endif
+
+                            </div>
+                            <div class="col-lg-4  col-md-6 coupon">
+
+                                <h4>Discount coupon:</h4>
+                                <form method="get">
+                                    <div class="input-group">
+                                        <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount coupon">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">Apply</button>
+                                        </span>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
 
                     @endcomponent
 

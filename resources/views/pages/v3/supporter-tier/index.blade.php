@@ -32,6 +32,10 @@
                 </span>
             </div>
         </form>
+
+        <div class="hidden-desktop">
+            <br>
+        </div>
     </div>
 </div>
 <div class="row">

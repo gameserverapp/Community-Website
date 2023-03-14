@@ -108,10 +108,10 @@
                             </div>
                             <div class="col-lg-4  col-md-6 coupon">
 
-                                <h4>Discount coupon:</h4>
+                                <h4>Discount code:</h4>
                                 <form method="get">
                                     <div class="input-group">
-                                        <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount coupon">
+                                        <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount code">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="submit">Apply</button>
                                         </span>
@@ -125,6 +125,10 @@
 
                     @if(auth()->check())
                         <form method="get" action="{{$package->orderUrl()}}">
+
+                            @if(request()->has('coupon'))
+                                <input type="hidden" name="coupon" value="{{request('coupon')}}">
+                            @endif
 
                             @if($package->isSubscription())
                                 <div class="alert alert-success">

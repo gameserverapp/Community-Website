@@ -39,7 +39,7 @@ source ~/.bashrc
 hash -r nvm
 
 apt-get update -y
-apt install zip unzip python2.7  php-mbstring php-xml redis-server -y;
+apt install zip unzip python2.7  php7.2-mbstring php7.2-xml redis-server -y;
 ln -s /usr/bin/python2.7 /usr/bin/python
 
 rm -rf /var/www/*;
@@ -48,8 +48,8 @@ git clone https://github.com/GameserverApp/Community-Website.git /var/www;
 mkdir -p /var/www/public/js
 touch /var/www/public/js/app.js
 
-composer install -d /var/www;
-npm --prefix /var/www install;
+composer install  --no-interaction --no-dev --prefer-dist -d /var/www;
+npm --prefix /var/www ci;
 npm --prefix /var/www run production;
 
 chown -R www-data:www-data /var/www

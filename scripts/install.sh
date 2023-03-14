@@ -18,12 +18,17 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash;
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#nvm install 6.17.1;
-nvm install 11.15.0;
+
+nvm install 14.19.0;
 
 echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.bash_profile
 
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+
+mv composer.phar /usr/local/bin/composer
 
 touch install-step-2.sh;
 
@@ -33,7 +38,9 @@ source ~/.bashrc
 
 hash -r nvm
 
-apt install composer zip unzip php-mbstring php-dom redis-server -y;
+apt-get update -y
+apt install zip unzip python2.7  php-mbstring php-xml redis-server -y;
+ln -s /usr/bin/python2.7 /usr/bin/python
 
 rm -rf /var/www/*;
 git clone https://github.com/GameserverApp/Community-Website.git /var/www;

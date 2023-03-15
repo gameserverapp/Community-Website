@@ -2,7 +2,7 @@
     'page' => [
         'title' => $package->name(),
         'description' => $package->summary(),
-        'class' => 'package-single',
+        'class' => 'package-single supporter-tier',
         'attributes' => ''
     ],
 
@@ -23,10 +23,20 @@
 
         <div class="col-md-8 center-block">
             <h2 class="text-center main-title">
+
+
+                @if($package->hasLabel())
+                    <div class="label label-theme top-left">
+                        {{$package->label()}}
+                    </div>
+                    <br>
+                @endif
+
                 <img src="{{$package->image()}}"
                      alt="{{$package->image()}}">
                 {{$package->name()}}
             </h2>
+
             <div class="row">
                 <div class="col-md-12">
 
@@ -56,20 +66,69 @@
 
                         {!! Markdown::convertToHtml($package->description()) !!}
 
-                        <p>
-                            <strong>
-                                @if($package->isSubscription())
-                                    Costs:
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6">
+
+                                @if($package->discount())
+                                    <h4>
+                                        @if($package->isSubscription())
+                                            Costs
+                                        @else
+                                            Price
+                                        @endif
+
+                                        @if($package->hasLabel())
+                                            <div class="label label-theme top-left">
+                                                {{$package->label()}}
+                                            </div>
+                                        @endif
+                                    </h4>
+                                    <p>
+                                        <strong>
+                                            {!! $package->displayTotalPrice() !!}
+                                        </strong>
+                                    </p>
                                 @else
-                                    Total:
+                                    <p>
+                                        <strong>
+                                            @if($package->isSubscription())
+                                                Costs:
+                                            @else
+                                                Total:
+                                            @endif
+
+                                            {!! $package->displayTotalPrice() !!}
+                                        </strong>
+                                    </p>
                                 @endif
 
-                                {{$package->displayTotalPrice()}}</strong>
-                        </p>
+                            </div>
+                            <div class="col-lg-4  col-md-6 coupon">
+
+                                <h4>Discount code:</h4>
+                                <form method="get">
+                                    <div class="input-group">
+                                        <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount code">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">Apply</button>
+                                        </span>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
                     @endcomponent
 
                     @if(auth()->check())
                         <form method="get" action="{{$package->orderUrl()}}">
+
+                            @if(request()->has('coupon'))
+                                <input type="hidden" name="coupon" value="{{request('coupon')}}">
+                            @endif
 
                             @if($package->isSubscription())
                                 <div class="alert alert-success">

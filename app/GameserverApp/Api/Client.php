@@ -44,10 +44,10 @@ class Client
         try {
             $response = $this->api()->authRequest('post', 'user/me/forum/subscribe/' . $threadId);
 
-            if(isset($response->data->success) and $response->data->success == true) {
+            if (isset($response->data->success) and $response->data->success == true) {
                 return true;
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
 
@@ -59,10 +59,10 @@ class Client
         try {
             $response = $this->api()->authRequest('post', 'user/me/forum/unsubscribe/' . $threadId);
 
-            if(isset($response->data->success) and $response->data->success == true) {
+            if (isset($response->data->success) and $response->data->success == true) {
                 return true;
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
 
@@ -74,11 +74,10 @@ class Client
         try {
             $response = $this->api()->authRequest('get', 'user/me/forum/is_subscribed/' . $threadId);
 
-
-            if(isset($response->data->subscribed) and $response->data->subscribed == true) {
+            if (isset($response->data->subscribed) and $response->data->subscribed == true) {
                 return true;
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
 
@@ -123,7 +122,7 @@ class Client
     {
         $args = [];
 
-        if($status) {
+        if ($status) {
             $args['query']['status'] = true;
         }
 
@@ -136,7 +135,7 @@ class Client
     {
         $server = $this->api()->guestRequest('get', 'server/' . $id, [], 1);
 
-        if(!isset($server->id)) {
+        if (! isset($server->id)) {
             return false;
         }
 
@@ -156,13 +155,13 @@ class Client
             $characters = $this->api()->guestRequest('get', 'characters');
         }
 
-        if(isset($characters->total_online)) {
+        if (isset($characters->total_online)) {
             $totalOnline = $characters->total_online;
 
             unset($characters->total_online);
 
-            return (object) [
-                'characters' => CharacterTransformer::transformMultiple($characters),
+            return (object)[
+                'characters'  => CharacterTransformer::transformMultiple($characters),
                 'totalOnline' => $totalOnline
             ];
         }
@@ -200,11 +199,11 @@ class Client
     {
         $this->clearCache('get', 'character/' . $character->id, []);
 
-        if($file) {
+        if ($file) {
             return $this->api()->authRequest('post', 'character/' . $character->id . '/about', [
                 'multipart' => [
                     [
-                        'name' => 'about',
+                        'name'     => 'about',
                         'contents' => $about
                     ],
                     [
@@ -227,14 +226,14 @@ class Client
     {
         $query = '';
 
-        if(count($with)) {
+        if (count($with)) {
             $queryWith = $with;
             unset($queryWith['auth']);
 
             $query = '?' . http_build_query($queryWith);
         }
 
-        if(isset($with['auth']) and $with['auth']) {
+        if (isset($with['auth']) and $with['auth']) {
             return GroupTransformer::transform(
                 $this->api()->authRequest('get', 'group/' . $id . $query)
             );
@@ -262,7 +261,7 @@ class Client
         $data->items = PostTransformer::transformMultiple($data->items);
 
         return [
-            'user' => UserTransformer::transform($user),
+            'user'     => UserTransformer::transform($user),
             'activity' => $this->paginatedResponse($data)
         ];
     }
@@ -270,7 +269,7 @@ class Client
     public function updateUser($id, $data)
     {
         return $this->api()->authRequest('post', 'user/' . $id . '/settings', [
-            'form_params' => $data,
+            'form_params'      => $data,
             'no_404_exception' => true
         ]);
     }
@@ -279,7 +278,7 @@ class Client
     {
         $response = $this->api()->authRequest('get', 'group/' . $id . '/log?page=' . $page, [], 2);
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -293,12 +292,12 @@ class Client
 
         return $this->paginatedResponse($response, $route);
     }
-    
+
     public function messages($box, $route)
     {
-        $response = $this->api()->authRequest('get', 'messages/' . $box . '?page='. request('page', 1), [], false);
+        $response = $this->api()->authRequest('get', 'messages/' . $box . '?page=' . request('page', 1), [], false);
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -373,7 +372,7 @@ class Client
     {
         $response = $this->api()->guestRequest('get', 'news?' . build_query($args), [], 2);
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -394,7 +393,7 @@ class Client
     {
         $response = $this->api()->guestRequest('get', 'news/latest', [], 2);
 
-        if(isset($response->data) and !count($response->data)) {
+        if (isset($response->data) and ! count($response->data)) {
             return [];
         }
 
@@ -405,7 +404,7 @@ class Client
     {
         $response = $this->api()->guestRequest('get', 'forum/thread/latest');
 
-        if(isset($response->data) and !count($response->data)) {
+        if (isset($response->data) and ! count($response->data)) {
             return [];
         }
 
@@ -421,7 +420,7 @@ class Client
     {
         $response = $this->api()->guestRequest('get', 'token');
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -440,14 +439,28 @@ class Client
 
     public function supporterTier($id)
     {
-        return SupportTierTransformer::transform($this->api()->guestRequest('get', 'supporter-tier/' . $id));
+        $options = [];
+
+        if(request()->has('coupon')) {
+            $options['query']['coupon'] = request('coupon');
+        }
+
+        return SupportTierTransformer::transform(
+            $this->api()->guestRequest('get', 'supporter-tier/' . $id, $options, false)
+        );
     }
 
     public function allSupporterTiers($route, $page = 1)
     {
-        $response = $this->api()->guestRequest('get', 'supporter-tier?page=' . $page);
+        $options = [];
 
-        if(!isset($response->items)) {
+        if(request()->has('coupon')) {
+            $options['query']['coupon'] = request('coupon');
+        }
+
+        $response = $this->api()->guestRequest('get', 'supporter-tier?page=' . $page, $options, false);
+
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -466,9 +479,10 @@ class Client
 
     public function allUserTransactions($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/transactions?page=' . request()->get('page', null), [], false);
+        $response = $this->api()->authRequest('get', 'user/me/transactions?page=' . request()->get('page', null), [],
+            false);
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -487,9 +501,14 @@ class Client
 
     public function allUserSubscriptions($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/subscriptions?page=' . request()->get('page', null), [], false);
+        $response = $this->api()->authRequest(
+            'get',
+            'user/me/subscriptions?page=' . request()->get('page', null),
+            [],
+            false
+        );
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -523,18 +542,18 @@ class Client
     public function shopItems($route, $query = [])
     {
         $query = array_merge($query, [
-            'page' => request()->get('page', null),
-            'cluster' => request()->get('cluster', null),
+            'page'       => request()->get('page', null),
+            'cluster'    => request()->get('cluster', null),
             'gameserver' => request()->get('gameserver', null),
-            'filter' => request()->get('filter', null),
-            'search' => request()->get('search', null),
+            'filter'     => request()->get('filter', null),
+            'search'     => request()->get('search', null),
         ]);
 
         $response = $this->api()->authRequest('get', 'shop', [
             'query' => $query
         ], false);
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -561,7 +580,7 @@ class Client
         $this->api()->clearCache('get', 'shop/' . $id, [], true);
         $this->api()->clearCache('get', 'shop', [], true);
 
-        return $this->api()->authRequest('post', 'shop/' . $id . '/purchase',[
+        return $this->api()->authRequest('post', 'shop/' . $id . '/purchase', [
             'form_params' => [
                 'character_id' => $characterId
             ]
@@ -572,7 +591,7 @@ class Client
     {
         $response = $this->api()->authRequest('get', 'user/me/orders?page=' . request()->get('page', null));
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -591,9 +610,10 @@ class Client
 
     public function deliveries($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/deliveries?page=' . request()->get('page', null), [], false);
+        $response = $this->api()->authRequest('get', 'user/me/deliveries?page=' . request()->get('page', null), [],
+            false);
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -616,6 +636,19 @@ class Client
             'form_params' => [
                 'subject' => $subject,
                 'content' => $content
+            ]
+        ]);
+    }
+
+    public function sendTokens($uuid, $amount, $message)
+    {
+        $this->api()->clearCache('get', 'user/me/transactions', [], true);
+        $this->api()->clearCache('get', 'user/me', [], true);
+
+        return $this->api()->authRequest('post', 'user/' . $uuid . '/send_tokens', [
+            'form_params' => [
+                'amount'  => $amount,
+                'message' => $message
             ]
         ]);
     }
@@ -666,7 +699,7 @@ class Client
         $this->api()->clearCache($method, $route, [
             'query' => $options
         ], true);
-        
+
         $this->api()->clearCache($method, $route, [
             'query' => $options
         ]);
@@ -728,14 +761,14 @@ class Client
 
     public function stats($model, $type, $id = false)
     {
-        if($model == 'tribe') {
+        if ($model == 'tribe') {
             $model = 'group';
         }
 
-        if(!$id) {
-            $url = $model . '/stats/'. $type;
+        if (! $id) {
+            $url = $model . '/stats/' . $type;
         } else {
-            $url = $model . '/' . $id . '/stats/'. $type;
+            $url = $model . '/' . $id . '/stats/' . $type;
         }
 
         $stat = $this->api()->guestRequest('get', $url);
@@ -747,7 +780,7 @@ class Client
     {
         $settings = app(OAuthApi::class)->guestRequest('get', 'domain/settings', [
 //            'no_404_exception' => true
-        ], 60);
+        ], 10);
 
         try {
             if ($key) {
@@ -759,8 +792,7 @@ class Client
             }
 
             return $settings;
-
-        } catch( \Exception $e) {
+        } catch (\Exception $e) {
             return [];
         }
     }
@@ -780,7 +812,7 @@ class Client
             'query' => $options
         ]);
 
-        if(!isset($response->items)) {
+        if (! isset($response->items)) {
             return new LengthAwarePaginator(
                 [],
                 0,
@@ -792,7 +824,7 @@ class Client
             );
         }
 
-        if( $options['search_type'] == 'tribe' ) {
+        if ($options['search_type'] == 'tribe') {
             $items = GroupTransformer::transformMultiple($response->items);
         } else {
             $items = CharacterTransformer::transformMultiple($response->items);
@@ -820,15 +852,15 @@ class Client
             ]
         );
 
-        if(isset($response->clusters)) {
+        if (isset($response->clusters)) {
             $class->clusters = $response->clusters;
         }
 
-        if(isset($response->gameservers)) {
+        if (isset($response->gameservers)) {
             $class->gameservers = $response->gameservers;
         }
 
-        if(isset($response->filters)) {
+        if (isset($response->filters)) {
             $class->filters = $response->filters;
         }
 

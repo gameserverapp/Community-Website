@@ -25,9 +25,37 @@ class SupportTier extends Model implements LinkableInterface
         return Str::limit(strip_tags($this->description()));
     }
 
+    public function hasLabel()
+    {
+        return $this->label();
+    }
+
+    public function label()
+    {
+        if($discount = $this->discount()) {
+            return $discount . '% discount';
+        }
+
+        if($this->cluster()) {
+            return $this->cluster() . ' only';
+        }
+
+        return false;
+    }
+
     public function totalPrice()
     {
         return $this->total_price;
+    }
+
+    public function discountedPrice()
+    {
+        return $this->discounted_price;
+    }
+
+    public function discount()
+    {
+        return $this->discount;
     }
 
     public function displayTotalPrice()
@@ -36,6 +64,13 @@ class SupportTier extends Model implements LinkableInterface
 
         if($this->isSubscription()) {
             $suffix = ' p/mo';
+        }
+
+        if($this->discount()) {
+            return '<span class="discounted_price">
+                        <span class="from_price">From: <span>' . $this->displayCurrency() . ' ' . $this->totalPrice() . $suffix . '</span></span><br>
+                        <span class="to_price">To: <span>' . $this->displayCurrency() . ' ' . $this->discountedPrice() . $suffix . '</span></span>
+                    </span>';
         }
 
         return $this->displayCurrency() . ' ' . $this->totalPrice() . $suffix;

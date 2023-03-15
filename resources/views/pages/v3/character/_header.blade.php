@@ -194,6 +194,19 @@ use GameserverApp\Helpers\SiteHelper;
             }
         }
 
+        if(
+            !auth()->check() or
+            (
+                auth()->user()->canSendTokens() and
+                $character->user->id != auth()->id()
+            )
+        ) {
+            $dropdown[] = [
+                'title' => 'Send tokens',
+                'route' => route('token.send', $character->user->id)
+            ];
+        }
+
         if($reportRoute = GameserverApp\Helpers\RouteHelper::report()) {
             $dropdown[] = [
                 'title' => 'Report this player',

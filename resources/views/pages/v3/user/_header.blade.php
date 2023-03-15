@@ -97,6 +97,19 @@ use GameserverApp\Helpers\SiteHelper;
     if (
         ! auth()->check() or
         (
+            auth()->user()->canSendTokens() and
+            $user->id != auth()->id()
+        )
+    ) {
+        $right[] = [
+            'title' => 'Send tokens',
+            'route' => route('token.send', $user->id)
+        ];
+    }
+
+    if (
+        ! auth()->check() or
+        (
             auth()->user()->canSendMessage() and
             $user->id != auth()->id()
         )

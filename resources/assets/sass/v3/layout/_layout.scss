@@ -2,3 +2,26 @@
 '_footer',
 'theme/_theme',
 'content/_content';
+
+.nav-alert {
+    position: fixed;
+    background:#fc9003;
+    width:100%;
+    z-index:2;
+    text-align: center;
+    padding:5px;
+
+    font-weight: bold;
+}
+
+
+&.has-alert {
+
+    .main-nav {
+        top:30px;
+    }
+
+    .nav-filler {
+        height:90px;
+    }
+}

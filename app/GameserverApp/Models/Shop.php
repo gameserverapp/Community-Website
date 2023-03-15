@@ -27,11 +27,19 @@ class Shop extends Model implements LinkableInterface
 
     public function hasLabel()
     {
-        return !is_null($this->label);
+        return !is_null($this->label());
     }
 
     public function label()
     {
+        if(
+            $this->isSingle() and
+            $this->tokenPrice() != 0 and
+            $discount = $this->discount()
+        ) {
+            return $discount . '% discount';
+        }
+
         return $this->label;
     }
 
@@ -108,17 +116,39 @@ class Shop extends Model implements LinkableInterface
         return $this->token_price;
     }
 
+    public function discountedPrice()
+    {
+        return $this->discounted_token_price;
+    }
+
+    public function discount()
+    {
+        return $this->discount;
+    }
+
     public function displayTokenPrice()
     {
         if($this->tokenPrice() == 0) {
             return 'Free';
         }
 
-        if($this->tokenPrice() == 1) {
-            return '1 token';
+        if($this->discount()) {
+            return '<span class="discounted_price">
+                        <span class="from_price">From: <span>' . $this->tokenSuffix($this->tokenPrice()) . '</span></span><br>
+                        <span class="to_price">To: <span>' . $this->tokenSuffix($this->discountedPrice()) . '</span></span>
+                    </span>';
         }
 
-        return $this->tokenPrice() . ' tokens';
+        return $this->tokenSuffix($this->tokenPrice());
+    }
+
+    private function tokenSuffix($amount)
+    {
+        if($amount == 1) {
+            return $amount . ' token';
+        }
+
+        return $amount . ' tokens';
     }
 
     public function hasLimits()

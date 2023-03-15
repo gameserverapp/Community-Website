@@ -6,7 +6,7 @@
     padding:20px;
     margin-bottom:30px;
     text-align: center;
-    max-height:406px;
+    max-height:425px;
 
     @include box-shadow(0 0 30px -15px #000);
 
@@ -50,6 +50,17 @@
         opacity:.6;
         font-weight: bold;
         text-shadow: 1px 1px 13px #000;
+        min-height:3rem;
+
+        .from_price {
+            span {
+                text-decoration: line-through;
+            }
+        }
+
+        .to_price {
+
+        }
     }
 
     .progress {
@@ -76,7 +87,24 @@
 
     .collection {
         position: relative;
-        margin:1rem auto 2.81rem;
+        margin:2.2rem auto 3rem;
+    }
+
+    &.package-small {
+        .progress {
+            margin-bottom:0.7rem;
+        }
+
+        .costs {
+            margin:0.7rem 0;
+        }
+    }
+
+    &.tier {
+
+        .costs {
+            margin:0.3rem 0 0.7rem;
+        }
     }
 
     .link {

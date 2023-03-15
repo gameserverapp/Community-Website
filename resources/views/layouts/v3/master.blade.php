@@ -4,8 +4,18 @@
         @include('layouts.v3._meta')
     </head>
 
-    <body class="v3 {{$page['class'] or ''}} {{GameserverApp\Helpers\SiteHelper::theme()}}" {{$microdata['body'] or ''}}>
+    <?php
+    $hasAlert = GameserverApp\Helpers\SiteHelper::navAlert();
+    ?>
+
+    <body class="v3 {{$page['class'] or ''}} @if($hasAlert) has-alert @endif {{GameserverApp\Helpers\SiteHelper::theme()}}" {{$microdata['body'] or ''}}>
         <div style="background-image:url('{{$page['image'] or GameserverApp\Helpers\SiteHelper::background()}}')" class="full-bg"></div>
+
+        @if($hasAlert)
+            <div class="nav-alert">
+                {{$hasAlert}}
+            </div>
+        @endif
 
         @include('layouts.v3._flash')
 

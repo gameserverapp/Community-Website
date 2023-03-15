@@ -24,6 +24,8 @@ class SupportTierTransformer extends ModelTransformer implements ModelTransforme
             'name'             => $args->name,
             'description'      => $args->description,
             'total_price'      => $args->total_price,
+            'discounted_price' => $args->discounted_price,
+            'discount'         => $args->discount,
             'currency'         => $args->currency,
             'gateway'          => $args->gateway,
             'type'             => $args->type,

@@ -71,6 +71,20 @@
             color:var(--dark-text)
         }
     }
+
+    .discounted_price {
+        vertical-align: top;
+
+        .from_price {
+            span {
+                text-decoration: line-through;
+            }
+        }
+
+        .to_price {
+
+        }
+    }
 }
 
 &.package-collection {
@@ -100,5 +114,21 @@
             margin-bottom:0 !important;
         }
 
+        @media (min-width:992px) {
+            .progress {
+                margin-bottom:2rem;
+            }
+        }
+
+    }
+
+    @media (min-width:768px) and (max-width:1199px) {
+        .frame.simple .contentwrap > form > .row > div {
+            margin-bottom:2rem;
+
+            &:last-child {
+                margin-bottom:0;
+            }
+        }
     }
 }

@@ -780,7 +780,7 @@ class Client
     {
         $settings = app(OAuthApi::class)->guestRequest('get', 'domain/settings', [
 //            'no_404_exception' => true
-        ], 60);
+        ], 10);
 
         try {
             if ($key) {

@@ -39,11 +39,11 @@
             <div class="row">
 
                 <div class="col-md-12 content">
-                    <span>&copy; GameServerApp.com 2015 - {{date('Y')}}</span>
+                    <span>&copy; 2015 - {{date('Y')}}</span>
+                    <i>//</i>
+                    <a href="https://www.gameserverapp.com/features/gameserver-community-website/?camp=fe&grp={{GameserverApp\Helpers\SiteHelper::slug()}}" target="_blank" rel="FOLLOW">Powered by GameServerApp.com</a>
                     <i>//</i>
                     <a href="http://steampowered.com/" target="_blank" rel="nofollow">Powered by Steam Login</a>
-                    <i>//</i>
-                    <a href="https://www.gameserverapp.com/features/gameserver-community-website/?camp=fe&grp={{GameserverApp\Helpers\SiteHelper::slug()}}" target="_blank" rel="FOLLOW">Free game server website</a>
 
                     @if(config('app.debug'))
                         <span>

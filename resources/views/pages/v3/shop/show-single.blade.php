@@ -103,7 +103,7 @@ use GameserverApp\Helpers\SiteHelper;
                             <div class="col-md-12 text-center">
                                 @if( SiteHelper::featureEnabled('tokens'))
                                     @include('partials.v3.button', [
-                                        'route' => route('supporter-tier.index'),
+                                        'route' => GameserverApp\Helpers\RouteHelper::token(),
                                         'title' => 'Get tokens',
                                     ])
                                 @endif
@@ -221,7 +221,7 @@ use GameserverApp\Helpers\SiteHelper;
                             <div class="col-md-12 text-center">
                                 @if( SiteHelper::featureEnabled('tokens'))
                                     @include('partials.v3.button', [
-                                        'route' => route('supporter-tier.index'),
+                                        'route' => GameserverApp\Helpers\RouteHelper::token(),
                                         'title' => 'Get tokens',
                                     ])
                                 @endif

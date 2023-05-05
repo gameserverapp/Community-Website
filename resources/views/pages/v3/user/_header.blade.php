@@ -159,7 +159,7 @@ use GameserverApp\Helpers\SiteHelper;
             if (SiteHelper::featureEnabled('supporter_tiers')) {
                 $dropdown[] = [
                     'title' => 'Get tokens',
-                    'route' => route('supporter-tier.index', $user->id)
+                    'route' => GameserverApp\Helpers\RouteHelper::token()
                 ];
             }
 

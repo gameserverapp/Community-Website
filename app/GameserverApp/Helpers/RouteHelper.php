@@ -81,4 +81,15 @@ class RouteHelper extends Helper
 
         return false;
     }
+
+    public static function token()
+    {
+        $config = self::api()->domain('routes');
+
+        if(isset( $config->token )) {
+            return $config->token;
+        }
+
+        return false;
+    }
 }

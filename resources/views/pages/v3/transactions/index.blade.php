@@ -28,7 +28,7 @@
         </div>
         <div class="col-sm-4">
             @include('partials.v3.button', [
-                'route' => route('supporter-tier.index'),
+                'route' => GameserverApp\Helpers\RouteHelper::token(),
                 'title' => 'Get tokens',
             ])
         </div>

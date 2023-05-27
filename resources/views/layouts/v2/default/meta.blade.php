@@ -60,6 +60,9 @@ $gaIds = GameserverApp\Helpers\SiteHelper::googleAnalyticsId();
     }
     ?>
 
+
+    <meta name="testgsa" content="{{$firstId}}">
+
     @if(substr($firstId, 0, 2) == 'G-')
 
         <!-- Google tag (gtag.js) -->

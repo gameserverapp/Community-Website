@@ -75,7 +75,7 @@
 $gaIds = GameserverApp\Helpers\SiteHelper::googleAnalyticsId();
 ?>
 
-@if(!is_null($gaIds))
+@if(is_array($gaIds) and count($gaIds))
 
     <?php
     if(!is_array($gaIds)) {

@@ -76,22 +76,42 @@ $gaIds = GameserverApp\Helpers\SiteHelper::googleAnalyticsId();
 ?>
 
 @if(!is_null($gaIds))
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+
+    <?php
+    if(!is_array($gaIds)) {
+        $firstId = $gaIds;
+    } else {
+        $firstId = $gaIds[0];
+    }
+    ?>
+
+
+    <meta name="testgsa" content="{{$firstId}}">
+
+    @if(substr($firstId, 0, 2) == 'G-')
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{$firstId}}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '{{$firstId}}');
+        </script>
+    @else
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        @if(!is_array($gaIds))
-        ga('create', '{{$gaIds}}', {name: 'gsa'});
-        ga('gsa.send', 'pageview');
-        @else
-            @foreach($gaIds as $id)
-                ga('create', '{{$id}}', {name: '{{md5($id)}}'});
-                ga('{{md5($id)}}.send', 'pageview');
-            @endforeach
-        @endif
+            ga('create', '{{$firstId}}', 'auto');
+
+            ga('send', 'pageview');
+
+        </script>
+    @endif
 
 
-    </script>
 @endif

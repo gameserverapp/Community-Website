@@ -25,7 +25,7 @@
             @empty
                 <div class="alert alert-info">
                     Nothing here yet!<br>
-                    To manage the forum, you must have the "Manage forum" permission. <a href="https://help.gameserverapp.com/article/45-grant-forum-permissions-to-additional-admin" target="_blank">Learn how to do this &raquo;</a>
+                    To manage the forum, you must have the "Manage forum" permission. <a href="https://docs.gameserverapp.com/dashboard/admin_teams/#grant-forum-permissions" target="_blank">Learn how to do this &raquo;</a>
                 </div>
             @endforelse
         </div>

@@ -60,11 +60,11 @@ class AuthController extends Controller
             $response = $this->api->getAccessTokensWithAuthorizationCode($request->code);
         } catch (ClientException $e) {
 
-            Bugsnag::notifyException($e);
-
             if($e->getCode() == 400) {
                 return redirect(route('auth.login'));
             }
+
+            Bugsnag::notifyException($e);
 
             Auth::logout();
             return redirect('/');

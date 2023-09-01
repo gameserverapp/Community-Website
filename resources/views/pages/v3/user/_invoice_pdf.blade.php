@@ -145,9 +145,6 @@ use PremiumARK\Sales\Sale;
                 <p>
                     {!! $sellerNote !!}
                 </p>
-                <p>
-                    If you have any questions please reach out to {{$contactEmail}}.
-                </p>
             </td>
         </tr>
     </table>

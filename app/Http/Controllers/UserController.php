@@ -127,8 +127,7 @@ class UserController extends Controller
             'invoice' => $data->invoice,
             'buyerDetails' => $data->buyerDetails,
             'sellerDetails' => $data->sellerDetails,
-            'sellerNote' => $data->sellerNote,
-            'contactEmail' => $data->contactEmail
+            'sellerNote' => $data->sellerNote
         ]);
 
         $dompdf->loadHtml($html);

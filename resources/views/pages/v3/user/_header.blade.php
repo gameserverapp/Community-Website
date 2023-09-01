@@ -184,6 +184,11 @@ use GameserverApp\Helpers\SiteHelper;
         ];
 
         $right[] = [
+            'title' => 'Invoices',
+            'route' => route('user.invoices', $user->id)
+        ];
+
+        $right[] = [
             'title' => 'Settings',
             'route' => route('user.settings', $user->id)
         ];

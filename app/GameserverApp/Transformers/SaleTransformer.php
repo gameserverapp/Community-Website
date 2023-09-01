@@ -25,8 +25,26 @@ class SaleTransformer extends ModelTransformer implements ModelTransformerInterf
             'currency' => $args->currency,
             'amount'   => $args->amount,
             'date'     => $args->date,
-            'user'     => UserTransformer::transform($args->user),
+            'discount' => $args->discount
         ];
+
+        if(isset($args->user)) {
+           $data['user'] = UserTransformer::transform($args->user);
+        }
+
+        if(isset($args->relatable)) {
+            $data['relatable'] = SupportTierTransformer::transform($args->relatable);
+        }
+
+        if(isset($args->download_invoice_link)) {
+            $data['invoice_link'] = $args->download_invoice_link;
+        }
+
+        if(isset($args->is_subscription)) {
+            $data['subscription_sale'] = true;
+        } else {
+            $data['subscription_sale'] = false;
+        }
 
         return $data;
     }

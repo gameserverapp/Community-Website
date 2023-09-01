@@ -10,6 +10,7 @@ use GameserverApp\Transformers\Forum\PostTransformer;
 use GameserverApp\Transformers\SaleTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use GameserverApp\Models\Model;
@@ -628,6 +629,42 @@ class Client
         $response->items = DeliveryTransformer::transformMultiple($response->items);
 
         return $this->paginatedResponse($response, $route);
+    }
+
+    public function invoices($route)
+    {
+        $response = $this->api()->authRequest('get', 'user/me/invoices?page=' . request()->get('page', null), [], false);
+
+        if($response instanceof ClientException) {
+            return $response;
+        }
+
+        if (! isset($response->items)) {
+            return new LengthAwarePaginator(
+                [],
+                0,
+                8,
+                0,
+                [
+                    'path' => $route
+                ]
+            );
+        }
+
+        $response->items = SaleTransformer::transformMultiple($response->items);
+
+        return $this->paginatedResponse($response, $route);
+    }
+
+    public function downloadInvoice($invoiceId)
+    {
+        $data = $this->api()->authRequest('post', 'user/me/invoices/' . $invoiceId . '/download');
+
+        if(isset($data->invoice)) {
+            $data->invoice = SaleTransformer::transform($data->invoice);
+        }
+
+        return $data;
     }
 
     public function sendMessage($receiverId, $subject, $content)

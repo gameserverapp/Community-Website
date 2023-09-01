@@ -150,6 +150,11 @@ use GameserverApp\Helpers\SiteHelper;
                     Subscriptions
                 </a>
             </li>
+            <li>
+                <a href="{{route('user.invoices', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.invoices', auth()->id()) ? 'orange' : '' }}">
+                    Invoices
+                </a>
+            </li>
         @endif
 
         <li>

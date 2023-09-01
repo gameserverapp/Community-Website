@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
 use GameserverApp\Helpers\SiteHelper;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Api\OAuthApi;
@@ -96,6 +98,43 @@ class UserController extends Controller
             'orders' => $orders,
             'user' => auth()->user()
         ]);
+    }
+
+    public function invoices()
+    {
+        $invoices = $this->api->invoices(route('user.invoices', auth()->id()));
+
+        return view('pages.v3.user.invoices', [
+            'invoices' => $invoices,
+            'user' => auth()->user()
+        ]);
+    }
+
+    public function downloadInvoice(Request $request, $uuid, $saleId)
+    {
+        $data = $this->api->downloadInvoice($saleId);
+
+        if(
+            $data instanceof ClientException and
+            $data->getCode() == 401
+        ) {
+            return redirectBackWithAlert('Invoices are currently not available. Contact the owner of the community to activate the invoices.', 'danger');
+        }
+
+        $dompdf = new Dompdf();
+
+        $html = view('pages.v3.user._invoice_pdf', [
+            'invoice' => $data->invoice,
+            'buyerDetails' => $data->buyerDetails,
+            'sellerDetails' => $data->sellerDetails,
+            'sellerNote' => $data->sellerNote
+        ]);
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        return $dompdf->stream();
     }
 
     public function settings(Request $request)

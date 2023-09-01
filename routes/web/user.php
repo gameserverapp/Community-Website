@@ -37,6 +37,18 @@ Route::group([
         'middleware' => 'auth'
     ]);
 
+    Route::get('/{uuid}/invoices', [
+        'as'   => 'user.invoices',
+        'uses' => 'UserController@invoices',
+        'middleware' => 'auth'
+    ]);
+
+    Route::get('/{uuid}/invoices/{sale_id}/download', [
+        'as'   => 'user.invoices.download',
+        'uses' => 'UserController@downloadInvoice',
+        'middleware' => 'auth'
+    ]);
+
     Route::get('/{uuid}/settings', [
         'as'   => 'user.settings',
         'uses' => 'UserController@settings',

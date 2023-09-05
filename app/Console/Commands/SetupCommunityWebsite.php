@@ -64,9 +64,9 @@ class SetupCommunityWebsite extends Command
         $this->writeNewEnvironmentFileWith('CACHE_DRIVER', 	'redis');
         $this->writeNewEnvironmentFileWith('REDIS_HOST', 	'127.0.0.1');
 
-        $content = file_get_contents(base_path('scripts/install-ssl.sh'));
+        $content = file_get_contents(base_path('scripts/install-caddy.sh'));
         $content = str_replace('%%DOMAIN%%', $domain, $content);
-        file_put_contents('/var/www/install-ssl.sh', $content);
+        file_put_contents('/var/www/install-caddy.sh', $content);
 
         $this->call('key:generate');
 

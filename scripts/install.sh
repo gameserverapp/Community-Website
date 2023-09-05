@@ -24,12 +24,6 @@ nvm install 14.19.0;
 echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.bash_profile
 
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-
-mv composer.phar /usr/local/bin/composer
-
 touch install-step-2.sh;
 
 echo "
@@ -38,9 +32,25 @@ source ~/.bashrc
 
 hash -r nvm
 
-apt-get update -y
-apt install zip unzip python2.7  php7.2-mbstring php7.2-xml redis-server -y;
-ln -s /usr/bin/python2.7 /usr/bin/python
+
+sh -c 'echo \"deb https://packages.sury.org/php/ $(lsb_release -sc) main\" > /etc/apt/sources.list.d/php.list'
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
+
+apt update -y
+
+apt install zip git unzip python redis-server build-essential -y;
+
+apt install php7.2-common php7.2-cli php7.2-mysql php7.2-fpm php7.2-mbstring php7.2-xml php7.2-curl php7.2-gd php7.2-zip php7.2-bcmath php7.2-gmp mcrypt php7.2-mbstring -y;
+
+apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+apt update -y
+apt install caddy -y
+
+wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet
+
+mv composer.phar /usr/local/bin/composer
 
 rm -rf /var/www/*;
 git clone https://github.com/GameserverApp/Community-Website.git /var/www;
@@ -48,13 +58,12 @@ git clone https://github.com/GameserverApp/Community-Website.git /var/www;
 mkdir -p /var/www/public/js
 touch /var/www/public/js/app.js
 
-composer install  --no-interaction --no-dev --prefer-dist -d /var/www;
+composer install --no-interaction --no-dev --prefer-dist -d /var/www;
+
 npm --prefix /var/www ci;
 npm --prefix /var/www run production;
 
 chown -R www-data:www-data /var/www
-
-sed -i 's#/var/www/html#/var/www/public#g' /etc/nginx/sites-enabled/digitalocean
 
 php /var/www/artisan setup-community-website
 
@@ -63,8 +72,9 @@ php /var/www/artisan optimize
 
 sudo bash install-step-2.sh
 
-sudo bash /var/www/install-ssl.sh
+sudo bash install-caddy.sh
+
+systemctl reload caddy
 
 rm -rf install.sh
 rm -rf install-step-2.sh
-rm -rf /var/www/install-ssl.sh

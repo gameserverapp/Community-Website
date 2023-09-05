@@ -72,7 +72,7 @@ php /var/www/artisan optimize
 
 sudo bash install-step-2.sh
 
-sudo bash install-caddy.sh
+sudo bash /var/www/install-caddy.sh
 
 systemctl reload caddy
 

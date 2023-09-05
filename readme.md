@@ -8,7 +8,7 @@ After making changes to the assets, please run `npm run production`. Or have gul
 
 # Set up the community website
 
-In the wiki you can find a walk-through guide on how to [install the community website on your own Digital Ocean server](https://github.com/GameserverApp/Community-Website/wiki/Digital-Ocean-droplet-setup). You can skip the steps below if you choose this option.
+In the wiki you can find a walk-through guide on how to [install the community website on your own VPS server](https://github.com/gameserverapp/Community-Website/wiki/Self%E2%80%90hosted-Cloud-VPS-Community-website). You can skip the steps below if you choose this option.
 
 ## Install
 
@@ -36,7 +36,7 @@ php artisan up
 ```
 
 # Issues
-If you experience any (security) issues, please contact support@gameserverapp.com.
+If you experience any (security) issues, please contact `support@gameserverapp.com`.
 
 ## License
 

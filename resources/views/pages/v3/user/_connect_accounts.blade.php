@@ -2,7 +2,7 @@
     'title' => 'Connected accounts',
 ])
 
-    @foreach(auth()->user()->sub_users as $subUser)
+    @forelse(auth()->user()->sub_users as $subUser)
         <div class="row">
             <div class="col-md-8">
                 <strong>{{$subUser->name()}}</strong>
@@ -31,12 +31,18 @@
             </div>
         </div>
         <hr>
-    @endforeach
+    @empty
+        <p>
+            There are no accounts connected to your current account yet.<br>
+
+            <a href="#">How to get connect code &raquo;</a>
+        </p>
+    @endforelse
 
 
 
     <div class="frame-footer">
-    {!! Form::model($subUser, ['route'=>['user.sub_user.connect'], 'method' => 'post']) !!}
+    {!! Form::model($user, ['route'=>['user.sub_user.connect'], 'method' => 'post']) !!}
 
         <div class="row">
             <div class="col-md-8">

@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-6">
             <form method="post" action="{{route('user.settings.store', auth()->id())}}">
                 {{csrf_field()}}
 
@@ -32,8 +32,8 @@
                         <br>
                     @endif
                     <div class="alert alert-info">
-                        <strong>We hate spam, just like you!</strong>
-                        Your email address is stored in the GameServerApp.com database and will only be used for alerts, which you can choose below. Your email address will <u>not</u> be sold to 3rd parties.
+                        <strong>We hate spam, just like you!</strong><br>
+                        Your email address is stored in the GameServerApp.com database and is only used for alerts below. Your email address <u>won't</u> be sold to 3rd parties.
                     </div>
 
                     <hr>
@@ -44,15 +44,10 @@
                     <p class="small">
                         Only active players can send a message to you.
                     </p>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>
-                                {!! Form::checkbox('notify_message', 1, old('notify_message', auth()->user()->notifications['notify_message'])) !!}
-                                Notify via email
-                            </label>
-                        </div>
-
-                    </div>
+                    <label>
+                        {!! Form::checkbox('notify_message', 1, old('notify_message', auth()->user()->notifications['notify_message'])) !!}
+                        Notify via email
+                    </label>
 
                     <hr>
 
@@ -62,15 +57,10 @@
                     <p class="small">
                         Receive a notification when an in-game webalert is triggered.<br>Webalerts involve: tripwire activation or a baby hatching.
                     </p>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>
-                                {!! Form::checkbox('notify_webalert', 1, old('notify_webalert', auth()->user()->notifications['notify_webalert'])) !!}
-                                Notify via email
-                            </label>
-                        </div>
-
-                    </div>
+                    <label>
+                        {!! Form::checkbox('notify_webalert', 1, old('notify_webalert', auth()->user()->notifications['notify_webalert'])) !!}
+                        Notify via email
+                    </label>
 
 
                     <hr>
@@ -81,15 +71,10 @@
                     <p class="small">
                         When somebody replies to a thread or post you are subscribed to.
                     </p>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>
-                                {!! Form::checkbox('notify_forum', 1, old('notify_forum', auth()->user()->notifications['notify_forum'])) !!}
-                                Notify via email
-                            </label>
-                        </div>
-
-                    </div>
+                    <label>
+                        {!! Form::checkbox('notify_forum', 1, old('notify_forum', auth()->user()->notifications['notify_forum'])) !!}
+                        Notify via email
+                    </label>
 
                     <br>
                     @include('partials.v3.button', [
@@ -100,16 +85,18 @@
                     ])
                 @endcomponent
 
+
             </form>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
 
             @include('pages.v3.user._discord')
 
             @include('pages.v3.user._twitch')
 
             @include('pages.v3.user._patreon')
+            @include('pages.v3.user._connect_accounts')
 
             @include('pages.v3.user._kick')
 

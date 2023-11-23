@@ -92,7 +92,7 @@
                                         $subscription->hasCharacter() and
                                         $subscription->character->id == $character->id
                                     )
-                                        <option selected value="{{$character->id}}">{{$character->name()}} [currect]</option>
+                                        <option selected value="{{$character->id}}">{{$character->name()}} [current]</option>
                                     @else
                                         <option value="{{$character->id}}">{{$character->name()}}</option>
                                     @endif

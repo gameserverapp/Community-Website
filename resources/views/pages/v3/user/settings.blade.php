@@ -76,7 +76,7 @@
                         Notify via email
                     </label>
 
-                    <br>
+                    <br><br>
                     @include('partials.v3.button', [
                         'type' => 'submit',
                         'element' => 'button',

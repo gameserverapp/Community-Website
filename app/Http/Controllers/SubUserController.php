@@ -53,6 +53,14 @@ class SubUserController extends Controller
             return redirectBackWithAlert($response->data);
         }
 
+        if($response instanceof ClientException) {
+            $error = json_decode($response->getResponse()->getBody());
+
+            if(isset($error->message)) {
+                return redirectBackWithAlert($error->message, 'danger');
+            }
+        }
+
         return redirectBackWithAlert('Something went wrong. Please try again or contact support', 'danger');
     }
 }

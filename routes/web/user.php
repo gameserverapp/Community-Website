@@ -274,5 +274,23 @@ Route::group([
     });
 
 
+
+    Route::group([
+        'prefix' => 'me/sub_users',
+        'middleware' => 'auth'
+    ], function ($router) {
+
+        Route::post('/connect', [
+            'as'   => 'user.sub_user.connect',
+            'uses' => 'SubUserController@connect',
+        ]);
+
+        Route::post('/disconnect/{sub_uuid}', [
+            'as'   => 'user.sub_user.disconnect',
+            'uses' => 'SubUserController@disconnect',
+        ]);
+    });
+
+
 });
 

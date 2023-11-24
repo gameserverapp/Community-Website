@@ -32,10 +32,6 @@ class OAuthApi
 
     public static function user()
     {
-        if( !$headers['Authorization'] = self::authHeader()) {
-            return false;
-        }
-
         try {
             $response = self::authRequest('get', 'user/me', [], config('gameserverapp.cache.get_user_ttl'));
 
@@ -99,16 +95,6 @@ class OAuthApi
             [$method, $uri, $options],
             self::getHeaders()
         ]);
-
-//        if(!in_array($uri, [
-//            'domain/settings'
-//        ])) {
-//            dd(
-//                [$method, $uri, $options],
-//                self::getHeaders()
-//            );
-//        }
-
 
         if($cacheTtl === true) {
             $cacheTtl = config('gameserverapp.cache.default_cache_ttl');

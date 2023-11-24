@@ -1,46 +1,56 @@
-@component('partials.v3.frame', ['title' => 'Connect your Twitch account'])
-    <p>
-        Connect your Twitch.tv account if your community is using a Twitch sub whitelist or you want your stream on your character page when streaming.
-    </p>
+@component('partials.v3.frame', ['title' => 'Connect with Twitch'])
+    <div class="row">
+        <div class="col-md-6">
 
-    @if( auth()->user()->isTwitchStreamer() )
-        <br>
-        <div class="alert alert-success">
-            <span class="indent">
-                Twitch account <strong>{{auth()->user()->twitchUsername()}}</strong> connected
-            </span>
+            @if( auth()->user()->isTwitchStreamer() )
+                <div class="alert alert-success">
+                    <span class="indent">
+                        Account <strong>{{auth()->user()->twitchUsername()}}</strong> connected
+                    </span>
+
+                </div>
+            @else
+                <p>
+                    Connect your Twitch account to access sub-only game servers.
+                </p>
+            @endif
         </div>
+        <div class="col-md-6">
 
-        <br>
-        {!! Form::model($user, ['route'=>['user.twitch.sync'], 'method' => 'post']) !!}
+            @if( auth()->user()->isTwitchStreamer() )
 
-        @include('partials.v3.button', [
-            'type' => 'submit',
-            'element' => 'button',
-            'title' => translate('twitch_sync', 'Sync Twitch'),
-            'class' => 'center btn-theme-rock'
-        ])
+                {!! Form::model($user, ['route'=>['user.twitch.sync'], 'method' => 'post']) !!}
 
-        {!! Form::close() !!}
-        <br>
+                @include('partials.v3.button', [
+                    'type' => 'submit',
+                    'element' => 'button',
+                    'title' => translate('twitch_sync', 'Sync Twitch'),
+                    'class' => 'center btn-theme-rock'
+                ])
 
-        {!! Form::model($user, ['route'=>['user.twitch.disconnect'], 'method' => 'post']) !!}
+                {!! Form::close() !!}
+                <br>
 
-        @include('partials.v3.button', [
-            'type' => 'submit',
-            'element' => 'button',
-            'title' => translate('disconnect_twitch', 'Disconnect Twitch'),
-            'class' => 'center'
-        ])
+                {!! Form::model($user, ['route'=>['user.twitch.disconnect'], 'method' => 'post']) !!}
 
-        {!! Form::close() !!}
+                @include('partials.v3.button', [
+                    'type' => 'submit',
+                    'element' => 'button',
+                    'title' => translate('disconnect_twitch', 'Disconnect Twitch'),
+                    'class' => 'center'
+                ])
 
-    @else
-        <br>
-        @include('partials.v3.button', [
-            'route' => route('user.twitch.connect'),
-            'title' => translate('connect_twitch', 'Connect Twitch'),
-            'class' => 'center'
-        ])
-    @endif
+                {!! Form::close() !!}
+
+            @else
+                @include('partials.v3.button', [
+                    'route' => route('user.twitch.connect'),
+                    'title' => translate('connect_twitch', 'Connect Twitch'),
+                    'class' => 'center'
+                ])
+            @endif
+        </div>
+    </div>
+
+
 @endcomponent

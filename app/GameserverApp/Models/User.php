@@ -2,6 +2,7 @@
 
 namespace GameserverApp\Models;
 
+use App\GameserverApp\Traits\Socials;
 use GameserverApp\Api\Client;
 use GameserverApp\Helpers\SiteHelper;
 use GameserverApp\Interfaces\LinkableInterface;
@@ -14,7 +15,7 @@ use Illuminate\Auth\Authenticatable;
 
 class User extends Model implements LinkableInterface, AuthenticatableContract, AuthorizableContract
 {
-    use Linkable, Authenticatable, Authorizable;
+    use Linkable, Authenticatable, Authorizable, Socials;
 
     public function name($limit = false)
     {
@@ -23,6 +24,16 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         }
 
         return $this->name;
+    }
+
+    public function serviceId()
+    {
+        return $this->service_id;
+    }
+
+    public function serviceType()
+    {
+        return $this->service_type;
     }
 
     public function online()
@@ -122,69 +133,6 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return false;
     }
 
-    public function isTwitchStreamer()
-    {
-        return ! is_null($this->twitch['username']);
-    }
-
-    public function twitchUsername()
-    {
-        return $this->twitch['username'];
-    }
-
-    public function twitchOAuthRedirect()
-    {
-        if(!isset($this->twitch['oauth_redirect'])) {
-            return false;
-        }
-
-        return $this->twitch['oauth_redirect'];
-    }
-
-    public function isStreaming()
-    {
-        return $this->twitch['streaming'];
-    }
-
-    public function hasDiscordSetup()
-    {
-        return ! is_null($this->discord['username']);
-    }
-
-    public function discordUsername()
-    {
-        return $this->discord['username'];
-    }
-
-    public function discordOAuthRedirect()
-    {
-        if(!isset($this->discord['oauth_redirect'])) {
-            return false;
-        }
-
-        return $this->discord['oauth_redirect'];
-    }
-
-
-
-    public function hasPatreonSetup()
-    {
-        return ! is_null($this->patreon['username']);
-    }
-
-    public function patreonUsername()
-    {
-        return $this->patreon['username'];
-    }
-
-    public function patreonOAuthRedirect()
-    {
-        if(!isset($this->patreon['oauth_redirect'])) {
-            return false;
-        }
-
-        return $this->patreon['oauth_redirect'];
-    }
 
     public function donated()
     {

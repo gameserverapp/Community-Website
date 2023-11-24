@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <a class="btn btn-theme btn-theme-rock" href="{{route('auth.login')}}">
-                                <span>Login with STEAM</span>
+                                <span>Login</span>
                             </a>
                         </div>
                     </div>

@@ -51,8 +51,6 @@
                     <span>&copy; 2015 - {{date('Y')}}</span>
                     &nbsp; <i>//</i> &nbsp;
                     <a style="color:#ccc" href="https://www.gameserverapp.com/?camp=fe&grp={{GameserverApp\Helpers\SiteHelper::slug()}}" target="_blank" rel="FOLLOW">Powered by GameServerApp.com</a>
-                    &nbsp; <i>//</i> &nbsp;
-                    <a href="http://steampowered.com/" target="_blank" rel="nofollow">Powered by Steam Login</a>
 
 
 

@@ -754,6 +754,20 @@ class Client
         );
     }
 
+    public function connectSubUser($code)
+    {
+        return $this->api()->authRequest('post', 'user/me/sub_users/connect', [
+            'form_params' => [
+                'code' => $code
+            ]
+        ]);
+    }
+
+    public function disconnectSubUser($uuid)
+    {
+        return $this->api()->authRequest('post', 'user/me/sub_users/disconnect/' . $uuid);
+    }
+
     public function kickUser()
     {
         return $this->api()->authRequest('post', 'user/me/kick');

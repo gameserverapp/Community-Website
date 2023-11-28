@@ -9,7 +9,15 @@ if(isset($title)) {
 ?>
 
 @component('partials.v3.frame', $settings)
-    <div class="stat_canvas"
-         data-data='{!! json_encode($data['data']) !!}'
-         data-options='{!!json_encode($data['options'])!!}'></div>
+
+    @if(
+        isset($data['data']) and
+        isset($data['options'])
+    )
+        <div class="stat_canvas"
+             data-data='{!! json_encode($data['data']) !!}'
+             data-options='{!!json_encode($data['options'])!!}'></div>
+    @else
+        <em>Failed to load data.</em>
+    @endif
 @endcomponent

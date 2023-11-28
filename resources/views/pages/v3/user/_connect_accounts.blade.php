@@ -35,7 +35,7 @@
         <p>
             There are no accounts connected to your current account yet.<br>
 
-            <a href="#">How to get connect code &raquo;</a>
+            <a href="https://docs.gameserverapp.com/dashboard/community/website#connect-sub-accounts-on-community-website" target="_blank">How to get connect code &raquo;</a>
         </p>
     @endforelse
 
@@ -49,7 +49,7 @@
                 <label>Enter connect code</label><br>
                 <input type="text" name="code" value="{{old('code')}}" class="form-control">
                 <small>
-                    <a href="#">How to get connect code &raquo;</a>
+                    <a href="https://docs.gameserverapp.com/dashboard/community/website#connect-sub-accounts-on-community-website" target="_blank">How to get connect code &raquo;</a>
                 </small>
             </div>
             <div class="col-md-4">

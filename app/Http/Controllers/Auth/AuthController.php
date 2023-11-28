@@ -64,6 +64,10 @@ class AuthController extends Controller
                 return redirect(route('auth.login'));
             }
 
+            if($e->getCode() == 429) {
+                abort(429, 'Too many requests');
+            }
+
             Bugsnag::notifyException($e);
 
             Auth::logout();

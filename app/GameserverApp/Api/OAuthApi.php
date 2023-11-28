@@ -152,6 +152,10 @@ class OAuthApi
                 }
             }
 
+            if($e->getCode() == 429) {
+                abort(429);
+            }
+
             if(!isset($options['no_404_exception']) and $e->getCode() == 404) {
                 throw new NotFoundHttpException($e);
             }

@@ -20,4 +20,5 @@ if(isset($title)) {
     @else
         <em>Failed to load data.</em>
     @endif
+
 @endcomponent

@@ -65,7 +65,7 @@ class AuthController extends Controller
             }
 
             if($e->getCode() == 429) {
-                return abort(429, 'Too many requests');
+                abort(429, 'Too many requests');
             }
 
             Bugsnag::notifyException($e);

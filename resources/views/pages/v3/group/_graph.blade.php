@@ -9,7 +9,7 @@ if(isset($title)) {
 ?>
 
 @component('partials.v3.frame', $settings)
-    
+
     @if(
         isset($data['data']) and
         isset($data['options'])

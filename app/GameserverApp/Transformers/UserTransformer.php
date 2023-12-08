@@ -72,7 +72,7 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
                 }
             }
 
-            if (isset($args->social->discord)) {
+            if (isset($args->social->discord->username)) {
                 $data['discord'] = [
                     'username' => $args->social->discord->username,
                     'icon'     => $args->social->discord->icon

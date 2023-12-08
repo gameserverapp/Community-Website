@@ -51,6 +51,9 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['sub_users'] = self::transformMultiple($args->sub_users);
         }
 
+        if (isset($args->connect_users)) {
+            $data['connect_users'] = $args->connect_users;
+        }
 
         if (isset($args->sub_user_links)) {
             $data['sub_user_links'] = $args->sub_user_links;

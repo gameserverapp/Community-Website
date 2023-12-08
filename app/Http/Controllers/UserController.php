@@ -139,6 +139,19 @@ class UserController extends Controller
 
     public function settings(Request $request)
     {
+        if($request->has('alert')) {
+
+            app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
+
+            session()->flash('alert', [
+                'status'  => $request->get('alert_type', 'success'),
+                'message' => $request->get('alert'),
+                'stay'    => true
+            ]);
+
+            return redirect(route('user.settings', 'me'));
+        }
+
         return view('pages.v3.user.settings', [
             'user' => auth()->user()
         ]);

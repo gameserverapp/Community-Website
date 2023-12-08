@@ -91,8 +91,6 @@
 
         <div class="col-md-6">
 
-            @include('pages.v3.user._discord')
-
             @include('pages.v3.user._twitch')
 
             @include('pages.v3.user._patreon')

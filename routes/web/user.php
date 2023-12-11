@@ -165,42 +165,6 @@ Route::group([
         'middleware' => 'auth'
     ]);
 
-
-    Route::group([
-        'prefix' => 'twitch'
-    ], function ($router) {
-
-        Route::get('/connect', [
-            'as'   => 'user.twitch.connect',
-            'uses' => 'TwitchController@connect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::get('/success', [
-            'as'   => 'user.twitch.success',
-            'uses' => 'TwitchController@success',
-            'middleware' => 'auth'
-        ]);
-
-        Route::get('/failed', [
-            'as'   => 'user.twitch.failed',
-            'uses' => 'TwitchController@failed',
-            'middleware' => 'auth'
-        ]);
-
-        Route::post('/sync', [
-            'as'   => 'user.twitch.sync',
-            'uses' => 'TwitchController@sync',
-            'middleware' => 'auth'
-        ]);
-
-        Route::post('/disconnect', [
-            'as'   => 'user.twitch.disconnect',
-            'uses' => 'TwitchController@disconnect',
-            'middleware' => 'auth'
-        ]);
-    });
-
     Route::group([
         'prefix' => 'patreon'
     ], function ($router) {

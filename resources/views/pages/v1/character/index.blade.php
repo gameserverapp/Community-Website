@@ -66,14 +66,6 @@
                 @include('pages.v1.character.partials.picture')
             </div>
             <div class="col-md-9">
-                @if( $character->streaming() )
-                    <div class="row">
-                        <div class="col-md-12">
-                            @include('pages.v1.character.partials.stream')
-                        </div>
-                    </div>
-                @endif
-
                 <div class="row">
                     <div class="col-md-7 statistics">
                         @include('pages.v1.character.partials.statistics')

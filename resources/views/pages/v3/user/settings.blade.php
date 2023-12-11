@@ -92,8 +92,7 @@
         <div class="col-md-6">
 
             @include('pages.v3.user._connect_accounts')
-            
-            @include('pages.v3.user._twitch')
+
             @include('pages.v3.user._patreon')
 
             @include('pages.v3.user._kick')

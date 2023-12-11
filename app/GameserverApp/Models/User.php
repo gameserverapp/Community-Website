@@ -255,7 +255,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
     
     private function statusIndicator($size = 'small')
     {
-        if(!SiteHelper::featureEnabled('player_status') and !$this->isStreaming()) {
+        if(!SiteHelper::featureEnabled('player_status')) {
             return '';
         }
 
@@ -265,21 +265,13 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
             'online'
         ];
 
-        if ($this->isStreaming()) {
-            $title = 'Streaming with character \'' . $this->name() . '\'';
-            $class = [
-                'aftername',
-                'streaming'
-            ];
-        } else {
-            if ($this->donated()) {
-                $class[] = 'vip';
-                $title .= 'Supporter <3 | ';
-            }
-
-            $title .= 'Online with character \'' . $this->name() . '\'';
+        if ($this->donated()) {
+            $class[] = 'vip';
+            $title .= 'Supporter <3 | ';
         }
-//
+
+        $title .= 'Online with character \'' . $this->name() . '\'';
+
         $class = $size . ' ' . implode(' ', $class);
 
         return '<span title="' . $title . '" class="status  ' . $class . '"></span>';

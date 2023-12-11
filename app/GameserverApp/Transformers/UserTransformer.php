@@ -60,16 +60,11 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
         }
 
         if (isset($args->social)) {
-            if (isset($args->social->twitch)) {
+            if (isset($args->social->twitch->username)) {
                 $data['twitch'] = [
                     'username'  => $args->social->twitch->username,
-                    'streaming' => $args->social->twitch->streaming,
                     'icon'      => $args->social->twitch->icon
                 ];
-
-                if (isset($args->social->twitch->oauth_redirect)) {
-                    $data['twitch']['oauth_redirect'] = $args->social->twitch->oauth_redirect;
-                }
             }
 
             if (isset($args->social->discord->username)) {

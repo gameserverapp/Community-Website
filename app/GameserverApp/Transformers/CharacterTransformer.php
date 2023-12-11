@@ -23,7 +23,6 @@ class CharacterTransformer extends ModelTransformer implements ModelTransformerI
             'hours_played' => $args->hours_played,
             'status'       => $args->status,
             'status_since' => $args->status_since,
-            'streaming'    => $args->streaming,
             'created_at'   => $args->created_at
         ];
 

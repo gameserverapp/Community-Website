@@ -19,23 +19,4 @@ trait Socials
     {
         return $this->discord['username'];
     }
-
-    public function hasPatreonSetup()
-    {
-        return ! is_null($this->patreon['username']);
-    }
-
-    public function patreonUsername()
-    {
-        return $this->patreon['username'];
-    }
-
-    public function patreonOAuthRedirect()
-    {
-        if(!isset($this->patreon['oauth_redirect'])) {
-            return false;
-        }
-
-        return $this->patreon['oauth_redirect'];
-    }
 }

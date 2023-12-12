@@ -137,9 +137,7 @@ Route::group([
             'as'   => 'token.send-submit',
             'uses' => 'TokenController@sendSubmit'
         ]);
-
     });
-
 
     Route::post('/{uuid}/accept_rules', [
         'as'   => 'user.accept_rules',
@@ -166,33 +164,6 @@ Route::group([
     ]);
 
     Route::group([
-        'prefix' => 'patreon'
-    ], function ($router) {
-
-        Route::get('/connect', [
-            'as'   => 'user.patreon.connect',
-            'uses' => 'PatreonController@connect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::post('/disconnect', [
-            'as'   => 'user.patreon.disconnect',
-            'uses' => 'PatreonController@disconnect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::get('/success', [
-            'as'   => 'user.patreon.success',
-            'uses' => 'PatreonController@success'
-        ]);
-
-        Route::get('/failed', [
-            'as'   => 'user.patreon.failed',
-            'uses' => 'PatreonController@failed'
-        ]);
-    });
-
-    Route::group([
         'prefix' => 'forum',
         'namespace' => 'Forum'
     ], function ($router) {
@@ -210,8 +181,6 @@ Route::group([
         ]);
     });
 
-
-
     Route::group([
         'prefix' => 'me/sub_users',
         'middleware' => 'auth'
@@ -227,7 +196,5 @@ Route::group([
             'uses' => 'SubUserController@disconnect',
         ]);
     });
-
-
 });
 

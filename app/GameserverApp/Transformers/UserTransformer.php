@@ -72,21 +72,6 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
                     'username' => $args->social->discord->username,
                     'icon'     => $args->social->discord->icon
                 ];
-
-                if (isset($args->social->discord->oauth_redirect)) {
-                    $data['discord']['oauth_redirect'] = $args->social->discord->oauth_redirect;
-                }
-            }
-
-            if (isset($args->social->patreon)) {
-                $data['patreon'] = [
-                    'username' => $args->social->patreon->username,
-                    'icon'     => $args->social->patreon->icon
-                ];
-
-                if (isset($args->social->patreon->oauth_redirect)) {
-                    $data['patreon']['oauth_redirect'] = $args->social->patreon->oauth_redirect;
-                }
             }
         }
 

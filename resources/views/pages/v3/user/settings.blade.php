@@ -93,8 +93,6 @@
 
             @include('pages.v3.user._connect_accounts')
 
-            @include('pages.v3.user._patreon')
-
             @include('pages.v3.user._kick')
 
         </div>

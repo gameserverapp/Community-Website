@@ -25,7 +25,17 @@
             @empty
                 <div class="alert alert-info">
                     Nothing here yet!<br>
-                    To manage the forum, you must have the "Manage forum" permission. <a href="https://docs.gameserverapp.com/dashboard/admin_teams/#grant-forum-permissions" target="_blank">Learn how to do this &raquo;</a>
+                    Follow instructions below to get started:<br>
+
+                    <ol>
+                        <li>
+                            <a href="https://docs.gameserverapp.com/dashboard/admin_teams#manage-admins" target="_blank">Link Community website account to your GSA Dashboard account</a>
+                        </li>
+                        <li>
+                            <a href="https://docs.gameserverapp.com/dashboard/admin_teams/#grant-forum-permissions" target="_blank">Grant forum permissions to Admin teams</a>
+                        </li>
+                    </ol>
+
                 </div>
             @endforelse
         </div>

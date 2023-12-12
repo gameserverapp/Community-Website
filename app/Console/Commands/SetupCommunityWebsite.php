@@ -32,6 +32,7 @@ class SetupCommunityWebsite extends Command
 
         $client = new \GuzzleHttp\Client([
             'base_uri' => config('gameserverapp.connection.url'),
+            'verify' => !app()->environment(['local', 'dev']),
             'headers' => [
                 'X-AUTH-GSA-CLIENT-ID' => $id
             ]

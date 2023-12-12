@@ -99,26 +99,6 @@ class Client
         ]);
     }
 
-    public function twitchDisconnect()
-    {
-        return $this->api()->authRequest('post', 'user/me/twitch/disconnect');
-    }
-
-    public function discordDisconnect()
-    {
-        return $this->api()->authRequest('post', 'user/me/discord/disconnect');
-    }
-
-    public function patreonDisconnect()
-    {
-        return $this->api()->authRequest('post', 'user/me/patreon/disconnect');
-    }
-
-    public function twitchSync()
-    {
-        return $this->api()->authRequest('post', 'user/me/twitch/sync');
-    }
-
     public function allServers($status = true)
     {
         $args = [];

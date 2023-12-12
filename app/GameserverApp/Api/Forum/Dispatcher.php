@@ -23,6 +23,7 @@ class Dispatcher extends \Riari\Forum\API\Dispatcher
 
         $client = new Client([
             'base_uri'   => config('gameserverapp.connection.url'),
+            'verify' => !app()->environment(['local', 'dev']),
             'headers'    => $headers,
             'exceptions' => false
         ]);

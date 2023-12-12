@@ -51,44 +51,27 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['sub_users'] = self::transformMultiple($args->sub_users);
         }
 
+        if (isset($args->connect_users)) {
+            $data['connect_users'] = $args->connect_users;
+        }
 
         if (isset($args->sub_user_links)) {
             $data['sub_user_links'] = $args->sub_user_links;
         }
 
         if (isset($args->social)) {
-            if (isset($args->social->twitch)) {
+            if (isset($args->social->twitch->username)) {
                 $data['twitch'] = [
                     'username'  => $args->social->twitch->username,
-                    'streaming' => $args->social->twitch->streaming,
                     'icon'      => $args->social->twitch->icon
                 ];
-
-                if (isset($args->social->twitch->oauth_redirect)) {
-                    $data['twitch']['oauth_redirect'] = $args->social->twitch->oauth_redirect;
-                }
             }
 
-            if (isset($args->social->discord)) {
+            if (isset($args->social->discord->username)) {
                 $data['discord'] = [
                     'username' => $args->social->discord->username,
                     'icon'     => $args->social->discord->icon
                 ];
-
-                if (isset($args->social->discord->oauth_redirect)) {
-                    $data['discord']['oauth_redirect'] = $args->social->discord->oauth_redirect;
-                }
-            }
-
-            if (isset($args->social->patreon)) {
-                $data['patreon'] = [
-                    'username' => $args->social->patreon->username,
-                    'icon'     => $args->social->patreon->icon
-                ];
-
-                if (isset($args->social->patreon->oauth_redirect)) {
-                    $data['patreon']['oauth_redirect'] = $args->social->patreon->oauth_redirect;
-                }
             }
         }
 

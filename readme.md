@@ -6,6 +6,8 @@ You can find all assets (js & css) files in `/resources/assets/`. The JS & CSS f
 
 After making changes to the assets, please run `npm run production`. Or have gulp compile the assets for you after each change automatically: `npm run watch`.
 
+Use `nvm use 14.19.0 && npm run watch` when using NVM.
+
 # Set up the community website
 
 In the wiki you can find a walk-through guide on how to [install the community website on your own VPS server](https://github.com/gameserverapp/Community-Website/wiki/Self%E2%80%90hosted-Cloud-VPS-Community-website). You can skip the steps below if you choose this option.

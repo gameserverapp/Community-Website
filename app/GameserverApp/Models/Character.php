@@ -52,11 +52,6 @@ class Character extends Model implements LinkableInterface
         return $this->about_image_url;
     }
 
-    public function streaming()
-    {
-        return (bool)$this->streaming;
-    }
-
     public function donated()
     {
         if($this->hasUser()) {
@@ -225,7 +220,7 @@ class Character extends Model implements LinkableInterface
 
     private function statusIndicator($size = 'small')
     {
-        if(!SiteHelper::featureEnabled('player_status') and !$this->streaming()) {
+        if(!SiteHelper::featureEnabled('player_status')) {
             return '';
         }
 
@@ -235,20 +230,12 @@ class Character extends Model implements LinkableInterface
             'online'
         ];
 
-        if ($this->streaming()) {
-            $title = 'Streaming with character \'' . $this->name() . '\' since ' . $this->date('status_since')->diffForHumans();
-            $class = [
-                'aftername',
-                'streaming'
-            ];
-        } else {
-            if ($this->donated()) {
-                $class[] = 'vip';
-                $title .= 'Supporter <3 | ';
-            }
-
-            $title .= 'Online with character \'' . $this->name() . '\' since ' . $this->date('status_since')->diffForHumans();
+        if ($this->donated()) {
+            $class[] = 'vip';
+            $title .= 'Supporter <3 | ';
         }
+
+        $title .= 'Online with character \'' . $this->name() . '\' since ' . $this->date('status_since')->diffForHumans();
 
         $class = $size . ' ' . implode(' ', $class);
 

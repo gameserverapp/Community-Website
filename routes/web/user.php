@@ -137,9 +137,7 @@ Route::group([
             'as'   => 'token.send-submit',
             'uses' => 'TokenController@sendSubmit'
         ]);
-
     });
-
 
     Route::post('/{uuid}/accept_rules', [
         'as'   => 'user.accept_rules',
@@ -165,96 +163,6 @@ Route::group([
         'middleware' => 'auth'
     ]);
 
-
-    Route::group([
-        'prefix' => 'twitch'
-    ], function ($router) {
-
-        Route::get('/connect', [
-            'as'   => 'user.twitch.connect',
-            'uses' => 'TwitchController@connect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::get('/success', [
-            'as'   => 'user.twitch.success',
-            'uses' => 'TwitchController@success',
-            'middleware' => 'auth'
-        ]);
-
-        Route::get('/failed', [
-            'as'   => 'user.twitch.failed',
-            'uses' => 'TwitchController@failed',
-            'middleware' => 'auth'
-        ]);
-
-        Route::post('/sync', [
-            'as'   => 'user.twitch.sync',
-            'uses' => 'TwitchController@sync',
-            'middleware' => 'auth'
-        ]);
-
-        Route::post('/disconnect', [
-            'as'   => 'user.twitch.disconnect',
-            'uses' => 'TwitchController@disconnect',
-            'middleware' => 'auth'
-        ]);
-    });
-
-    Route::group([
-        'prefix' => 'discord'
-    ], function ($router) {
-
-        Route::get('/connect', [
-            'as'   => 'user.discord.connect',
-            'uses' => 'DiscordController@connect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::post('/disconnect', [
-            'as'   => 'user.discord.disconnect',
-            'uses' => 'DiscordController@disconnect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::get('/success', [
-            'as'   => 'user.discord.success',
-            'uses' => 'DiscordController@success'
-        ]);
-
-        Route::get('/failed', [
-            'as'   => 'user.discord.failed',
-            'uses' => 'DiscordController@failed'
-        ]);
-    });
-
-    Route::group([
-        'prefix' => 'patreon'
-    ], function ($router) {
-
-        Route::get('/connect', [
-            'as'   => 'user.patreon.connect',
-            'uses' => 'PatreonController@connect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::post('/disconnect', [
-            'as'   => 'user.patreon.disconnect',
-            'uses' => 'PatreonController@disconnect',
-            'middleware' => 'auth'
-        ]);
-
-        Route::get('/success', [
-            'as'   => 'user.patreon.success',
-            'uses' => 'PatreonController@success'
-        ]);
-
-        Route::get('/failed', [
-            'as'   => 'user.patreon.failed',
-            'uses' => 'PatreonController@failed'
-        ]);
-    });
-
     Route::group([
         'prefix' => 'forum',
         'namespace' => 'Forum'
@@ -273,8 +181,6 @@ Route::group([
         ]);
     });
 
-
-
     Route::group([
         'prefix' => 'me/sub_users',
         'middleware' => 'auth'
@@ -290,7 +196,5 @@ Route::group([
             'uses' => 'SubUserController@disconnect',
         ]);
     });
-
-
 });
 

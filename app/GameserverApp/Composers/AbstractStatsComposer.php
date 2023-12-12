@@ -20,7 +20,10 @@ class AbstractStatsComposer
     public function basicStats(View $view, $type)
     {
         try {
-            if(!isset($view->getData()['value']) or empty($view->getData()['value'])) {
+            if(
+                !isset($view->getData()['value']) or
+                empty($view->getData()['value'])
+            ) {
                 $data = $this->api->stats(
                     'domain',
                     $type
@@ -34,7 +37,6 @@ class AbstractStatsComposer
                     $value
                 );
             } else {
-
                 $value = str_replace('server-', '', $view->getData()['value']);
                 $data = $this->api->stats(
                     'server',

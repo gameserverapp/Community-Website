@@ -12,6 +12,10 @@ trait Socials
 
     public function hasDiscordSetup()
     {
+        if(!isset($this->discord['username'])) {
+            return false;
+        }
+
         return ! is_null($this->discord['username']);
     }
 

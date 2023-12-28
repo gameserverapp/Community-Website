@@ -39,4 +39,4 @@
             @include('pages.v3.page._rulegate', ['bottom' => true])
         @endif
     @endif
-@stop
+@endsection

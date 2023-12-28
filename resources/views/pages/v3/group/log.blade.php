@@ -66,4 +66,4 @@
             {!! $logs->links() !!}
         </div>
     </div>
-@stop
+@endsection

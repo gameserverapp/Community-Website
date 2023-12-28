@@ -30,4 +30,4 @@
             @include('pages.v3.group._discord')
         </div>
     </div>
-@stop
+@endsection

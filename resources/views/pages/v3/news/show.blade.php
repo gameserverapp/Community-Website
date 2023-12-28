@@ -85,4 +85,4 @@ if($item->hasImage()) {
         @endforelse
     </div>
 
-@stop
+@endsection

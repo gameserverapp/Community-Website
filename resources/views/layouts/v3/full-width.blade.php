@@ -16,4 +16,4 @@
 
         @yield('page_content')
     </div>
-@stop
+@endsection

@@ -114,4 +114,4 @@
 {{--            @endcan--}}
 {{--        @endif--}}
     </div>
-@stop
+@endsection

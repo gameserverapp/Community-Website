@@ -24,4 +24,4 @@ $user = $receiver;
         </div>
     </div>
 
-@stop
+@endsection

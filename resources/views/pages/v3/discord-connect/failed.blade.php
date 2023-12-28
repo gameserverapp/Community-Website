@@ -34,4 +34,4 @@ use GameserverApp\Helpers\PremiumHostedHelper;
         </div>
     </div>
 
-@stop
+@endsection

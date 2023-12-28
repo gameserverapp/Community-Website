@@ -18,7 +18,7 @@
 
 @section('banner_content')
     @include('pages.v1.tribe.partials.banner')
-@stop
+@endsection
 
 @section('page_content')
 
@@ -77,4 +77,4 @@
             </div>
         </div>
     </div>
-@stop
+@endsection

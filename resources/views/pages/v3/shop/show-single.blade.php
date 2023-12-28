@@ -258,4 +258,4 @@ use GameserverApp\Helpers\SiteHelper;
         </form>
     </div>
 
-@stop
+@endsection

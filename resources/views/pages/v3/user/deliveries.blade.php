@@ -86,4 +86,4 @@ use GameserverApp\Models\Delivery;
         </div>
     </div>
 
-@stop
+@endsection

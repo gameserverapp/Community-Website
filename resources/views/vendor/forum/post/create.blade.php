@@ -24,4 +24,4 @@
             <a href="{{ URL::previous() }}" class="btn btn-default">{{ trans('forum::general.cancel') }}</a>
         </form>
     @endcomponent
-@stop
+@endsection

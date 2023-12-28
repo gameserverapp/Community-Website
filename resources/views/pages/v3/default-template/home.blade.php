@@ -46,4 +46,4 @@
             @include('pagebuilder.v1.blocks.spotlight')
         </div>
     </div>
-@stop
+@endsection

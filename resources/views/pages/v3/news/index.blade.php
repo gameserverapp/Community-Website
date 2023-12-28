@@ -77,4 +77,4 @@
         {!! $items->fragment('archive')->links() !!}
     </div>
 
-@stop
+@endsection

@@ -48,16 +48,15 @@ use GameserverApp\Helpers\SiteHelper;
                 {!! Markdown::convertToHtml($package->description()) !!}
             </div>
 
-            <div class=" hidden-sm hidden-xs">
+            <div class=" hidden-sm">
                 <br>
                 <div class="row">
                     <div class="col-md-12 text-center">
 
                         @if(!auth()->check())
-                            <div class="alert alert-info">
+                            <div class="alert alert-info hidden-xs">
                                 Please <a href="{{route('auth.login')}}">login</a> to place an order.
                             </div>
-                            <br>
                         @endif
 
                         @if( SiteHelper::featureEnabled('tokens'))

@@ -54,4 +54,4 @@ if(auth()->id() == $message->receiver->id) {
         </div>
     </div>
 
-@stop
+@endsection

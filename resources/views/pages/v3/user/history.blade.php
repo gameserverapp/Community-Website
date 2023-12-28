@@ -73,4 +73,4 @@ use GameserverApp\Models\Order;
         </div>
     </div>
 
-@stop
+@endsection

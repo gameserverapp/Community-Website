@@ -46,4 +46,4 @@
             </div>
         </div>
     @endisset
-@stop
+@endsection

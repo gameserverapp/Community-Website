@@ -24,4 +24,4 @@
     <div class="paginate">
         {!! $activity->links() !!}
     </div>
-@stop
+@endsection

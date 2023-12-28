@@ -25,7 +25,7 @@ if (isset($thread)) {
 
     @yield('content')
 
-@stop
+@endsection
 
 @section('footer_scripts')
     <script>
@@ -99,4 +99,4 @@ if (isset($thread)) {
         }
 
     </script>
-@stop
+@endsection

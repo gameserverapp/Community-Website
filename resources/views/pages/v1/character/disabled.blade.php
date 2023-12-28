@@ -19,7 +19,7 @@
              Feature disabled by admin
          </h1>
      </div>
- @stop
+ @endsection
 
 @section('page_content')
 
@@ -36,4 +36,4 @@
         </div>
     </div>
 
-@stop
+@endsection

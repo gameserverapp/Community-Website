@@ -7,7 +7,7 @@
 ])
 
 @section('banner_content')
-@stop
+@endsection
 
 @section('page_content')
 
@@ -38,5 +38,5 @@
             @endcomponent
         </div>
     </div>
-@stop
+@endsection
 

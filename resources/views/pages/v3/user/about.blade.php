@@ -9,4 +9,4 @@
 @section('page_content')
     @include('pages.v3.user._header')
 
-@stop
+@endsection

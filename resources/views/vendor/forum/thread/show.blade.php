@@ -88,7 +88,7 @@
             </div>
         @endcan
     </div>
-@stop
+@endsection
 
 @section ('footer')
     <script>
@@ -97,4 +97,4 @@
         $(this).is(':checked') ? postRow.addClass('active') : postRow.removeClass('active');
     });
     </script>
-@stop
+@endsection

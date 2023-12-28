@@ -95,4 +95,4 @@ if($title == 'Inbox') {
         </div>
     </div>
 
-@stop
+@endsection

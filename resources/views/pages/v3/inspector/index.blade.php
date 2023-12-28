@@ -108,4 +108,4 @@ use GameserverApp\Helpers\SiteHelper;
 
 
 
-@stop
+@endsection

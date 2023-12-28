@@ -94,4 +94,4 @@ use GuzzleHttp\Exception\ClientException;
         </div>
     </div>
 
-@stop
+@endsection

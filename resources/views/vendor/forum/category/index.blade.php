@@ -40,4 +40,4 @@
             @endforelse
         </div>
     </div>
-@stop
+@endsection

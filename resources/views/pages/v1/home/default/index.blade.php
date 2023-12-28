@@ -13,7 +13,7 @@
 
 @section('banner_content')
     @include('pages.v1.home.default.partials.banner')
-@stop
+@endsection
 
 @section('page_content')
     @include('pages.v1.home.default.partials.latest')
@@ -38,7 +38,7 @@
 
     {{--@include('pages.v2.home.shared.stream')--}}
 
-@stop
+@endsection
 
 
 @section('footer_scripts')
@@ -64,4 +64,4 @@
 
         inactivityTime(60);
     </script>
-@stop
+@endsection

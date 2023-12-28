@@ -71,4 +71,4 @@
             {{ trans('forum::threads.none_found') }}
         </p>
     @endif
-@stop
+@endsection

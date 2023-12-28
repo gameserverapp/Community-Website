@@ -18,7 +18,7 @@
 
 @section('banner_content')
     Promote your {{ GameserverApp\Helpers\SiteHelper::groupName()}}!
-@stop
+@endsection
 
 @section('page_content')
 
@@ -89,4 +89,4 @@
         </div>
     </div>
 
-@stop
+@endsection

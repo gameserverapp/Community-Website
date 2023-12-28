@@ -54,7 +54,7 @@
         {{--{{$character->level}}--}}
     {{--</span>--}}
 
-@stop
+@endsection
 
 @section('page_content')
 
@@ -125,4 +125,4 @@
         </div>
     @endif
 
-@stop
+@endsection

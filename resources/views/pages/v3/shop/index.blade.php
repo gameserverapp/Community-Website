@@ -112,4 +112,4 @@ use GameserverApp\Helpers\SiteHelper;
     </div>
 </div>
 
-@stop
+@endsection

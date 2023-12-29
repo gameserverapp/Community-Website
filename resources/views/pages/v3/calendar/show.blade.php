@@ -10,7 +10,7 @@ if($item->hasImage()) {
     'page' => [
         'title' => $item->title(),
         'description' => $item->metaDescription(),
-        'class' => 'article-single',
+        'class' => 'calendar-single article-single',
         'attributes' => '',
         'bg' => $image
     ],

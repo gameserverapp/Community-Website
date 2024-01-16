@@ -36,6 +36,7 @@ Stop the VM and configure the stuff below
 ![img](./img/network-2.png)
 
 ## 6. Start VM & prep VM
+Make the changes below on the VM.
 
 ### Network adapters
 ```bash
@@ -90,7 +91,7 @@ https://linuxopsys.com/topics/install-virtualbox-guest-additions-on-debian
 
 After rebooting, confirm `/var/www` is mounted to the folder on your host machine, and you can see the source files.
 
-## 6. Open terminal on VM & run script
+## 6. Run script
 From here on out, it's best to always connect with the VM via SSH using the `root` account.
 
 ### Create self-signed cert for your test url

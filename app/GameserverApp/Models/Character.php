@@ -168,7 +168,7 @@ class Character extends Model implements LinkableInterface
 
             return $url;
         } catch( \Exception $e) {
-            Bugsnag::notifyException($e);
+//            Bugsnag::notifyException($e);
         }
     }
 

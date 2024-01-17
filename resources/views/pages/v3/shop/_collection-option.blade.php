@@ -134,6 +134,30 @@
                                 You do not have a character to deliver this shop pack to.
                             </div>
                         @endif
+                    @elseif($item->requiresGameServerSelect())
+                        @if($item->hasGameServers())
+                            <div class="text-center">
+                                <label>Deliver on:</label>
+                                <select name="gameserver_id">
+                                    @foreach($item->gameservers() as $gameserver)
+                                        <option value="{{$gameserver->id}}" @if(old('gameserver_id') == $gameserver->id) selected @endif>
+                                            {{$gameserver->name()}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            @include('partials.v3.button', [
+                                'element' => 'button',
+                                'type' => 'submit',
+                                'title' => 'Order now &raquo;',
+                                'class' => 'btn-theme-rock center'
+                            ])
+                        @else
+                            <div class="alert alert-danger">
+                                There are no game servers to deliver this shop pack on.
+                            </div>
+                        @endif
                     @else
                         @include('partials.v3.button', [
                             'element' => 'button',

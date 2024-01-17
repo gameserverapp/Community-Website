@@ -93,7 +93,11 @@ class ShopController extends Controller
 
     public function purchase(Request $request, $id)
     {
-        $response = $this->client->purchaseShopItem($id, $request->input('character_id', null));
+        $response = $this->client->purchaseShopItem(
+            $id,
+            $request->input('character_id', null),
+            $request->input('gameserver_id', null)
+        );
 
         if(
             $response instanceof ClientException or
@@ -108,7 +112,7 @@ class ShopController extends Controller
                 'stay'    => true
             ]);
 
-            return redirect()->back();
+            return redirect()->back()->withInput();
         }
 
         session()->flash('alert', [

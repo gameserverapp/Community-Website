@@ -556,14 +556,15 @@ class Client
         return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], false));
     }
 
-    public function purchaseShopItem($id, $characterId)
+    public function purchaseShopItem($id, $characterId, $gameserverId)
     {
         $this->api()->clearCache('get', 'shop/' . $id, [], true);
         $this->api()->clearCache('get', 'shop', [], true);
 
         return $this->api()->authRequest('post', 'shop/' . $id . '/purchase', [
             'form_params' => [
-                'character_id' => $characterId
+                'character_id' => $characterId,
+                'gameserver_id' => $gameserverId
             ]
         ]);
     }

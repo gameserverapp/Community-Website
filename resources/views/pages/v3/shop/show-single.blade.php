@@ -165,28 +165,47 @@ use GameserverApp\Helpers\SiteHelper;
                         </div>
                     @endif
 
-                    @if(auth()->check() and $package->requiresCharacterSelect())
-                        @if($package->hasCharacters())
-                            <div class="text-center">
-                                <label>Deliver to:</label>
-                                <select name="character_id">
-                                    @foreach($package->characters() as $character)
-                                        <option @if($character->online()) selected @endif value="{{$character->id}}">
-                                            {{$character->name()}}
+                    @if(auth()->check())
+                        @if($package->requiresCharacterSelect())
+                            @if($package->hasCharacters())
+                                <div class="text-center">
+                                    <label>Deliver to:</label>
+                                    <select name="character_id">
+                                        @foreach($package->characters() as $character)
+                                            <option @if($character->online()) selected @endif value="{{$character->id}}">
+                                                {{$character->name()}}
 
-                                            @if($character->online()) [online] @endif
+                                                @if($character->online()) [online] @endif
 
-                                            @if($character->hasServer())
-                                                ({{$character->server->name}})
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        @else
-                            <div class="alert alert-danger">
-                                You do not have a character to deliver this shop pack to.
-                            </div>
+                                                @if($character->hasServer())
+                                                    ({{$character->server->name}})
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @else
+                                <div class="alert alert-danger">
+                                    You do not have a character to deliver this shop pack to.
+                                </div>
+                            @endif
+                        @elseif($package->requiresGameServerSelect())
+                            @if($package->hasGameServers())
+                                <div class="text-center">
+                                    <label>Deliver on:</label>
+                                    <select name="gameserver_id">
+                                        @foreach($package->gameservers() as $gameserver)
+                                            <option value="{{$gameserver->id}}" @if(old('gameserver_id') == $gameserver->id) selected @endif>
+                                                {{$gameserver->name()}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @else
+                                <div class="alert alert-danger">
+                                    There are no game servers to deliver this shop pack on.
+                                </div>
+                            @endif
                         @endif
                     @endif
                 @endcomponent

@@ -63,9 +63,24 @@ class Shop extends Model implements LinkableInterface
         return $this->requires_character;
     }
 
+    public function requiresGameServerSelect()
+    {
+        return isset($this->requires_gameserver) and $this->requires_gameserver;
+    }
+
     public function requiresDiscordConnected()
     {
         return $this->requires_discord;
+    }
+
+    public function hasGameServers()
+    {
+        return $this->gameservers;
+    }
+
+    public function gameservers()
+    {
+        return $this->gameservers;
     }
 
     public function hasCharacters()

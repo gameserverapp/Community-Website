@@ -48,6 +48,16 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['requires_character'] = $args->requires_character;
         }
 
+        if (isset($args->requires_gameserver)) {
+            $data['requires_gameserver'] = $args->requires_gameserver;
+
+            if (isset($args->gameservers) and $args->gameservers) {
+                $data['gameservers'] = ServerTransformer::transformMultiple($args->gameservers);
+            } else {
+                $data['gameservers'] = false;
+            }
+        }
+
         if (isset($args->requires_discord)) {
             $data['requires_discord'] = $args->requires_discord;
         }

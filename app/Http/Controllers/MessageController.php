@@ -59,8 +59,8 @@ class MessageController extends Controller
         $message = $this->api->message($id);
 
         if(!$message->read()) {
-            $this->api->clearCache('get', 'user/' . auth()->user()->id);
             $this->api->clearCache('get', 'message/' . $id);
+            $this->api->clearCache('get', 'user/me', [], true);
         }
 
         return view('pages.v3.user.message.read', [

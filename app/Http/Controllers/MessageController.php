@@ -56,8 +56,15 @@ class MessageController extends Controller
             return view('pages.v3.user.disabled');
         }
 
+        $message = $this->api->message($id);
+
+        if(!$message->read()) {
+            $this->api->clearCache('get', 'message/' . $id);
+            $this->api->clearCache('get', 'user/me', [], true);
+        }
+
         return view('pages.v3.user.message.read', [
-            'message' => $this->api->message($id)
+            'message' => $message
         ]);
     }
 

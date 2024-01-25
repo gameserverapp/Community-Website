@@ -109,7 +109,7 @@ openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/certs/self
 
 ### Install all required software to host website
 ```
-wget -O install.sh https://raw.githubusercontent.com/GameserverApp/Community-Website/master/scripts/install-DEV-ONLY.sh && chmod +x install-DEV-ONLY.sh && bash install-DEV-ONLY.sh
+wget -O install-DEV-ONLY.sh https://raw.githubusercontent.com/GameserverApp/Community-Website/master/scripts/install-DEV-ONLY.sh && chmod +x install-DEV-ONLY.sh && bash install-DEV-ONLY.sh
 ```
 
 when finished, run 

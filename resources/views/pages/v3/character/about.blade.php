@@ -40,7 +40,7 @@
 
                 @if(
                     auth()->check() and
-                    in_array($character->user->id, auth()->user()->subUserIds())
+                    in_array($character->user->id, auth()->user()->allUserIds())
                 )
                     <br><br>
                     <div class="edit">

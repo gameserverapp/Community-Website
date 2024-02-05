@@ -98,7 +98,7 @@ use GameserverApp\Helpers\SiteHelper;
         ! auth()->check() or
         (
             auth()->user()->canSendTokens() and
-            !in_array($user->id, auth()->user()->subUserIds())
+            !in_array($user->id, auth()->user()->allUserIds())
         )
     ) {
         $right[] = [
@@ -111,7 +111,7 @@ use GameserverApp\Helpers\SiteHelper;
         ! auth()->check() or
         (
             auth()->user()->canSendMessage() and
-            !in_array($user->id, auth()->user()->subUserIds())
+            !in_array($user->id, auth()->user()->allUserIds())
         )
     ) {
         $right[] = [
@@ -122,7 +122,7 @@ use GameserverApp\Helpers\SiteHelper;
 
     if (
         auth()->check() and
-        in_array($user->id, auth()->user()->subUserIds())
+        in_array($user->id, auth()->user()->allUserIds())
     ) {
 
         if (SiteHelper::featureEnabled('messages')) {

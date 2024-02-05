@@ -96,7 +96,7 @@ class CharacterController extends Controller
 
         $character = $this->api->character($id);
 
-        if($character->user->id != auth()->id()) {
+        if(!in_array($character->user->id, auth()->user()->subUserIds())) {
             return redirectBackWithAlert('You can not do that', 'danger');
         }
 
@@ -117,7 +117,7 @@ class CharacterController extends Controller
 
         $character = $this->api->character($id);
 
-        if($character->user->id != auth()->id()) {
+        if(!in_array($character->user->id, auth()->user()->subUserIds())) {
             return redirectBackWithAlert('You can not do that', 'danger');
         }
 

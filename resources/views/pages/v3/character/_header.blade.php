@@ -158,7 +158,7 @@ use GameserverApp\Helpers\SiteHelper;
             !auth()->check() or
             (
                 auth()->user()->canSendMessage() and
-                $character->user->id != auth()->id()
+                !in_array($character->user->id, auth()->user()->subUserIds())
             )
         ) {
             $dropdown[] = [
@@ -198,7 +198,7 @@ use GameserverApp\Helpers\SiteHelper;
             !auth()->check() or
             (
                 auth()->user()->canSendTokens() and
-                $character->user->id != auth()->id()
+                !in_array($character->user->id, auth()->user()->subUserIds())
             )
         ) {
             $dropdown[] = [

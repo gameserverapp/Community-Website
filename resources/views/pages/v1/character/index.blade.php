@@ -20,7 +20,7 @@
         auth()->guest() or
         (
             auth()->check() and
-            $character->user->id != auth()->id()
+            !in_array($character->user->id, auth()->user()->subUserIds())
         )
     )
         <div class="actions">

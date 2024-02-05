@@ -12,7 +12,7 @@ if(isset($message)) {
 if(!empty( $receiver->name )) {
     $title .= ' ' . $receiver->showLink();
 } elseif(isset($message)) {
-    if(in_array($message->receiver->id, auth()->user()->subUserIds())) {
+    if(in_array($message->receiver->id, auth()->user()->allUserIds())) {
         $title .= ' ' . $message->sender->showLink();
     } else {
         $title .= ' ' . $message->receiver->showLink();

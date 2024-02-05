@@ -41,6 +41,15 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->online;
     }
 
+    public function subUserIds()
+    {
+        if(!isset($this->sub_users)) {
+            return [];
+        }
+
+        return $this->sub_users->pluck('id')->toArray();
+    }
+
     public function hasP2PSubscription()
     {
     }

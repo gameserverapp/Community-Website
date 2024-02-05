@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Request;
 <?php
 $user = auth()->user();
 
-if(auth()->id() == $message->receiver->id) {
+if(in_array($message->receiver->id, auth()->user()->subUserIds())) {
     $title = 'from ' . $message->sender->showLink();
 } else {
     $title = 'to ' . $message->receiver->showLink();
@@ -41,7 +41,7 @@ if(auth()->id() == $message->receiver->id) {
                 {!! Markdown::convertToHtml($message->content()) !!}
             @endcomponent
 
-            @if(auth()->id() != $message->sender->id)
+            @if(!in_array($message->sender->id, auth()->user()->subUserIds()))
                 @if($message->receiver->canSendMessage())
                     @include('pages.v3.user.message._form', ['reply' => $message])
                 @else

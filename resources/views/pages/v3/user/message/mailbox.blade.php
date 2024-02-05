@@ -33,11 +33,11 @@ if($title == 'Inbox') {
 
                 @forelse($messages as $message)
 
-                    <div class="message-item @if( !$message->read() and $message->receiver->id == auth()->id() ) new @endif">
+                    <div class="message-item @if( !$message->read() and in_array($message->receiver->id, auth()->user()->subUserIds()) ) new @endif">
                         <div class="row">
 
                             <div class="col-xs-6 col-sm-2 sender">
-                                @if( $message->sender->id == auth()->id() )
+                                @if( in_array($message->sender->id, auth()->user()->subUserIds()) )
                                     {!! $message->receiver->showLink() !!}
                                 @else
                                     {!! $message->sender->showLink() !!}
@@ -55,7 +55,7 @@ if($title == 'Inbox') {
 
                                 <div class="col-xs-12 col-sm-8 subject">
 
-                                    @if( !$message->read() and $message->receiver->id == auth()->id() )
+                                    @if( !$message->read() and in_array($message->receiver->id, auth()->user()->subUserIds()) )
                                         <span class="label label-theme">NEW</span>
                                         <strong>{{$message->subject()}}</strong>
                                     @else

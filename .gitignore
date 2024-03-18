@@ -21,3 +21,4 @@ npm-debug.log
 /public/js/app.js
 public/core
 /public/mix-manifest.json
+/.idea

@@ -1,7 +1,7 @@
 <?php
 use GameserverApp\Helpers\SiteHelper;
 ?>
-<div class="dropdown">
+<div class="dropdown" dusk="topnav">
     <span class="btn btn-default btn-small dashboard" data-toggle="dropdown"
        aria-haspopup="true" aria-expanded="true">
         {!! auth()->user()->showLink(['disable_link' => true]) !!}
@@ -158,13 +158,13 @@ use GameserverApp\Helpers\SiteHelper;
         @endif
 
         <li>
-            <a href="{{route('user.settings', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.settings', auth()->id()) ? 'orange' : '' }}">
+            <a dusk="topnav-settings" href="{{route('user.settings', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.settings', auth()->id()) ? 'orange' : '' }}">
                 Settings
             </a>
         </li>
         <li role="separator" class="divider"></li>
         <li>
-            <a href="{{route('auth.logout')}}">
+            <a href="{{route('auth.logout')}}" dusk="topnav-logout">
                 Logout
             </a>
         </li>

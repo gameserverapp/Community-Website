@@ -22,7 +22,8 @@
                         'type' => 'submit',
                         'element' => 'button',
                         'title' => translate('disconnect', 'Disconnect'),
-                        'class' => 'center small'
+                        'class' => 'center small',
+                        'dusk' => 'disconnect'
                     ])
 
                     {!! Form::close() !!}
@@ -51,7 +52,7 @@
 
             @foreach(auth()->user()->connect_users as $connectUser)
 
-                <a class="btn btn-default openid-connect" href="{{$connectUser->connect_url}}">
+                <a class="btn btn-default openid-connect" dusk="connect-{{strtolower($connectUser->name)}}" href="{{$connectUser->connect_url}}">
                     <div>
                         <img width="100%" height="100%" src="{{$connectUser->icon}}">
                     </div>

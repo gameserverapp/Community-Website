@@ -231,7 +231,7 @@ class OAuthApi
             'base_uri' => config('gameserverapp.connection.url'),
             'headers'  => $headers,
             'timeout' => config('gameserverapp.connection.timeout'),
-            'verify' => !app()->environment(['local', 'dev'])
+            'verify' => !app()->environment(['local', 'dev', 'test'])
             //'http_errors' => false
         ]);
     }

@@ -39,8 +39,6 @@
         </p>
     @endforelse
 
-
-
     <div class="frame-footer">
 
         @if(
@@ -71,25 +69,25 @@
         <p>
             Use this when there is no option to connect accounts above.
         </p>
-            <div class="row">
-                <div class="col-md-8">
-                    <input type="text" name="code" value="{{old('code')}}" class="form-control">
-                    <small>
-                        <a href="https://docs.gameserverapp.com/dashboard/community/website#connect-sub-accounts-on-community-website" target="_blank">How to get connect code &raquo;</a>
-                    </small>
-                </div>
-                <div class="col-md-4">
+        <div class="row getconnectcode">
+            <div class="col-md-8">
+                <input type="text" name="code" value="{{old('code')}}" class="form-control">
+                <small>
+                    <a href="https://docs.gameserverapp.com/dashboard/community/website#connect-sub-accounts-on-community-website" target="_blank">How to get connect code &raquo;</a>
+                </small>
+            </div>
+            <div class="col-md-4">
 
-                    <div>
-                        @include('partials.v3.button', [
-                            'type' => 'submit',
-                            'element' => 'button',
-                            'title' => translate('Connect', 'Connect'),
-                            'class' => 'center small'
-                        ])
-                    </div>
+                <div>
+                    @include('partials.v3.button', [
+                        'type' => 'submit',
+                        'element' => 'button',
+                        'title' => translate('Connect', 'Connect'),
+                        'class' => 'center small'
+                    ])
                 </div>
             </div>
+        </div>
 
         {!! Form::close() !!}
     </div>

@@ -29,14 +29,8 @@ class SupporterTierController extends Controller
         }
 
         $packages = $this->client->allSupporterTiers(route('supporter-tier.index'), request()->get('page', 1));
-
-        if($request->has('status') == 'success') {
-            session()->flash('alert', [
-                'status'  => 'success',
-                'message' => 'Thank you for showing your support!',
-                'stay'    => true
-            ]);
-        }
+        
+        $this->flashResponse($request);
 
         return view('pages.v3.supporter-tier.index', [
             'packages' => $packages
@@ -51,6 +45,21 @@ class SupporterTierController extends Controller
 
         $package = $this->client->supporterTier($id);
 
+        $this->flashResponse($request);
+
+        return view('pages.v3.supporter-tier.show', [
+            'package' => $package
+        ]);
+    }
+
+    public function purge($id)
+    {
+        $this->client->clearCache('get', 'supporter-tier');
+        $this->client->clearCache('get', 'supporter-tier/show/' . $id);
+    }
+
+    private function flashResponse(Request $request)
+    {
         if ($request->has('status')) {
             switch ($request->get('status')) {
                 case 'cancel':
@@ -102,15 +111,5 @@ class SupporterTierController extends Controller
                     break;
             }
         }
-
-        return view('pages.v3.supporter-tier.show', [
-            'package' => $package
-        ]);
-    }
-
-    public function purge($id)
-    {
-        $this->client->clearCache('get', 'supporter-tier');
-        $this->client->clearCache('get', 'supporter-tier/show/' . $id);
     }
 }

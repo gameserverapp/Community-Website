@@ -87,7 +87,7 @@ class PremiumGuard implements Guard
         }
 
         if(!OAuthApi::hasAuthCookies()) {
-            return false;
+            return null;
         }
 
         try {

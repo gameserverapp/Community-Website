@@ -22,7 +22,7 @@ class PremiumGuard implements Guard
      */
     public function check()
     {
-        return app(OAuthApi::class)->hasAuthCookies() and $this->getUser();
+        return OAuthApi::hasAuthCookies() and $this->getUser();
     }
 
     /**
@@ -32,7 +32,7 @@ class PremiumGuard implements Guard
      */
     public function guest()
     {
-        return !app(OAuthApi::class)->hasAuthCookies() or !$this->getUser();
+        return !OAuthApi::hasAuthCookies() or !$this->getUser();
     }
 
     /**
@@ -84,6 +84,10 @@ class PremiumGuard implements Guard
     {
         if(!is_null($this->cacheUser) ) {
             return $this->cacheUser;
+        }
+
+        if(!OAuthApi::hasAuthCookies()) {
+            return false;
         }
 
         try {

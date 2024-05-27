@@ -74,7 +74,10 @@ class MessageController extends Controller
             return view('pages.v3.user.disabled');
         }
 
-        if(!auth()->user()->canSendMessage()) {
+        if(
+            is_bool(auth()->user()) or
+            !auth()->user()->canSendMessage()
+        ) {
             return redirectBackWithAlert('You can not do this', 'danger');
         }
 

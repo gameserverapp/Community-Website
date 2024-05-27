@@ -5,6 +5,8 @@ namespace App\Http;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckDomainSettings;
 use App\Http\Middleware\HttpRedirect;
+use App\Http\Middleware\RequestHasValidIdWithSlug;
+use App\Http\Middleware\RequestHasValidUuidAsID;
 use App\Http\Middleware\RuleGate;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -56,6 +58,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'valid_uuid' => RequestHasValidUuidAsID::class,
+        'valid_id_slug' => RequestHasValidIdWithSlug::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

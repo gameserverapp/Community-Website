@@ -51,7 +51,7 @@ class HomeController extends Controller
 
                 default:
                     $pageController = app(PageController::class);
-                    return $pageController->show(RouteHelper::home(), 'home');
+                    return $pageController->show($request, RouteHelper::home(), 'home');
             }
         }
 

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
 use Illuminate\Validation\UnauthorizedException;
+use Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -24,7 +26,8 @@ class Handler extends ExceptionHandler
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
         MaintenanceModeException::class,
-        DomainNotFoundException::class
+        DomainNotFoundException::class,
+        SuspiciousOperationException::class
     ];
 
     /**
@@ -51,6 +54,10 @@ class Handler extends ExceptionHandler
     {
         if($e instanceof DomainNotFoundException) {
             return redirect(config('gameserverapp.main_site'));
+        }
+
+        if($e instanceof BackendErrorException) {
+            return response()->view('errors.backend-error', [], 500);
         }
 
         if ($this->isHttpException($e)) {
@@ -85,6 +92,15 @@ class Handler extends ExceptionHandler
 //        }
 
         return parent::convertExceptionToResponse($e);
+    }
+
+    protected function prepareException(Exception $e)
+    {
+        if ($e instanceof SuspiciousOperationException) {
+            $e = new NotFoundHttpException(null, $e);
+        }
+
+        return parent::prepareException($e);
     }
 
     /**

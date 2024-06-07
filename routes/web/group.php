@@ -1,7 +1,8 @@
 <?php
 
 Route::group([
-    'prefix' => 'group/{uuid}'
+    'prefix' => 'group/{uuid}',
+    'middleware' => 'valid_uuid'
 ], function ($router) {
 
     Route::get('/', [

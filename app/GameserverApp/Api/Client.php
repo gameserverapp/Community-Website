@@ -2,6 +2,7 @@
 
 namespace GameserverApp\Api;
 
+use App\Exceptions\BackendErrorException;
 use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
@@ -152,9 +153,13 @@ class Client
 
     public function character($id)
     {
-        return CharacterTransformer::transform(
-            $this->api()->guestRequest('get', 'character/' . $id)
-        );
+        $data = $this->api()->guestRequest('get', 'character/' . $id);
+
+        if(!isset($data->id)) {
+            throw new BackendErrorException();
+        }
+
+        return CharacterTransformer::transform($data);
     }
 
     public function userStats($type)
@@ -215,21 +220,27 @@ class Client
         }
 
         if (isset($with['auth']) and $with['auth']) {
-            return GroupTransformer::transform(
-                $this->api()->authRequest('get', 'group/' . $id . $query)
-            );
+            $data = $this->api()->authRequest('get', 'group/' . $id . $query);
+        } else {
+            $data = $this->api()->guestRequest('get', 'group/' . $id . $query);
         }
 
-        return GroupTransformer::transform(
-            $this->api()->guestRequest('get', 'group/' . $id . $query)
-        );
+        if(!isset($data->id)) {
+            throw new BackendErrorException();
+        }
+
+        return GroupTransformer::transform($data);
     }
 
     public function user($id)
     {
-        return UserTransformer::transform(
-            $this->api()->guestRequest('get', 'user/' . $id)
-        );
+        $data = $this->api()->guestRequest('get', 'user/' . $id);
+
+        if(!isset($data->id)) {
+            throw new BackendErrorException();
+        }
+
+        return UserTransformer::transform($data);
     }
 
     public function userActivity($id, $page = 1)

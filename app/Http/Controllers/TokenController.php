@@ -38,7 +38,10 @@ class TokenController extends Controller
 
     public function send(Request $request, $uuid)
     {
-        if(! auth()->user()->canSendTokens()) {
+        if(
+            is_bool(auth()->user()) or
+            ! auth()->user()->canSendTokens()
+        ) {
             return view('pages.v3.user.disabled');
         }
 

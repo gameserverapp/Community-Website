@@ -11,12 +11,14 @@ Route::group([
     
     Route::get('/show/{id}', [
         'as'   => 'supporter-tier.show',
-        'uses' => 'SupporterTierController@show'
+        'uses' => 'SupporterTierController@show',
+        'middleware' => 'valid_uuid'
     ]);
 
     Route::get('/show/{id}/purge_cache', [
         'as'   => 'supporter-tier.purge',
-        'uses' => 'SupporterTierController@purge'
+        'uses' => 'SupporterTierController@purge',
+        'middleware' => 'valid_uuid'
     ]);
 });
 

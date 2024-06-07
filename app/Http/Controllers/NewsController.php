@@ -43,6 +43,8 @@ class NewsController extends Controller
 
     public function show($id)
     {
+        //todo assert format is valid
+
         return view('pages.v3.news.show', [
             'item' => $this->client->news($id),
             'items' => $this->client->relatedNews($id)

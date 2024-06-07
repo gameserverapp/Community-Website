@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use GameserverApp\Api\Client;
-use GameserverApp\Api\Forum\Dispatcher;
 use GameserverApp\Api\OAuthApi;
+use Ramsey\Uuid\Uuid;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Validator::extend('uuid', function ($attribute, $value, $parameters, $validator) {
+            return Uuid::isValid($value);
+        });
     }
 
     /**

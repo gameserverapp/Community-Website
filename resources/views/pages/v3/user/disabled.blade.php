@@ -1,13 +1,12 @@
 @extends('layouts.v3.default', [
     'page' => [
-        'title' => $user->name(),
+        'title' => 'Disabled by admin',
         'description' => '',
         'class' => 'user-single'
     ]
 ])
 
 @section('page_content')
-    @include('pages.v3.user._header')
 
     <div class="row">
 

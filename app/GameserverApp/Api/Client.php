@@ -37,7 +37,7 @@ class Client
     public function me()
     {
         return UserTransformer::transform(
-            $this->api()->authRequest('get', 'user/me')
+            $this->api()->authRequest('get', 'user/me?url=' . base64_encode(request()->getHost()))
         );
     }
 
@@ -234,7 +234,7 @@ class Client
 
     public function user($id)
     {
-        $data = $this->api()->guestRequest('get', 'user/' . $id);
+        $data = $this->api()->guestRequest('get', 'user/' . $id . '?url=' . base64_encode(request()->getHost()));
 
         if(!isset($data->id)) {
             throw new BackendErrorException();
@@ -821,7 +821,7 @@ class Client
 
     public static function domain($key = false, $default = null)
     {
-        $settings = app(OAuthApi::class)->guestRequest('get', 'domain/settings', [
+        $settings = app(OAuthApi::class)->guestRequest('get', 'domain/settings?url=' . base64_encode(request()->getHost()), [
 //            'no_404_exception' => true
         ], 10);
 

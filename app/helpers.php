@@ -38,6 +38,10 @@ function mb_unserialize($string) {
     return unserialize($string2);
 }
 
+function in_array_any($needles, $haystack) {
+    return !empty(array_intersect($needles, $haystack));
+}
+
 function calcPercentage($full, $calc)
 {
     if($full == 0) {

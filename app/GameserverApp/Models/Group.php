@@ -93,7 +93,7 @@ class Group extends Model implements LinkableInterface
     public function isAdmin(User $user)
     {
         if($this->hasAdmins()) {
-            return in_array($user->id, $this->admins);
+            return in_array_any($user->allUserIds(), $this->admins);
         }
 
         return false;
@@ -102,7 +102,7 @@ class Group extends Model implements LinkableInterface
     public function isOwner(User $user)
     {
         if($this->hasOwners()) {
-            return in_array($user->id, $this->owners);
+            return in_array_any($user->allUserIds(), $this->owners);
         }
 
         return false;

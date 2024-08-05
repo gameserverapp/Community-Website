@@ -1,4 +1,4 @@
-<article class="server-slider"  id="servers">
+<article class="server-slider" id="servers">
     @if(isset($block['title']) and !empty($block['title']))
         <div class="row">
             <div class="col-md-12 text-center">

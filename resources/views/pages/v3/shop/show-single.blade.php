@@ -266,7 +266,7 @@ use GameserverApp\Helpers\SiteHelper;
                         <div class="col-md-6">
                             <h6>I'm not online right now</h6>
                             <p>
-                                The delivery system will wait for your to come online. You have 7 days to pick up your order.
+                                The delivery system will wait for your character to come online. You have 7 days to pick up your order.
                             </p>
                         </div>
                     </div>

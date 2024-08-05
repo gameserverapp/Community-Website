@@ -27,6 +27,8 @@
 
 <title>{{$page['title'] or 'Community website'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href='{{GameserverApp\Helpers\SiteHelper::googleFontsUrl()}}' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css') }}">

@@ -100,7 +100,7 @@ class Client
         ]);
     }
 
-    public function allServers($status = true)
+    public function allServers($status = false)
     {
         $args = [];
 

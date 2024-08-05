@@ -28,7 +28,7 @@ class InspectorController extends Controller
             return view('pages.v3.inspector.disabled');
         }
 
-        $servers = $this->api->allServers(false);
+        $servers = $this->api->allServers();
 
         $keys = [
             'search',

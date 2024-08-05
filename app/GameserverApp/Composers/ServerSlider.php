@@ -22,11 +22,7 @@ class ServerSlider
         try {
             $servers = $this->api->allServers();
         } catch (\Exception $e) {
-            try {
-                $servers = $this->api->allServers(false);
-            } catch (\Exception $e) {
-                $servers = collect();
-            }
+            $servers = collect();
         }
 
         $view->with([

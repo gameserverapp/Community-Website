@@ -70,9 +70,8 @@
     <div class="server-block-content">
 
         <h2 class="title">{{$server->name()}}</h2>
-
-
-        <a href="steam://connect/{{$server->connectAddress()}}" class="join-btn btn btn-theme">
+        
+        <a href="{{$server->directConnectAddress()}}" class="join-btn btn btn-theme">
             <span>
                 Click to join &raquo;
             </span>

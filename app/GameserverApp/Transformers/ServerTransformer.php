@@ -42,6 +42,10 @@ class ServerTransformer extends ModelTransformer implements ModelTransformerInte
             $data['connect_address'] = $args->connect_address;
         }
 
+        if (isset($args->steam_connect_address)) {
+            $data['steam_connect_address'] = $args->steam_connect_address;
+        }
+
         if (isset($args->slots)) {
             $data['slots'] = $args->slots;
         }

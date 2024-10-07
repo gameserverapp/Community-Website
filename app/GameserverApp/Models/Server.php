@@ -20,6 +20,15 @@ class Server extends Model implements LinkableInterface
         return isset($this->connect_address) ? $this->connect_address : null;
     }
 
+    public function directConnectAddress()
+    {
+        if(isset($this->steam_connect_address)) {
+            return $this->steam_connect_address;
+        }
+
+        return $this->connectAddress();
+    }
+
     public function slots()
     {
         if(!isset($this->slots)) {

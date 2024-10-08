@@ -1,5 +1,7 @@
 <?php
 use GameserverApp\Helpers\SiteHelper;
+
+$formId = md5($package->orderUrl());
 ?>
 
 @extends('layouts.v3.default', [
@@ -25,7 +27,7 @@ use GameserverApp\Helpers\SiteHelper;
 
     <div class="row">
 
-        <form method="post" action="{{$package->orderUrl()}}">
+        <form method="post" action="{{$package->orderUrl()}}" id="{{$formId}}">
             {{csrf_field()}}
 
             <div class="col-md-4">
@@ -88,11 +90,14 @@ use GameserverApp\Helpers\SiteHelper;
                         <br>
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                @include('partials.v3.button', [
-                                    'element' => 'button',
-                                    'type' => 'submit',
+                                @include('partials.v3.button_with_confirm_modal', [
                                     'title' => 'Order now &raquo;',
-                                    'class' => 'btn-theme-rock'
+                                    'class' => 'btn-theme-rock',
+                                    'confirm_modal' => [
+                                        'title' => 'Confirm your purchase',
+                                        'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->tokenSuffix($package->tokenPrice()) . '?',
+                                        'form_id' => $formId
+                                    ]
                                 ])
                             </div>
 
@@ -224,11 +229,14 @@ use GameserverApp\Helpers\SiteHelper;
                                     </div>
                                     <br>
                                 @else
-                                    @include('partials.v3.button', [
-                                        'element' => 'button',
-                                        'type' => 'submit',
+                                    @include('partials.v3.button_with_confirm_modal', [
                                         'title' => 'Order now &raquo;',
-                                        'class' => 'btn-theme-rock'
+                                        'class' => 'btn-theme-rock',
+                                        'confirm_modal' => [
+                                            'title' => 'Confirm your purchase',
+                                            'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->tokenSuffix($package->tokenPrice()) . '?',
+                                            'form_id' => $formId
+                                        ]
                                     ])
                                 @endif
                             </div>

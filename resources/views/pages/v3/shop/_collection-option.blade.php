@@ -2,7 +2,11 @@
     //'type' => 'basic'
 ])
 
-<form class="collection-option" method="post" action="{{$item->orderUrl()}}">
+<?php
+$formId = md5($item->orderUrl());
+?>
+
+<form class="collection-option" method="post" action="{{$item->orderUrl()}}" id="{{$formId}}">
     {{csrf_field()}}
     <div class="row">
         <div class="col-sm-3 col-lg-2">
@@ -123,11 +127,14 @@
                                 </select>
                             </div>
 
-                            @include('partials.v3.button', [
-                                'element' => 'button',
-                                'type' => 'submit',
+                            @include('partials.v3.button_with_confirm_modal', [
                                 'title' => 'Order now &raquo;',
-                                'class' => 'btn-theme-rock center'
+                                'class' => 'btn-theme-rock center',
+                                'confirm_modal' => [
+                                    'title' => 'Confirm your purchase',
+                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->tokenSuffix($item->tokenPrice()) . '?',
+                                    'form_id' => $formId
+                                ]
                             ])
                         @else
                             <div class="alert alert-danger">
@@ -147,11 +154,14 @@
                                 </select>
                             </div>
 
-                            @include('partials.v3.button', [
-                                'element' => 'button',
-                                'type' => 'submit',
+                            @include('partials.v3.button_with_confirm_modal', [
                                 'title' => 'Order now &raquo;',
-                                'class' => 'btn-theme-rock center'
+                                'class' => 'btn-theme-rock center',
+                                'confirm_modal' => [
+                                    'title' => 'Confirm your purchase',
+                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->tokenSuffix($item->tokenPrice()) . '?',
+                                    'form_id' => $formId
+                                ]
                             ])
                         @else
                             <div class="alert alert-danger">
@@ -159,11 +169,14 @@
                             </div>
                         @endif
                     @else
-                        @include('partials.v3.button', [
-                            'element' => 'button',
-                            'type' => 'submit',
+                        @include('partials.v3.button_with_confirm_modal', [
                             'title' => 'Order now &raquo;',
-                            'class' => 'btn-theme-rock center'
+                            'class' => 'btn-theme-rock center',
+                            'confirm_modal' => [
+                                'title' => 'Confirm your purchase',
+                                'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->tokenSuffix($item->tokenPrice()) . '?',
+                                'form_id' => $formId
+                            ]
                         ])
                     @endif
                 </div>

@@ -95,7 +95,7 @@ $formId = md5($package->orderUrl());
                                     'class' => 'btn-theme-rock',
                                     'confirm_modal' => [
                                         'title' => 'Confirm your purchase',
-                                        'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->tokenSuffix($package->tokenPrice()) . '?',
+                                        'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '?',
                                         'form_id' => $formId
                                     ]
                                 ])
@@ -234,7 +234,7 @@ $formId = md5($package->orderUrl());
                                         'class' => 'btn-theme-rock',
                                         'confirm_modal' => [
                                             'title' => 'Confirm your purchase',
-                                            'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->tokenSuffix($package->tokenPrice()) . '?',
+                                            'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '?',
                                             'form_id' => $formId
                                         ]
                                     ])

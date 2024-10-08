@@ -132,7 +132,7 @@ $formId = md5($item->orderUrl());
                                 'class' => 'btn-theme-rock center',
                                 'confirm_modal' => [
                                     'title' => 'Confirm your purchase',
-                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->tokenSuffix($item->tokenPrice()) . '?',
+                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
                                     'form_id' => $formId
                                 ]
                             ])
@@ -159,7 +159,7 @@ $formId = md5($item->orderUrl());
                                 'class' => 'btn-theme-rock center',
                                 'confirm_modal' => [
                                     'title' => 'Confirm your purchase',
-                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->tokenSuffix($item->tokenPrice()) . '?',
+                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
                                     'form_id' => $formId
                                 ]
                             ])
@@ -174,7 +174,7 @@ $formId = md5($item->orderUrl());
                             'class' => 'btn-theme-rock center',
                             'confirm_modal' => [
                                 'title' => 'Confirm your purchase',
-                                'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->tokenSuffix($item->tokenPrice()) . '?',
+                                'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
                                 'form_id' => $formId
                             ]
                         ])

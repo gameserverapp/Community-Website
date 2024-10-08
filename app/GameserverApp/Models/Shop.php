@@ -136,6 +136,19 @@ class Shop extends Model implements LinkableInterface
         return $this->discounted_token_price;
     }
 
+    public function displayTokenPriceTextOnly()
+    {
+        if($this->tokenPrice() == 0) {
+            return 'Free';
+        }
+
+        if($this->discount()) {
+            return $this->tokenSuffix($this->discountedPrice());
+        }
+
+        return $this->tokenSuffix($this->tokenPrice());
+    }
+
     public function discount()
     {
         return $this->discount;

@@ -157,7 +157,7 @@ class Shop extends Model implements LinkableInterface
         return $this->tokenSuffix($this->tokenPrice());
     }
 
-    private function tokenSuffix($amount)
+    public function tokenSuffix($amount)
     {
         if($amount == 1) {
             return $amount . ' token';

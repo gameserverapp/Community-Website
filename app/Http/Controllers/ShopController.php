@@ -88,7 +88,9 @@ class ShopController extends Controller
                     } else {
                         $label = $child->label(false);
 
-                        $filters[$label] = $label;
+                        if(!empty($label)) {
+                            $filters[$label] = $label;
+                        }
                     }
                 }
 

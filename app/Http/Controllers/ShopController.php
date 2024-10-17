@@ -76,8 +76,30 @@ class ShopController extends Controller
         $pack = $this->client->shopItem($id);
 
         if($pack->isCollection()) {
+
+            $filters = [];
+
+            if($pack->hasChildren()) {
+
+                foreach ($pack->children() as $child) {
+
+                    if(!$child->hasLabel()) {
+                        $filters[-1] = 'No label';
+                    } else {
+                        $label = $child->label(false);
+
+                        if(!empty($label)) {
+                            $filters[$label] = $label;
+                        }
+                    }
+                }
+
+                ksort($filters);
+            }
+
             return view('pages.v3.shop.show-collection', [
-                'package' => $pack
+                'package' => $pack,
+                'filters' => $filters
             ]);
         }
 

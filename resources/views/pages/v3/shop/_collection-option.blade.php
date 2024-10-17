@@ -1,12 +1,19 @@
 @component('partials.v3.frame', [
     //'type' => 'basic'
+    'class' => 'collection-option-parent'
 ])
 
 <?php
 $formId = md5($item->orderUrl());
+
+if($item->hasLabel()) {
+    $label = $item->label(false);
+} else {
+    $label = '-1';
+}
 ?>
 
-<form class="collection-option" method="post" action="{{$item->orderUrl()}}" id="{{$formId}}">
+<form class="collection-option" method="post" action="{{$item->orderUrl()}}" id="{{$formId}}" data-label="{{$label}}"  >
     {{csrf_field()}}
     <div class="row">
         <div class="col-sm-3 col-lg-2">
@@ -25,7 +32,7 @@ $formId = md5($item->orderUrl());
             <div class="main-title">
 
                 <h2 class="title">
-                    <span>
+                    <span class="js-collection-option-title">
                         {{$item->name()}}
                     </span>
                 </h2>
@@ -36,7 +43,9 @@ $formId = md5($item->orderUrl());
 
     <div class="row">
         <div class="col-lg-8">
-            {!! Markdown::convertToHtml($item->description()) !!}
+            <span class="js-collection-option-description">
+                {!! Markdown::convertToHtml($item->description()) !!}
+            </span>
 
             @if($item->cluster)
                 <div class="alert alert-warning">

@@ -80,6 +80,28 @@ use GameserverApp\Helpers\SiteHelper;
                 </h2>
             </div>
 
+            @if($package->hasChildren())
+                <div class="row collection-filters">
+                    <div class="col-md-4 hidden-xs">
+                    </div>
+                    <div class="col-md-4 col-xs-8">
+                        <form method="get">
+                            <input type="search" name="search" placeholder="Search..." id="collection-search">
+                        </form>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+
+                        <select name="filter" id="collection-filter">
+                            <option value=""> - No filter selected - </option>
+
+                            @foreach($filters as $value => $filter)
+                                    <option value="{{$value}}">{{$filter}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            @endif
+
             @forelse($package->children() as $child)
                 @include('pages.v3.shop._collection-option', [
                     'item' => $child

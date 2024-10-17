@@ -30,9 +30,10 @@ class Shop extends Model implements LinkableInterface
         return !is_null($this->label());
     }
 
-    public function label()
+    public function label($allowDiscountLabel = true)
     {
         if(
+            $allowDiscountLabel and
             $this->isSingle() and
             $this->tokenPrice() != 0 and
             $discount = $this->discount()

@@ -28,12 +28,6 @@ Route::group([
             'uses' => 'UserController@about'
         ]);
 
-        Route::get('/{uuid}/order-history', [
-            'as'   => 'shop.orders',
-            'uses' => 'UserController@orderHistory',
-            'middleware' => 'auth'
-        ]);
-
         Route::get('/{uuid}/deliveries', [
             'as'   => 'user.deliveries',
             'uses' => 'UserController@deliveries',

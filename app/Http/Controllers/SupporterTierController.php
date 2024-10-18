@@ -102,6 +102,14 @@ class SupporterTierController extends Controller
                     ]);
                     break;
 
+                case 'invalid-psp':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'The selected payment provider is not available or invalid.',
+                        'stay'    => true
+                    ]);
+                    break;
+
                 case 'not-available':
                     session()->flash('alert', [
                         'status'  => 'warning',

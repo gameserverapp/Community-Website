@@ -101,19 +101,9 @@ class SupportTier extends Model implements LinkableInterface
         return $this->cluster;
     }
 
-    public function gateway()
+    public function paymentProviders()
     {
-        return $this->gateway;
-    }
-
-    public function isPayPal()
-    {
-        return $this->gateway() == 'PayPal';
-    }
-
-    public function isStripe()
-    {
-        return $this->gateway() == 'Stripe';
+        return $this->payment_providers;
     }
 
     public function displayCurrency()

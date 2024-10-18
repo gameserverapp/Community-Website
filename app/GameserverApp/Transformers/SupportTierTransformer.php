@@ -20,19 +20,19 @@ class SupportTierTransformer extends ModelTransformer implements ModelTransforme
     public static function transformableInput($args)
     {
         $data = [
-            'id'               => $args->id,
-            'name'             => $args->name,
-            'description'      => $args->description,
-            'total_price'      => $args->total_price,
-            'discounted_price' => $args->discounted_price,
-            'discount'         => $args->discount,
-            'currency'         => $args->currency,
-            'gateway'          => $args->gateway,
-            'type'             => $args->type,
-            'image'            => $args->image,
-            'requires_discord' => $args->requires_discord,
-            'cluster'          => $args->cluster,
-            'order_url'        => $args->order_url
+            'id'                => $args->id,
+            'name'              => $args->name,
+            'description'       => $args->description,
+            'total_price'       => $args->total_price,
+            'discounted_price'  => $args->discounted_price,
+            'discount'          => $args->discount,
+            'currency'          => $args->currency,
+            'type'              => $args->type,
+            'image'             => $args->image,
+            'requires_discord'  => $args->requires_discord,
+            'cluster'           => $args->cluster,
+            'order_url'         => $args->order_url,
+            'payment_providers' => $args->psp
         ];
 
         return $data;

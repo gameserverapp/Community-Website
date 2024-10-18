@@ -68,22 +68,6 @@ class UserController extends Controller
 //        ]);
 //    }
 
-    public function orderHistory()
-    {
-        if(! SiteHelper::featureEnabled('shop')) {
-            return view('pages.v3.user.disabled', [
-               'user' => auth()->user()
-            ]);
-        }
-
-        $orders = $this->api->shopOrders(route('shop.orders', auth()->id()));
-
-        return view('pages.v3.user.history', [
-            'orders' => $orders,
-            'user' => auth()->user()
-        ]);
-    }
-
     public function deliveries()
     {
         if(! SiteHelper::featureEnabled('shop')) {

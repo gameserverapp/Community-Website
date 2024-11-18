@@ -37,7 +37,13 @@ class Client
     public function me()
     {
         return UserTransformer::transform(
-            $this->api()->authRequest('get', 'user/me?url=' . base64_encode(request()->getHost()))
+            $this->api()->authRequest(
+                'get',
+                'user/me',
+                [
+                    'url' => base64_encode(request()->getHost())
+                ]
+            )
         );
     }
 
@@ -672,7 +678,14 @@ class Client
     public function sendTokens($uuid, $amount, $message)
     {
         $this->api()->clearCache('get', 'user/me/transactions', [], true);
-        $this->api()->clearCache('get', 'user/me', [], true);
+        $this->api()->clearCache(
+            'get',
+            'user/me',
+            [
+                'url' => base64_encode(request()->getHost())
+            ],
+            true
+        );
 
         return $this->api()->authRequest('post', 'user/' . $uuid . '/send_tokens', [
             'form_params' => [

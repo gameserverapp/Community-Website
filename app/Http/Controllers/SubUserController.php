@@ -33,7 +33,14 @@ class SubUserController extends Controller
             return redirectBackWithAlert($error->message, 'danger');
         }
 
-        app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
+        app(OAuthApi::class)->clearCache(
+            'get',
+            'user/me',
+            [
+                'url' => base64_encode(request()->getHost())
+            ],
+            true
+        );
 
         if(isset($response->data)) {
             return redirectBackWithAlert($response->data);
@@ -47,7 +54,14 @@ class SubUserController extends Controller
     {
         $response = $this->api->disconnectSubUser($subUuid);
 
-        app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
+        app(OAuthApi::class)->clearCache(
+            'get',
+            'user/me',
+            [
+                'url' => base64_encode(request()->getHost())
+            ],
+            true
+        );
 
         if(isset($response->data)) {
             return redirectBackWithAlert($response->data);

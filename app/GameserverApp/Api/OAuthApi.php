@@ -33,7 +33,14 @@ class OAuthApi
     public static function user()
     {
         try {
-            $response = self::authRequest('get', 'user/me?url=' . base64_encode(request()->getHost()), [], config('gameserverapp.cache.get_user_ttl'));
+            $response = self::authRequest(
+                'get',
+                'user/me',
+                [
+                    'url' => base64_encode(request()->getHost())
+                ],
+                config('gameserverapp.cache.get_user_ttl')
+            );
 
             if($response instanceof \Exception) {
                 throw new UnauthorizedException();

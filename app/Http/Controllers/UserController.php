@@ -125,7 +125,14 @@ class UserController extends Controller
     {
         if($request->has('alert')) {
 
-            app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
+            app(OAuthApi::class)->clearCache(
+                'get',
+                'user/me',
+                [
+                    'url' => base64_encode(request()->getHost())
+                ],
+                true
+            );
 
             session()->flash('alert', [
                 'status'  => $request->get('alert_type', 'success'),
@@ -145,7 +152,14 @@ class UserController extends Controller
     {
         $this->api->acceptRules();
 
-        app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
+        app(OAuthApi::class)->clearCache(
+            'get',
+            'user/me',
+            [
+                'url' => base64_encode(request()->getHost())
+            ],
+            true
+        );
 
         return redirect('/')->with([
             'alert' => [
@@ -182,7 +196,14 @@ class UserController extends Controller
             return redirect()->back();
         }
 
-        app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
+        app(OAuthApi::class)->clearCache(
+            'get',
+            'user/me',
+            [
+                'url' => base64_encode(request()->getHost())
+            ],
+            true
+        );
 
         if(isset( $response->errors )) {
             return redirect()->back()->withErrors($response->errors);
@@ -260,7 +281,14 @@ class UserController extends Controller
             return redirect($route);
         }
 
-        app(OAuthApi::class)->clearCache('get', 'user/me', [], true);
+        app(OAuthApi::class)->clearCache(
+            'get',
+            'user/me',
+            [
+                'url' => base64_encode(request()->getHost())
+            ],
+            true
+        );
 
         return redirect('/')->with([
             'alert' => [

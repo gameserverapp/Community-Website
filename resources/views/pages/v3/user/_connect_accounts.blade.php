@@ -2,6 +2,26 @@
     'title' => 'Connected accounts',
 ])
 
+    <div class="row">
+        <div class="col-md-8">
+            <strong>{{auth()->user()->name()}}</strong>
+            <span class="label label-default">
+                    {{auth()->user()->serviceType()}}
+                </span><br>
+            <small style="font-size:12px;">{{auth()->user()->serviceId()}}</small>
+        </div>
+        <div class="col-md-4">
+
+            <div style="padding-top:10px; text-align: center">
+                <span class="label label-default">
+                    Current login
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+
 
     @forelse(auth()->user()->sub_users as $subUser)
         <div class="row">
@@ -34,9 +54,9 @@
         </div>
         <hr>
     @empty
-        <p>
+        <div class="alert alert-warning">
             There are no accounts connected to your current account yet.
-        </p>
+        </div>
     @endforelse
 
     <div class="frame-footer">

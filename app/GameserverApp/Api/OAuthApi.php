@@ -17,6 +17,16 @@ class OAuthApi
 {
     const TOKEN_COOKIE_NAME = 'premium_api_token';
 
+    public static function requestOriginInfo()
+    {
+        return [
+            'query' => [
+                'url' => base64_encode(request()->getHost()),
+                'ip' => base64_encode(request()->ip()),
+            ]
+        ];
+    }
+
     public static function getAccessTokensWithAuthorizationCode($code)
     {
         return self::client()->post('oauth/token', [
@@ -36,9 +46,7 @@ class OAuthApi
             $response = self::authRequest(
                 'get',
                 'user/me',
-                [
-                    'url' => base64_encode(request()->getHost())
-                ],
+                OauthApi::requestOriginInfo(),
                 config('gameserverapp.cache.get_user_ttl')
             );
 
@@ -75,8 +83,12 @@ class OAuthApi
         );
     }
 
-    public static function authRequest($method, $uri, $options = [], $cacheTtl = true)
-    {
+    public static function authRequest(
+        $method,
+        $uri,
+        $options = [],
+        $cacheTtl = true
+    ) {
         $cacheKey = self::cacheKey([
             [$method, $uri, $options],
             self::getHeaders(true)
@@ -96,8 +108,12 @@ class OAuthApi
         );
     }
 
-    public static function guestRequest($method, $uri, $options = [], $cacheTtl = true)
-    {
+    public static function guestRequest(
+        $method,
+        $uri,
+        $options = [],
+        $cacheTtl = true
+    ) {
         $cacheKey = self::cacheKey([
             [$method, $uri, $options],
             self::getHeaders()
@@ -179,8 +195,12 @@ class OAuthApi
         }
     }
 
-    public static function clearCache($method, $uri, $options = [], $auth = false)
-    {
+    public static function clearCache(
+        $method,
+        $uri,
+        $options = [],
+        $auth = false
+    ) {
         $cacheKey = self::cacheKey([
             [$method, $uri, $options],
             self::getHeaders($auth)

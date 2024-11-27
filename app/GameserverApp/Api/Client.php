@@ -40,9 +40,7 @@ class Client
             $this->api()->authRequest(
                 'get',
                 'user/me',
-                [
-                    'url' => base64_encode(request()->getHost())
-                ]
+                OauthApi::requestOriginInfo()
             )
         );
     }
@@ -240,7 +238,11 @@ class Client
 
     public function user($id)
     {
-        $data = $this->api()->guestRequest('get', 'user/' . $id . '?url=' . base64_encode(request()->getHost()));
+        $data = $this->api()->guestRequest(
+            'get',
+            'user/' . $id,
+            OauthApi::requestOriginInfo()
+        );
 
         if(!isset($data->id)) {
             throw new BackendErrorException();
@@ -681,9 +683,7 @@ class Client
         $this->api()->clearCache(
             'get',
             'user/me',
-            [
-                'url' => base64_encode(request()->getHost())
-            ],
+            OauthApi::requestOriginInfo(),
             true
         );
 

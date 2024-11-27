@@ -36,9 +36,7 @@ class SubUserController extends Controller
         app(OAuthApi::class)->clearCache(
             'get',
             'user/me',
-            [
-                'url' => base64_encode(request()->getHost())
-            ],
+            OauthApi::requestOriginInfo(),
             true
         );
 
@@ -57,9 +55,7 @@ class SubUserController extends Controller
         app(OAuthApi::class)->clearCache(
             'get',
             'user/me',
-            [
-                'url' => base64_encode(request()->getHost())
-            ],
+            OauthApi::requestOriginInfo(),
             true
         );
 

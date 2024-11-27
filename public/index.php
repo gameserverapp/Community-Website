@@ -7,6 +7,10 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+if (isset($_SERVER['CF_CONNECTING_IP'])) {
+    $_SERVER['REMOTE_ADDR'] = $_SERVER['CF_CONNECTING_IP'];
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

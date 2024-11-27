@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 
+use GameserverApp\Api\OAuthApi;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Helpers\SiteHelper;
@@ -63,9 +64,7 @@ class MessageController extends Controller
             $this->api->clearCache(
                 'get',
                 'user/me',
-                [
-                    'url' => base64_encode(request()->getHost())
-                ],
+                OauthApi::requestOriginInfo(),
                 true
             );
         }

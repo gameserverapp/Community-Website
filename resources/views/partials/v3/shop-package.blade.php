@@ -1,5 +1,5 @@
 @if($item)
-    <div class="purchase-package package-small">
+    <div class="purchase-package package-small package-id-{{$item->id}}">
         @if($item->cluster)
             <div class="label label-theme top-left">
                 {{$item->cluster}} only

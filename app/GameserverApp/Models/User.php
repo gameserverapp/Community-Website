@@ -17,6 +17,42 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 {
     use Linkable, Authenticatable, Authorizable, Socials;
 
+    /**
+     * Disable mass assignment protection since we're only using API data
+     */
+    protected $guarded = [];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        // Add any other date fields your API returns
+    ];
+
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        return 'id';
+    }
+
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->id;
+    }
+
     public function name($limit = false)
     {
         if ($limit) {

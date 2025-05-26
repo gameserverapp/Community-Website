@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Webuni\CommonMark\TableExtension\TableExtension;
+use League\CommonMark\Extension\Table\TableExtension;
 
 return [
 

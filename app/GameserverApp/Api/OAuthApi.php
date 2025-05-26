@@ -7,7 +7,9 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\UnauthorizedException;
 use GameserverApp\Helpers\PremiumHostedHelper;
 use GameserverApp\Transformers\UserTransformer;
@@ -140,7 +142,11 @@ class OAuthApi
         $options = [],
         $cacheKey,
         $cache
-    ) {        
+    ) {
+        if($cache and is_numeric($cache)) {
+            $cache = $cache * 60;
+        }
+
         if(
             config('gameserverapp.oauthapi_allow_cache', true) and
             $method == 'get' and
@@ -150,49 +156,50 @@ class OAuthApi
             return self::cache()->get($cacheKey);
         }
 
-        try {
-            $output = $client->request($method, $uri, $options);
+        return Cache::lock($cacheKey)->get(function () use ($client, $method, $uri, $options, $cacheKey, $cache) {
+            try {
+                $output = $client->request($method, $uri, $options);
 
-            if( $output->getStatusCode() != 200 ) {
-                return $output;
-            }
-
-            $output = json_decode($output->getBody());
-
-            if($cache) {
-                self::cache()->put( $cacheKey, $output, $cache );
-            }
-
-            return $output;
-
-        } catch (ClientException $e) {
-
-            if($e->getCode() == 404) {
-                $response = json_decode($e->getResponse()->getBody());
-
-                if(isset($response->redirect_url)) {
-                    throw new DomainNotFoundException($e);
+                if ($output->getStatusCode() != 200) {
+                    return $output;
                 }
-            }
 
-            if($e->getCode() == 429) {
-                abort(429);
-            }
+                $output = json_decode($output->getBody());
 
-            if(!isset($options['no_404_exception']) and $e->getCode() == 404) {
-                throw new NotFoundHttpException($e);
-            }
+                if ($cache) {
+                    self::cache()->put($cacheKey, $output, $cache);
+                }
 
-            return $e;
-        } catch (ServerException $e) {
-            if($e->getCode() == 503) {
-                throw new MaintenanceModeException(time(), 0, $e->getMessage(), $e->getPrevious(), $e->getCode());
-            }
+                return $output;
+            } catch (ClientException $e) {
 
-            return $e;
-        } catch (ConnectException $e) {
-            return $e;
-        }
+                if ($e->getCode() == 404) {
+                    $response = json_decode($e->getResponse()->getBody());
+
+                    if (isset($response->redirect_url)) {
+                        throw new DomainNotFoundException($e);
+                    }
+                }
+
+                if ($e->getCode() == 429) {
+                    abort(429);
+                }
+
+                if (! isset($options['no_404_exception']) and $e->getCode() == 404) {
+                    throw new NotFoundHttpException($e);
+                }
+
+                return $e;
+            } catch (ServerException $e) {
+                if ($e->getCode() == 503) {
+                    throw new MaintenanceModeException(time(), 0, $e->getMessage(), $e->getPrevious(), $e->getCode());
+                }
+
+                return $e;
+            } catch (ConnectException $e) {
+                return $e;
+            }
+        });
     }
 
     public static function clearCache(

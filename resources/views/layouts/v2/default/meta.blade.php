@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="/img/shortcut-icon.png">
 <meta name="apple-mobile-web-app-title" content="{{GameserverApp\Helpers\SiteHelper::name()}}">
 
-<meta name="description" content="{{$page['description'] or ''}}">
+<meta name="description" content="{{$page['description'] ?? ''}}">
 
 <script type="application/ld+json">
 {
@@ -26,7 +26,7 @@
 }
 </script>
 
-<title>{{$page['title'] or 'ARK: Survival Evolved'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
+<title>{{$page['title'] ?? 'Game community website'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
 
 <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css') }}">
 

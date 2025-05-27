@@ -8,8 +8,8 @@
     $hasAlert = GameserverApp\Helpers\SiteHelper::navAlert();
     ?>
 
-    <body class="v3 {{$page['class'] or ''}} @if($hasAlert) has-alert @endif {{GameserverApp\Helpers\SiteHelper::theme()}}" {{$microdata['body'] or ''}}>
-        <div style="background-image:url('{{$page['image'] or GameserverApp\Helpers\SiteHelper::background()}}')" class="full-bg"></div>
+    <body class="v3 {{$page['class'] ?? ''}} @if($hasAlert) has-alert @endif {{GameserverApp\Helpers\SiteHelper::theme()}}" {{$microdata['body'] ?? ''}}>
+        <div style="background-image:url('{{$page['image'] ?? GameserverApp\Helpers\SiteHelper::background()}}')" class="full-bg"></div>
 
         @if($hasAlert)
             <div class="nav-alert">

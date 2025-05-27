@@ -572,7 +572,13 @@ class Client
 
     public function shopItem($id)
     {
-        return ShopTransformer::transform($this->api()->authRequest('get', 'shop/' . $id, [], false));
+        $data = $this->api()->authRequest('get', 'shop/' . $id, [], false);
+
+        if(!isset($data->id)) {
+            throw new BackendErrorException();
+        }
+
+        return ShopTransformer::transform($data);
     }
 
     public function purchaseShopItem($id, $characterId, $gameserverId)
@@ -880,7 +886,10 @@ class Client
             );
         }
 
-        if ($options['search_type'] == 'tribe') {
+        if (
+            isset($options['search_type']) and
+            $options['search_type'] == 'tribe'
+        ) {
             $items = GroupTransformer::transformMultiple($response->items);
         } else {
             $items = CharacterTransformer::transformMultiple($response->items);

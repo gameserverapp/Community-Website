@@ -1,4 +1,4 @@
-<div class="container-fluid banner {{ $banner['size'] or 'small' }}  {{ $banner['class'] or '' }} {{ ( isset( $banner['navigation'] ) ) ? 'navigation' : '' }}">
+<div class="container-fluid banner {{ $banner['size'] ?? 'small' }}  {{ $banner['class'] ?? '' }} {{ ( isset( $banner['navigation'] ) ) ? 'navigation' : '' }}">
 
     @if( isset( $banner['background'] ) )
 

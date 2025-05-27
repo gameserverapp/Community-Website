@@ -6,12 +6,16 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Cache\CacheManager;
+use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\UnauthorizedException;
 use GameserverApp\Helpers\PremiumHostedHelper;
 use GameserverApp\Transformers\UserTransformer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 class OAuthApi
 {
@@ -140,58 +144,84 @@ class OAuthApi
         $options = [],
         $cacheKey,
         $cache
-    ) {        
-        if(
-            config('gameserverapp.oauthapi_allow_cache', true) and
-            $method == 'get' and
-            $cache and
-            self::cache()->has($cacheKey)
-        ) {
-            return self::cache()->get($cacheKey);
+    ) {
+        if($cache and is_numeric($cache)) {
+            $cache = $cache * 60;
         }
 
+        $oldCacheKey = $cacheKey . '_old';
+
         try {
-            $output = $client->request($method, $uri, $options);
 
-            if( $output->getStatusCode() != 200 ) {
-                return $output;
-            }
+            return Cache::lock($cacheKey)->get(function () use ($client, $method, $uri, $options, $cacheKey, $cache, $oldCacheKey) {
 
-            $output = json_decode($output->getBody());
-
-            if($cache) {
-                self::cache()->put( $cacheKey, $output, $cache );
-            }
-
-            return $output;
-
-        } catch (ClientException $e) {
-
-            if($e->getCode() == 404) {
-                $response = json_decode($e->getResponse()->getBody());
-
-                if(isset($response->redirect_url)) {
-                    throw new DomainNotFoundException($e);
+                if (
+                    config('gameserverapp.oauthapi_allow_cache', true) and
+                    $method == 'get' and
+                    $cache and
+                    self::cache()->has($cacheKey)
+                ) {
+                    return self::cache()->get($cacheKey);
                 }
+
+                try {
+                    $output = $client->request($method, $uri, $options);
+
+                    if ($output->getStatusCode() != 200) {
+                        return $output;
+                    }
+
+                    $output = json_decode($output->getBody());
+
+                    if ($cache) {
+                        self::cache()->put($cacheKey, $output, $cache);
+                        self::cache()->put($oldCacheKey, $output, (60*60));
+                    }
+
+                    return $output;
+                } catch (ClientException $e) {
+
+                    if ($e->getCode() == 404) {
+                        $response = json_decode($e->getResponse()->getBody());
+
+                        if (isset($response->redirect_url)) {
+                            throw new DomainNotFoundException($e);
+                        }
+                    }
+
+                    if ($e->getCode() == 429) {
+                        abort(429);
+                    }
+
+                    if (! isset($options['no_404_exception']) and $e->getCode() == 404) {
+                        throw new NotFoundHttpException($e);
+                    }
+
+                    throw $e;
+                } catch (ServerException $e) {
+                    if ($e->getCode() == 503) {
+                        throw new MaintenanceModeException(time(), 0, $e->getMessage(), $e->getPrevious(),
+                            $e->getCode());
+                    }
+
+                    throw $e;
+                } catch (ConnectException $e) {
+                    throw $e;
+                }
+            });
+        } catch (Throwable $e) {
+
+            if (
+                config('gameserverapp.oauthapi_allow_cache', true) and
+                $method == 'get' and
+                $cache and
+                self::cache()->has($cacheKey)
+            ) {
+                return self::cache()->get($cacheKey);
             }
 
-            if($e->getCode() == 429) {
-                abort(429);
-            }
+            throw $e;
 
-            if(!isset($options['no_404_exception']) and $e->getCode() == 404) {
-                throw new NotFoundHttpException($e);
-            }
-
-            return $e;
-        } catch (ServerException $e) {
-            if($e->getCode() == 503) {
-                throw new MaintenanceModeException(time(), 0, $e->getMessage(), $e->getPrevious(), $e->getCode());
-            }
-
-            return $e;
-        } catch (ConnectException $e) {
-            return $e;
         }
     }
 

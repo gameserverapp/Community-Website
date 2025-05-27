@@ -44,10 +44,10 @@ class Kernel extends HttpKernel
             RuleGate::class
         ],
 
-        'api' => [
-            'throttle:60,1',
-            'bindings',
-        ],
+//        'api' => [
+//            'throttle:60,1',
+//            'bindings',
+//        ],
     ];
 
     /**

@@ -66,8 +66,6 @@ npm --prefix /var/www run production;
 chown -R www-data:www-data /var/www
 
 php /var/www/artisan setup-community-website
-
-php /var/www/artisan optimize
 " >> install-step-2.sh;
 
 sudo bash install-step-2.sh

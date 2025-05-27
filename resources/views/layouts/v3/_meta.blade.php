@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="{{GameserverApp\Helpers\SiteHelper::name()}}">
 <meta property="og:image" content="{{GameserverApp\Helpers\SiteHelper::embedImage()}}">
 
-<meta name="description" content="{{$page['description'] or GameserverApp\Helpers\SiteHelper::seoDescription()}}">
+<meta name="description" content="{{$page['description'] ?? GameserverApp\Helpers\SiteHelper::seoDescription()}}">
 
 <script type="application/ld+json">
 {
@@ -25,7 +25,7 @@
 }
 </script>
 
-<title>{{$page['title'] or 'Community website'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
+<title>{{$page['title'] ?? 'Community website'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -94,6 +94,8 @@ class PremiumGuard implements Guard
             $this->cacheUser = app(OAuthApi::class)->user();
         } catch (UnauthorizedException $e) {
             $this->logout();
+        } catch (\Exception $e) {
+            return false;
         }
 
         if($this->cacheUser instanceof User) {

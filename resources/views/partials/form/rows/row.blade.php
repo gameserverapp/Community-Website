@@ -5,7 +5,7 @@ $title = '';
 @endphp
 
     @foreach($row['content'] as $key => $block)
-        <div class="col-sm-{{$block['size'] or 12}}">
+        <div class="col-sm-{{$block['size'] ?? 12}}">
 
         @php
         if($block['type'] == 'title') {

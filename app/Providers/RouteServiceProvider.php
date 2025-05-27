@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         Route::group([
-            'middleware' => 'throttle:30,1',
+            'middleware' => 'throttle:60,1',
         ], function ($r) {
             $this->mapWebRoutes();
 

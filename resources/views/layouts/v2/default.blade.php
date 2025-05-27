@@ -4,7 +4,7 @@
         @include('layouts.v2.default.meta')
     </head>
 
-    <body class="v2 {{$page['class'] or ''}} {{GameserverApp\Helpers\SiteHelper::theme()}}" {{$microdata['body'] or ''}}>
+    <body class="v2 {{$page['class'] ?? ''}} {{GameserverApp\Helpers\SiteHelper::theme()}}" {{$microdata['body'] ?? ''}}>
 
         @include('layouts.v2.default.flash')
 

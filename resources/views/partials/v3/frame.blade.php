@@ -6,7 +6,7 @@ available CSS styling classes:
 
 --}}
 
-<div class="frame {{$type or 'simple'}} {{$class or ''}}">
+<div class="frame {{$type ?? 'simple'}} {{$class ?? ''}}">
     <table class="">
         <tr class="decoration-middle">
             <td class="decoration-left">

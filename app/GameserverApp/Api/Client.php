@@ -886,7 +886,10 @@ class Client
             );
         }
 
-        if ($options['search_type'] == 'tribe') {
+        if (
+            isset($options['search_type']) and
+            $options['search_type'] == 'tribe'
+        ) {
             $items = GroupTransformer::transformMultiple($response->items);
         } else {
             $items = CharacterTransformer::transformMultiple($response->items);

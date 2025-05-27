@@ -1,4 +1,4 @@
-<article class="article-horizontal {{$class or ''}}" itemscope itemtype="http://schema.org/Article">
+<article class="article-horizontal {{$class ?? ''}}" itemscope itemtype="http://schema.org/Article">
     <div class="article-wrapper">
         <a href="{{$route}}" class="bg-image" style="background-image:url('{{$image}}')"></a>
 

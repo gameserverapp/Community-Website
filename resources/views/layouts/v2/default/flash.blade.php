@@ -41,13 +41,13 @@
             }
         }
         ?>
-        <div class="flash alert alert-{{$error_msg['status'] or 'info'}}  @if( $error_msg['status'] != 'error' and !isset( $error_msg['stay'] ) ) alert-dismissible @endif">
+        <div class="flash alert alert-{{$error_msg['status'] ?? 'info'}}  @if( $error_msg['status'] != 'error' and !isset( $error_msg['stay'] ) ) alert-dismissible @endif">
             @if( $error_msg['status'] != 'error' and !isset( $error_msg['stay'] ) )
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             @endif
 
-            {!! $error_msg['message'] or ''!!}
+            {!! $error_msg['message'] ?? ''!!}
         </div>
     @endif

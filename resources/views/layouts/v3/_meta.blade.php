@@ -25,7 +25,7 @@
 }
 </script>
 
-<title>{{$page['title'] or 'Community website'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
+<title>{{$page['title'] ?? 'Community website'}} - {{GameserverApp\Helpers\SiteHelper::name()}}</title>
 
 <link href='{{GameserverApp\Helpers\SiteHelper::googleFontsUrl()}}' rel='stylesheet' type='text/css'>
 

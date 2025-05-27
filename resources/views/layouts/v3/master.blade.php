@@ -9,7 +9,7 @@
     ?>
 
     <body class="v3 {{$page['class'] ?? ''}} @if($hasAlert) has-alert @endif {{GameserverApp\Helpers\SiteHelper::theme()}}" {{$microdata['body'] ?? ''}}>
-        <div style="background-image:url('{{$page['image'] or GameserverApp\Helpers\SiteHelper::background()}}')" class="full-bg"></div>
+        <div style="background-image:url('{{$page['image'] ?? GameserverApp\Helpers\SiteHelper::background()}}')" class="full-bg"></div>
 
         @if($hasAlert)
             <div class="nav-alert">

@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="{{GameserverApp\Helpers\SiteHelper::name()}}">
 <meta property="og:image" content="{{GameserverApp\Helpers\SiteHelper::embedImage()}}">
 
-<meta name="description" content="{{$page['description'] or GameserverApp\Helpers\SiteHelper::seoDescription()}}">
+<meta name="description" content="{{$page['description'] ?? GameserverApp\Helpers\SiteHelper::seoDescription()}}">
 
 <script type="application/ld+json">
 {

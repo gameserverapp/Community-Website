@@ -46,7 +46,7 @@ if(!isset($disable_padding)) {
 <div class="row {{implode(' ', $classes)}}">
 
     @foreach($row['content'] as $key => $block)
-        <div class="col-md-{{$block['size'] or 12}}
+        <div class="col-md-{{$block['size'] ?? 12}}
         @if(isset($row['settings']['vertical_align']))table-cell @endif
         @if(isset($block['align'])) text-{{$block['align']}} @endif">
             @if($block['type'] == 'formbuilder' and !isset($block['name']))

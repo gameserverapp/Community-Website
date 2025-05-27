@@ -175,7 +175,7 @@ class OAuthApi
 
                     if ($cache) {
                         self::cache()->put($cacheKey, $output, $cache);
-                        self::cache()->put($oldCacheKey, $output, (60*60));
+                        self::cache()->put($oldCacheKey, $output, 3600);
                     }
 
                     return $output;
@@ -220,8 +220,7 @@ class OAuthApi
                 return self::cache()->get($cacheKey);
             }
 
-            throw $e;
-
+            return $e; //todo this should be done better
         }
     }
 

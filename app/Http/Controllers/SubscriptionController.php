@@ -29,7 +29,7 @@ class SubscriptionController extends Controller
         if($request->has('status') == 'success') {
             session()->flash('alert', [
                 'status'  => 'success',
-                'message' => 'Thank you for showing your support!',
+                'message' => 'Thank you for your support!',
                 'stay'    => true
             ]);
         }

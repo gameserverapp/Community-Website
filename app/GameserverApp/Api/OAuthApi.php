@@ -220,7 +220,7 @@ class OAuthApi
                 return self::cache()->get($cacheKey);
             }
 
-            return $e; //todo this should be done better
+            throw $e;
         }
     }
 

@@ -117,6 +117,14 @@ class SupporterTierController extends Controller
                         'stay'    => true
                     ]);
                     break;
+
+                case 'success':
+                    session()->flash('alert', [
+                        'status'  => 'success',
+                        'message' => 'Thank you for your support!',
+                        'stay'    => true
+                    ]);
+                    break;
             }
         }
     }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Helpers\SiteHelper;
@@ -64,27 +65,14 @@ class TokenController extends Controller
             return redirectBackWithAlert('You can not do this', 'danger');
         }
 
-        $response = $this->client->sendTokens(
-            $uuid,
-            $request->input('amount'),
-            $request->input('message')
-        );
-
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            if(isset($error->errors)) {
-                return redirect()->back()->withErrors($error->errors)->withInput();
-            }
-
-            if(isset($error->message)) {
-                return redirect()->back()->withErrors($error)->withInput();
-            }
-
-            return redirectBackWithAlert('Something went wrong. Please try again.', 'danger');
+        try {
+            $this->client->sendTokens(
+                $uuid,
+                $request->input('amount'),
+                $request->input('message')
+            );
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirectBackWithAlert('Tokens were sent!');

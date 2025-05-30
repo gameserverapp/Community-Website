@@ -86,7 +86,11 @@ class UserController extends Controller
 
     public function invoices()
     {
-        $invoices = $this->api->invoices(route('user.invoices', auth()->id()));
+        try {
+            $invoices = $this->api->invoices(route('user.invoices', auth()->id()));
+        } catch (ClientException $e) {
+            $invoices = 'DISABLED';
+        }
 
         return view('pages.v3.user.invoices', [
             'invoices' => $invoices,

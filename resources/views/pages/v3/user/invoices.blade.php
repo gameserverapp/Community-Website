@@ -31,8 +31,7 @@ use GuzzleHttp\Exception\ClientException;
                     <tbody>
 
                     @if(
-                        $invoices instanceof ClientException and
-                        $invoices->getCode() == 401
+                        $invoices == 'DISABLED'
                     )
                         <tr>
                             <td colspan="4">
@@ -84,7 +83,7 @@ use GuzzleHttp\Exception\ClientException;
                 </table>
             @endcomponent
 
-            @if(!$invoices instanceof ClientException)
+            @if($invoices instanceof Collection)
                 <div class="paginate">
                     {!! $invoices->links() !!}
                 </div>

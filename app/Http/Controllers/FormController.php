@@ -36,25 +36,7 @@ class FormController extends Controller
             }
 
         } catch(\Exception $e) {
-            $message = $e->getResponse()->getReasonPhrase();
-
-            return redirectBackWithAlert($message, 'danger')->withInput($request->all());
-        }
-
-        $message = json_decode($response->getResponse()->getBody());
-
-        if(!isset($message->message)) {
-            $message = 'Unknown issue. Please try again later or contact the admin.';
-        } else {
-            $message = $message->message;
-        }
-
-        if($response instanceof ClientException) {
-            return redirectBackWithAlert($message, 'danger')->withInput($request->all());
-        }
-
-        if($response instanceof ServerException) {
-            return redirectBackWithAlert($message, 'danger')->withInput($request->all());
+            return Client::exceptionToAlert($e);
         }
 
         if($response->data->success) {

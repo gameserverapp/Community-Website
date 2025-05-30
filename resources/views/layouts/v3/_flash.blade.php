@@ -42,6 +42,9 @@ try {
                 $error_msg['status'] = $error_msg['type'];
             }
         }
+
+        Session::forget('alerts');
+        Session::forget('alert');
         ?>
         <div class="flash alert alert-{{$error_msg['status'] ?? 'info'}}  @if( $error_msg['status'] != 'error' and !isset( $error_msg['stay'] ) ) alert-dismissible @endif">
             @if( $error_msg['status'] != 'error' and !isset( $error_msg['stay'] ) )

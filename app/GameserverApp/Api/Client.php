@@ -159,7 +159,7 @@ class Client
     {
         $data = $this->api()->guestRequest('get', 'character/' . $id);
 
-        if(!isset($data->id)) {
+        if (! isset($data->id)) {
             throw new BackendErrorException();
         }
 
@@ -229,7 +229,7 @@ class Client
             $data = $this->api()->guestRequest('get', 'group/' . $id . $query);
         }
 
-        if(!isset($data->id)) {
+        if (! isset($data->id)) {
             throw new BackendErrorException();
         }
 
@@ -244,7 +244,7 @@ class Client
             OauthApi::requestOriginInfo()
         );
 
-        if(!isset($data->id)) {
+        if (! isset($data->id)) {
             throw new BackendErrorException();
         }
 
@@ -269,8 +269,7 @@ class Client
     public function updateUser($id, $data)
     {
         return $this->api()->authRequest('post', 'user/' . $id . '/settings', [
-            'form_params'      => $data,
-            'no_404_exception' => true
+            'form_params' => $data
         ]);
     }
 
@@ -441,7 +440,7 @@ class Client
     {
         $options = [];
 
-        if(request()->has('coupon')) {
+        if (request()->has('coupon')) {
             $options['query']['coupon'] = request('coupon');
         }
 
@@ -454,7 +453,7 @@ class Client
     {
         $options = [];
 
-        if(request()->has('coupon')) {
+        if (request()->has('coupon')) {
             $options['query']['coupon'] = request('coupon');
         }
 
@@ -574,7 +573,7 @@ class Client
     {
         $data = $this->api()->authRequest('get', 'shop/' . $id, [], false);
 
-        if(!isset($data->id)) {
+        if (! isset($data->id)) {
             throw new BackendErrorException();
         }
 
@@ -588,7 +587,7 @@ class Client
 
         return $this->api()->authRequest('post', 'shop/' . $id . '/purchase', [
             'form_params' => [
-                'character_id' => $characterId,
+                'character_id'  => $characterId,
                 'gameserver_id' => $gameserverId
             ]
         ]);
@@ -639,11 +638,8 @@ class Client
 
     public function invoices($route)
     {
-        $response = $this->api()->authRequest('get', 'user/me/invoices?page=' . request()->get('page', null), [], false);
-
-        if($response instanceof ClientException) {
-            return $response;
-        }
+        $response = $this->api()->authRequest('get', 'user/me/invoices?page=' . request()->get('page', null), [],
+            false);
 
         if (! isset($response->items)) {
             return new LengthAwarePaginator(
@@ -666,7 +662,7 @@ class Client
     {
         $data = $this->api()->authRequest('post', 'user/me/invoices/' . $invoiceId . '/download');
 
-        if(isset($data->invoice)) {
+        if (isset($data->invoice)) {
             $data->invoice = SaleTransformer::transform($data->invoice);
         }
 
@@ -840,9 +836,10 @@ class Client
 
     public static function domain($key = false, $default = null)
     {
-        $settings = app(OAuthApi::class)->guestRequest('get', 'domain/settings?url=' . base64_encode(request()->getHost()), [
+        $settings = app(OAuthApi::class)->guestRequest('get',
+            'domain/settings?url=' . base64_encode(request()->getHost()), [
 //            'no_404_exception' => true
-        ], 10);
+            ], 10);
 
         try {
             if ($key) {
@@ -898,6 +895,29 @@ class Client
         $response->items = $items;
 
         return $this->paginatedResponse($response, route('inspector.index'));
+    }
+
+    public static function exceptionToAlert(\Throwable $exception)
+    {
+        $error = json_decode($exception->getResponse()->getBody());
+
+        if (
+            isset($error->message) and
+            isset($error->errors)
+        ) {
+            return redirect()->back()
+                             ->withErrors($error->errors)
+                             ->withInput();
+        } elseif (
+            isset($error->message) and
+            ! isset($error->errors)
+        ) {
+            return redirect()->back()
+                             ->withErrors($error->message)
+                             ->withInput();
+        }
+
+        return redirectBackWithAlert('Something went wrong. Please try again or contact the admin.', 'danger');
     }
 
     private function api()

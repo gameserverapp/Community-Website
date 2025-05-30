@@ -183,21 +183,16 @@ class GroupController extends Controller
 
         $group = $this->api->group($id);
 
-        $response = $this->api->saveGroupSettings(
-            $group,
-            $request->only([
-                'motd',
-                'about'
-            ])
-        );
-        
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            return redirect()->back()->withErrors($error);
+        try {
+            $this->api->saveGroupSettings(
+                $group,
+                $request->only([
+                    'motd',
+                    'about'
+                ])
+            );
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirect(route('group.settings', $group->id))->with([

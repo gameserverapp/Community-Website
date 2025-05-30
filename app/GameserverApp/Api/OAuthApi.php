@@ -2,6 +2,7 @@
 namespace GameserverApp\Api;
 
 use App\Exceptions\DomainNotFoundException;
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
@@ -150,10 +151,11 @@ class OAuthApi
         }
 
         $oldCacheKey = $cacheKey . '_old';
+        $lockKey = 'lock_' . $cacheKey;
 
         try {
 
-            return Cache::lock($cacheKey)->get(function () use ($client, $method, $uri, $options, $cacheKey, $cache, $oldCacheKey) {
+            return Cache::lock($lockKey)->get(function () use ($client, $method, $uri, $options, $cacheKey, $cache, $oldCacheKey) {
 
                 if (
                     config('gameserverapp.oauthapi_allow_cache', true) and
@@ -166,6 +168,8 @@ class OAuthApi
 
                 try {
                     $output = $client->request($method, $uri, $options);
+
+                    Bugsnag::leaveBreadcrumb('Code:' . $output->getStatusCode());
 
                     if ($output->getStatusCode() != 200) {
                         return $output;
@@ -193,7 +197,7 @@ class OAuthApi
                         abort(429);
                     }
 
-                    if (! isset($options['no_404_exception']) and $e->getCode() == 404) {
+                    if ($e->getCode() == 404) {
                         throw new NotFoundHttpException($e);
                     }
 
@@ -210,6 +214,7 @@ class OAuthApi
                 }
             });
         } catch (Throwable $e) {
+            Bugsnag::leaveBreadcrumb('Failed to get cache lock: ' . $lockKey);
 
             if (
                 config('gameserverapp.oauthapi_allow_cache', true) and
@@ -217,6 +222,7 @@ class OAuthApi
                 $cache and
                 self::cache()->has($cacheKey)
             ) {
+                Bugsnag::leaveBreadcrumb('Cache hit: ' . $cacheKey);
                 return self::cache()->get($cacheKey);
             }
 

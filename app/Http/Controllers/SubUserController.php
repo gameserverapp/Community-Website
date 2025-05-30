@@ -24,13 +24,12 @@ class SubUserController extends Controller
             'code' => 'required|string'
         ]);
 
-        $response = $this->api->connectSubUser(
-            $request->input('code')
-        );
-
-        if($response instanceof ClientException) {
-            $error = json_decode($response->getResponse()->getBody());
-            return redirectBackWithAlert($error->message, 'danger');
+        try {
+            $response = $this->api->connectSubUser(
+                $request->input('code')
+            );
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         app(OAuthApi::class)->clearCache(
@@ -50,7 +49,11 @@ class SubUserController extends Controller
 
     public function disconnect($subUuid)
     {
-        $response = $this->api->disconnectSubUser($subUuid);
+        try {
+            $response = $this->api->disconnectSubUser($subUuid);
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
+        }
 
         app(OAuthApi::class)->clearCache(
             'get',
@@ -61,14 +64,6 @@ class SubUserController extends Controller
 
         if(isset($response->data)) {
             return redirectBackWithAlert($response->data);
-        }
-
-        if($response instanceof ClientException) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            if(isset($error->message)) {
-                return redirectBackWithAlert($error->message, 'danger');
-            }
         }
 
         return redirectBackWithAlert('Something went wrong. Please try again or contact support', 'danger');

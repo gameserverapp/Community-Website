@@ -122,15 +122,7 @@ class ShopController extends Controller
                 $request->input('gameserver_id', null)
             );
         } catch (ClientException | ServerException $exception) {
-            $message = json_decode($exception->getResponse()->getBody())->message;
-
-            session()->flash('alert', [
-                'status'  => 'danger',
-                'message' => $message,
-                'stay'    => true
-            ]);
-
-            return redirect()->back()->withInput();
+            return Client::exceptionToAlert($exception);
         }
 
         session()->flash('alert', [

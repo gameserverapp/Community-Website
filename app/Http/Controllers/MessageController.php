@@ -109,23 +109,14 @@ class MessageController extends Controller
             'content' => 'required|string'
         ]);
 
-        $response = $this->api->sendMessage(
-            $id,
-            $request->input('subject'),
-            $request->input('content')
-        );
-
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            if(isset($error->errors)) {
-                return redirect()->back()->withErrors($error->errors)->withInput();
-            }
-
-            return redirectBackWithAlert('Something went wrong. Please try again.', 'danger');
+        try {
+            $this->api->sendMessage(
+                $id,
+                $request->input('subject'),
+                $request->input('content')
+            );
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirect(route('message.outbox', auth()->id()))->with([

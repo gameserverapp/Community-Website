@@ -52,10 +52,10 @@ class SubscriptionController extends Controller
 
         $charId = $request->input('character_id');
 
-        $response = $this->client->changeSubscriptionCharacter($id, $charId);
-
-        if(isset( $response->errors )) {
-            return redirect()->back()->withErrors($response->errors);
+        try {
+            $response = $this->client->changeSubscriptionCharacter($id, $charId);
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
         }
 
         if(isset($response->data)) {
@@ -71,10 +71,10 @@ class SubscriptionController extends Controller
             return view('pages.v3.supporter-tier.disabled');
         }
 
-        $response = $this->client->cancelSubscription($id);
-
-        if(isset( $response->errors )) {
-            return redirect()->back()->withErrors($response->errors);
+        try {
+            $response = $this->client->cancelSubscription($id);
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
         }
 
         if(isset($response->data)) {

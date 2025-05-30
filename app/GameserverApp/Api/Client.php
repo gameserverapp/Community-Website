@@ -2,7 +2,6 @@
 
 namespace GameserverApp\Api;
 
-use App\Exceptions\BackendErrorException;
 use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
@@ -159,10 +158,6 @@ class Client
     {
         $data = $this->api()->guestRequest('get', 'character/' . $id);
 
-        if (! isset($data->id)) {
-            throw new BackendErrorException();
-        }
-
         return CharacterTransformer::transform($data);
     }
 
@@ -229,10 +224,6 @@ class Client
             $data = $this->api()->guestRequest('get', 'group/' . $id . $query);
         }
 
-        if (! isset($data->id)) {
-            throw new BackendErrorException();
-        }
-
         return GroupTransformer::transform($data);
     }
 
@@ -243,10 +234,6 @@ class Client
             'user/' . $id,
             OauthApi::requestOriginInfo()
         );
-
-        if (! isset($data->id)) {
-            throw new BackendErrorException();
-        }
 
         return UserTransformer::transform($data);
     }
@@ -572,10 +559,6 @@ class Client
     public function shopItem($id)
     {
         $data = $this->api()->authRequest('get', 'shop/' . $id, [], false);
-
-        if (! isset($data->id)) {
-            throw new BackendErrorException();
-        }
 
         return ShopTransformer::transform($data);
     }

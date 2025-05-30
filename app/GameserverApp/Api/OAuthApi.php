@@ -169,6 +169,7 @@ class OAuthApi
                     $cache and
                     self::cache()->has($cacheKey)
                 ) {
+                    Bugsnag::leaveBreadcrumb('Cache hit: ' . $cacheKey);
                     return self::cache()->get($cacheKey);
                 }
 

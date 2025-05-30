@@ -156,6 +156,7 @@ class OAuthApi
             $cache = $cache * 60;
         }
 
+
         $oldCacheKey = $cacheKey . '_old';
         $lockKey = 'lock_' . $cacheKey;
 
@@ -219,20 +220,17 @@ class OAuthApi
                     }
 
                     throw $e;
-                } catch (ConnectException $e) {
-                    throw $e;
                 }
             });
         } catch (Throwable $e) {
             Bugsnag::leaveBreadcrumb('Failed to get cache lock: ' . $lockKey);
 
             if (
-                config('gameserverapp.oauthapi_allow_cache', true) and
                 $method == 'get' and
                 $cache and
                 self::cache()->has($oldCacheKey)
             ) {
-                Bugsnag::leaveBreadcrumb('Cache hit: ' . $oldCacheKey);
+                Bugsnag::leaveBreadcrumb('Cache hit (old): ' . $oldCacheKey);
                 return self::cache()->get($oldCacheKey);
             }
 

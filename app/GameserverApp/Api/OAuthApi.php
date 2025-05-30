@@ -230,10 +230,10 @@ class OAuthApi
                 config('gameserverapp.oauthapi_allow_cache', true) and
                 $method == 'get' and
                 $cache and
-                self::cache()->has($cacheKey)
+                self::cache()->has($oldCacheKey)
             ) {
-                Bugsnag::leaveBreadcrumb('Cache hit: ' . $cacheKey);
-                return self::cache()->get($cacheKey);
+                Bugsnag::leaveBreadcrumb('Cache hit: ' . $oldCacheKey);
+                return self::cache()->get($oldCacheKey);
             }
 
             throw $e;

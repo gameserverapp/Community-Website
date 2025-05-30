@@ -54,7 +54,7 @@ class ShopController extends Controller
         if($request->has('status') == 'success') {
             session()->flash('alert', [
                 'status'  => 'success',
-                'message' => 'Thank you for your order! Your tokens are being processed.',
+                'message' => 'Thank you for your order! Your orders is being processed.',
                 'stay'    => true
             ]);
         }
@@ -115,26 +115,14 @@ class ShopController extends Controller
 
     public function purchase(Request $request, $id)
     {
-        $response = $this->client->purchaseShopItem(
-            $id,
-            $request->input('character_id', null),
-            $request->input('gameserver_id', null)
-        );
-
-        if(
-            $response instanceof ClientException or
-            $response instanceof ServerException
-        ) {
-
-            $message = json_decode($response->getResponse()->getBody())->message;
-
-            session()->flash('alert', [
-                'status'  => 'danger',
-                'message' => $message,
-                'stay'    => true
-            ]);
-
-            return redirect()->back()->withInput();
+        try {
+            $response = $this->client->purchaseShopItem(
+                $id,
+                $request->input('character_id', null),
+                $request->input('gameserver_id', null)
+            );
+        } catch (ClientException | ServerException $exception) {
+            return Client::exceptionToAlert($exception);
         }
 
         session()->flash('alert', [

@@ -43,19 +43,10 @@ class ServerController extends Controller
 
     public function claimVote(Request $request, $id)
     {
-        $response = $this->api->serverClaimVote($id);
-
-        if($response instanceof ClientException) {
-            try {
-                $data = json_decode($response->getResponse()->getBody());
-                return redirectBackWithAlert($data->message, 'warning');
-            } catch (\Exception $e) {
-                return redirectBackWithAlert('Something went wrong. Please try again in a moment', 'danger');
-            }
-        }
-
-        if(isset($response->data)) {
-            return redirectBackWithAlert($response->data);
+        try {
+            $response = $this->api->serverClaimVote($id);
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirectBackWithAlert('Something went wrong. Please try again in a moment', 'danger');

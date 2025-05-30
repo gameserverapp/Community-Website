@@ -3,6 +3,7 @@
 use App\GameserverApp\Exceptions\UploadExceededFileSizeLimitException;
 use App\GameserverApp\Exceptions\UploadMimeTypeNotAcceptedException;
 use App\GameserverApp\Helpers\UploadHelper;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
 use GameserverApp\Helpers\SiteHelper;
@@ -129,19 +130,14 @@ class CharacterController extends Controller
             return redirectBackWithAlert('The image you tried to upload is not of the supported type.', 'danger');
         }
 
-        $response = $this->api->saveCharacterAbout(
-            $character,
-            $request->input('about'),
-            $file
-        );
-
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            return redirect()->back()->withErrors($error)->withInput();
+        try {
+            $this->api->saveCharacterAbout(
+                $character,
+                $request->input('about'),
+                $file
+            );
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirect(route('character.about', $character->id))->with([

@@ -59,15 +59,6 @@ class UserController extends Controller
         ]);
     }
 
-//    public function about(Request $request, $id)
-//    {
-//        $user = $this->api->user($id);
-//
-//        return view('pages.v3.user.about', [
-//            'user' => $user
-//        ]);
-//    }
-
     public function deliveries()
     {
         if(! SiteHelper::featureEnabled('shop')) {
@@ -86,7 +77,13 @@ class UserController extends Controller
 
     public function invoices()
     {
-        $invoices = $this->api->invoices(route('user.invoices', auth()->id()));
+        try {
+            $invoices = $this->api->invoices(route('user.invoices', auth()->id()));
+        } catch (ClientException $e) {
+            if($e->getCode() == 401) {
+                $invoices = 'DISABLED';
+            }
+        }
 
         return view('pages.v3.user.invoices', [
             'invoices' => $invoices,
@@ -96,13 +93,15 @@ class UserController extends Controller
 
     public function downloadInvoice(Request $request, $uuid, $saleId)
     {
-        $data = $this->api->downloadInvoice($saleId);
+        try {
+            $data = $this->api->downloadInvoice($saleId);
+        } catch (ClientException $e) {
 
-        if(
-            $data instanceof ClientException and
-            $data->getCode() == 401
-        ) {
-            return redirectBackWithAlert('Invoices are currently not available. Contact the owner of the community to activate the invoices.', 'danger');
+            if($e->getCode() == 401) {
+                return redirectBackWithAlert('Invoices are currently not available. Contact the owner of the community to activate the invoices.', 'danger');
+            }
+
+            return Client::exceptionToAlert($e);
         }
 
         $dompdf = new Dompdf();
@@ -148,7 +147,11 @@ class UserController extends Controller
 
     public function acceptRules(Request $request, $id)
     {
-        $this->api->acceptRules();
+        try {
+            $this->api->acceptRules();
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
+        }
 
         app(OAuthApi::class)->clearCache(
             'get',
@@ -167,29 +170,19 @@ class UserController extends Controller
 
     public function storeSettings(Request $request)
     {
-        $response = $this->api->updateUser(auth()->id(), $request->only([
-            'email',
-            'notify_message',
-            'notify_webalert',
-            'notify_forum',
-        ]));
+        $this->validate($request, [
+            'email' => 'email:rfc,dns|nullable'
+        ]);
 
-        if($response instanceof \Exception) {
-
-            if($response->getCode() == 422) {
-                $message = json_decode($response->getResponse()->getBody());
-                return redirect()->back()->withErrors($message);
-            }
-
-            $message = json_decode($response->getResponse()->getBody())->message;
-
-            session()->flash('alert', [
-                'status'  => 'danger',
-                'message' => $message,
-                'stay'    => true
-            ]);
-
-            return redirect()->back();
+        try {
+            $response = $this->api->updateUser(auth()->id(), $request->only([
+                'email',
+                'notify_message',
+                'notify_webalert',
+                'notify_forum',
+            ]));
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         app(OAuthApi::class)->clearCache(
@@ -198,10 +191,6 @@ class UserController extends Controller
             OauthApi::requestOriginInfo(),
             true
         );
-
-        if(isset( $response->errors )) {
-            return redirect()->back()->withErrors($response->errors);
-        }
 
         return redirect()->back()->with([
             'alert' => [
@@ -213,10 +202,10 @@ class UserController extends Controller
 
     public function kick(Request $request)
     {
-        $response = $this->api->kickUser();
-
-        if(isset( $response->errors )) {
-            return redirect()->back()->withErrors($response->errors);
+        try {
+            $this->api->kickUser();
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirect()->back()->with([
@@ -229,23 +218,13 @@ class UserController extends Controller
 
     public function resendConfirmEmail(Request $request)
     {
-        $response = $this->api->resendConfirmEmail($request->get('code'));
-
-        $route = route('user.settings', auth()->user()->id);
-
-        if($response instanceof \Exception) {
-            $message = json_decode($response->getResponse()->getBody())->message;
-
-            session()->flash('alert', [
-                'status'  => 'danger',
-                'message' => $message,
-                'stay'    => true
-            ]);
-
-            return redirect($route);
+        try {
+            $response = $this->api->resendConfirmEmail($request->get('code'));
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
-        return redirect($route)->with([
+        return redirect(route('user.settings', auth()->user()->id))->with([
             'alert' => [
                 'status'  => 'success',
                 'message' => 'Confirmation e-mail was send'
@@ -255,24 +234,10 @@ class UserController extends Controller
 
     public function confirmEmail(Request $request)
     {
-        $response = $this->api->confirmEmail($request->get('code'));
-
-        $route = '/';
-
-        if(auth()->check()) {
-            $route = route('user.settings', auth()->user()->id);
-        }
-
-        if($response instanceof \Exception) {
-            $message = json_decode($response->getResponse()->getBody())->message;
-
-            session()->flash('alert', [
-                'status'  => 'danger',
-                'message' => $message,
-                'stay'    => true
-            ]);
-
-            return redirect($route);
+        try {
+            $this->api->confirmEmail($request->get('code'));
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         app(OAuthApi::class)->clearCache(
@@ -282,7 +247,7 @@ class UserController extends Controller
             true
         );
 
-        return redirect('/')->with([
+        return redirect(route('user.settings', auth()->user()->id))->with([
             'alert' => [
                 'status'  => 'success',
                 'message' => 'Thank you! You e-mail address is now confirmed.'

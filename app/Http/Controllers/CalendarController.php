@@ -2,6 +2,7 @@
 
 
 use GameserverApp\Api\Client;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
@@ -48,19 +49,10 @@ class CalendarController extends Controller
 
     public function participate($id)
     {
-        $response = $this->client->participateCalendarEvent($id);
-
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            if(isset($error->message)) {
-                return redirectBackWithAlert($error->message, 'danger');
-            }
-
-            return redirectBackWithAlert('Something went wrong. Please try again.', 'danger');
+        try {
+            $this->client->participateCalendarEvent($id);
+        } catch (ClientException $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirectBackWithAlert('Your participation status was updated!');

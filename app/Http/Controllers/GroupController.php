@@ -79,17 +79,6 @@ class GroupController extends Controller
         ]);
     }
 
-//    public function promote(Request $request, $id)
-//    {
-//        if(! SiteHelper::featureEnabled('tribe_page')) {
-//            return view('pages.v1.tribe.disabled');
-//        }
-//
-//        return view('pages.v1.tribe.promote', [
-//            'tribe' => $this->api->group($id),
-//        ]);
-//    }
-
     public function settings(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('tribe_page')) {
@@ -183,21 +172,16 @@ class GroupController extends Controller
 
         $group = $this->api->group($id);
 
-        $response = $this->api->saveGroupSettings(
-            $group,
-            $request->only([
-                'motd',
-                'about'
-            ])
-        );
-        
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            return redirect()->back()->withErrors($error);
+        try {
+            $this->api->saveGroupSettings(
+                $group,
+                $request->only([
+                    'motd',
+                    'about'
+                ])
+            );
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirect(route('group.settings', $group->id))->with([
@@ -230,21 +214,12 @@ class GroupController extends Controller
             }
 
             if($file) {
-                $response = $this->api->uploadGroupVisuals($group, $name, $file);
+                try {
+                    $this->api->uploadGroupVisuals($group, $name, $file);
+                } catch (\Exception $e) {
+                    return Client::exceptionToAlert($e);
+                }
             }
-        }
-
-        if(!isset($response)) {
-            return redirectBackWithAlert('Please select a file', 'warning');
-        }
-
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            return redirect()->back()->withErrors($error);
         }
 
         return redirect(route('group.settings', $group->id))->with([
@@ -267,20 +242,15 @@ class GroupController extends Controller
             return redirectBackWithAlert('Please select a Discord channel', 'danger');
         }
 
-        $response = $this->api->saveGroupDiscordChannel(
-            $group,
-            $request->only([
-                'channel_id'
-            ])
-        );
-
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            return redirect()->back()->withErrors($error);
+        try {
+            $this->api->saveGroupDiscordChannel(
+                $group,
+                $request->only([
+                    'channel_id'
+                ])
+            );
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirect(route('group.discord.status', ['uuid' => $group->id, 'status' => 'success']));
@@ -294,15 +264,10 @@ class GroupController extends Controller
 
         $group = $this->api->group($id);
 
-        $response = $this->api->disconnectGroupDiscordChannel($group);
-
-        if(
-            $response instanceof \Exception or
-            is_null($response)
-        ) {
-            $error = json_decode($response->getResponse()->getBody());
-
-            return redirect()->back()->withErrors($error);
+        try {
+            $this->api->disconnectGroupDiscordChannel($group);
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
         }
 
         return redirect(route('group.discord.status', ['uuid' => $group->id, 'status' => 'disconnected']));

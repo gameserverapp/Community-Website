@@ -146,6 +146,12 @@ class OAuthApi
         $cacheKey,
         $cache
     ) {
+        Bugsnag::leaveBreadcrumb('Cache key: ' . $cacheKey);
+        Bugsnag::leaveBreadcrumb('Method: ' . $method);
+        Bugsnag::leaveBreadcrumb('URI: ' . $uri);
+        Bugsnag::leaveBreadcrumb('Cache: ' . $cache);
+        Bugsnag::leaveBreadcrumb('Options: ' . serialize($options));
+
         if($cache and is_numeric($cache)) {
             $cache = $cache * 60;
         }

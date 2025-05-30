@@ -177,7 +177,10 @@ class OAuthApi
 
                     $output = json_decode($output->getBody());
 
-                    if ($cache) {
+                    if (
+                        $method == 'get' and
+                        $cache
+                    ) {
                         self::cache()->put($cacheKey, $output, $cache);
                         self::cache()->put($oldCacheKey, $output, 3600);
                     }

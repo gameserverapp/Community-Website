@@ -49,6 +49,10 @@ class ServerController extends Controller
             return Client::exceptionToAlert($e);
         }
 
+        if(isset($response->data)) {
+            return redirectBackWithAlert($response->data);
+        }
+
         return redirectBackWithAlert('Something went wrong. Please try again in a moment', 'danger');
     }
 }

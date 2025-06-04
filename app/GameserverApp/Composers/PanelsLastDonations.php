@@ -19,8 +19,14 @@ class PanelsLastDonations
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->saleStats('last-5');
+        } catch (\Exception $e) {
+            $data = collect([]);
+        }
+
         $view->with([
-            'sales' => $this->api->saleStats('last-5')
+            'sales' => $data
         ]);
     }
 }

@@ -19,8 +19,18 @@ class PanelsDonationTarget
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->monthlyTarget();
+        } catch (\Exception $e) {
+            $data = (object) [
+                'total_income' => 0,
+                'target' => 0,
+                'percentage' => 0
+            ];
+        }
+
         $view->with([
-            'target' => $this->api->monthlyTarget()
+            'target' => $data
         ]);
     }
 }

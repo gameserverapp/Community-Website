@@ -1,3 +1,7 @@
+<?php
+use GameserverApp\Helpers\SiteHelper;
+?>
+
 @component('partials.v3.frame', [
     'title' => '<i class="fa fa-heart"></i> Top 5 donors',
     'class' => 'no-padding center-title no-bottom-margin',
@@ -32,10 +36,18 @@
         @empty
             <tr>
                 <td colspan="5" class="text-center">
-                    <br><br>
-                    No donors yet!
-                    <br><br>
-                    <br>
+
+                    @if(SiteHelper::featureEnabled('top_donors'))
+                        <br><br>
+                        No donors yet!
+                        <br><br>
+                        <br>
+                    @else
+                        <br><br>
+                        <div class="alert alert-warning">
+                            This feature is disabled.
+                        </div>
+                    @endif
                 </td>
             </tr>
         @endforelse

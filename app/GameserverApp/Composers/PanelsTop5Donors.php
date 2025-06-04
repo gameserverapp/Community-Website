@@ -19,8 +19,14 @@ class PanelsTop5Donors
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->userStats('top-donors');
+        } catch (\Exception $e) {
+            $data = collect([]);
+        }
+
         $view->with([
-            'users' => $this->api->userStats('top-donors')
+            'users' => $data
         ]);
     }
 }

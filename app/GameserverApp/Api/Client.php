@@ -33,6 +33,8 @@ use function GuzzleHttp\Psr7\build_query;
 class Client
 {
 
+    private static $domain = null;
+
     public function me()
     {
         return UserTransformer::transform(
@@ -819,21 +821,25 @@ class Client
 
     public static function domain($key = false, $default = null)
     {
-        $settings = app(OAuthApi::class)->guestRequest('get',
-            'domain/settings?url=' . base64_encode(request()->getHost()), [
-//            'no_404_exception' => true
-            ], 10);
+        if(is_null(self::$domain)) {
+            try {
+                self::$domain = app(OAuthApi::class)->guestRequest('get',
+                    'domain/settings?url=' . base64_encode(request()->getHost()), [], 10);
+            } catch (\Exception $e) {
+                self::$domain = [];
+            }
+        }
 
         try {
             if ($key) {
-                if (isset($settings->{$key})) {
-                    return $settings->{$key};
+                if (isset(self::$domain->{$key})) {
+                    return self::$domain->{$key};
                 }
 
                 return $default;
             }
 
-            return $settings;
+            return self::$domain;
         } catch (\Exception $e) {
             return [];
         }

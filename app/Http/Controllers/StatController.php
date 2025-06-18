@@ -30,6 +30,9 @@ class StatController extends Controller
             return response('Invalid stat', 401);
         }
 
-        return $this->generator->basicStats($request->get('value', null), $stat);
+        return $this->generator->basicStats(
+            $request->get('value', null),
+            $stat
+        );
     }
 }

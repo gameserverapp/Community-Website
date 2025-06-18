@@ -29,7 +29,11 @@ class ServerController extends Controller
 
     public function show(Request $request, $id)
     {
-        $server = $this->api->server($id);
+        try {
+            $server = $this->api->server($id);
+        } catch (\Exception $e) {
+            $server = false;
+        }
 
         if(!$server) {
             return response('Could not retrieve data', 500);

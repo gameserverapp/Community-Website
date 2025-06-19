@@ -19,8 +19,14 @@ class PanelsTop5Voters
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->userStats('top-voters');
+        } catch (\Exception $e) {
+            $data = collect([]);
+        }
+
         $view->with([
-            'users' => $this->api->userStats('top-voters')
+            'users' => $data
         ]);
     }
 }

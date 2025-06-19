@@ -28,6 +28,7 @@ use GameserverApp\Transformers\TokenTransformer;
 use GameserverApp\Transformers\TransactionTransformer;
 use GameserverApp\Transformers\GroupTransformer;
 use GameserverApp\Transformers\UserTransformer;
+use Illuminate\Support\Facades\Cache;
 use function GuzzleHttp\Psr7\build_query;
 
 class Client
@@ -821,28 +822,31 @@ class Client
 
     public static function domain($key = false, $default = null)
     {
-        if(is_null(self::$domain)) {
-            try {
-                self::$domain = app(OAuthApi::class)->guestRequest('get',
-                    'domain/settings?url=' . base64_encode(request()->getHost()), [], 10);
-            } catch (\Exception $e) {
-                self::$domain = [];
-            }
-        }
+        $settings = self::getDomainSettings();
 
         try {
             if ($key) {
-                if (isset(self::$domain->{$key})) {
-                    return self::$domain->{$key};
+                if (isset($settings->{$key})) {
+                    return $settings->{$key};
                 }
 
                 return $default;
             }
 
-            return self::$domain;
+            return $settings;
         } catch (\Exception $e) {
             return [];
         }
+    }
+
+    private static function getDomainSettings()
+    {
+        $key = 'domain-settings';
+
+        return Cache::store('array')->remember($key, 1, function() {
+            return app(OAuthApi::class)->guestRequest('get',
+                'domain/settings?url=' . base64_encode(request()->getHost()), [], 10);
+        });
     }
 
     public static function verifyDomain($code)

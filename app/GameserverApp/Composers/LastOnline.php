@@ -11,9 +11,8 @@ class LastOnline extends AbstractStatsComposer
 
     public function compose(View $view)
     {
-        $data = $this->basicStats($view, 'last-online');
-
         try {
+            $data = $this->basicStats($view, 'last-online');
             $characters = CharacterTransformer::transformMultiple($data);
         } catch (\Exception $e) {
             $characters = collect([]);

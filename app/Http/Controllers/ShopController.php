@@ -3,6 +3,7 @@
 
 use GameserverApp\Helpers\SiteHelper;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
@@ -73,7 +74,11 @@ class ShopController extends Controller
             return view('pages.v3.shop.disabled');
         }
 
-        $pack = $this->client->shopItem($id);
+        try {
+            $pack = $this->client->shopItem($id);
+        } catch (ConnectException $e) {
+            abort(500);
+        }
 
         if($pack->isCollection()) {
 

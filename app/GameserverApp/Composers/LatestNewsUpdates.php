@@ -19,8 +19,14 @@ class LatestNewsUpdates
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->latestNews();
+        } catch (\Exception $e) {
+            $data = collect([]);
+        }
+
         $view->with([
-            'lastNewsPosts' => $this->api->latestNews()
+            'lastNewsPosts' => $data
         ]);
     }
 }

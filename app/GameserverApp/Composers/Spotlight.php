@@ -19,8 +19,14 @@ class Spotlight
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->spotlight('character');
+        } catch (\Exception $e) {
+            $data = collect([]);
+        }
+
         $view->with([
-            'spotlight' => $this->api->spotlight('character')
+            'spotlight' => $data
         ]);
     }
 }

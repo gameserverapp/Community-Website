@@ -19,8 +19,14 @@ class LatestForumActivity
 
     public function compose(View $view)
     {
+        try {
+            $data = $this->api->latestForumThreads();
+        } catch (\Exception $e) {
+            $data = collect([]);
+        }
+
         $view->with([
-            'lastForumThreads' => $this->api->latestForumThreads()
+            'lastForumThreads' => $data
         ]);
     }
 }

@@ -11,9 +11,8 @@ class TopPlayers extends AbstractStatsComposer
 
     public function compose(View $view)
     {
-        $data = $this->basicStats($view, 'top-players');
-
         try {
+            $data = $this->basicStats($view, 'top-players');
             $characters = CharacterTransformer::transformMultiple($data);
         } catch (\Exception $e) {
             $characters = collect([]);

@@ -47,6 +47,38 @@
             @foreach(GameserverApp\Helpers\SiteHelper::themeColors() as $key => $color)
                 --{{$key}}: {{$color}};
             @endforeach
+        @else
+            --primary-color: #FF4B3E;
+            --secondary-color: #80251F;
+            --bg-color: #253138;
+            --navigation-text-color: #ffffff;
+            --navigation-bg-color: #333333;
+            --navigation-active-color: #FF4B3E;
+            --hr-color: #80251F;
+            --btn-color: #80251F;
+            --btn-bg: #FF4B3E;
+            --label-color: #80251F;
+            --label-bg: #FF4B3E;
+            --light-text: #ffffff;
+            --medium-text: #999999;
+            --darker-text: #333333;
+            --dark-text: #111111;
+            --content-title-color: #80251F;
+            --content-title-bg-color: #222222;
+            --content-text-color: #cccccc;
+            --content-bg-color: #333333;
+            --footer-primary-color: #FF4B3E;
+            --footer-secondary-color: #838782;
+            --footer-bg-color: #545754;
+            --title-shadow: 1px 1px 9px rgba(0,0,0,0.1);
+            --transparent-bg: rgba(0,0,0,.5);
+            --custom-nav-link-color: #ccc;
+            --custom-nav-link-active-color: #222;
+            --custom-nav-link-active-bg: #FF4B3E;
+            --custom-nav-link-hover-color: #FF4B3E;
+            --custom-nav-link-active-hover-color: #FF4B3E;
+            --custom-nav-link-active-hover-bg: #222;
+            --frame-shadow: 0px 10px 30px -15px #000
         @endif
     }
 

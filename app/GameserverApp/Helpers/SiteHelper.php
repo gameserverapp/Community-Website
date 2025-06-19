@@ -41,12 +41,24 @@ class SiteHelper extends Helper
 
     public static function footerDescription()
     {
-        return self::api()->domain('content')->footer->description;
+        $data = self::api()->domain('content');
+
+        if(!isset($data->footer->description)) {
+            return '';
+        }
+
+        return $data->footer->description;
     }
 
     public static function footerLinks($block = false)
     {
-        $links = self::api()->domain('content')->footer->links;
+        $data = self::api()->domain('content');
+
+        if(!isset($data->footer->links)) {
+            return '';
+        }
+
+        $links = $data->footer->links;
 
         if ($block) {
             return $links->{$block};
@@ -57,12 +69,12 @@ class SiteHelper extends Helper
 
     public static function customCssUrl()
     {
-        return self::api()->domain('custom_css_url');
+        return self::api()->domain('custom_css_url', '');
     }
 
     public static function customCss()
     {
-        return self::api()->domain('custom_css');
+        return self::api()->domain('custom_css', '');
     }
 
     public static function themeColors()
@@ -72,7 +84,7 @@ class SiteHelper extends Helper
 
     public static function customMenuItems()
     {
-        return self::api()->domain('custom_menu');
+        return self::api()->domain('custom_menu', []);
     }
 
     public static function featureEnabled($key)
@@ -113,7 +125,7 @@ class SiteHelper extends Helper
 
     public static function background()
     {
-        return self::api()->domain('background');
+        return self::api()->domain('background', '/img/banner/aberration-5.jpg');
     }
 
     public static function favicon()
@@ -141,7 +153,7 @@ class SiteHelper extends Helper
             $theme = 'theme-' . Cookie::get('override_theme');
             $theme = str_replace('_', '-', $theme);
         } else {
-            $theme = self::api()->domain('theme');
+            $theme = self::api()->domain('theme', 'theme-default');
         }
 
         if($theme != 'theme-default') {

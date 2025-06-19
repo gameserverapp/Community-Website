@@ -24,9 +24,7 @@
         @if(isset($microdata['content']))
             <span {{$microdata['content']}}>
         @endif
-
             @yield('layout_content')
-
         @if(isset($microdata['content']))
             </span>
         @endif

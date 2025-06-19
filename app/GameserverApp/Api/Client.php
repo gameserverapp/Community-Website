@@ -822,9 +822,9 @@ class Client
 
     public static function domain($key = false, $default = null)
     {
-        $settings = self::getDomainSettings();
-
         try {
+            $settings = self::getDomainSettings();
+
             if ($key) {
                 if (isset($settings->{$key})) {
                     return $settings->{$key};
@@ -835,6 +835,13 @@ class Client
 
             return $settings;
         } catch (\Exception $e) {
+
+            if($key !== false) {
+                return $default;
+            }
+
+            abort(424);
+
             return [];
         }
     }

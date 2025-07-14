@@ -61,6 +61,7 @@ class HomeController extends Controller
     public function purge()
     {
         $this->api->clearAllCacheForSite();
+        return response('done');
     }
 
     public function verify(Request $request, $code)

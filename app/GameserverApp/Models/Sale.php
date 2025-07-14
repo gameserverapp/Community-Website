@@ -9,9 +9,46 @@ use GameserverApp\Traits\Linkable;
 class Sale extends Model
 {
 
+
+    // Payment status constants
+    const STATUS_PENDING = 0;
+    const STATUS_COMPLETED = 1;
+    const STATUS_FAILED = 2;
+    const STATUS_REFUNDED = 3;
+    const STATUS_CANCELLED = 4;
+    const STATUS_EXPIRED = 5;
+
     public function id()
     {
         return $this->id;
+    }
+
+    public function status()
+    {
+        return $this->status;
+    }
+
+    public function displayStatusLabel()
+    {
+        switch ($this->status) {
+            case self::STATUS_PENDING:
+                return '<span class="label label-warning">Pending</span>';
+
+            case self::STATUS_COMPLETED:
+                return '<span class="label label-success">Completed</span>';
+
+            case self::STATUS_FAILED:
+                return '<span class="label label-danger">Failed</span>';
+
+            case self::STATUS_REFUNDED:
+                return '<span class="label label-default">Refunded</span>';
+
+            case self::STATUS_CANCELLED:
+                return '<span class="label label-default">Cancelled</span>';
+
+            case self::STATUS_EXPIRED:
+                return '<span class="label label-default">Expired</span>';
+        }
     }
 
     public function currency()

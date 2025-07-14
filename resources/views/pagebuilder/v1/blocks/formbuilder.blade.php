@@ -5,9 +5,15 @@
 
 <?php
 $footer = '<button type="submit" ' . (!auth()->check() ? 'disabled' : '' ) . ' class="btn btn-theme small"><span>Submit</span></button>';
+
+$title = $block['name'];
+
+if(isset($block['title']) and !empty($block['title'])) {
+    $title = $block['title'];
+}
 ?>
 
-@component('partials.v3.frame', ['title' => $block['name'], 'class' => 'formbuilder no-bottom-margin', 'footer' => $footer])
+@component('partials.v3.frame', ['title' => $title, 'class' => 'formbuilder no-bottom-margin', 'footer' => $footer])
 
     @if(!auth()->check())
         <div class="alert alert-warning">

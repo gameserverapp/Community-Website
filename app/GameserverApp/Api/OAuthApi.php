@@ -313,7 +313,7 @@ class OAuthApi
 
     private static function cacheKey($args)
     {
-        return md5(serialize($args));
+        return 'oauthapi:' . md5(serialize($args));
     }
 
     private static function cache()

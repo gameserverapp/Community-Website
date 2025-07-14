@@ -19,6 +19,8 @@ $title = '';
 
         if(isset($block['title'])) {
             $name = $rowId . '_' . urlencode($block['title']);
+        } elseif($block['type'] == 'checkbox') {
+            $name = $rowId . '_' . urlencode($block['value']);
         }
 
         @endphp

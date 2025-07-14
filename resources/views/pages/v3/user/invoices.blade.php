@@ -23,6 +23,7 @@ use GuzzleHttp\Exception\ClientException;
                     <thead>
                     <tr>
                         <th>Date</th>
+                        <th>Status</th>
                         <th>Amount</th>
                         <th>Order</th>
                         <th></th>
@@ -47,6 +48,9 @@ use GuzzleHttp\Exception\ClientException;
                             <tr>
                                 <td>
                                     {{$item->transactionDate()->format('d F Y H:i')}}
+                                </td>
+                                <td>
+                                    {!! $item->displayStatusLabel() !!}
                                 </td>
                                 <td>
                                     {{$item->currency()}}

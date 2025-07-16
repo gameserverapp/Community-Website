@@ -22,12 +22,17 @@ class SaleTransformer extends ModelTransformer implements ModelTransformerInterf
     {
         $data = [
             'id'       => $args->id,
-            'status'   => $args->status,
             'currency' => $args->currency,
             'amount'   => $args->amount,
             'date'     => $args->date,
             'discount' => $args->discount
         ];
+
+        if(isset($args->status)) {
+            $data['status'] = $args->status;
+        } else {
+            $data['status'] = Sale::STATUS_COMPLETED;
+        }
 
         if (isset($args->user)) {
             $data['user'] = UserTransformer::transform($args->user);

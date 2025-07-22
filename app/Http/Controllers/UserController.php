@@ -145,10 +145,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function acceptRules(Request $request, $id)
+    public function acceptRules(Request $request, $uuid, $accessGroupId)
     {
         try {
-            $this->api->acceptRules();
+            $this->api->acceptRules($accessGroupId);
         } catch (ClientException $e) {
             return Client::exceptionToAlert($e);
         }

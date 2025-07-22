@@ -58,8 +58,31 @@ class Page extends Model implements LinkableInterface
 
     public function isRulePage()
     {
-        if(RouteHelper::rules() == request()->url()) {
+        if(!auth()->check()) {
+            return false;
+        }
+
+        $urls = auth()->user()->ruleGateUrls();
+
+        if(in_array(request()->url(), $urls)) {
             return true;
+        }
+
+        return false;
+    }
+
+    public static function ruleGateAccessGroupId()
+    {
+        if(!auth()->check()) {
+            return false;
+        }
+
+        $ruleGates = auth()->user()->ruleGates();
+
+        foreach($ruleGates as $ruleGate) {
+            if(request()->url() == $ruleGate->route) {
+                return $ruleGate->group_id;
+            }
         }
 
         return false;

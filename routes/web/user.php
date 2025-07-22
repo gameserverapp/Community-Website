@@ -136,7 +136,7 @@ Route::group([
             ]);
         });
 
-        Route::post('/{uuid}/accept_rules', [
+        Route::post('/{uuid}/accept_rules/{access_group_id}', [
             'as'   => 'user.accept_rules',
             'uses' => 'UserController@acceptRules',
             'middleware' => 'auth'

@@ -19,24 +19,38 @@ class RuleGate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-//        if(auth()->check()) {
-//            $rulesRoute = RouteHelper::rules();
-//
-//            $excluded = [
-//                route('auth.logout'),
-//                route('user.accept_rules', auth()->user()->id),
-//                $rulesRoute
-//            ];
-//
-//
-//            if(
-//                Client::domain('rulegate', false)and
-//                !auth()->user()->acceptedRules() and
-//                !in_array($request->url(), $excluded)
-//            ) {
-//                return redirect($rulesRoute);
-//            }
-//        }
+        if(auth()->check()) {
+
+            $user = auth()->user();
+
+            if(!$user->hasRuleGates()) {
+                return $next($request);
+            }
+
+            $excluded = [
+                route('auth.logout'),
+                $request->root() . '/user/' . auth()->id() . '/accept_rules/*',
+            ];
+
+            $ruleGates = $user->ruleGates();
+
+            $ruleGateUrls = [];
+
+            foreach($ruleGates as $ruleGate) {
+                $excluded[] = route('user.accept_rules', [
+                    'uuid' => auth()->id(),
+                    'access_group_id' => $ruleGate->group_id
+                ]);
+
+                $excluded[] = $ruleGate->route;
+
+                $ruleGateUrls[] = $ruleGate->route;
+            }
+
+            if(!in_array($request->url(), $excluded)) {
+                return redirect($ruleGateUrls[0]);
+            }
+        }
 
         return $next($request);
     }

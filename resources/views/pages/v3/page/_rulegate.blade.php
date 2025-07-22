@@ -1,4 +1,6 @@
-
+<?php
+  use GameserverApp\Models\Page;
+?>
 
     @isset($top)
         <div class="rulegate">
@@ -19,9 +21,14 @@
             <div class="container rulegate-form">
                 <div class="row">
                     <div class="col-md-8 center-block text-center">
-                        {!! Form::open(['route'=> ['user.accept_rules', auth()->id()], 'method' => 'post']) !!}
-                        {!! Form::submit('Yes, I understand and will respect the rules!', array('class' => 'btn btn-theme btn-theme-basic')) !!}
-                        {!! Form::close() !!}
+
+                        <form method="post" action="{{route('user.accept_rules', ['uuid' => auth()->id(), 'access_group_id' => Page::ruleGateAccessGroupId()])}}">
+                            {{csrf_field()}}
+                            <button type="submit" class="btn btn-theme btn-theme-basic">
+                                <span>Yes, I understand and will respect the rules!</span>
+                            </button>
+                        </form>
+
                     </div>
                 </div>
             </div>

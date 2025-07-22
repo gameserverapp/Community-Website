@@ -14,7 +14,7 @@
     )
 
         @if(
-            auth()->check() and !auth()->user()->acceptedRules() and
+            auth()->check() and
             isset($settings['rules']) and $settings['rules']
         )
             @include('pages.v3.page._rulegate', ['top' => true])
@@ -33,7 +33,7 @@
         @endforeach
 
         @if(
-            auth()->check() and !auth()->user()->acceptedRules() and
+            auth()->check() and
             isset($settings['rules']) and $settings['rules']
         )
             @include('pages.v3.page._rulegate', ['bottom' => true])

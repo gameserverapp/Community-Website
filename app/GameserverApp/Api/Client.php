@@ -780,9 +780,9 @@ class Client
         return $this->api()->authRequest('post', 'user/me/confirm_email/resend');
     }
 
-    public function acceptRules()
+    public function acceptRules($accessGroupId)
     {
-        return $this->api()->authRequest('post', 'user/me/accept_rules');
+        return $this->api()->authRequest('post', 'user/me/accept_rules/' . $accessGroupId);
     }
 
     public function spotlight($type = false)

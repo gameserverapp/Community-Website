@@ -35,6 +35,10 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['donated'] = $args->donated;
         }
 
+        if(isset($args->rule_gates)) {
+            $data['rule_gates'] = $args->rule_gates;
+        }
+
         if(isset($args->meta->created_at)) {
             $data['created_at'] = $args->meta->created_at;
         }
@@ -45,10 +49,6 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
 
         if (isset($args->permissions)) {
             $data['permissions'] = $args->permissions;
-        }
-
-        if (isset($args->rules_accepted)) {
-            $data['rules_accepted'] = $args->rules_accepted;
         }
 
         if (isset($args->notifications)) {

@@ -264,9 +264,35 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $this->characters->first();
     }
 
-    public function acceptedRules()
+    public function hasRuleGates()
     {
-        return $this->rules_accepted;
+        return isset($this->rule_gates) and count($this->rule_gates);
+    }
+
+    public function ruleGateUrls()
+    {
+        if(!auth()->check()) {
+            return [];
+        }
+
+        if(isset($this->ruleGateUrls)) {
+            return $this->ruleGateUrls;
+        }
+
+        $output = [];
+
+        foreach(auth()->user()->ruleGates() as $ruleGate) {
+            $output[] = $ruleGate->route;
+        }
+
+        $this->ruleGateUrls = $output;
+
+        return $output;
+    }
+
+    public function ruleGates()
+    {
+        return $this->rule_gates;
     }
 
     public function linkableTemplate($url, $options = [])

@@ -21,13 +21,27 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
             'service_id'   => $args->persona->service_id,
             'service_type' => $args->persona->service_type,
             'avatar'       => $args->persona->avatar,
-            'online'       => $args->online,
-            'banned'       => $args->banned,
-            'donated'      => $args->donated,
-            'created_at'   => $args->meta->created_at,
-
-            'hours_played' => $args->meta->total_hours_played,
         ];
+
+        if(isset($args->online)) {
+            $data['online'] = $args->online;
+        }
+
+        if(isset($args->banned)) {
+            $data['banned'] = $args->banned;
+        }
+
+        if(isset($args->donated)) {
+            $data['donated'] = $args->donated;
+        }
+
+        if(isset($args->meta->created_at)) {
+            $data['created_at'] = $args->meta->created_at;
+        }
+
+        if (isset($args->meta->total_hours_played)) {
+            $data['hours_played'] = $args->meta->total_hours_played;
+        }
 
         if (isset($args->permissions)) {
             $data['permissions'] = $args->permissions;

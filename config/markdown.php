@@ -42,7 +42,8 @@ return [
     */
 
     'extensions' => [
-        TableExtension::class
+        TableExtension::class,
+        League\CommonMark\Extension\Strikethrough\StrikethroughExtension::class,
     ],
 
     /*

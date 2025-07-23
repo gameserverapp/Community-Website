@@ -120,16 +120,6 @@
                 <li>
                     <a href="{{route('account.subscription')}}">
                         Subscription
-
-                        @if(auth()->user()->isP2PSubscriptionEndingShortly())
-                            <span class="label label-danger right">
-                                !
-                            </span>
-                        @elseif(auth()->user()->hasP2PSubscription())
-                            <span class="label label-success right">
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </span>
-                        @endif
                     </a>
                 </li>
             @endif

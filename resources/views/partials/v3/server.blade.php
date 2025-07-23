@@ -79,12 +79,6 @@
 
         <div class="info">
 
-            @if($server->twitchSubOnly())
-                <span class="label label-theme" target="_blank">
-                    <a href="{{route('user.settings', 'me')}}">Sub only</a>
-                </span>
-            @endif
-
             <span>
                 {{$server->connectAddress()}}
             </span>

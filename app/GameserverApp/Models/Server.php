@@ -93,29 +93,11 @@ class Server extends Model implements LinkableInterface
             'server-partial'
         ];
 
-        if($this->p2p()) {
-            $class[] = 'p2p';
-        }
-
-        if($this->twitchSubOnly()) {
-            $class[] = 'p2p';
-        }
-
         if($this->hasBackground()) {
             $class[] = 'has_background';
         }
 
         return implode(' ', $class);
-    }
-
-    public function p2p()
-    {
-        return $this->p2p;
-    }
-
-    public function twitchSubOnly()
-    {
-        return $this->twitch_sub_only;
     }
 
     public function linkableTemplate($url, $options = [])

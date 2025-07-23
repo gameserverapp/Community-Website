@@ -123,33 +123,7 @@ use GameserverApp\Helpers\SiteHelper;
         )
             <li role="separator" class="divider"></li>
         @endif
-        {{--
-
-        <li>
-            <a href="{{route('news.index')}}" class="news {{ Request::is('news*') ? 'active' : '' }}">
-                News & Updates
-            </a>
-        </li>
-
-
-        @if( config('championark.subscriptions.enabled') )
-            <li>
-                <a href="{{route('user.subscription')}}">
-                    Subscription
-
-                    @if(auth()->user()->isP2PSubscriptionEndingShortly())
-                        <span class="label label-danger right">
-                                !
-                            </span>
-                    @elseif(auth()->user()->hasP2PSubscription())
-                        <span class="label label-success right">
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </span>
-                    @endif
-                </a>
-            </li>
-        @endif
- --}}
+        
         <li>
             <a href="/calendar">
                 <span>Calendar</span>

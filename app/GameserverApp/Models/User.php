@@ -90,10 +90,6 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         return $output;
     }
 
-    public function hasP2PSubscription()
-    {
-    }
-
     public function hoursPlayed()
     {
         return number_format($this->hours_played, 2);

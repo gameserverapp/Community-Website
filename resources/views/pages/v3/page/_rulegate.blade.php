@@ -24,7 +24,7 @@
 
                         <form method="post" action="{{route('user.accept_rules', ['uuid' => auth()->id(), 'access_group_id' => Page::ruleGateAccessGroupId()])}}">
                             {{csrf_field()}}
-                            <button type="submit" class="btn btn-theme btn-theme-basic">
+                            <button type="submit" class="btn btn-theme btn-theme-basic accept-rules">
                                 <span>Yes, I understand and will respect the rules!</span>
                             </button>
                         </form>

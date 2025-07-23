@@ -50,32 +50,4 @@
             ])
         @endforeach
     </div>
-
-
-    @if( GameserverApp\Helpers\RouteHelper::rules() )
-        <div class="row moreinfo">
-
-            <div class="col-md-6 center-block">
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <a href="{{GameserverApp\Helpers\RouteHelper::rules()}}" class="btn champ inverted  small ">
-                            <span>
-                                Server rules &raquo;
-                            </span>
-                        </a>
-                    </div>
-
-                    {{--<div class="col-sm-6 text-center">--}}
-
-                        {{--<a href="{{route('travel.character')}}" class="btn champ inverted small">--}}
-                            {{--<span>--}}
-                                {{--Cluster travel guide &raquo;--}}
-                            {{--</span>--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                </div>
-            </div>
-
-        </div>
-    @endif
 </article>

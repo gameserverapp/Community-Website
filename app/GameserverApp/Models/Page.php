@@ -62,13 +62,10 @@ class Page extends Model implements LinkableInterface
             return false;
         }
 
-        $urls = auth()->user()->ruleGateUrls();
-
-        if(in_array(request()->url(), $urls)) {
-            return true;
-        }
-
-        return false;
+        return in_array(
+            request()->url(),
+            auth()->user()->ruleGateUrls()
+        );
     }
 
     public static function ruleGateAccessGroupId()

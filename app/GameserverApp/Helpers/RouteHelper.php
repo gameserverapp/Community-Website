@@ -60,17 +60,6 @@ class RouteHelper extends Helper
         return false;
     }
 
-    public static function rules()
-    {
-        $config = self::api()->domain('routes');
-
-        if(isset( $config->rules )) {
-            return $config->rules;
-        }
-
-        return false;
-    }
-
     public static function report()
     {
         $config = self::api()->domain('routes');

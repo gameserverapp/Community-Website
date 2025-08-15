@@ -23,7 +23,7 @@
                 <p>
                     <strong>To view this page, you need to log in.</strong>
                     <br><br>
-                    You can log in using your STEAM or Epic account. This is quick and secure.<br/>
+                    You can log in using your Steam, Epic, Minecraft, Discord, Twitch, Patreon, Microsoft and Google account. This is quick and secure.<br/>
                     Even when you haven't played on one of our servers yet.
                 </p>
 

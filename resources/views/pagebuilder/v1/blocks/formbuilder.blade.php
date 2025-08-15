@@ -18,7 +18,7 @@ if(isset($block['title']) and !empty($block['title'])) {
     @if(!auth()->check())
         <div class="alert alert-warning">
             Please <a href="{{route('auth.login')}}">login</a> to submit this form.<br>
-            You will be requested to log into your steam account, so we can verify you own the Steam account.
+            You will be requested to log into your account, so we can verify you own the account.
         </div>
     @elseif(
         isset($block['form_type']) and

@@ -68,7 +68,13 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['characters'] = false;
         }
 
-        if (isset($args->children) and is_array($args->children) and count($args->children)) {
+        if (
+            isset($args->children) and
+            (
+                is_array($args->children) or
+                is_object($args->children)
+            )
+        ) {
             $data['children'] = ShopTransformer::transformMultiple($args->children);
         }
 

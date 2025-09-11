@@ -24,11 +24,6 @@ class Game extends Model
         return $this->steam_server_id;
     }
 
-    public function supportDelivery()
-    {
-        return $this->support_delivery;
-    }
-
     public function supportLevel()
     {
         return $this->support_level;

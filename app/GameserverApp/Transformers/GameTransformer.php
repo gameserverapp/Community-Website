@@ -23,7 +23,6 @@ class GameTransformer extends ModelTransformer implements ModelTransformerInterf
             'steam_client_id' => $args->steam->client_id,
             'steam_server_id' => $args->steam->server_id,
 
-            'support_delivery' => $args->support->delivery,
             'support_level' => $args->support->level,
             'support_gender' => $args->support->gender,
         ];

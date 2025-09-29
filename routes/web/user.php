@@ -194,6 +194,11 @@ Route::group([
             'as'   => 'user.sub_user.disconnect',
             'uses' => 'SubUserController@disconnect',
         ]);
+
+        Route::get('/issue-reverse-code', [
+            'as'   => 'user.sub_user.issue_reverse_code',
+            'uses' => 'SubUserController@issueToken',
+        ]);
     });
 });
 

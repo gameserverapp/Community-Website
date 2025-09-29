@@ -761,6 +761,15 @@ class Client
         return $this->api()->authRequest('post', 'user/me/sub_users/disconnect/' . $uuid);
     }
 
+    public function issueReverseConnectCode($accountId)
+    {
+        return $this->api()->authRequest('post', 'user/me/sub_users/connect-reverse', [
+            'form_params' => [
+                'service_id' => $accountId
+            ]
+        ]);
+    }
+
     public function kickUser()
     {
         return $this->api()->authRequest('post', 'user/me/kick');

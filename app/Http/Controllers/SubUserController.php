@@ -68,4 +68,34 @@ class SubUserController extends Controller
 
         return redirectBackWithAlert('Something went wrong. Please try again or contact support', 'danger');
     }
+
+    public function issueToken(Request $request)
+    {
+        $this->validate($request, [
+            'account_id' => 'required|string|max:30'
+        ]);
+
+        try {
+            $response = $this->api->issueReverseConnectCode(
+                $request->input('account_id')
+            );
+
+            if(isset($response->data->code)) {
+                return [
+                    'success' => '!connectcode ' . $response->data->code
+                ];
+            }
+        } catch (ClientException $e) {
+
+            if($e->getCode() == 400) {
+                return [
+                    'error' => 'You already have a pending connect code. Please wait before requesting a new one.'
+                ];
+            }
+        }
+
+        return [
+            'error' => 'Something went wrong, try again later or contact support.'
+        ];
+    }
 }

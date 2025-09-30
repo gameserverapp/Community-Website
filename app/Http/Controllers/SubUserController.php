@@ -72,7 +72,7 @@ class SubUserController extends Controller
     public function issueToken(Request $request)
     {
         $this->validate($request, [
-            'account_id' => 'required|string|max:30'
+            'account_id' => 'required|string|max:200'
         ]);
 
         try {

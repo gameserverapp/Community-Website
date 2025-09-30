@@ -166,7 +166,7 @@
 
                     <ol>
                         <li>
-                            Enter the ID of the account you want to connect.
+                            Enter the username or account ID of the account you want to connect.
                         </li>
                         <li>
                             Click <code>Issue code</code> to generate a code.
@@ -180,8 +180,8 @@
                     </ol>
 
                     <div class="form-group">
-                        <label>Account ID</label><br>
-                        <input type="text" class="form-control" placeholder="Enter the ID of the account you want to connect...">
+                        <label>Username or Account ID</label><br>
+                        <input type="text" class="form-control" placeholder="Enter username or account ID...">
                     </div>
 
 
@@ -220,7 +220,7 @@
                             var accountId = $input.val().trim();
 
                             if (!accountId) {
-                                $statusDiv.html('<div class="alert alert-warning">Please enter an Account ID first.</div>');
+                                $statusDiv.html('<div class="alert alert-warning">Please enter a username or account ID first.</div>');
                                 $codeResult.hide();
                                 return;
                             }

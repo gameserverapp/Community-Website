@@ -129,7 +129,7 @@
         </p>
 
         <div>
-            <button type="button" class="btn btn-theme small" data-toggle="modal" data-target="#reverseConnectCode">
+            <button type="button" class="btn btn-primary small" data-toggle="modal" data-target="#reverseConnectCode">
                 <span>
                     {{translate('Request connect code', 'Request connect code')}}
                 </span>

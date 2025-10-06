@@ -98,7 +98,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
     public function avatar()
     {
         if(is_null($this->avatar)) {
-            return config('gameserverapp.connection.oauth_base_url') . 'img/default-group-logo.png';
+            return 'https://dash.gameserverapp.com/img/default-group-logo.png';
         }
 
         return $this->avatar;

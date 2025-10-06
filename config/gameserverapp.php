@@ -7,7 +7,7 @@ return [
         'redirect' => env('GSA_REDIRECT_URL'),
         'timeout' => env('GSA_API_TIMEOUT', 20),
 
-        'oauth_base_url' => env('GSA_OAUTH_BASE_URL', 'https://dash.gameserverapp.com/'),
+        'oauth_base_url' => env('GSA_OAUTH_BASE_URL', 'https://player.gameserverapp.com/'),
     ],
 
     'main_site' => env('main_site', 'https://www.gameserverapp.com'),

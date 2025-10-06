@@ -34,7 +34,7 @@ class OAuthApi
 
     public static function getAccessTokensWithAuthorizationCode($code)
     {
-        return self::client()->post('oauth/token', [
+        return self::oAuthClient()->post('oauth/token', [
             'form_params' => [
                 'grant_type'    => 'authorization_code',
                 'client_id'     => PremiumHostedHelper::clientId(),
@@ -102,7 +102,7 @@ class OAuthApi
         if($cacheTtl === true) {
             $cacheTtl = config('gameserverapp.cache.default_cache_ttl');
         }
-        
+
         return self::request(
             self::client(true),
             $method,
@@ -268,7 +268,7 @@ class OAuthApi
             Cookie::forget(OAuthApi::TOKEN_COOKIE_NAME)
         );
     }
-    
+
     public static function getHeaders($auth = null)
     {
         $headers = [
@@ -304,6 +304,19 @@ class OAuthApi
 
         return new  \GuzzleHttp\Client([
             'base_uri' => config('gameserverapp.connection.url'),
+            'headers'  => $headers,
+            'timeout' => config('gameserverapp.connection.timeout'),
+            'verify' => !app()->environment(['local', 'dev', 'test'])
+            //'http_errors' => false
+        ]);
+    }
+
+    private static function oAuthClient()
+    {
+        $headers = self::getHeaders();
+
+        return new  \GuzzleHttp\Client([
+            'base_uri' => config('gameserverapp.connection.oauth_base_url'),
             'headers'  => $headers,
             'timeout' => config('gameserverapp.connection.timeout'),
             'verify' => !app()->environment(['local', 'dev', 'test'])

@@ -44,7 +44,7 @@ class AuthController extends Controller
 
     public function redirect(Request $request)
     {
-        return redirect(config('gameserverapp.connection.url') .
+        return redirect(config('gameserverapp.connection.oauth_base_url') .
             'oauth/authorize?client_id=' . PremiumHostedHelper::clientId() .
             '&redirect_url=' . PremiumHostedHelper::redirectUrl() .
             '&response_type=code');

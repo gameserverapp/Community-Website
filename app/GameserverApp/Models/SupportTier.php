@@ -101,6 +101,19 @@ class SupportTier extends Model implements LinkableInterface
         return $this->cluster;
     }
 
+    public function hasPaymentProviders()
+    {
+        if(!is_object($this->payment_providers)) {
+            return false;
+        }
+
+        $psps = array_filter((array) $this->payment_providers, function($item) {
+            return $item->active;
+        });
+
+        return count($psps) > 0;
+    }
+
     public function paymentProviders()
     {
         return $this->payment_providers;

@@ -138,38 +138,44 @@
                                 </div>
                             @endif
 
-                            <div class="row">
-                                <div class="col-lg-6 center-block">
+                            @if($package->hasPaymentProviders())
+                                <div class="row">
+                                    <div class="col-lg-6 center-block">
 
-                                    <select name="psp" class="form-control">
+                                        <select name="psp" class="form-control">
 
-                                        @foreach($package->paymentProviders() as $id => $psp)
+                                            @foreach($package->paymentProviders() as $id => $psp)
 
-                                            @if($psp->active)
-                                                <option value="{{$id}}" @if($psp->default) selected @endif>Pay with {{$psp->name}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                                                @if($psp->active)
+                                                    <option value="{{$id}}" @if($psp->default) selected @endif>Pay with {{$psp->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
 
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="btnwrap text-center">
-                                <?php
-                                if($package->isSubscription()) {
-                                    $text = 'Subscribe';
-                                } else {
-                                    $text = 'Order';
-                                }
-                                ?>
+                                <div class="btnwrap text-center">
+                                    <?php
+                                    if($package->isSubscription()) {
+                                        $text = 'Subscribe';
+                                    } else {
+                                        $text = 'Order';
+                                    }
+                                    ?>
 
-                                @include('partials.v3.button', [
-                                    'element' => 'button',
-                                    'type' => 'submit',
-                                    'title' => $text . ' &raquo;',
-                                    'class' => 'btn-theme-rock'
-                                ])
-                            </div>
+                                    @include('partials.v3.button', [
+                                        'element' => 'button',
+                                        'type' => 'submit',
+                                        'title' => $text . ' &raquo;',
+                                        'class' => 'btn-theme-rock'
+                                    ])
+                                </div>
+                            @else
+                                <div class="alert alert-warning">
+                                    The shop configurations are not properly set up yet. Please contact the community owner.
+                                </div>
+                            @endif
 
                         </form>
                     @else

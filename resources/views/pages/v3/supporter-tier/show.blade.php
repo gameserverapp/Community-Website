@@ -104,6 +104,8 @@
                                     </p>
                                 @endif
 
+
+
                             </div>
                             <div class="col-lg-4  col-md-6 coupon">
 
@@ -138,39 +140,80 @@
                                 </div>
                             @endif
 
-                            @if($package->hasPaymentProviders())
+                            @if($package->requiresCharacter())
                                 <div class="row">
                                     <div class="col-lg-6 center-block">
+                                        @if($package->hasCharacters())
+                                            <label>Deliver to:</label>
+                                            <select name="character_id">
+                                                <option value="">Select a character</option>
+                                                @foreach($package->characters() as $character)
+                                                    <option @if($character->online()) selected @endif value="{{$character->id}}">
+                                                        {{$character->name()}}
 
-                                        <select name="psp" class="form-control">
+                                                        @if($character->online())
+                                                            [online]
+                                                        @endif
 
-                                            @foreach($package->paymentProviders() as $id => $psp)
-
-                                                @if($psp->active)
-                                                    <option value="{{$id}}" @if($psp->default) selected @endif>Pay with {{$psp->name}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-
+                                                        @if($character->hasServer())
+                                                            ({{$character->server->name}})
+                                                        @endif
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        @else
+                                            <div class="alert alert-danger">
+                                                You must have a character to order this package.
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
+                            @endif
 
-                                <div class="btnwrap text-center">
-                                    <?php
-                                    if($package->isSubscription()) {
-                                        $text = 'Subscribe';
-                                    } else {
-                                        $text = 'Order';
-                                    }
-                                    ?>
+                            @if($package->hasPaymentProviders())
 
-                                    @include('partials.v3.button', [
-                                        'element' => 'button',
-                                        'type' => 'submit',
-                                        'title' => $text . ' &raquo;',
-                                        'class' => 'btn-theme-rock'
-                                    ])
-                                </div>
+                                @if(
+                                    !$package->requiresCharacter() or
+                                    (
+                                        $package->requiresCharacter() and
+                                        $package->hasCharacters()
+                                    )
+                                )
+                                    <div class="row">
+                                        <div class="col-lg-6 center-block">
+                                            <label>Pay via:</label>
+
+                                            <select name="psp" class="form-control">
+
+                                                @foreach($package->paymentProviders() as $id => $psp)
+
+                                                    @if($psp->active)
+                                                        <option value="{{$id}}" @if($psp->default) selected @endif>Pay with {{$psp->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="btnwrap text-center">
+                                        <?php
+                                        if($package->isSubscription()) {
+                                            $text = 'Subscribe';
+                                        } else {
+                                            $text = 'Order';
+                                        }
+                                        ?>
+
+                                        @include('partials.v3.button', [
+                                            'element' => 'button',
+                                            'type' => 'submit',
+                                            'title' => $text . ' &raquo;',
+                                            'class' => 'btn-theme-rock',
+                                            'dusk' => 'order-button'
+                                        ])
+                                    </div>
+                                @endif
                             @else
                                 <div class="alert alert-warning">
                                     The shop configurations are not properly set up yet. Please contact the community owner.

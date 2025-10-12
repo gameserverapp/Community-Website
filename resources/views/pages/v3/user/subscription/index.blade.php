@@ -11,6 +11,11 @@
 
     <div class="row">
         <div class="col-md-10 center-block">
+
+            <div class="alert alert-warning">
+                If you just ordered a subscription, it can take up to 5 minutes before it shows up here.
+            </div>
+
             @forelse($subscriptions as $subscription)
                 @include('pages.v3.user.subscription._subscription')
             @empty

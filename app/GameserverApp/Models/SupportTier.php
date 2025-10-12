@@ -81,6 +81,28 @@ class SupportTier extends Model implements LinkableInterface
         return $this->requires_discord;
     }
 
+    public function requiresCharacter()
+    {
+        return $this->requires_character;
+    }
+
+    public function hasCharacters()
+    {
+        if(
+            isset($this->characters) and
+            is_object($this->characters)
+        ) {
+            return count((array) $this->characters) > 0;
+        }
+
+        return false;
+    }
+
+    public function characters()
+    {
+        return $this->characters;
+    }
+
     public function isSubscription()
     {
         return $this->type() == 'subscription';

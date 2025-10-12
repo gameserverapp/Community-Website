@@ -89,7 +89,7 @@ class SupporterTierController extends Controller
                 case 'no-char-error':
                     session()->flash('alert', [
                         'status'  => 'warning',
-                        'message' => 'You need to have a character to order this Supporter Tier.',
+                        'message' => 'You need to select a character to order this Supporter Tier.',
                         'stay'    => true
                     ]);
                     break;

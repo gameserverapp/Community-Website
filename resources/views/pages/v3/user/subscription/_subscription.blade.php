@@ -49,11 +49,12 @@
 
             @if(
                 !$subscription->isPatreon() and
-                !$subscription->expired()
+                !$subscription->expired() and
+                $subscription->status == 'Active'
             )
                 <form method="post" action="{{route('subscription.cancel', ['uuid' => auth()->id(), 'id' => $subscription->id()])}}">
                     {{csrf_field()}}
-                    <button type="submit" class="btn btn-xs btn-danger">Cancel subscription</button>
+                    <button type="submit" class="btn btn-xs btn-danger" dusk="cancel-subscription">Cancel subscription</button>
                 </form>
             @endif
         </div>

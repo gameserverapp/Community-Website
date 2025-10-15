@@ -20,10 +20,10 @@ $id = 'modal_' . str_random();
                     {!! $confirm_modal['text'] !!}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" dusk="cancel">Cancel</button>
 
                     @isset($confirm_modal['form_id'])
-                        <button type="button" onclick="$('#{{$confirm_modal['form_id']}}').submit();" class="btn btn-warning">{!! $title !!}</button>
+                        <button type="button" onclick="$('#{{$confirm_modal['form_id']}}').submit();" class="btn btn-warning" dusk="confirm">{!! $title !!}</button>
                     @endisset
                 </div>
             </div>

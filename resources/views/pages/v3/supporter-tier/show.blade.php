@@ -114,7 +114,7 @@
                                     <div class="input-group">
                                         <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount code">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit">Apply</button>
+                                            <button class="btn btn-default" type="submit" dusk="apply-coupon">Apply</button>
                                         </span>
                                     </div>
                                 </form>

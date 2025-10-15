@@ -143,7 +143,8 @@ if($item->hasLabel()) {
                                     'title' => 'Confirm your purchase',
                                     'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
                                     'form_id' => $formId
-                                ]
+                                ],
+                                'dusk' => 'order-now'
                             ])
                         @else
                             <div class="alert alert-danger">
@@ -170,7 +171,8 @@ if($item->hasLabel()) {
                                     'title' => 'Confirm your purchase',
                                     'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
                                     'form_id' => $formId
-                                ]
+                                ],
+                                'dusk' => 'order-now'
                             ])
                         @else
                             <div class="alert alert-danger">
@@ -185,7 +187,8 @@ if($item->hasLabel()) {
                                 'title' => 'Confirm your purchase',
                                 'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
                                 'form_id' => $formId
-                            ]
+                            ],
+                            'dusk' => 'order-now'
                         ])
                     @endif
                 </div>

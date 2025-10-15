@@ -97,7 +97,8 @@ $formId = md5($package->orderUrl());
                                         'title' => 'Confirm your purchase',
                                         'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '?',
                                         'form_id' => $formId
-                                    ]
+                                    ],
+                                    'dusk' => 'order-now'
                                 ])
                             </div>
 
@@ -236,7 +237,8 @@ $formId = md5($package->orderUrl());
                                             'title' => 'Confirm your purchase',
                                             'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '?',
                                             'form_id' => $formId
-                                        ]
+                                        ],
+                                        'dusk' => 'order-now'
                                     ])
                                 @endif
                             </div>

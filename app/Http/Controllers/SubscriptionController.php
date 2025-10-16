@@ -40,7 +40,7 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    public function changeCharacter(Request $request, $uuid,  $id)
+    public function changeCharacter(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {
             return view('pages.v3.supporter-tier.disabled');
@@ -65,7 +65,7 @@ class SubscriptionController extends Controller
         return redirectBackWithAlert('Something went wrong. Please refresh the page and try again.', 'danger');
     }
 
-    public function cancel(Request $request, $uuid,  $id)
+    public function cancel(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {
             return view('pages.v3.supporter-tier.disabled');

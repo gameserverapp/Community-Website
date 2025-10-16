@@ -91,7 +91,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function downloadInvoice(Request $request, $uuid, $saleId)
+    public function downloadInvoice(Request $request, $saleId)
     {
         try {
             $data = $this->api->downloadInvoice($saleId);

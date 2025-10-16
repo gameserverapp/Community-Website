@@ -29,7 +29,7 @@ class RuleGate
 
             $excluded = [
                 route('auth.logout'),
-                $request->root() . '/user/' . auth()->id() . '/accept_rules/*',
+                $request->root() . '/user/me/accept_rules/*',
             ];
 
             $ruleGates = $user->ruleGates();
@@ -38,7 +38,6 @@ class RuleGate
 
             foreach($ruleGates as $ruleGate) {
                 $excluded[] = route('user.accept_rules', [
-                    'uuid' => auth()->id(),
                     'access_group_id' => $ruleGate->group_id
                 ]);
 

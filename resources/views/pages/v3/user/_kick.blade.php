@@ -4,7 +4,7 @@
     </p>
     <br>
 
-    {!! Form::model($user, ['route'=>['user.kick', auth()->id()]]) !!}
+    {!! Form::model($user, ['route'=>['user.kick']]) !!}
 
     @include('partials.v3.button', [
         'type' => 'submit',

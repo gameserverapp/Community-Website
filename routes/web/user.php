@@ -27,40 +27,41 @@ Route::group([
             'as'   => 'user.about',
             'uses' => 'UserController@about'
         ]);
+    });
 
-        Route::get('/{uuid}/deliveries', [
+
+    Route::group([
+        'prefix' => '/me',
+        'middleware' => ['auth']
+    ], function ($router) {
+
+        Route::get('/deliveries', [
             'as'   => 'user.deliveries',
-            'uses' => 'UserController@deliveries',
-            'middleware' => 'auth'
+            'uses' => 'UserController@deliveries'
         ]);
 
-        Route::get('/{uuid}/invoices', [
+        Route::get('/invoices', [
             'as'   => 'user.invoices',
-            'uses' => 'UserController@invoices',
-            'middleware' => 'auth'
+            'uses' => 'UserController@invoices'
         ]);
 
-        Route::get('/{uuid}/invoices/{sale_id}/download', [
+        Route::get('/invoices/{sale_id}/download', [
             'as'   => 'user.invoices.download',
-            'uses' => 'UserController@downloadInvoice',
-            'middleware' => 'auth'
+            'uses' => 'UserController@downloadInvoice'
         ]);
 
-        Route::get('/{uuid}/settings', [
+        Route::get('/settings', [
             'as'   => 'user.settings',
-            'uses' => 'UserController@settings',
-            'middleware' => 'auth'
+            'uses' => 'UserController@settings'
         ]);
 
-        Route::post('/{uuid}/settings', [
+        Route::post('/settings', [
             'as'   => 'user.settings.store',
-            'uses' => 'UserController@storeSettings',
-            'middleware' => 'auth'
+            'uses' => 'UserController@storeSettings'
         ]);
 
         Route::group([
-            'prefix' => '/{uuid}/subscription',
-            'middleware' => 'auth'
+            'prefix' => '/subscription'
         ], function ($router) {
 
             Route::get('/', [
@@ -80,8 +81,7 @@ Route::group([
         });
 
         Route::group([
-            'prefix' => '/{uuid}/message',
-            'middleware' => 'auth'
+            'prefix' => '/message'
         ], function ($router) {
 
             Route::get('/', [
@@ -116,8 +116,7 @@ Route::group([
         });
 
         Route::group([
-            'prefix' => '/{uuid}/token',
-            'middleware' => 'auth'
+            'prefix' => '/token'
         ], function ($router) {
 
             Route::get('/', [
@@ -136,69 +135,61 @@ Route::group([
             ]);
         });
 
-        Route::post('/{uuid}/accept_rules/{access_group_id}', [
+        Route::post('/accept_rules/{access_group_id}', [
             'as'   => 'user.accept_rules',
-            'uses' => 'UserController@acceptRules',
-            'middleware' => 'auth'
+            'uses' => 'UserController@acceptRules'
         ]);
 
-        Route::post('/{uuid}/kick', [
+        Route::post('/kick', [
             'as'   => 'user.kick',
-            'uses' => 'UserController@kick',
-            'middleware' => 'auth'
+            'uses' => 'UserController@kick'
         ]);
 
-        Route::get('/{uuid}/confirm_email', [
+        Route::get('/confirm_email', [
             'as'   => 'user.confirm_email',
-            'uses' => 'UserController@confirmEmail',
-            'middleware' => 'auth'
+            'uses' => 'UserController@confirmEmail'
         ]);
 
-        Route::get('/{uuid}/confirm_email/resend', [
+        Route::get('/confirm_email/resend', [
             'as'   => 'user.confirm_email.resend',
-            'uses' => 'UserController@resendConfirmEmail',
-            'middleware' => 'auth'
+            'uses' => 'UserController@resendConfirmEmail'
         ]);
 
-    });
+        Route::group([
+            'prefix' => 'forum',
+            'namespace' => 'Forum'
+        ], function ($router) {
 
-    Route::group([
-        'prefix' => 'forum',
-        'namespace' => 'Forum'
-    ], function ($router) {
+            Route::get('/subscribe/{threadId}', [
+                'as'   => 'user.forum.subscribe',
+                'uses' => 'SubscribeController@subscribe'
+            ]);
 
-        Route::get('/subscribe/{threadId}', [
-            'as'   => 'user.forum.subscribe',
-            'uses' => 'SubscribeController@subscribe',
-            'middleware' => 'auth'
-        ]);
+            Route::get('/unsubscribe/{threadId}', [
+                'as'   => 'user.forum.unsubscribe',
+                'uses' => 'SubscribeController@unsubscribe'
+            ]);
+        });
 
-        Route::get('/unsubscribe/{threadId}', [
-            'as'   => 'user.forum.unsubscribe',
-            'uses' => 'SubscribeController@unsubscribe',
-            'middleware' => 'auth'
-        ]);
-    });
+        Route::group([
+            'prefix' => 'me/sub_users',
+        ], function ($router) {
 
-    Route::group([
-        'prefix' => 'me/sub_users',
-        'middleware' => 'auth'
-    ], function ($router) {
+            Route::post('/connect', [
+                'as'   => 'user.sub_user.connect',
+                'uses' => 'SubUserController@connect'
+            ]);
 
-        Route::post('/connect', [
-            'as'   => 'user.sub_user.connect',
-            'uses' => 'SubUserController@connect',
-        ]);
+            Route::post('/disconnect/{sub_uuid}', [
+                'as'   => 'user.sub_user.disconnect',
+                'uses' => 'SubUserController@disconnect'
+            ]);
 
-        Route::post('/disconnect/{sub_uuid}', [
-            'as'   => 'user.sub_user.disconnect',
-            'uses' => 'SubUserController@disconnect',
-        ]);
-
-        Route::get('/issue-reverse-code', [
-            'as'   => 'user.sub_user.issue_reverse_code',
-            'uses' => 'SubUserController@issueToken',
-        ]);
+            Route::get('/issue-reverse-code', [
+                'as'   => 'user.sub_user.issue_reverse_code',
+                'uses' => 'SubUserController@issueToken',
+            ]);
+        });
     });
 });
 

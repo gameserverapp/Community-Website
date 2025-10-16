@@ -256,9 +256,9 @@ class Client
         ];
     }
 
-    public function updateUser($id, $data)
+    public function updateUser($data)
     {
-        return $this->api()->authRequest('post', 'user/' . $id . '/settings', [
+        return $this->api()->authRequest('post', 'user/me/settings', [
             'form_params' => $data
         ]);
     }
@@ -859,10 +859,18 @@ class Client
     {
         $key = 'domain-settings';
 
-        return Cache::store('array')->remember($key, 1, function() {
-            return app(OAuthApi::class)->guestRequest('get',
-                'domain/settings?url=' . base64_encode(request()->getHost()), [], 10);
-        });
+        return Cache::store('array')
+                    ->rememberForever($key, function () {
+                        return app(OAuthApi::class)->guestRequest(
+                            'get',
+                            'domain/settings',
+                            [
+                                'query' => [
+                                    'url' => base64_encode(request()->getHost())
+                                ]
+                            ],
+                            10);
+                    });
     }
 
     public static function verifyDomain($code)

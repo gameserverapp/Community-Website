@@ -29,7 +29,7 @@ class TokenController extends Controller
             return view('pages.v3.user.disabled');
         }
 
-        $transactions = $this->client->allUserTransactions(route('token.index', auth()->id()));
+        $transactions = $this->client->allUserTransactions(route('token.index'));
 
         return view('pages.v3.user.transactions.index', [
             'transactions' => $transactions,

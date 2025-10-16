@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
 
     public function index(Request $request)
     {
-        $subscriptions = $this->client->allUserSubscriptions(route('subscription.index', auth()->id()));
+        $subscriptions = $this->client->allUserSubscriptions(route('subscription.index'));
 
         if($request->has('status') == 'success') {
             session()->flash('alert', [

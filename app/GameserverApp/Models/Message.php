@@ -35,11 +35,11 @@ class Message extends Model implements LinkableInterface
 
     public function indexRoute()
     {
-        return route('message.index', auth()->id());
+        return route('message.index');
     }
 
     public function showRoute()
     {
-        return route('message.show', ['id' => $this->id, 'uuid' => auth()->id()]);
+        return route('message.show', ['id' => $this->id]);
     }
 }

@@ -63,7 +63,7 @@ use GameserverApp\Helpers\SiteHelper;
                         @endforeach
                     @elseif($navChar)
                         <li>
-                            <a href="/{{GameserverApp\Helpers\RouteHelper::inspector()}}?search_type=tribe">
+                            <a href="/{{GameserverApp\Helpers\RouteHelper::inspector()}}?search_type=tribe" class="{{Request::is('inspector*') ? 'orange' : ''}}">
                                 Find a {{ GameserverApp\Helpers\SiteHelper::groupName()}} &raquo;
                             </a>
                         </li>
@@ -80,7 +80,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('shop'))
             <li>
-                <a dusk="topnav-shop" href="{{route('shop.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('shop.index') ? 'orange' : '' }}">
+                <a dusk="topnav-shop" href="{{route('shop.index')}}" class="{{Request::is('shop*') ? 'orange' : '' }}">
                     <i class="fa fa-gift" aria-hidden="true"></i> &nbsp;
                     Reward shop
                 </a>
@@ -89,7 +89,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('supporter_tiers'))
             <li>
-                <a dusk="topnav-supporter-tiers" href="{{route('supporter-tier.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('supporter-tier.index') ? 'orange' : '' }}">
+                <a dusk="topnav-supporter-tiers" href="{{route('supporter-tier.index')}}" class="{{ Request::is('supporter-tier*')  ? 'orange' : '' }}">
                     <i class="fa fa-trophy" aria-hidden="true"></i> &nbsp;
                     Supporter Tiers
                 </a>
@@ -106,7 +106,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('user_page'))
             <li>
-                <a dusk="topnav-account" href="{{route('user.show', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.show', auth()->id()) ? 'orange' : '' }}">
+                <a dusk="topnav-account" href="{{route('user.show', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.activity', auth()->id()) ? 'orange' : '' }}">
                     Account profile
                 </a>
             </li>
@@ -114,8 +114,8 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('messages'))
             <li class="hidden-sm">
-                <a dusk="topnav-messages" href="{{route('message.index', auth()->id())}}"
-                   class="inbox {{ ( Request::is('message/*')) ? 'active' : '' }}">
+                <a dusk="topnav-messages" href="{{route('message.index')}}"
+                   class="inbox {{ Request::is('user/me/message*') ? 'orange' : '' }}">
                     Messages
                     <span class="label label-default right">
                        {{auth()->user()->unreadMessagesCount()}}
@@ -126,7 +126,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('tokens'))
             <li>
-                <a dusk="topnav-tokens" href="{{route('token.index', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index', auth()->id()) ? 'orange' : '' }}">
+                <a dusk="topnav-tokens" href="{{route('token.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('token.index') ? 'orange' : '' }}">
                     Tokens
                     <span class="label label-default right">
                     {{auth()->user()->tokenBalance()}}
@@ -138,7 +138,7 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('shop'))
             <li>
-                <a dusk="topnav-deliveries" href="{{route('user.deliveries', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.deliveries', auth()->id()) ? 'orange' : '' }}">
+                <a dusk="topnav-deliveries" href="{{route('user.deliveries')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.deliveries') ? 'orange' : '' }}">
                     Deliveries
                 </a>
             </li>
@@ -146,19 +146,19 @@ use GameserverApp\Helpers\SiteHelper;
 
         @if(SiteHelper::featureEnabled('supporter_tiers'))
             <li>
-                <a dusk="topnav-subscriptions" href="{{route('subscription.index', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index', auth()->id()) ? 'orange' : '' }}">
+                <a dusk="topnav-subscriptions" href="{{route('subscription.index')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('subscription.index') ? 'orange' : '' }}">
                     Subscriptions
                 </a>
             </li>
             <li>
-                <a dusk="topnav-invoices" href="{{route('user.invoices', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.invoices', auth()->id()) ? 'orange' : '' }}">
+                <a dusk="topnav-invoices" href="{{route('user.invoices')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.invoices') ? 'orange' : '' }}">
                     Invoices
                 </a>
             </li>
         @endif
 
         <li>
-            <a dusk="topnav-settings" href="{{route('user.settings', auth()->id())}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.settings', auth()->id()) ? 'orange' : '' }}">
+            <a dusk="topnav-settings" href="{{route('user.settings')}}" class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('user.settings') ? 'orange' : '' }}">
                 Settings
             </a>
         </li>

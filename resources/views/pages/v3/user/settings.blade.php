@@ -12,7 +12,7 @@
     <div class="row">
 
         <div class="col-md-6">
-            <form method="post" action="{{route('user.settings.store', auth()->id())}}">
+            <form method="post" action="{{route('user.settings.store')}}">
                 {{csrf_field()}}
 
                 @component('partials.v3.frame', ['title' => 'Notifications'])

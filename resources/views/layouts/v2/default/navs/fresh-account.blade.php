@@ -108,7 +108,7 @@
             <li role="separator" class="divider"></li>
 
             <li>
-                <a href="{{route('token.index', auth()->id())}}" class="{{ isCurrentRoute('token.index', auth()->id()) ? 'orange' : '' }}">
+                <a href="{{route('token.index')}}" class="{{ isCurrentRoute('token.index') ? 'orange' : '' }}">
                     Tokens
                     <span class="label label-default right">
                         {{auth()->user()->tokenBalance()}}

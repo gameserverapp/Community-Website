@@ -130,18 +130,18 @@ use GameserverApp\Helpers\SiteHelper;
             $right[] = [
                 'title'    => 'Messages <span class="badge">' . auth()->user()->unreadMessagesCount() . '</span>',
                 'route'    => [
-                    route('message.inbox', auth()->id()),
-                    route('message.outbox', auth()->id()),
-                    '/user/' . auth()->id() . '/message*'
+                    route('message.inbox'),
+                    route('message.outbox'),
+                    '/user/me/message*'
                 ],
                 'dropdown' => [
                     [
                         'title' => 'Inbox <span class="badge">' . auth()->user()->unreadMessagesCount() . '</span>',
-                        'route' => route('message.inbox', auth()->id())
+                        'route' => route('message.inbox')
                     ],
                     [
                         'title' => 'Outbox',
-                        'route' => route('message.outbox', auth()->id())
+                        'route' => route('message.outbox')
                     ]
                 ]
             ];
@@ -152,7 +152,7 @@ use GameserverApp\Helpers\SiteHelper;
             $dropdown = [
                 [
                     'title' => 'Transactions',
-                    'route' => route('token.index', auth()->id())
+                    'route' => route('token.index')
                 ]
             ];
 
@@ -165,7 +165,7 @@ use GameserverApp\Helpers\SiteHelper;
 
             $right[] = [
                 'title'    => 'Tokens <span class="badge">' . auth()->user()->tokenBalance() . '</span>',
-                'route'    => route('token.index', auth()->id()),
+                'route'    => route('token.index'),
                 'dropdown' => $dropdown
             ];
         }

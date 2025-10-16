@@ -18,7 +18,7 @@ class MessageController extends Controller
 
     public function index()
     {
-        return redirect(route('message.inbox', auth()->id()));
+        return redirect(route('message.inbox'));
     }
 
     public function inbox()
@@ -27,7 +27,7 @@ class MessageController extends Controller
             return view('pages.v3.user.disabled');
         }
 
-        $messages = $this->api->messages('inbox', route('message.inbox', auth()->id()));
+        $messages = $this->api->messages('inbox', route('message.inbox'));
 
         return view('pages.v3.user.message.mailbox', [
             'title' => 'Inbox',
@@ -42,7 +42,7 @@ class MessageController extends Controller
             return view('pages.v3.user.disabled');
         }
 
-        $messages = $this->api->messages('outbox', route('message.outbox', auth()->id()));
+        $messages = $this->api->messages('outbox', route('message.outbox'));
 
         return view('pages.v3.user.message.mailbox',[
             'title' => 'Outbox',
@@ -119,7 +119,7 @@ class MessageController extends Controller
             return Client::exceptionToAlert($e);
         }
 
-        return redirect(route('message.outbox', auth()->id()))->with([
+        return redirect(route('message.outbox'))->with([
             'alert' => [
                 'status' => 'success',
                 'message' => 'Message was sent'

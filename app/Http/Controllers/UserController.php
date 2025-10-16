@@ -67,7 +67,7 @@ class UserController extends Controller
             ]);
         }
 
-        $orders = $this->api->deliveries(route('user.deliveries', auth()->id()));
+        $orders = $this->api->deliveries(route('user.deliveries'));
 
         return view('pages.v3.user.deliveries', [
             'orders' => $orders,
@@ -78,7 +78,7 @@ class UserController extends Controller
     public function invoices()
     {
         try {
-            $invoices = $this->api->invoices(route('user.invoices', auth()->id()));
+            $invoices = $this->api->invoices(route('user.invoices'));
         } catch (ClientException $e) {
             if($e->getCode() == 401) {
                 $invoices = 'DISABLED';
@@ -145,7 +145,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function acceptRules(Request $request, $uuid, $accessGroupId)
+    public function acceptRules(Request $request, $accessGroupId)
     {
         try {
             $this->api->acceptRules($accessGroupId);
@@ -175,7 +175,7 @@ class UserController extends Controller
         ]);
 
         try {
-            $response = $this->api->updateUser(auth()->id(), $request->only([
+            $response = $this->api->updateUser($request->only([
                 'email',
                 'notify_message',
                 'notify_webalert',

@@ -125,7 +125,13 @@ function getReached($search, $arr) {
 
 function domain()
 {
-    return strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
+    $domain = strtolower(config('gameserverapp.oauthapi_domain', env('DOMAIN_OVERWRITE', app('request')->server('HTTP_HOST'))));
+
+    if(app()->environment('local', 'test')) {
+        $domain = str_replace(':444', '', $domain);
+    }
+
+    return $domain;
 }
 
 function color($key = 'primary-color')

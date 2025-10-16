@@ -405,27 +405,6 @@ class Client
         return TokenTransformer::transform($this->api()->guestRequest('get', 'token/' . $id));
     }
 
-    public function allTokens($route)
-    {
-        $response = $this->api()->guestRequest('get', 'token');
-
-        if (! isset($response->items)) {
-            return new LengthAwarePaginator(
-                [],
-                0,
-                8,
-                0,
-                [
-                    'path' => $route
-                ]
-            );
-        }
-
-        $response->items = TokenTransformer::transformMultiple($response->items);
-
-        return $this->paginatedResponse($response, $route);
-    }
-
     public function supporterTier($id)
     {
         $options = [];
@@ -435,7 +414,7 @@ class Client
         }
 
         return SupportTierTransformer::transform(
-            $this->api()->guestRequest('get', 'supporter-tier/' . $id, $options, false)
+            $this->api()->authRequest('get', 'supporter-tier/' . $id, $options, false)
         );
     }
 

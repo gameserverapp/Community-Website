@@ -28,7 +28,7 @@ Route::group([
             'uses' => 'UserController@about'
         ]);
     });
-    
+
     Route::group([
         'prefix' => '/me',
         'middleware' => ['auth']

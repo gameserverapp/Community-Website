@@ -54,15 +54,15 @@ class WarmCache extends Command
      */
     public function handle()
     {
+        if(!env('PREMIUM_GUI_API_DOMAIN_ENDPOINT', false)) {
+            return $this->warmSelfHosted();
+        }
+
         try {
             $domains = PremiumHostedHelper::getActiveDomains();
         } catch(\Exception $e) {
             if($e->getCode() == 503) {
                 return;
-            }
-
-            if(!env('PREMIUM_GUI_API_DOMAIN_ENDPOINT', false)) {
-                return $this->warmSelfHosted();
             }
 
             Bugsnag::notifyException($e);

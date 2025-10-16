@@ -174,23 +174,23 @@ use GameserverApp\Helpers\SiteHelper;
 
             $right[] = [
                 'title' => 'Deliveries',
-                'route' => route('user.deliveries', $user->id)
+                'route' => route('user.deliveries')
             ];
         }
 
         $right[] = [
             'title' => 'Subscriptions',
-            'route' => route('subscription.index', $user->id)
+            'route' => route('subscription.index')
         ];
 
         $right[] = [
             'title' => 'Invoices',
-            'route' => route('user.invoices', $user->id)
+            'route' => route('user.invoices')
         ];
 
         $right[] = [
             'title' => 'Settings',
-            'route' => route('user.settings', $user->id)
+            'route' => route('user.settings')
         ];
     }
     ?>

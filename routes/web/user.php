@@ -28,8 +28,7 @@ Route::group([
             'uses' => 'UserController@about'
         ]);
     });
-
-
+    
     Route::group([
         'prefix' => '/me',
         'middleware' => ['auth']
@@ -99,12 +98,12 @@ Route::group([
                 'uses' => 'MessageController@outbox'
             ]);
 
-            Route::get('/create', [
+            Route::get('/create/{id}', [
                 'as'   => 'message.create',
                 'uses' => 'MessageController@create'
             ]);
 
-            Route::post('/create', [
+            Route::post('/create/{id}', [
                 'as'   => 'message.send',
                 'uses' => 'MessageController@send'
             ]);
@@ -124,12 +123,12 @@ Route::group([
                 'uses' => 'TokenController@index'
             ]);
 
-            Route::get('/send', [
+            Route::get('/send/{uuid}', [
                 'as'   => 'token.send',
                 'uses' => 'TokenController@send'
             ]);
 
-            Route::post('/send', [
+            Route::post('/send/{uuid}', [
                 'as'   => 'token.send-submit',
                 'uses' => 'TokenController@sendSubmit'
             ]);

@@ -74,16 +74,7 @@ class TokenController extends Controller
                 $request->input('message')
             );
         } catch (ClientException $e) {
-
-            alertOnSlack([
-                'message' => $e->getMessage()
-            ]);
-
             return Client::exceptionToAlert($e);
-        } catch (Throwable $e) {
-            Bugsnag::notifyException($e);
-
-            throw $e;
         }
 
         return redirectBackWithAlert('Tokens were sent!');

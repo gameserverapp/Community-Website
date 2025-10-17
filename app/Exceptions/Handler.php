@@ -26,7 +26,6 @@ class Handler extends ExceptionHandler
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
         MaintenanceModeException::class,
-        DomainNotFoundException::class,
         SuspiciousOperationException::class
     ];
 
@@ -64,16 +63,16 @@ class Handler extends ExceptionHandler
             return $this->renderHttpException($e);
         }
 
-        if (!config('app.debug')) {
-
-            if($e instanceof AuthenticationException) {
-                return response()->view('errors.restricted', [], 401);
-            }
-
-            if(!in_array($e, $this->dontReport)) {
-                return response()->view('errors.500', [], 500);
-            }
-        }
+//        if (!config('app.debug')) {
+//
+//            if($e instanceof AuthenticationException) {
+//                return response()->view('errors.restricted', [], 401);
+//            }
+//
+//            if(!in_array($e, $this->dontReport)) {
+//                return response()->view('errors.500', [], 500);
+//            }
+//        }
 
         return parent::render($request, $e);
     }

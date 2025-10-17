@@ -13,7 +13,7 @@
         <div class="col-md-8 center-block">
 
             @component('partials.v3.frame', ['title' => $title, 'type' => 'basic'])
-                <form method="post" action="{{route('token.send', $user->id)}}">
+                <form method="post" action="{{route('token.send-submit', $user->id)}}">
                     {{csrf_field()}}
 
                     <div class="form-group">

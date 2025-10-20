@@ -426,7 +426,7 @@ class Client
             $options['query']['coupon'] = request('coupon');
         }
 
-        $response = $this->api()->guestRequest('get', 'supporter-tier?page=' . $page, $options, false);
+        $response = $this->api()->authRequest('get', 'supporter-tier?page=' . $page, $options, false);
 
         if (! isset($response->items)) {
             return new LengthAwarePaginator(

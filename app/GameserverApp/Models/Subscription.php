@@ -38,6 +38,16 @@ class Subscription extends Model
         return $this->character instanceof Character;
     }
 
+    public function requiresGameServer()
+    {
+        return $this->requires_gameserver;
+    }
+
+    public function hasGameServer()
+    {
+        return $this->gameserver instanceof Server;
+    }
+
     public function relatableUrl()
     {
         return $this->relatable_url;
@@ -55,6 +65,15 @@ class Subscription extends Model
         }
 
         return $this->available_characters;
+    }
+
+    public function availableGameservers()
+    {
+        if(!isset($this->available_gameservers)) {
+            return [];
+        }
+
+        return $this->available_gameservers;
     }
 
     public function gateway()

@@ -73,6 +73,11 @@ Route::group([
                 'uses' => 'SubscriptionController@changeCharacter'
             ]);
 
+            Route::post('/{id}/change_gameserver', [
+                'as'   => 'subscription.change_gameserver',
+                'uses' => 'SubscriptionController@changeGameserver'
+            ]);
+
             Route::post('/{id}/cancel', [
                 'as'   => 'subscription.cancel',
                 'uses' => 'SubscriptionController@cancel'

@@ -170,13 +170,44 @@
                                 </div>
                             @endif
 
+                            @if($package->requiresGameserver())
+                                <div class="row">
+                                    <div class="col-lg-6 center-block">
+                                        @if($package->hasGameservers())
+                                            <label>Deliver on:</label>
+                                            <select name="gameserver_id">
+                                                <option value="">Select a game server</option>
+                                                @foreach($package->gameservers() as $server)
+                                                    <option value="{{$server->id}}">
+                                                        {{$server->name()}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        @else
+                                            <div class="alert alert-danger">
+                                                You must select a game server to order this package.
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
+
                             @if($package->hasPaymentProviders())
 
                                 @if(
-                                    !$package->requiresCharacter() or
                                     (
-                                        $package->requiresCharacter() and
-                                        $package->hasCharacters()
+                                        !$package->requiresCharacter() or
+                                        (
+                                            $package->requiresCharacter() and
+                                            $package->hasCharacters()
+                                        )
+                                    ) and
+                                    (
+                                        !$package->requiresGameserver() or
+                                        (
+                                            $package->requiresGameserver() and
+                                            $package->hasGameservers()
+                                        )
                                     )
                                 )
                                     <div class="row">

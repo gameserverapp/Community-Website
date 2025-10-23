@@ -20,27 +20,35 @@ class SupportTierTransformer extends ModelTransformer implements ModelTransforme
     public static function transformableInput($args)
     {
         $data = [
-            'id'                 => $args->id,
-            'name'               => $args->name,
-            'description'        => $args->description,
-            'total_price'        => $args->total_price,
-            'discounted_price'   => $args->discounted_price,
-            'discount'           => $args->discount,
-            'currency'           => $args->currency,
-            'type'               => $args->type,
-            'image'              => $args->image,
-            'requires_discord'   => $args->requires_discord,
-            'requires_character' => $args->requires_character,
-            'cluster'            => $args->cluster,
-            'order_url'          => $args->order_url,
-            'payment_providers'  => $args->psp
+            'id'                  => $args->id,
+            'name'                => $args->name,
+            'description'         => $args->description,
+            'total_price'         => $args->total_price,
+            'discounted_price'    => $args->discounted_price,
+            'discount'            => $args->discount,
+            'currency'            => $args->currency,
+            'type'                => $args->type,
+            'image'               => $args->image,
+            'requires_discord'    => $args->requires_discord,
+            'requires_character'  => $args->requires_character,
+            'requires_gameserver' => $args->requires_gameserver,
+            'cluster'             => $args->cluster,
+            'order_url'           => $args->order_url,
+            'payment_providers'   => $args->psp
         ];
 
-        if(
+        if (
             isset($args->characters) and
             $args->characters
         ) {
             $data['characters'] = CharacterTransformer::transformMultiple($args->characters);
+        }
+
+        if (
+            isset($args->gameservers) and
+            $args->gameservers
+        ) {
+            $data['gameservers'] = ServerTransformer::transformMultiple($args->gameservers);
         }
 
         return $data;

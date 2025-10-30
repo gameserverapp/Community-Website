@@ -168,9 +168,7 @@
                                         @endif
                                     </div>
                                 </div>
-                            @endif
-
-                            @if($package->requiresGameserver())
+                            @elseif($package->requiresGameserver())
                                 <div class="row">
                                     <div class="col-lg-6 center-block">
                                         @if($package->hasGameservers())

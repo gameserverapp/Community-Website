@@ -94,6 +94,14 @@ class SupporterTierController extends Controller
                     ]);
                     break;
 
+                case 'no-gameserver-error':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'You need to select a game server to order this Supporter Tier.',
+                        'stay'    => true
+                    ]);
+                    break;
+
                 case 'paypal-missing-product-id':
                     session()->flash('alert', [
                         'status'  => 'warning',

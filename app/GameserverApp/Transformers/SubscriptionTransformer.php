@@ -26,6 +26,8 @@ class SubscriptionTransformer extends ModelTransformer implements ModelTransform
             'amount'             => $args->amount,
             'requires_character' => $args->requires_character,
             'character'          => $args->character ? CharacterTransformer::transform($args->character) : false,
+            'requires_gameserver' => $args->requires_gameserver,
+            'gameserver'          => $args->gameserver ? ServerTransformer::transform($args->gameserver) : false,
             'status'             => $args->status,
             'gateway'            => $args->gateway,
             'created_at'         => $args->created_at,
@@ -50,6 +52,13 @@ class SubscriptionTransformer extends ModelTransformer implements ModelTransform
                 $args->relatable->available_characters
             ) {
                 $data['available_characters'] = CharacterTransformer::transformMultiple($args->relatable->available_characters);
+            }
+
+            if (
+                isset($args->relatable->available_gameservers) and
+                $args->relatable->available_gameservers
+            ) {
+                $data['available_gameservers'] = ServerTransformer::transformMultiple($args->relatable->available_gameservers);
             }
         }
 

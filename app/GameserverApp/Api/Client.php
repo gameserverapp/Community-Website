@@ -243,7 +243,14 @@ class Client
 
     public function userActivity($id, $page = 1)
     {
-        $data = $this->api()->guestRequest('get', 'user/' . $id . '/activity?page=' . $page);
+        $isMe = (auth()->check() and auth()->user()->id == $id);
+
+        $data = $this->api()->guestRequest(
+            'get',
+            'user/' . $id . '/activity?page=' . $page,
+            [],
+            !$isMe
+        );
 
         $user = $data->user;
         unset($data->user);
@@ -498,6 +505,15 @@ class Client
         return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/change_character', [
             'form_params' => [
                 'character_id' => $characterId
+            ]
+        ]);
+    }
+
+    public function changeSubscriptionGameserver($uuid, $gameserverId)
+    {
+        return $this->api()->authRequest('post', 'user/me/subscriptions/' . $uuid . '/change_gameserver', [
+            'form_params' => [
+                'gameserver_id' => $gameserverId
             ]
         ]);
     }

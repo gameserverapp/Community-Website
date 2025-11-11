@@ -104,6 +104,42 @@
                         </div>
                     </form>
                 @endif
+
+                @if($subscription->requiresGameServer())
+
+                    @if(!$subscription->hasGameServer())
+                        <div class="alert alert-warning">
+                            This subscriptions currently has no game server setup. Please select a game server to make sure you receive your rewards.
+                        </div>
+                    @else
+                        <div class="alert alert-info">
+                            You can determine where the contents of this subscription should be delivered. This is only relevant for this subscription. You can switch game servers at any time.
+                        </div>
+                    @endif
+
+                    <form method="post" action="{{route('subscription.change_gameserver', ['id' => $subscription->id()])}}">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <label>
+                                Deliver content on:
+                            </label>
+                            <select name="gameserver_id">
+                                @foreach($subscription->availableGameservers() as $gameserver)
+                                    @if(
+                                        $subscription->hasGameServer() and
+                                        $subscription->gameserver->id == $gameserver->id
+                                    )
+                                        <option selected value="{{$gameserver->id}}">{{$gameserver->name()}} [current]</option>
+                                    @else
+                                        <option value="{{$gameserver->id}}">{{$gameserver->name()}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+
+                            <button type="submit" class="btn btn-default btn-small">Change</button>
+                        </div>
+                    </form>
+                @endif
             @endif
 
         </div>

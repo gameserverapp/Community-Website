@@ -103,6 +103,28 @@ class SupportTier extends Model implements LinkableInterface
         return $this->characters;
     }
 
+    public function requiresGameserver()
+    {
+        return $this->requires_gameserver;
+    }
+
+    public function hasGameservers()
+    {
+        if(
+            isset($this->gameservers) and
+            is_object($this->gameservers)
+        ) {
+            return count((array) $this->gameservers) > 0;
+        }
+
+        return false;
+    }
+
+    public function gameservers()
+    {
+        return $this->gameservers;
+    }
+
     public function isSubscription()
     {
         return $this->type() == 'subscription';

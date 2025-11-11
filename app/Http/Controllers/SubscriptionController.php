@@ -65,6 +65,31 @@ class SubscriptionController extends Controller
         return redirectBackWithAlert('Something went wrong. Please refresh the page and try again.', 'danger');
     }
 
+    public function changeGameServer(Request $request, $id)
+    {
+        if(! SiteHelper::featureEnabled('supporter_tiers')) {
+            return view('pages.v3.supporter-tier.disabled');
+        }
+
+        $this->validate($request, [
+            'gameserver_id' => 'required'
+        ]);
+
+        $serverId = $request->input('gameserver_id');
+
+        try {
+            $response = $this->client->changeSubscriptionGameserver($id, $serverId);
+        } catch (\Exception $e) {
+            return Client::exceptionToAlert($e);
+        }
+
+        if(isset($response->data)) {
+            return redirectBackWithAlert($response->data);
+        }
+
+        return redirectBackWithAlert('Something went wrong. Please refresh the page and try again.', 'danger');
+    }
+
     public function cancel(Request $request, $id)
     {
         if(! SiteHelper::featureEnabled('supporter_tiers')) {

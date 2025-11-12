@@ -26,7 +26,8 @@ class Handler extends ExceptionHandler
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
         MaintenanceModeException::class,
-        SuspiciousOperationException::class
+        SuspiciousOperationException::class,
+        DomainNotFoundException::class
     ];
 
     /**

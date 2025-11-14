@@ -102,6 +102,14 @@ class SupporterTierController extends Controller
                     ]);
                     break;
 
+                case 'missing-service-user-error':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'You need to connect your in-game account to your profile to order this package.',
+                        'stay'    => true
+                    ]);
+                    break;
+
                 case 'paypal-missing-product-id':
                     session()->flash('alert', [
                         'status'  => 'warning',

@@ -156,8 +156,23 @@ if($item->hasLabel()) {
                             <div class="text-center">
                                 <label>Deliver on:</label>
                                 <select name="gameserver_id">
+
+                                    <?php
+                                    $selectServer = old('gameserver_id');
+
+                                    if($item->hasCharacters()) {
+                                        $onlineCharacter = $item->characters()->filter(function($character) {
+                                            return $character->online();
+                                        })->first();
+
+                                        if($onlineCharacter) {
+                                            $selectServer = $onlineCharacter->server->id;
+                                        }
+                                    }
+                                    ?>
+
                                     @foreach($item->gameservers() as $gameserver)
-                                        <option value="{{$gameserver->id}}" @if(old('gameserver_id') == $gameserver->id) selected @endif>
+                                        <option value="{{$gameserver->id}}" @if($selectServer == $gameserver->id) selected @endif>
                                             {{$gameserver->name()}}
                                         </option>
                                     @endforeach

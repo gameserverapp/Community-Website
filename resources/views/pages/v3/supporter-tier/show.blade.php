@@ -174,9 +174,24 @@
                                         @if($package->hasGameservers())
                                             <label>Deliver on:</label>
                                             <select name="gameserver_id">
+
+                                                <?php
+                                                $selectServer = old('gameserver_id');
+
+                                                if($package->hasCharacters()) {
+                                                    $onlineCharacter = $package->characters()->filter(function($character) {
+                                                        return $character->online();
+                                                    })->first();
+
+                                                    if($onlineCharacter) {
+                                                        $selectServer = $onlineCharacter->server->id;
+                                                    }
+                                                }
+                                                ?>
+
                                                 <option value="">Select a game server</option>
                                                 @foreach($package->gameservers() as $server)
-                                                    <option value="{{$server->id}}">
+                                                    <option value="{{$server->id}}"  @if($selectServer == $server->id) selected @endif>
                                                         {{$server->name()}}
                                                     </option>
                                                 @endforeach

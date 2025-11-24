@@ -6,7 +6,6 @@ use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
 use GameserverApp\Transformers\DeliveryTransformer;
-use GameserverApp\Transformers\Forum\PostTransformer;
 use GameserverApp\Transformers\SaleTransformer;
 use GameserverApp\Transformers\SubscriptionTransformer;
 use GameserverApp\Transformers\SupportTierTransformer;
@@ -17,7 +16,6 @@ use GameserverApp\Models\Model;
 use GameserverApp\Models\Group;
 use GameserverApp\Models\User;
 use GameserverApp\Transformers\CharacterTransformer;
-use GameserverApp\Transformers\Forum\ThreadTransformer;
 use GameserverApp\Transformers\MessageTransformer;
 use GameserverApp\Transformers\NewsTransformer;
 use GameserverApp\Transformers\OrderTransformer;
@@ -45,51 +43,6 @@ class Client
                 OauthApi::requestOriginInfo()
             )
         );
-    }
-
-    public function forumSubscribe($threadId)
-    {
-        try {
-            $response = $this->api()->authRequest('post', 'user/me/forum/subscribe/' . $threadId);
-
-            if (isset($response->data->success) and $response->data->success == true) {
-                return true;
-            }
-        } catch (\Exception $e) {
-
-        }
-
-        return false;
-    }
-
-    public function forumUnsubscribe($threadId)
-    {
-        try {
-            $response = $this->api()->authRequest('post', 'user/me/forum/unsubscribe/' . $threadId);
-
-            if (isset($response->data->success) and $response->data->success == true) {
-                return true;
-            }
-        } catch (\Exception $e) {
-
-        }
-
-        return false;
-    }
-
-    public function forumIsSubscribed($threadId)
-    {
-        try {
-            $response = $this->api()->authRequest('get', 'user/me/forum/is_subscribed/' . $threadId);
-
-            if (isset($response->data->subscribed) and $response->data->subscribed == true) {
-                return true;
-            }
-        } catch (\Exception $e) {
-
-        }
-
-        return false;
     }
 
     public function submitForm($formId, array $formContent)
@@ -241,27 +194,27 @@ class Client
         return UserTransformer::transform($data);
     }
 
-    public function userActivity($id, $page = 1)
-    {
-        $isMe = (auth()->check() and auth()->user()->id == $id);
-
-        $data = $this->api()->guestRequest(
-            'get',
-            'user/' . $id . '/activity?page=' . $page,
-            [],
-            !$isMe
-        );
-
-        $user = $data->user;
-        unset($data->user);
-
-        $data->items = PostTransformer::transformMultiple($data->items);
-
-        return [
-            'user'     => UserTransformer::transform($user),
-            'activity' => $this->paginatedResponse($data)
-        ];
-    }
+//    public function userActivity($id, $page = 1)
+//    {
+//        $isMe = (auth()->check() and auth()->user()->id == $id);
+//
+//        $data = $this->api()->guestRequest(
+//            'get',
+//            'user/' . $id . '/activity?page=' . $page,
+//            [],
+//            !$isMe
+//        );
+//
+//        $user = $data->user;
+//        unset($data->user);
+//
+//        $data->items = PostTransformer::transformMultiple($data->items);
+//
+//        return [
+//            'user'     => UserTransformer::transform($user),
+//            'activity' => $this->paginatedResponse($data)
+//        ];
+//    }
 
     public function updateUser($data)
     {
@@ -394,17 +347,6 @@ class Client
         }
 
         return NewsTransformer::transformMultiple($response);
-    }
-
-    public function latestForumThreads()
-    {
-        $response = $this->api()->guestRequest('get', 'forum/thread/latest');
-
-        if (isset($response->data) and ! count($response->data)) {
-            return [];
-        }
-
-        return ThreadTransformer::transformMultiple($response);
     }
 
     public function token($id)

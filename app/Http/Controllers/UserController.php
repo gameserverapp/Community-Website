@@ -42,20 +42,15 @@ class UserController extends Controller
 
     public function activity(Request $request, $id)
     {
+
         if(!SiteHelper::featureEnabled('user_page')) {
             return view('pages.v3.user.disabled', [
                 'user' => $this->api->user($id)
             ]);
         }
 
-        $data = $this->api->userActivity($id);
-
-        $user = $data['user'];
-        $activity = $data['activity'];
-
         return view('pages.v3.user.activity', [
-            'user' => $user,
-            'activity' => $activity
+            'user' => $this->api->user($id)
         ]);
     }
 
@@ -179,7 +174,6 @@ class UserController extends Controller
                 'email',
                 'notify_message',
                 'notify_webalert',
-                'notify_forum',
             ]));
         } catch (ClientException $e) {
             return Client::exceptionToAlert($e);

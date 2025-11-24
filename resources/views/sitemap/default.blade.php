@@ -48,20 +48,6 @@
         </url>
     @endforeach
 
-    @foreach($forumThreads as $thread)
-        <url>
-            <loc>{{ Forum::route('thread.show', $thread) }}</loc>
-            <lastmod>{{ gmdate(DateTime::W3C, strtotime($thread->updated_at)) }}</lastmod>
-            @if($thread->updated_at > Carbon::now()->subDays(10))
-                <changefreq>daily</changefreq>
-                <priority>0.9</priority>
-            @else
-                <changefreq>monthly</changefreq>
-                <priority>0.4</priority>
-            @endif
-        </url>
-    @endforeach
-
     @foreach($posts as $post)
         <url>
             <loc>{{ URL::route("news.show", ['id' => $post->id, 'slug' => $post->slug]) }}</loc>
@@ -107,15 +93,6 @@
             <lastmod>{{ gmdate(DateTime::W3C, strtotime($user->updated_at)) }}</lastmod>
             <changefreq>daily</changefreq>
             <priority>0.4</priority>
-        </url>
-    @endforeach
-
-    @foreach($forumCategories as $category)
-        <url>
-            <loc>{{ Forum::route('category.show', $category) }}</loc>
-            <lastmod>{{ gmdate(DateTime::W3C, strtotime($category->updated_at)) }}</lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.3</priority>
         </url>
     @endforeach
 

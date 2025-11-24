@@ -21,10 +21,7 @@
     </div>
 
     <div class="row padding-2">
-        <div class="col-md-6">
-            @include('pagebuilder.v1.blocks.latest_forum_activity')
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             @include('pagebuilder.v1.blocks.latest_news_updates')
         </div>
     </div>

@@ -49,47 +49,6 @@
         text-decoration: underline;
     }
 
-
-    .forum {
-        @media (max-width:991px) {
-            margin-bottom:$large-gutter;
-        }
-
-        ul {
-
-            li {
-
-                article {
-
-                    .title {
-                        margin-bottom:0;
-
-                        .badge {
-                            margin-left:10px;
-                        }
-                    }
-
-                    .category {
-                        font-size:13px;
-                        line-height:18px;
-
-                        a:hover {
-                            text-decoration: underline;
-                        }
-                    }
-
-                    .author {
-
-                    }
-
-                    time {
-
-                    }
-                }
-            }
-        }
-    }
-
     .news {
 
         ul {

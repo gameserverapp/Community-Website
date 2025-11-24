@@ -1,14 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 
-use App\Http\Controllers\Forum\CategoryController;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
-use GameserverApp\Api\OAuthApi;
-use GameserverApp\Helpers\RouteHelper;
-use GameserverApp\Models\Character;
-use GameserverApp\Models\Server;
 
 class ServerController extends Controller
 {

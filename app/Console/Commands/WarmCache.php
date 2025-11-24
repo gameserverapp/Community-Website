@@ -42,7 +42,6 @@ class WarmCache extends Command
             'characters' => ['top', 'fresh', 'online'],
             'spotlight' => 'character',
             'domain',
-            'latestForumThreads',
             'latestNews'
         ];
     }

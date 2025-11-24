@@ -1,13 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 
-use App\Http\Controllers\Forum\CategoryController;
 use Illuminate\Http\Request;
 use GameserverApp\Api\Client;
-use GameserverApp\Api\OAuthApi;
 use GameserverApp\Helpers\RouteHelper;
-use GameserverApp\Models\Character;
-use GameserverApp\Models\Server;
 
 class HomeController extends Controller
 {
@@ -31,9 +27,6 @@ class HomeController extends Controller
         if(RouteHelper::home()) {
 
             switch(RouteHelper::home()) {
-                case 'forum':
-                    return redirect('/forum');
-
                 case 'news':
                     return redirect('/news');
 

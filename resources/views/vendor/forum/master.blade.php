@@ -21,6 +21,11 @@ if (isset($thread)) {
 
 @section('page_content')
 
+    <div class="alert alert-danger">
+        <strong>Deprecated</strong><br>
+        The forum is deprecated and will be removed in the near future.
+    </div>
+
     @include ('forum::partials.breadcrumbs')
 
     @yield('content')

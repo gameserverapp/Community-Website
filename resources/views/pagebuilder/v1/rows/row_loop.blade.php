@@ -52,7 +52,7 @@ if(!isset($disable_padding)) {
             @if($block['type'] == 'formbuilder' and !isset($block['name']))
                 Could not find a form
             @else
-                @include('pagebuilder.v1.blocks.' . $block['type'], [
+                @includeIf('pagebuilder.v1.blocks.' . $block['type'], [
                     'value' => isset($block['value'])? $block['value'] : ''
                 ])
             @endif

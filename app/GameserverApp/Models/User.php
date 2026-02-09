@@ -6,7 +6,6 @@ use App\GameserverApp\Traits\Socials;
 use GameserverApp\Api\Client;
 use GameserverApp\Helpers\SiteHelper;
 use GameserverApp\Interfaces\LinkableInterface;
-use GameserverApp\Models\Forum\Thread;
 use GameserverApp\Traits\Linkable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -138,17 +137,6 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
         }
 
         return $this->tokenBalance() . ' tokens';
-    }
-
-    public function subscribedToThread(Thread $thread)
-    {
-        try {
-            $client = app(Client::class);
-
-            return $client->forumIsSubscribed($thread->id);
-        } catch(\Exception $e) {
-            return false;
-        }
     }
 
     public function banned()

@@ -160,22 +160,6 @@ Route::group([
         ]);
 
         Route::group([
-            'prefix' => 'forum',
-            'namespace' => 'Forum'
-        ], function ($router) {
-
-            Route::get('/subscribe/{threadId}', [
-                'as'   => 'user.forum.subscribe',
-                'uses' => 'SubscribeController@subscribe'
-            ]);
-
-            Route::get('/unsubscribe/{threadId}', [
-                'as'   => 'user.forum.unsubscribe',
-                'uses' => 'SubscribeController@unsubscribe'
-            ]);
-        });
-
-        Route::group([
             'prefix' => 'me/sub_users',
         ], function ($router) {
 

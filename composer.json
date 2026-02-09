@@ -16,8 +16,6 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
         "predis/predis": "^1.1",
-        "riari/laravel-forum": "^4.1",
-        "riari/laravel-forum-frontend": "^1.1",
         "webuni/commonmark-table-extension": "^2.1"
     },
     "require-dev": {

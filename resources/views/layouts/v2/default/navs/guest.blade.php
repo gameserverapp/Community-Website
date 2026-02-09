@@ -24,12 +24,6 @@
     {{--</a>--}}
 {{--</li>--}}
 
-{{--<li>--}}
-    {{--<a href="/forum" class="{{ Request::is('forum*') ? 'active' : '' }}">--}}
-        {{--Forum--}}
-    {{--</a>--}}
-{{--</li>--}}
-
 <li>
     <a href="{{route('auth.login')}}" class="btn btn-default btn-small login">
         <i class="fa fa-lock"></i>

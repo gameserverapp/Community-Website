@@ -13,7 +13,6 @@ use Illuminate\Support\ServiceProvider;
 use GameserverApp\Composers\ActiveTribes;
 use GameserverApp\Composers\HoursPlayedLast7Days;
 use GameserverApp\Composers\LastOnline;
-use GameserverApp\Composers\LatestForumActivity;
 use GameserverApp\Composers\LatestNewsUpdates;
 use GameserverApp\Composers\Newbies;
 use GameserverApp\Composers\NewPlayersLast7Days;
@@ -59,7 +58,6 @@ class ComposerServiceProvider extends ServiceProvider
             'panels_last_donations'         => PanelsLastDonations::class,
             'panels_donation_target'        => PanelsDonationTarget::class,
 
-            'latest_forum_activity' => LatestForumActivity::class,
             'latest_news_updates'   => LatestNewsUpdates::class,
             'server_slider'         => ServerSlider::class,
             'server_block'          => ServerSlider::class,

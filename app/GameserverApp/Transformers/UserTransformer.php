@@ -54,7 +54,6 @@ class UserTransformer extends ModelTransformer implements ModelTransformerInterf
         if (isset($args->notifications)) {
             $data['notifications'] = [
                 'notify_webalert' => $args->notifications->notify_webalert,
-                'notify_forum'    => $args->notifications->notify_forum,
                 'notify_message'  => $args->notifications->notify_message,
                 'email'           => $args->notifications->email,
                 'email_confirmed' => $args->notifications->email_confirmed

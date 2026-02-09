@@ -30,7 +30,6 @@
     .frame .contentwrap a:not(.label-donor):not(.champ),
     .frame .contentwrap a span,
     &.inspector .results__title,
-    &.forum .forum_wrapper h3,
     h2,
     h4,
     .main_content a:not(.btn):not(.label-donor),
@@ -42,7 +41,6 @@
     .token-package p.description span,
     &.token.single .banner h1 span,
     &.token.single .list-group .list-group-item strong,
-    .forum_wrapper .category .well a h3,
     .table-thread .thread-list-item .author span:not(.created),
     .table-thread .thread-list-item .last-post span:not(.posted),
     .thread-show h2 span:not(.label),
@@ -67,8 +65,7 @@
         }
     }
 
-    .main_content .thread-show .editor-toolbar,
-    &.forum .editor-toolbar {
+    .main_content .thread-show .editor-toolbar
         background:lighten($themeLinkColor, 10) !important;
 
         a,
@@ -104,8 +101,7 @@
         }
     }
 
-    .navbar .navbar-nav > li > .dropdown > span.dashboard ul li a,
-    .forum_wrapper .category .well .well a span {
+    .navbar .navbar-nav > li > .dropdown > span.dashboard ul li a {
         color:$themeLinkColor !important;
     }
 
@@ -145,27 +141,6 @@
             background-color:lighten($themeLinkColor, 40) !important;
             color:$themeLinkColor !important;
         }
-    }
-
-    .forum_wrapper .category .well .well a time,
-    .forum_wrapper .category .well .well span,
-    .forum_wrapper .category .well .info ul li,
-    .forum_wrapper .category .well .info ul li span {
-        color:$themeForumTextColor !important;
-    }
-
-    .forum-post .persona {
-        background: rgba(80, 80, 80, 0.5)
-    }
-
-    .table-thread thead tr th,
-    .table-thread .thread-list-item td {
-        border-color:$themeForumTextColor !important;
-        color:$themeForumTextColor !important;
-    }
-
-    .forum_wrapper .category .well .well {
-        border-color:$themeForumTextColor !important;
     }
 
     .banner {
@@ -249,10 +224,6 @@
         }
     }
 
-    &.pagebuilder .forum ul li article .category a {
-        color:$themeLinkColor
-    }
-
     .textcolor-light {
         .panel-title {
             color:#333;
@@ -269,7 +240,7 @@
         }
     }
 
-    .well:not(.server-block):not(.forum-well):not(.thread-well) * {
+    .well:not(.server-block) * {
         color:#333 !important;
     }
 
@@ -299,5 +270,5 @@
         }
     }
 
-    @import 'forum', 'menu', 'inspector', 'shop', 'frame', 'button';
+    @import 'menu', 'inspector', 'shop', 'frame', 'button';
 }

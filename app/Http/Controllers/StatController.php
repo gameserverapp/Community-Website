@@ -2,9 +2,7 @@
 
 
 use GameserverApp\Generator\StatGenerator;
-use App\Http\Controllers\Forum\CategoryController;
 use Illuminate\Http\Request;
-use GameserverApp\Api\Client;
 
 class StatController extends Controller
 {

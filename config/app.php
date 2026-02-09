@@ -173,9 +173,7 @@ return [
 //        Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
-        
-        Riari\Forum\ForumServiceProvider::class,
-        Riari\Forum\Frontend\ForumFrontendServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

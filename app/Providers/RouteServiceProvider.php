@@ -41,26 +41,6 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapWebRoutes();
 
             $this->mapAuthRoutes();
-
-            $this->mapForumRoutes();
-        });
-    }
-
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapForumRoutes()
-    {
-        Route::group([
-            'namespace' => 'Riari\Forum\Http\Controllers',
-            'as' => config('forum.routing.as'),
-            'prefix' => config('forum.routing.root')
-        ], function ($r) {
-            include base_path('routes/forum.php');
         });
     }
 

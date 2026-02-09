@@ -25,12 +25,6 @@
     </a>
 </li>
 
-<li>
-    <a href="/forum" class="{{ Request::is('forum*') ? 'active' : '' }}">
-        Forum
-    </a>
-</li>
-
 <li class="hidden-sm">
     <a href="{{route('message.inbox')}}"
        class="inbox {{ ( Request::is('message/*')) ? 'active' : '' }}">

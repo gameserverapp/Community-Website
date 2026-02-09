@@ -1,4 +1,4 @@
-.forum,.news {
+.news {
 
     h2 {
         margin-bottom: $gutter;
@@ -51,52 +51,6 @@
         text-decoration: underline;
     }
 }
-
-
-    .forum {
-
-        ul {
-
-            li {
-
-                article {
-
-                    .title {
-                        margin-bottom:0;
-
-                        .badge {
-                            margin-left:10px;
-
-                            span {
-                                color:#fff;
-                            }
-                        }
-                    }
-
-                    .category {
-                        font-size:13px;
-                        line-height:18px;
-
-                        a {
-                            color:$orange;
-                        }
-
-                        a:hover {
-                            text-decoration: underline;
-                        }
-                    }
-
-                    .author {
-
-                    }
-
-                    time {
-
-                    }
-                }
-            }
-        }
-    }
 
     .news {
 

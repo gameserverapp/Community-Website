@@ -61,21 +61,6 @@
                         {!! Form::checkbox('notify_webalert', 1, old('notify_webalert', auth()->user()->notifications['notify_webalert'])) !!}
                         Notify via email
                     </label>
-
-
-                    <hr>
-
-                    <strong>
-                        Reply on subscribed forum thread
-                    </strong>
-                    <p class="small">
-                        When somebody replies to a thread or post you are subscribed to.
-                    </p>
-                    <label>
-                        {!! Form::checkbox('notify_forum', 1, old('notify_forum', auth()->user()->notifications['notify_forum'])) !!}
-                        Notify via email
-                    </label>
-
                     <br><br>
                     @include('partials.v3.button', [
                         'type' => 'submit',

@@ -111,7 +111,7 @@
         }
     }
 
-    .well:not(.server-block):not(.forum-well):not(.thread-well) * {
+    .well:not(.server-block) * {
         color:#333 !important;
     }
 
@@ -140,7 +140,7 @@
         }
     }
 
-    @import 'forum', 'menu', 'inspector', 'shop', 'button';
+    @import 'menu', 'inspector', 'shop', 'button';
 
     //footer.footer {
     //    border-top-color:#d6d3ac;

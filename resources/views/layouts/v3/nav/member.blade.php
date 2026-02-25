@@ -37,7 +37,7 @@ use GameserverApp\Helpers\SiteHelper;
                         $groups = auth()->user()->lastCharacter()->groups;
                         ?>
 
-                        @foreach($groups as $group)
+                        @foreach($groups->take(5) as $group)
                             <li>
                                 <a href="{{$group->showRoute()}}"  class="{{ GameserverApp\Helpers\RouteHelper::isCurrentRoute('group.show', $group->id) ? 'orange' : '' }}">
                                     {!! $group->showName() !!}

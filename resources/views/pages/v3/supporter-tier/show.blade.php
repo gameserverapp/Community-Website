@@ -127,6 +127,22 @@
                     @if(auth()->check())
                         <form method="get" action="{{$package->orderUrl()}}">
 
+                            <?php
+                            try {
+                                $url = $package->orderUrl();
+
+                                $queryString = parse_url($url, PHP_URL_QUERY);
+
+                                parse_str($queryString, $queryParams);
+
+                                $authValue = $queryParams['auth'] ?? '';
+                            } catch (\Exception $e) {
+                                $authValue = '';
+                            }
+                            ?>
+
+                            <input type="hidden" name="auth" value="{{ $authValue }}">
+
                             @if(request()->has('coupon'))
                                 <input type="hidden" name="coupon" value="{{request('coupon')}}">
                             @endif

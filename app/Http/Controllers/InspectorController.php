@@ -30,6 +30,26 @@ class InspectorController extends Controller
 
         $servers = $this->api->allServers();
 
+        $validate = [
+            'search' => 'alpha_num|nullable|max:255',
+            'gender-m' => 'boolean|nullable',
+            'gender-f' => 'boolean|nullable',
+            'has_tribe-y' => 'boolean|nullable',
+            'has_tribe-n' => 'boolean|nullable',
+            'only_online' => 'boolean|nullable',
+            'only_donators' => 'boolean|nullable',
+            'order_by' => 'in:name,level,created|nullable',
+            'order' => 'in:asc,desc|nullable',
+            'search_type' => 'in:character,tribe|nullable',
+            'page' => 'integer|nullable'
+        ];
+
+        foreach($servers as $server) {
+            $validate['server_' . $server->id] = 'boolean|nullable';
+        }
+
+        $this->validate($request, $validate);
+
         $keys = [
             'search',
             'gender-m',

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use GameserverApp\Composers\ModList;
 use GameserverApp\Composers\PanelsDonationTarget;
 use GameserverApp\Composers\PanelsLastDonations;
 use GameserverApp\Composers\PanelsTop5Donors;
@@ -69,7 +70,9 @@ class ComposerServiceProvider extends ServiceProvider
             'population_overview'   => PopulationOverview::class,
 
             'supporter_tier' => SupporterTier::class,
-            'shop_pack' => ShopPack::class
+            'shop_pack' => ShopPack::class,
+
+            'mod_list' => ModList::class,
         ];
 
         foreach ($composers as $view => $composer) {

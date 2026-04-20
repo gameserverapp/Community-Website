@@ -595,6 +595,11 @@ class Client
         return $data;
     }
 
+    public function modList($value)
+    {
+        return $this->api()->authRequest('get', 'servers/mod-list/' . $value);
+    }
+
     public function sendMessage($receiverId, $subject, $content)
     {
         return $this->api()->authRequest('post', 'message/send/' . $receiverId, [

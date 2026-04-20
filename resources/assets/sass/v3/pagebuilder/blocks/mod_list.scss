@@ -1,0 +1,23 @@
+.mod_list_wrapper {
+
+
+    .mod_list {
+
+        .no-mods-available {
+            padding:15px 30px;
+        }
+
+        &--table {
+
+            tbody {
+
+                tr {
+
+                    td {
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}

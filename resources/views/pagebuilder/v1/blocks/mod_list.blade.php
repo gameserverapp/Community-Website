@@ -1,9 +1,16 @@
 <article class="mod_list_wrapper">
 
-    @component('partials.v3.frame', [
-        'title' => $block['title'],
+    <?php
+    $settings = [
         'class' => 'no-padding no-bottom-margin',
-    ])
+    ];
+
+    if(isset($block['title']) and !empty($block['title'])) {
+        $settings['title'] = $block['title'];
+    }
+    ?>
+
+    @component('partials.v3.frame', $settings)
 
         <div class="mod_list">
 

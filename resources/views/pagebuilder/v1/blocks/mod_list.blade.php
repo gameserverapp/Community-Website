@@ -20,7 +20,7 @@
                     <tr>
                         <th></th>
                         <th>Name</th>
-                        <th>Version</th>
+                        <th>ID</th>
                     </tr>
                     </thead>
 
@@ -35,18 +35,14 @@
                                 @else
                                     {{$mod->name}}
                                 @endisset
+                            </td>
+                            <td>
 
                                 @isset($mod->external_id)
                                     <small>
-                                        ({{$mod->external_id}})
+                                        {{$mod->external_id}}
                                     </small>
                                 @endisset
-
-                            </td>
-                            <td>
-                                <small>
-                                    {{$mod->installed_version}}
-                                </small>
                             </td>
                         </tr>
 

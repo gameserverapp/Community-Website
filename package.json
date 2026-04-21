@@ -13,7 +13,6 @@
     "browserify": "^16.5.2",
     "cross-env": "^3.2.3",
     "flot": "^0.8.0-alpha",
-    "fs": "0.0.1-security",
     "fullcalendar": "^3.10.2",
     "jquery": "^3.4.1",
     "laravel-mix": "^5.0.0",

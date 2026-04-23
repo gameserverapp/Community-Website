@@ -180,6 +180,16 @@ class Shop extends Model implements LinkableInterface
         return $amount . ' tokens';
     }
 
+    public function quantity()
+    {
+        return $this->quantity;
+    }
+
+    public function hasQuantity()
+    {
+        return $this->quantity > 1;
+    }
+
     public function hasLimits()
     {
         if($this->limit() == 0 and $this->limitDays() == 0) {

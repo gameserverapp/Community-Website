@@ -88,6 +88,28 @@ if($item->hasLabel()) {
                 </div>
             @endif
 
+            @if($item->hasQuantity())
+                <div class="quantity">
+                    <label for="quantity">Quantity:</label>
+
+                        <?php
+                        $selectedQuantity = request()->query('quantity', 1);
+                        ?>
+
+                    <select name="quantity" class="form-control" onchange="updatePrice()">
+                        @for($i = 1; $i <= $item->quantity(); $i++)
+                            <option value="{{ $i }}"{{ $i == $selectedQuantity ? ' selected' : '' }}>{{ $i }}</option>
+                        @endfor
+                    </select>
+
+                    <script>
+                        function updatePrice() {
+                            window.location.href = "{{route('shop.show', $item->id)}}?quantity=" + document.querySelector('select[name="quantity"]').value;
+                        }
+                    </script>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-12 col-sm-6 col-xs-12">
                     <?php
@@ -141,7 +163,7 @@ if($item->hasLabel()) {
                                 'class' => 'btn-theme-rock center',
                                 'confirm_modal' => [
                                     'title' => 'Confirm your purchase',
-                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
+                                    'text' => 'You are about to purchase "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '.',
                                     'form_id' => $formId
                                 ],
                                 'dusk' => 'order-now'
@@ -184,7 +206,7 @@ if($item->hasLabel()) {
                                 'class' => 'btn-theme-rock center',
                                 'confirm_modal' => [
                                     'title' => 'Confirm your purchase',
-                                    'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
+                                    'text' => 'You are about to purchase "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '.',
                                     'form_id' => $formId
                                 ],
                                 'dusk' => 'order-now'
@@ -200,7 +222,7 @@ if($item->hasLabel()) {
                             'class' => 'btn-theme-rock center',
                             'confirm_modal' => [
                                 'title' => 'Confirm your purchase',
-                                'text' => 'Are you sure you want to buy "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '?',
+                                'text' => 'You are about to purchase "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '.',
                                 'form_id' => $formId
                             ],
                             'dusk' => 'order-now'

@@ -85,6 +85,21 @@
 
         }
     }
+
+    .quantity {
+
+        label {
+            height:35px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        select {
+            vertical-align: middle;
+            width:100px;
+            display: inline-block;
+        }
+    }
 }
 
 &.package-collection {
@@ -120,6 +135,22 @@
             }
         }
 
+        .quantity {
+
+            label {
+                height:30px;
+                display: inline-block;
+                vertical-align: middle;
+                margin-bottom:0 !important;
+            }
+
+            select {
+                vertical-align: middle;
+                width:100px !important;
+                display: inline-block;
+                margin-bottom:0 !important;
+            }
+        }
     }
 
     @media (min-width:768px) and (max-width:1199px) {

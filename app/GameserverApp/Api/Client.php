@@ -501,7 +501,16 @@ class Client
 
     public function shopItem($id)
     {
-        $data = $this->api()->authRequest('get', 'shop/' . $id, [], false);
+        $options = [];
+
+        if (
+            request()->has('quantity') and
+            is_numeric(request('quantity'))
+        ) {
+            $options['query']['quantity'] = request('quantity');
+        }
+
+        $data = $this->api()->authRequest('get', 'shop/' . $id, $options, false);
 
         return ShopTransformer::transform($data);
     }
@@ -511,11 +520,20 @@ class Client
         $this->api()->clearCache('get', 'shop/' . $id, [], true);
         $this->api()->clearCache('get', 'shop', [], true);
 
+        $params = [
+            'character_id'  => $characterId,
+            'gameserver_id' => $gameserverId
+        ];
+
+        if (
+            request()->has('quantity') and
+            is_numeric(request('quantity'))
+        ) {
+            $params['quantity'] = request('quantity', 1);
+        }
+
         return $this->api()->authRequest('post', 'shop/' . $id . '/purchase', [
-            'form_params' => [
-                'character_id'  => $characterId,
-                'gameserver_id' => $gameserverId
-            ]
+            'form_params' => $params
         ]);
     }
 

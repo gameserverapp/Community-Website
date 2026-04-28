@@ -83,6 +83,27 @@ $formId = md5($package->orderUrl());
                             </strong>
                         </p>
                     @endif
+
+                    <?php
+                    $selectedQuantity = request()->query('quantity', 1);
+                    ?>
+                    @if($package->hasQuantity())
+                        <div class="quantity">
+                            <label for="quantity">Quantity:</label>
+
+                            <select name="quantity" class="form-control" onchange="updatePrice()">
+                                @for($i = 1; $i <= $package->quantity(); $i++)
+                                    <option value="{{ $i }}"{{ $i == $selectedQuantity ? ' selected' : '' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+
+                            <script>
+                                function updatePrice() {
+                                    window.location.href = "{{route('shop.show', $package->id)}}?quantity=" + parseInt(document.querySelector('select[name="quantity"]').value);
+                                }
+                            </script>
+                        </div>
+                    @endif
                 </div>
 
                 <div class=" hidden-sm hidden-xs">
@@ -90,12 +111,25 @@ $formId = md5($package->orderUrl());
                         <br>
                         <div class="row">
                             <div class="col-md-12 text-center">
+
+                                <?php
+                                $nameSuffix = '';
+
+                                if(
+                                    $package->hasQuantity() and
+                                    $selectedQuantity > 1 and
+                                    $selectedQuantity <= $package->quantity()
+                                ) {
+                                    $nameSuffix = ' (x' . $selectedQuantity . ')';
+                                }
+                                ?>
+
                                 @include('partials.v3.button_with_confirm_modal', [
                                     'title' => 'Order now &raquo;',
                                     'class' => 'btn-theme-rock',
                                     'confirm_modal' => [
                                         'title' => 'Confirm your purchase',
-                                        'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '?',
+                                        'text' => 'You are about to purchase "<strong>' . $package->name() . $nameSuffix . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '.',
                                         'form_id' => $formId
                                     ],
                                     'dusk' => 'order-now'
@@ -249,7 +283,7 @@ $formId = md5($package->orderUrl());
                                         'class' => 'btn-theme-rock',
                                         'confirm_modal' => [
                                             'title' => 'Confirm your purchase',
-                                            'text' => 'Are you sure you want to buy "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '?',
+                                            'text' => 'You are about to purchase "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '.',
                                             'form_id' => $formId
                                         ],
                                         'dusk' => 'order-now'

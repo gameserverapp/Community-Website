@@ -39,6 +39,10 @@ class ShopTransformer extends ModelTransformer implements ModelTransformerInterf
             $data['token_price'] = $args->token_price;
         }
 
+        if (isset($args->quantity)) {
+            $data['quantity'] = $args->quantity;
+        }
+
         if (isset($args->discount)) {
             $data['discount'] = $args->discount;
             $data['discounted_token_price'] = $args->discounted_token_price;

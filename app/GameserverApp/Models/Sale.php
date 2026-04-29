@@ -17,6 +17,7 @@ class Sale extends Model
     const STATUS_REFUNDED = 3;
     const STATUS_CANCELLED = 4;
     const STATUS_EXPIRED = 5;
+    const STATUS_WAITING_ASYNC_PAYMENT = 6;
 
     public function id()
     {
@@ -48,6 +49,9 @@ class Sale extends Model
 
             case self::STATUS_EXPIRED:
                 return '<span class="label label-default">Expired</span>';
+
+            case self::STATUS_WAITING_ASYNC_PAYMENT:
+                return '<span class="label label-warning">Waiting Async Payment</span>';
         }
     }
 

@@ -145,7 +145,7 @@ class SupporterTierController extends Controller
                 case 'waiting-async-payment':
                     session()->flash('alert', [
                         'status'  => 'warning',
-                        'message' => 'Your payment is being processed and will be delivered when completed.',
+                        'message' => 'Your payment is being processed and will be delivered when completed. Check the Invoices page for updates.',
                         'stay'    => true
                     ]);
                     break;

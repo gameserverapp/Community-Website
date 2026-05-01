@@ -37,8 +37,12 @@ $formId = md5($package->orderUrl());
                     </div>
 
                     @if($package->hasLabel())
-                        <div class="label label-theme top-left">
-                            {{$package->label()}}
+                        <div class="label-container">
+                            @foreach($package->label() as $label)
+                                <div class="label label-theme top-left">
+                                    {{$label}}
+                                </div>
+                            @endforeach
                         </div>
                         <br>
                     @endif

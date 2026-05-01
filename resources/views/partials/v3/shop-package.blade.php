@@ -9,8 +9,12 @@
                 {{$item->gameserver}} only
             </div>
         @elseif($item->hasLabel())
-            <div class="label label-theme top-left">
-                {{$item->label()}}
+            <div class="label-container">
+                @foreach($item->label() as $label)
+                    <div class="label label-theme top-left">
+                        {{$label}}
+                    </div>
+                @endforeach
             </div>
         @endif
         <a href="{{route('shop.show', $item->id)}}">

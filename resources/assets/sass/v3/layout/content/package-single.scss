@@ -20,10 +20,21 @@
             width: 100%;
         }
 
-        .label.top-left {
+        .label-container {
             position: absolute;
             top:1rem;
             left:1rem;
+        }
+    }
+
+    .label-container {
+
+        &--inline {
+            display: inline-block;
+        }
+
+        .label {
+            margin-right:5px;
         }
     }
 
@@ -119,6 +130,9 @@
             }
 
             .label.top-left {
+            }
+
+            .label-container {
                 position: absolute;
                 top:-1rem;
                 left:0;

@@ -13,15 +13,19 @@ if($item->hasLabel()) {
 }
 ?>
 
-<form class="collection-option" method="post" action="{{$item->orderUrl()}}" id="{{$formId}}" data-label="{{$label}}"  >
+<form class="collection-option" method="post" action="{{$item->orderUrl()}}" id="{{$formId}}" data-label="{{json_encode($label)}}"  >
     {{csrf_field()}}
     <div class="row">
         <div class="col-sm-3 col-lg-2">
             <div class="main-image">
 
                 @if($item->hasLabel())
-                    <div class="label label-theme top-left">
-                        {{$item->label()}}
+                    <div class="label-container">
+                        @foreach($item->label() as $label)
+                            <div class="label label-theme top-left">
+                                {{$label}}
+                            </div>
+                        @endforeach
                     </div>
                 @endif
 
@@ -74,8 +78,12 @@ if($item->hasLabel()) {
                     <h4>
                         Price
                         @if($item->hasLabel())
-                            <div class="label label-theme top-left">
-                                {{$item->label()}}
+                            <div class="label-container label-container--inline">
+                                @foreach($item->label() as $label)
+                                    <div class="label label-theme top-left">
+                                        {{$label}}
+                                    </div>
+                                @endforeach
                             </div>
                         @endif
                     </h4>

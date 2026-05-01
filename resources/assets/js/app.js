@@ -399,11 +399,20 @@ function collectionChildFilter() {
         var shouldDisplay = true;
         elm = $(elm);
 
-        if(
-            hasFilter &&
-            String(elm.data('label')) !== String(filter)
-        ) {
-            shouldDisplay = false;
+        var labels = elm.data('label');
+
+        if (!Array.isArray(labels)) {
+            labels = [String(labels)];
+        }
+
+        if (hasFilter) {
+            var match = labels.some(function(l) {
+                return String(l) === String(filter);
+            });
+
+            if (!match) {
+                shouldDisplay = false;
+            }
         }
 
         if(

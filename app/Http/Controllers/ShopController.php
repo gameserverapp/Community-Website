@@ -93,7 +93,11 @@ class ShopController extends Controller
                     } else {
                         $label = $child->label(false);
 
-                        if(!empty($label)) {
+                        if(is_array($label)) {
+                            foreach($label as $l) {
+                                $filters[$l] = $l;
+                            }
+                        } elseif(!empty($label)) {
                             $filters[$label] = $label;
                         }
                     }

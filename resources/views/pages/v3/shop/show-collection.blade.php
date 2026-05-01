@@ -31,10 +31,14 @@ use GameserverApp\Helpers\SiteHelper;
                 </div>
 
                 @if($package->hasLabel())
-                    <div class="label label-theme top-left">
-                        {{$package->label()}}
+                    <div class="label-container">
+                        @foreach($package->label() as $label)
+                            <div class="label label-theme top-left">
+                                {{$label}}
+                            </div>
+                        @endforeach
                     </div>
-                    <br><br>
+                    <br>
                 @endif
 
                 <div class="main-title">
@@ -95,7 +99,7 @@ use GameserverApp\Helpers\SiteHelper;
                             <option value=""> - No filter selected - </option>
 
                             @foreach($filters as $value => $filter)
-                                    <option value="{{$value}}">{{$filter}}</option>
+                                <option value="{{$value}}">{{$filter}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -9,9 +9,13 @@
     ?>
 
     <div class="purchase-package tier">
-        @if($label = $item->label())
-            <div class="label label-theme top-left">
-                {!! $label !!}
+        @if($item->hasLabel())
+            <div class="label-container">
+                @foreach($item->label() as $label)
+                    <div class="label label-theme top-left">
+                        {{$label}}
+                    </div>
+                @endforeach
             </div>
         @endif
         <a href="{{$stRoute}}">

@@ -27,6 +27,13 @@ class Shop extends Model implements LinkableInterface
 
     public function hasLabel()
     {
+        if(
+            is_array($this->label()) and
+            count($this->label()) > 0
+        ) {
+            return true;
+        }
+
         return !is_null($this->label());
     }
 

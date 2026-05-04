@@ -11,11 +11,17 @@
     <div class="purchase-package tier">
         @if($item->hasLabel())
             <div class="label-container">
-                @foreach($item->label() as $label)
+                @if(is_array($item->label()))
+                    @foreach($item->label() as $label)
+                        <div class="label label-theme top-left">
+                            {{$label}}
+                        </div>
+                    @endforeach
+                @else
                     <div class="label label-theme top-left">
-                        {{$label}}
+                        {{$item->label()}}
                     </div>
-                @endforeach
+                @endif
             </div>
         @endif
         <a href="{{$stRoute}}">

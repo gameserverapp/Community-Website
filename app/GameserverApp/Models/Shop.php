@@ -45,7 +45,7 @@ class Shop extends Model implements LinkableInterface
             $this->tokenPrice() != 0 and
             $discount = $this->discount()
         ) {
-            return $discount . '% discount';
+            return [$discount . '% discount'];
         }
 
         return $this->label;

@@ -106,6 +106,14 @@ use GameserverApp\Helpers\SiteHelper;
                 </div>
             @endif
 
+            <script>
+                function updatePrice(select, url) {
+                    const selectedQuantity = select.value;
+
+                    window.location.href = url + "?quantity=" + selectedQuantity;
+                }
+            </script>
+
             @forelse($package->children() as $child)
                 @include('pages.v3.shop._collection-option', [
                     'item' => $child

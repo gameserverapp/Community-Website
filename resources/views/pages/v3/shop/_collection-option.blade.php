@@ -71,8 +71,6 @@ if($item->hasLabel()) {
         </div>
         <div class="col-lg-4">
 
-
-
             @if($item->tokenPrice() > 0)
                 <div class="text-center">
                     <h4>
@@ -100,21 +98,15 @@ if($item->hasLabel()) {
                 <div class="quantity">
                     <label for="quantity">Quantity:</label>
 
-                        <?php
-                        $selectedQuantity = request()->query('quantity', 1);
-                        ?>
+                    <?php
+                    $selectedQuantity = request()->query('quantity', 1);
+                    ?>
 
-                    <select name="quantity" class="form-control" onchange="updatePrice()">
+                    <select name="quantity" class="form-control" onchange="updatePrice(this, '{{route('shop.show', $item->id)}}')">
                         @for($i = 1; $i <= $item->quantity(); $i++)
                             <option value="{{ $i }}"{{ $i == $selectedQuantity ? ' selected' : '' }}>{{ $i }}</option>
                         @endfor
                     </select>
-
-                    <script>
-                        function updatePrice() {
-                            window.location.href = "{{route('shop.show', $item->id)}}?quantity=" + document.querySelector('select[name="quantity"]').value;
-                        }
-                    </script>
                 </div>
             @endif
 

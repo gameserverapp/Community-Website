@@ -34,7 +34,7 @@ class Shop extends Model implements LinkableInterface
             return true;
         }
 
-        return !is_null($this->label());
+        return false;
     }
 
     public function label($allowDiscountLabel = true)
@@ -49,6 +49,21 @@ class Shop extends Model implements LinkableInterface
         }
 
         return $this->label;
+    }
+
+    public function firstLabel()
+    {
+        $labels = $this->label();
+
+        if(!is_array($labels)) {
+            return $labels;
+        }
+
+        if(!count($labels)) {
+            return null;
+        }
+
+        return $labels[0];
     }
 
     public function type()

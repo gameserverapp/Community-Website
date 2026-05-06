@@ -13,14 +13,10 @@
             <div class="label-container">
                 @if(is_array($item->label()))
                     @foreach($item->label() as $label)
-                        <div class="label label-theme top-left">
-                            {{$label}}
-                        </div>
+                        <div class="label label-theme top-left">{{$label}}</div>
                     @endforeach
                 @else
-                    <div class="label label-theme top-left">
-                        {{$item->label()}}
-                    </div>
+                    <div class="label label-theme top-left">{{$item->label()}}</div>
                 @endif
             </div>
         @endif

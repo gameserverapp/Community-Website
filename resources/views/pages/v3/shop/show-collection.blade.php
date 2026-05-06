@@ -33,9 +33,7 @@ use GameserverApp\Helpers\SiteHelper;
                 @if($package->hasLabel())
                     <div class="label-container">
                         @foreach($package->label() as $label)
-                            <div class="label label-theme top-left">
-                                {{$label}}
-                            </div>
+                            <div class="label label-theme top-left">{{$label}}</div>
                         @endforeach
                     </div>
                     <br>

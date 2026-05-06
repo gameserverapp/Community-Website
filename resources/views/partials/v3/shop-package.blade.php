@@ -1,22 +1,14 @@
 @if($item)
     <div class="purchase-package package-small package-id-{{$item->id}}">
-        @if($item->cluster)
-            <div class="label label-theme top-left">
-                {{$item->cluster}} only
-            </div>
-        @elseif($item->gameserver)
-            <div class="label label-theme top-left">
-                {{$item->gameserver}} only
-            </div>
-        @elseif($item->hasLabel())
-            <div class="label-container">
-                @foreach($item->label() as $label)
-                    <div class="label label-theme top-left">
-                        {{$label}}
-                    </div>
-                @endforeach
-            </div>
-        @endif
+        <div class="label-container">
+            @if($item->cluster)
+                <div class="label label-theme top-left">{{$item->cluster}} only</div>
+            @elseif($item->gameserver)
+                <div class="label label-theme top-left">{{$item->gameserver}} only</div>
+            @elseif($item->hasLabel())
+                <div class="label label-theme top-left">{{$item->firstLabel()}}</div>
+            @endif
+        </div>
         <a href="{{route('shop.show', $item->id)}}">
             <div class="image-container">
                 <img src="{{$item->image()}}" alt="{{$item->name()}}">

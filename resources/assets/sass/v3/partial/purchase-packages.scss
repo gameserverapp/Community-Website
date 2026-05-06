@@ -35,6 +35,17 @@
         }
     }
 
+    .label-container {
+
+        &--inline {
+            display: inline-block;
+        }
+
+        .label {
+            margin-right:5px;
+        }
+    }
+
     .title {
         margin-top: 1rem;
         margin-bottom:0;

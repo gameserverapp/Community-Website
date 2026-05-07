@@ -31,12 +31,14 @@ class PageController extends Controller
             'search' => 'nullable|string|regex:/^[A-Za-z0-9_]+$/',
             'filter' => 'nullable|string|regex:/^[A-Za-z0-9_]+$/',
             'report_player' => 'nullable|uuid',
+            'page' => 'nullable|integer'
         ]);
 
         $page = $this->client->page($id, request()->only([
             'report_player',
             'search',
             'filter',
+            'page'
         ]));
 
         if($page->isBuilder()) {

@@ -50,7 +50,15 @@
         $itemsObj = json_decode(json_encode($block['packs']['items']));
         $items = ShopTransformer::transformMultiple($itemsObj);
 
-        $pagination = new LengthAwarePaginator($items, count($items), 12);
+        $pagination = new LengthAwarePaginator(
+            $items,
+            $block['packs']['total'],
+            $block['packs']['per_page'],
+            $block['packs']['current_page'],
+            [
+                'path' => request()->url()
+            ]
+        );
         ?>
 
         @forelse( $items as $pack )

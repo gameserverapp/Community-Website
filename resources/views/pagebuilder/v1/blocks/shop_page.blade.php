@@ -1,4 +1,7 @@
-@php use GameserverApp\Transformers\ShopTransformer;use Illuminate\Pagination\LengthAwarePaginator; @endphp
+@php
+    use GameserverApp\Transformers\ShopTransformer;
+    use Illuminate\Pagination\LengthAwarePaginator;
+@endphp
 <article class="shop_page">
 
     <div class="row">
@@ -43,8 +46,6 @@
         </div>
     @endif
     <div class="row">
-
-
         <?php
         $itemsObj = json_decode(json_encode($block['packs']['items']));
         $items = ShopTransformer::transformMultiple($itemsObj);
@@ -74,7 +75,6 @@
         <div class="paginate">
             {!! $pagination->appends([
                 'search' => request()->get('search'),
-                'cluster' => request()->get('cluster'),
                 'filter' => request()->get('filter')])->links() !!}
         </div>
     </div>

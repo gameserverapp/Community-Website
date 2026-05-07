@@ -27,10 +27,16 @@ class PageController extends Controller
 
     public function show(Request $request, $id, $slug = 'home')
     {
-        //todo assert format is valid
+        $this->validate($request, [
+            'search' => 'nullable|string|regex:/^[A-Za-z0-9_]+$/',
+            'filter' => 'nullable|string|regex:/^[A-Za-z0-9_]+$/',
+            'report_player' => 'nullable|uuid',
+        ]);
 
         $page = $this->client->page($id, request()->only([
-            'report_player'
+            'report_player',
+            'search',
+            'filter',
         ]));
 
         if($page->isBuilder()) {

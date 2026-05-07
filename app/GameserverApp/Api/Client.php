@@ -270,15 +270,25 @@ class Client
 
     public function page($id, $args = false)
     {
-//        $suffix = '';
-//
-//        if($args) {
-//            $suffix = '?' . build_query();
-//        }
+        if(auth()->check()) {
+            $data = $this->api()->authRequest('get', 'page/' . $id, [
+                'query' => $args
+            ]);
+        } else {
+            $data = $this->api()->guestRequest('get', 'page/' . $id, [
+                'query' => $args
+            ]);
+        }
+        
+        $content = json_encode($data->content);
 
-        return PageTransformer::transform($this->api()->guestRequest('get', 'page/' . $id, [
-            'query' => $args
-        ]));
+        if(stripos($content, '"type":"shop_page"') !== false) {
+            self::clearCache('get', 'page/' . $id, [
+                'query' => $args
+            ]);
+        }
+
+        return PageTransformer::transform($data);
     }
 
     public function news($id)

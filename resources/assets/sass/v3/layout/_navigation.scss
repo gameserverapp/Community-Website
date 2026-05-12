@@ -321,22 +321,72 @@
                         height: 0;
                         margin-left: 5px;
                         vertical-align: middle;
-                        border-top: 4px dashed;
-                        border-top: 4px solid \9
-                    ;
+                        border-top: 4px solid;
                         border-right: 4px solid transparent;
                         border-left: 4px solid transparent;
                     }
                 }
 
+                @media (max-width: 767px) {
+                    > a:after {
+                        display: none;
+                    }
+                }
             }
 
             ul.submenu {
                 left: 0 !important;
                 right: auto !important;
+
+                @media (min-width: 768px) {
+                    li.has_child {
+                        position: relative;
+
+                        &:hover > ul.submenu {
+                            display: block;
+                            left: 100% !important;
+                            top: 0;
+                            margin-left: 0;
+
+                            &:before {
+                                content: ' ';
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: -20px;
+                                width: 25px;
+                                background: transparent;
+                                z-index: -1;
+                            }
+                        }
+
+                        > a {
+                            position: relative;
+                            display: block;
+
+                            &:after {
+                                display: inline-block !important;
+                                content: ' ' !important;
+                                width: 0;
+                                height: 0;
+                                border-top: 4px solid transparent;
+                                border-bottom: 4px solid transparent;
+                                border-left: 4px solid;
+                                border-right: 0;
+                                margin-left: 10px;
+                                float: right;
+                                margin-top: 7px;
+                            }
+                        }
+                    }
+                }
             }
 
-            &:hover ul.submenu {
+            &:hover > ul.submenu {
+                display: block;
+            }
+
+            li:hover > ul.submenu {
                 display: block;
             }
 
@@ -363,7 +413,7 @@
                             font-weight: bold;
                         }
 
-                        > &:hover {
+                        > a:hover {
                             background: none;
                             color: var(--primary-color);
                         }

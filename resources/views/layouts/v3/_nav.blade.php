@@ -24,27 +24,7 @@ use Illuminate\Support\Facades\Cookie;
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        @foreach(SiteHelper::customMenuItems() as $item)
-                            <li class="@if(isset($item->children) and is_array($item->children)) has_child @endif">
-                                <a href="{{$item->url}}" @if($item->new_window) target="_blank"
-                                   @endif class="{{ '/' . request()->path() == $item->url ? 'active' : '' }}">
-                                    {{$item->title}}
-                                </a>
-
-                                @if(isset($item->children) and is_array($item->children))
-                                    <ul class="submenu dropdown-menu">
-                                        @foreach($item->children as $child)
-                                            <li>
-                                                <a href="{{$child->url}}" @if($child->new_window) target="_blank"
-                                                   @endif class="{{ '/' . request()->path() == $child->url ? 'active' : '' }}">
-                                                    {{$child->title}}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </li>
-                        @endforeach
+                        @include('layouts.v3.nav.nav-loop')
 
                         @if(auth()->check())
                             <li>

@@ -32,9 +32,19 @@ class ShopController extends Controller
             return view('pages.v3.shop.disabled');
         }
 
-        $packs = $this->client->shopItems(route('shop.index'), [
+        try {
+            $packs = $this->client->shopItems(route('shop.index'), []);
+        } catch (ClientException $e) {
 
-        ]);
+            if($e->getCode() == 422) {
+                $error = json_decode($e->getResponse()->getBody()->getContents());
+                return redirectBackWithAlert($error->message, 'danger');
+            }
+
+            if($e->getCode() == 403) {
+                return redirectBackWithAlert('Illegal action.', 'danger');
+            }
+        }
 
         $clusters = false;
         $gameservers = false;

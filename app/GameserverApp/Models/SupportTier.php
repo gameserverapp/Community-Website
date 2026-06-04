@@ -32,15 +32,25 @@ class SupportTier extends Model implements LinkableInterface
 
     public function label()
     {
-        if($discount = $this->discount()) {
-            return $discount . '% discount';
+        $label = [];
+
+        if($discount = $this->discountAmount()) {
+            $label[] = $this->displayCurrency() . ' ' . $discount . ' discount';
+        }
+
+        if($discount = $this->personalDiscount()) {
+            $label[] = $discount . '% personal discount';
+        }
+
+        if($discount = $this->discountPercentage()) {
+            $label[] = $discount . '% discount';
         }
 
         if($this->cluster()) {
-            return $this->cluster() . ' only';
+            $label[] = $this->cluster() . ' only';
         }
 
-        return false;
+        return $label;
     }
 
     public function totalPrice()
@@ -48,14 +58,29 @@ class SupportTier extends Model implements LinkableInterface
         return $this->total_price;
     }
 
+    public function hasDiscount()
+    {
+        return $this->personalDiscount() or $this->discountPercentage() or $this->discountAmount();
+    }
+
     public function discountedPrice()
     {
         return $this->discounted_price;
     }
 
-    public function discount()
+    public function discountPercentage()
     {
-        return $this->discount;
+        return $this->discount_percentage;
+    }
+
+    public function discountAmount()
+    {
+        return $this->discount_amount;
+    }
+
+    public function personalDiscount()
+    {
+        return $this->personal_discount;
     }
 
     public function displayTotalPrice()
@@ -66,7 +91,8 @@ class SupportTier extends Model implements LinkableInterface
             $suffix = ' p/mo';
         }
 
-        if($this->discount()) {
+        if($this->hasDiscount()) {
+
             return '<span class="discounted_price">
                         <span class="from_price">From: <span>' . $this->displayCurrency() . ' ' . $this->totalPrice() . $suffix . '</span></span><br>
                         <span class="to_price">To: <span>' . $this->displayCurrency() . ' ' . $this->discountedPrice() . $suffix . '</span></span>

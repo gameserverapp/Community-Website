@@ -26,8 +26,10 @@
 
 
                 @if($package->hasLabel())
-                    <div class="label label-theme top-left">
-                        {{$package->label()}}
+                    <div class="label-container">
+                        @foreach($package->label() as $label)
+                            <div class="label label-theme top-left">{{$label}}</div>
+                        @endforeach
                     </div>
                     <br>
                 @endif
@@ -69,9 +71,9 @@
                         <br>
 
                         <div class="row">
-                            <div class="col-lg-8 col-md-6">
+                            <div class="col-lg-7 col-md-5">
 
-                                @if($package->discount())
+                                @if($package->hasDiscount())
                                     <h4>
                                         @if($package->isSubscription())
                                             Costs
@@ -80,9 +82,9 @@
                                         @endif
 
                                         @if($package->hasLabel())
-                                            <div class="label label-theme top-left">
-                                                {{$package->label()}}
-                                            </div>
+                                            @foreach($package->label() as $label)
+                                                <div class="label label-theme top-left">{{$label}}</div>
+                                            @endforeach
                                         @endif
                                     </h4>
                                     <p>
@@ -103,16 +105,13 @@
                                         </strong>
                                     </p>
                                 @endif
-
-
-
                             </div>
-                            <div class="col-lg-4  col-md-6 coupon">
+                            <div class="col-lg-5  col-md-7 coupon">
 
-                                <h4>Discount code:</h4>
+                                <h4>Discount / gift card code:</h4>
                                 <form method="get">
                                     <div class="input-group">
-                                        <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount code">
+                                        <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount / gift card code">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="submit" dusk="apply-coupon">Apply</button>
                                         </span>

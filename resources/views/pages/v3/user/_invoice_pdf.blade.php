@@ -120,7 +120,17 @@ use PremiumARK\Sales\Sale;
                             @if ($invoice->hasDiscount())
                                 <br>
 
-                                (Incl. {{ $invoice->discount() }}% discount)
+                                @if($invoice->discount()->type == 3)
+
+                                    @if($invoice->discount()->gateway == 4)
+                                        Paid using gift card: {{ $invoice->discount()->code }}
+                                    @endif
+
+                                @elseif($invoice->discount()->amount > 0)
+                                    (Incl. max. {{$invoice->currency()}} {{ $invoice->discount->amount() }} discount)
+                                @else
+                                    Incl. {{ $invoice->discount()->percentage }}% discount
+                                @endif
                             @endif
                         </td>
 

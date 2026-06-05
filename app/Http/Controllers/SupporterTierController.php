@@ -150,6 +150,14 @@ class SupporterTierController extends Controller
                     ]);
                     break;
 
+                case 'giftcard-locked':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'Another transaction is currently using this gift card. Please try again later.',
+                        'stay'    => true
+                    ]);
+                    break;
+
             }
         }
     }

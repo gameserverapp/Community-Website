@@ -23,10 +23,10 @@
         <h1 class="main-title">{{translate('supporter_tiers', 'Supporter tiers')}}</h1>
     </div>
     <div class="col-md-4 coupon">
-        <h4>Discount code:</h4>
+        <h4>Discount / gift card code:</h4>
         <form method="get">
             <div class="input-group">
-                <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount code">
+                <input class="form-control" name="coupon" type="text" value="{{request('coupon', '')}}" placeholder="Enter your discount / gift card code">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">Apply</button>
                 </span>

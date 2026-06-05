@@ -111,6 +111,6 @@ class Sale extends Model
 
     public function hasDiscount()
     {
-        return is_numeric($this->discount());
+        return is_object($this->discount);
     }
 }

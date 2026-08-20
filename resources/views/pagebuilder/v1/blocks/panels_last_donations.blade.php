@@ -1,7 +1,6 @@
 <?php
 
 use GameserverApp\Helpers\SiteHelper;
-use GameserverApp\Models\User;
 
 ?>
 
@@ -21,11 +20,15 @@ use GameserverApp\Models\User;
         @forelse( $sales as $sale )
             <tr>
                 <td>
-                    @if($sale->user() instanceof User)
+                    <?php
+                    try {
+                        ?>
                         {!! $sale->user()->showLink() !!}
-                    @else
-                        ?
-                    @endif
+                        <?php
+                    } catch (\Throwable $exception) {
+                        print '?';
+                    }
+                    ?>
                 </td>
                 <td>
                     {{$sale->currency()}} {{$sale->amount()}}

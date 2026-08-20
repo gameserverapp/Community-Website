@@ -1,5 +1,8 @@
 <?php
+
 use GameserverApp\Helpers\SiteHelper;
+use GameserverApp\Models\User;
+
 ?>
 
 @component('partials.v3.frame', [
@@ -18,7 +21,11 @@ use GameserverApp\Helpers\SiteHelper;
         @forelse( $sales as $sale )
             <tr>
                 <td>
-                    {!! $sale->user()->showLink() !!}
+                    @if($sale->user() instanceof User)
+                        {!! $sale->user()->showLink() !!}
+                    @else
+                        ?
+                    @endif
                 </td>
                 <td>
                     {{$sale->currency()}} {{$sale->amount()}}

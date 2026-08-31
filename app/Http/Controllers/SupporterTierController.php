@@ -28,6 +28,11 @@ class SupporterTierController extends Controller
             return view('pages.v3.supporter-tier.disabled');
         }
 
+        $this->validate($request, [
+            'page' => 'nullable|integer',
+            'coupon' => 'nullable|alpha_num|max:32'
+        ]);
+
         $packages = $this->client->allSupporterTiers(route('supporter-tier.index'), request()->get('page', 1));
         
         $this->flashResponse($request);

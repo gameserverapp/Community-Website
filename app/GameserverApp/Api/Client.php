@@ -384,7 +384,10 @@ class Client
     {
         $options = [];
 
-        if (request()->has('coupon')) {
+        if (
+            request()->has('coupon') and
+            strlen(request('coupon')) < 15
+        ) {
             $options['query']['coupon'] = request('coupon');
         }
 

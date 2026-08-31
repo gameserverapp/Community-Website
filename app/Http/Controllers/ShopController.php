@@ -32,6 +32,22 @@ class ShopController extends Controller
             return view('pages.v3.shop.disabled');
         }
 
+        $this->validate($request, [
+            'cluster' => 'nullable|uuid',
+            'gameserver' => 'nullable|integer',
+            'filter' => [
+                'nullable',
+                'string',
+                'regex:/^[a-z0-9_+\-& ]+$/i'
+            ],
+            'search' => [
+                'nullable',
+                'string',
+                'regex:/^[a-z0-9_+\-& ]+$/i'
+            ],
+            'page' => 'nullable|integer',
+        ]);
+
         try {
             $packs = $this->client->shopItems(route('shop.index'), []);
         } catch (ClientException $e) {

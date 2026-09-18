@@ -892,25 +892,27 @@ class Client
 
     public static function exceptionToAlert(\Throwable $exception)
     {
-        $error = json_decode($exception->getResponse()->getBody());
+        try {
+            $error = json_decode($exception->getResponse()->getBody());
 
-        if (
-            isset($error->message) and
-            isset($error->errors)
-        ) {
-            return redirect()->back()
-                             ->withErrors($error->errors)
-                             ->withInput();
-        } elseif (
-            isset($error->message) and
-            ! isset($error->errors)
-        ) {
-            return redirect()->back()
-                             ->withErrors($error->message)
-                             ->withInput();
-        }
+            if (
+                isset($error->message) and
+                isset($error->errors)
+            ) {
+                return redirect()->back()
+                                 ->withErrors($error->errors)
+                                 ->withInput();
+            } elseif (
+                isset($error->message) and
+                ! isset($error->errors)
+            ) {
+                return redirect()->back()
+                                 ->withErrors($error->message)
+                                 ->withInput();
+            }
+        } catch (\Exception $e) {}
 
-        return redirectBackWithAlert('Something went wrong. Please try again or contact the admin.', 'danger');
+        return redirectBackWithAlert('Something went wrong. Please try again or contact the admin.', 'danger')->withInput();
     }
 
     private function api()

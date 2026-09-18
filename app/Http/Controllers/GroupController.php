@@ -55,6 +55,10 @@ class GroupController extends Controller
 
     public function log(Request $request, $id)
     {
+        $this->validate($request, [
+            'page' => 'integer|nullable'
+        ]);
+        
         if(! SiteHelper::featureEnabled('tribe_page')) {
             return view('pages.v3.group.disabled');
         }

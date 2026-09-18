@@ -22,6 +22,10 @@ class NewsController extends Controller
 
     public function index(Request $request)
     {
+        $this->validate($request, [
+            'page' => 'integer|nullable'
+        ]);
+
         $items = $this->client->allNews(
             route('news.index'),
             [

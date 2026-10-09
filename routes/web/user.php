@@ -23,10 +23,10 @@ Route::group([
             'uses' => 'UserController@activity'
         ]);
 
-        Route::get('/{uuid}/about', [
-            'as'   => 'user.about',
-            'uses' => 'UserController@about'
-        ]);
+//        Route::get('/{uuid}/about', [
+//            'as'   => 'user.about',
+//            'uses' => 'UserController@about'
+//        ]);
     });
 
     Route::group([

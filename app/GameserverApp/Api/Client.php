@@ -96,6 +96,11 @@ class Client
         );
     }
 
+    public function reviewSummary()
+    {
+        return $this->api()->guestRequest('get', 'reviews/summary');
+    }
+
     public function characters($sub = false)
     {
         if ($sub) {

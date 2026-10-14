@@ -125,6 +125,26 @@ $(document).ready(function () {
         });
     }
 
+    if ($('.review-carousel').length) {
+
+        $('.review-carousel').each(function() {
+            var count = $(this).data('count') || 3;
+
+            $(this).owlCarousel({
+                items: count,
+                autoPlay: 4000,
+                stopOnHover: true,
+                mouseDrag: false,
+                touchDrag: false,
+                itemsDesktop: false, //5 items between 1000px and 901px
+                itemsDesktopSmall: [1500, 2], // betweem 900px and 601px
+                itemsTablet: [767, 1], //2 items between 600 and 0
+                dots: false
+            });
+        });
+
+    }
+
     if ($('#featureslider').length) {
         $("#featureslider").owlCarousel({
             singleItem: true,

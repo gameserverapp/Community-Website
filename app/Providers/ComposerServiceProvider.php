@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use GameserverApp\Composers\ReviewCarousel;
 use GameserverApp\Composers\ModList;
 use GameserverApp\Composers\PanelsDonationTarget;
 use GameserverApp\Composers\PanelsLastDonations;
@@ -68,6 +69,8 @@ class ComposerServiceProvider extends ServiceProvider
             'top_players'           => TopPlayers::class,
             'last_online'           => LastOnline::class,
             'population_overview'   => PopulationOverview::class,
+
+            'review_carousel'       => ReviewCarousel::class,
 
             'supporter_tier' => SupporterTier::class,
             'shop_pack' => ShopPack::class,

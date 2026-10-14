@@ -2,6 +2,7 @@
 
 namespace GameserverApp\Api;
 
+use App\GameserverApp\Transformers\ReviewTransformer;
 use App\Http\Controllers\SupporterTierController;
 use GameserverApp\Models\Character;
 use GameserverApp\Transformers\CalendarTransformer;
@@ -86,6 +87,13 @@ class Client
     public function serverClaimVote($id)
     {
         return $this->api()->authRequest('post', 'server/' . $id . '/claim-vote');
+    }
+
+    public function recentReviews()
+    {
+        return ReviewTransformer::transformMultiple(
+            $this->api()->guestRequest('get', 'reviews/carousel')
+        );
     }
 
     public function characters($sub = false)

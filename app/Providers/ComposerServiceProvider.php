@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use GameserverApp\Composers\ReviewSummary;
 use GameserverApp\Composers\ReviewCarousel;
 use GameserverApp\Composers\ModList;
 use GameserverApp\Composers\PanelsDonationTarget;
@@ -71,6 +72,7 @@ class ComposerServiceProvider extends ServiceProvider
             'population_overview'   => PopulationOverview::class,
 
             'review_carousel'       => ReviewCarousel::class,
+            'review_summary'        => ReviewSummary::class,
 
             'supporter_tier' => SupporterTier::class,
             'shop_pack' => ShopPack::class,

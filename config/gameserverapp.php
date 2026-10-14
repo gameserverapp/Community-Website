@@ -25,7 +25,8 @@ return [
             'newbies',
             'last_online',
             'top_players',
-            'big_banner'
+            'big_banner',
+            'review_carousel'
         ]
     ],
 

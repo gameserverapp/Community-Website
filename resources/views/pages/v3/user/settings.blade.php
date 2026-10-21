@@ -22,7 +22,7 @@
                     <p>
                         On which email address would you like to be notified?
                     </p>
-                    {!! Form::email('email', old('email', auth()->user()->notifications['email']), array('class' => 'form-control', 'placeholder'=>'Your email address')) !!}
+                    <input type="email" name="email" value="{{ old('email', auth()->user()->notifications['email']) }}" class="form-control" placeholder="Your email address">
 
                     <br>
                     @if(auth()->user()->hasEmailSetup() and !auth()->user()->emailConfirmed())
@@ -45,7 +45,7 @@
                         Only active players can send a message to you.
                     </p>
                     <label>
-                        {!! Form::checkbox('notify_message', 1, old('notify_message', auth()->user()->notifications['notify_message'])) !!}
+                        <input type="checkbox" name="notify_message" value="1" {{ old('notify_message', auth()->user()->notifications['notify_message']) ? 'checked' : '' }}>
                         Notify via email
                     </label>
 
@@ -58,7 +58,7 @@
                         Receive a notification when an in-game webalert is triggered.<br>Webalerts involve: tripwire activation or a baby hatching.
                     </p>
                     <label>
-                        {!! Form::checkbox('notify_webalert', 1, old('notify_webalert', auth()->user()->notifications['notify_webalert'])) !!}
+                        <input type="checkbox" name="notify_webalert" value="1" {{ old('notify_webalert', auth()->user()->notifications['notify_webalert']) ? 'checked' : '' }}>
                         Notify via email
                     </label>
                     <br><br>

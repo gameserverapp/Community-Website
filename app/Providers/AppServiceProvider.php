@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use GameserverApp\Api\Client;
@@ -17,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
+
         Validator::extend('uuid', function ($attribute, $value, $parameters, $validator) {
             return Uuid::isValid($value);
         });

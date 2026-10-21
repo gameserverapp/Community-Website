@@ -4,14 +4,15 @@
     </p>
     <br>
 
-    {!! Form::model($user, ['route'=>['user.kick']]) !!}
+    <form method="post" action="{{route('user.kick')}}">
+        {{csrf_field()}}
 
-    @include('partials.v3.button', [
-        'type' => 'submit',
-        'element' => 'button',
-        'title' => translate('kick_me', 'Kick me'),
-        'class' => 'center btn-theme-gem'
-    ])
+        @include('partials.v3.button', [
+            'type' => 'submit',
+            'element' => 'button',
+            'title' => translate('kick_me', 'Kick me'),
+            'class' => 'center btn-theme-gem'
+        ])
 
-    {!! Form::close() !!}
+    </form>
 @endcomponent

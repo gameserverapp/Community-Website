@@ -9,7 +9,10 @@
  * file that was distributed with this source code.
  */
 
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\Table\TableExtension;
+use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
+use League\CommonMark\Extension\Autolink\AutolinkExtension;
 
 return [
 
@@ -42,8 +45,10 @@ return [
     */
 
     'extensions' => [
+        CommonMarkCoreExtension::class,
         TableExtension::class,
-        League\CommonMark\Extension\Strikethrough\StrikethroughExtension::class,
+        StrikethroughExtension::class,
+//        AutolinkExtension::class,
     ],
 
     /*
@@ -66,58 +71,6 @@ return [
         'inner_separator' => "\n",
         'soft_break'      => "<br>",
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable Em Tag Parsing
-    |--------------------------------------------------------------------------
-    |
-    | This option specifies if `<em>` parsing is enabled.
-    |
-    | Default: true
-    |
-    */
-
-    'enable_em' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable Strong Tag Parsing
-    |--------------------------------------------------------------------------
-    |
-    | This option specifies if `<strong>` parsing is enabled.
-    |
-    | Default: true
-    |
-    */
-
-    'enable_strong' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable Asterisk Parsing
-    |--------------------------------------------------------------------------
-    |
-    | This option specifies if `*` should be parsed for emphasis.
-    |
-    | Default: true
-    |
-    */
-
-    'use_asterisk' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable Underscore Parsing
-    |--------------------------------------------------------------------------
-    |
-    | This option specifies if `_` should be parsed for emphasis.
-    |
-    | Default: true
-    |
-    */
-
-    'use_underscore' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -144,5 +97,18 @@ return [
     */
 
     'allow_unsafe_links' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Maximum Nesting Level
+    |--------------------------------------------------------------------------
+    |
+    | This option specifies the maximum nesting level for blocks.
+    |
+    | Default: PHP_INT_MAX
+    |
+    */
+
+    'max_nesting_level' => PHP_INT_MAX,
 
 ];

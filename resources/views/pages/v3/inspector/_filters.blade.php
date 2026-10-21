@@ -1,9 +1,9 @@
 <h4>Search for</h4>
 <label>
-    {!! Form::radio('search_type', 'character', Request::get('search_type') == 'character' or !Request::has('search_type')) !!} &nbsp; Character
+    <input type="radio" name="search_type" value="character" {{ (Request::get('search_type') == 'character' or !Request::has('search_type')) ? 'checked' : '' }}> &nbsp; Character
 </label><br>
 <label>
-    {!! Form::radio('search_type', 'tribe', Request::get('search_type') == 'tribe') !!} &nbsp; {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}}
+    <input type="radio" name="search_type" value="tribe" {{ Request::get('search_type') == 'tribe' ? 'checked' : '' }}> &nbsp; {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}}
 </label>
 
 <div id="tribeSearch" class="searchFilters @if(Request::has('search_type') and Request::get('search_type') == 'tribe') show @endif">
@@ -17,11 +17,11 @@
         <h4>Gender</h4>
 
         <label>
-            {!! Form::checkbox('gender-m', 1, Request::get('gender-m')) !!} Male
+            <input type="checkbox" name="gender-m" value="1" {{ Request::get('gender-m') ? 'checked' : '' }}> Male
         </label>
         <br>
         <label>
-            {!! Form::checkbox('gender-f', 1, Request::get('gender-f')) !!} Female
+            <input type="checkbox" name="gender-f" value="1" {{ Request::get('gender-f') ? 'checked' : '' }}> Female
         </label>
     </div>
 
@@ -31,11 +31,11 @@
         <h4>{{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}} status</h4>
 
         <label>
-            {!! Form::checkbox('has_tribe-y', 1, Request::get('has_tribe-y')) !!} Part of {{ GameserverApp\Helpers\SiteHelper::groupName()}}
+            <input type="checkbox" name="has_tribe-y" value="1" {{ Request::get('has_tribe-y') ? 'checked' : '' }}> Part of {{ GameserverApp\Helpers\SiteHelper::groupName()}}
         </label>
         <br>
         <label>
-            {!! Form::checkbox('has_tribe-n', 1, Request::get('has_tribe-n')) !!} Without {{ GameserverApp\Helpers\SiteHelper::groupName()}}
+            <input type="checkbox" name="has_tribe-n" value="1" {{ Request::get('has_tribe-n') ? 'checked' : '' }}> Without {{ GameserverApp\Helpers\SiteHelper::groupName()}}
         </label>
     </div>
 
@@ -57,14 +57,17 @@
         }
         ?>
 
-        {!! Form::select('order_by', $orderBy, Request::get('order_by')) !!}
+        <select name="order_by">
+            @foreach($orderBy as $key => $val)
+                <option value="{{ $key }}" {{ Request::get('order_by') == $key ? 'selected' : '' }}>{{ $val }}</option>
+            @endforeach
+        </select>
         <br>
 
-        {!! Form::select('order', [
-            'asc' => 'Ascending',
-            'desc' => 'Descending'
-        ],
-        Request::get('order')) !!}
+        <select name="order">
+            <option value="asc" {{ Request::get('order') == 'asc' ? 'selected' : '' }}>Ascending</option>
+            <option value="desc" {{ Request::get('order') == 'desc' ? 'selected' : '' }}>Descending</option>
+        </select>
 
     </div>
 
@@ -72,12 +75,12 @@
         <hr>
 
         <label>
-            {!! Form::checkbox('only_online', 1, Request::get('only_online')) !!} Show online only
+            <input type="checkbox" name="only_online" value="1" {{ Request::get('only_online') ? 'checked' : '' }}> Show online only
         </label>
     @endif
 
     {{--<label>--}}
-    {{--{!! Form::checkbox('only_donators', 1, Request::get('only_donators')) !!} Show donators only--}}
+    {{--<input type="checkbox" name="only_donators" value="1" {{ Request::get('only_donators') ? 'checked' : '' }}> Show donators only--}}
     {{--</label>--}}
 
 </div>
@@ -92,7 +95,7 @@
         @foreach($servers as $server)
 
             <label>
-                {!! Form::checkbox('server_' . $server->id, 1, Request::get('server_' . $server->id)) !!} {{$server->name()}}
+                <input type="checkbox" name="server_{{ $server->id }}" value="1" {{ Request::get('server_' . $server->id) ? 'checked' : '' }}> {{$server->name()}}
             </label><br>
 
         @endforeach

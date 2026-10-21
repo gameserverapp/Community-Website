@@ -36,38 +36,35 @@
                             {{ ucfirst(GameserverApp\Helpers\SiteHelper::groupName())}} settings
                         </h3>
                     </div>
-                    <div class="panel-body">
+                    <form method="post" action="{{route('tribe.settings.save', $tribe->id)}}">
+                        {{csrf_field()}}
+                        <div class="panel-body">
 
-                        {!! Form::model($tribe, ['route'=>['tribe.settings.save', $tribe->id]]) !!}
+                            <strong>
+                                Message of the Day
+                            </strong>
+                            <p class="small">
+                                This is your {{ GameserverApp\Helpers\SiteHelper::groupName()}}'s MOTD. This will also be shown in-game, when a {{ GameserverApp\Helpers\SiteHelper::groupName()}}member logs in!
+                            </p>
+                            <textarea name="motd" class="form-control" placeholder="No MOTD yet...">{{ old('motd', $tribe->motd) }}</textarea>
 
-                        <strong>
-                            Message of the Day
-                        </strong>
-                        <p class="small">
-                            This is your {{ GameserverApp\Helpers\SiteHelper::groupName()}}'s MOTD. This will also be shown in-game, when a {{ GameserverApp\Helpers\SiteHelper::groupName()}}member logs in!
-                        </p>
-                        {!! Form::textarea('motd', old('motd'), array('class' => 'form-control', 'placeholder'=>'No MOTD yet...')) !!}
+                            <hr>
 
-                        {{--<br>--}}
-                        {{--{!! Form::checkbox('no-motd', 1, array('class' => 'form-control')) !!} No MOTD--}}
+                            <strong>
+                                'About' message
+                            </strong>
+                            <p class="small">
+                                With the 'about' message you can leave a good impression to visitors
+                            </p>
+                            <textarea name="about" class="form-control" placeholder="About {{ $tribe->name }}...">{{ old('about', $tribe->about) }}</textarea>
 
-                        <hr>
+                        </div>
 
-                        <strong>
-                            'About' message
-                        </strong>
-                        <p class="small">
-                            With the 'about' message you can leave a good impression to visitors
-                        </p>
-                        {!! Form::textarea('about', old('about'), array('class' => 'form-control', 'placeholder'=>'About ' . $tribe->name . '...')) !!}
+                        <div class="panel-footer">
+                            <input type="submit" class="btn champ small right" value="Save settings">
+                        </div>
 
-                    </div>
-
-                    <div class="panel-footer">
-                        {!! Form::submit('Save settings', array('class' => 'btn champ small right')) !!}
-                    </div>
-
-                    {!! Form::close() !!}
+                    </form>
                 </div>
 
                 @include('partials.frame.simple-bottom')
@@ -84,7 +81,8 @@
                     </div>
 
                     @if( $tribe->discordSetup() )
-                    {!! Form::model($tribe, ['route'=>['tribe.discord.save', $tribe->id], 'method' => 'post']) !!}
+                        <form method="post" action="{{route('tribe.discord.save', $tribe->id)}}">
+                            {{csrf_field()}}
                     @endif
                     <div class="panel-body">
 
@@ -124,7 +122,7 @@
                                     @endif
                                 @endforeach
                             </select>
-                            {!! Form::submit('Save channel', array('class' => 'btn champ  small')) !!}
+                            <input type="submit" class="btn champ small" value="Save channel">
 
                         @else
                             <div class="alert alert-warning">
@@ -135,17 +133,20 @@
                         @endif
                     </div>
 
-                    {!! Form::close() !!}
+                    @if( $tribe->discordSetup() )
+                        </form>
+                    @endif
 
 
                     @if( $tribe->discordSetup() )
 
                         <div class="panel-footer">
-                            {!! Form::model($tribe, ['route'=>['tribe.discord.disconnect', $tribe->id], 'method' => 'post']) !!}
-                            <div class="">
-                                {!! Form::submit('Disconnect Discord', array('class' => 'btn champ inverted  small')) !!}
-                            </div>
-                            {!! Form::close() !!}
+                            <form method="post" action="{{route('tribe.discord.disconnect', $tribe->id)}}">
+                                {{csrf_field()}}
+                                <div class="">
+                                    <input type="submit" class="btn champ inverted small" value="Disconnect Discord">
+                                </div>
+                            </form>
                         </div>
                     @endif
                 </div>

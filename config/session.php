@@ -176,4 +176,19 @@ return [
 
     'http_only' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Same-Site Cookies
+    |--------------------------------------------------------------------------
+    |
+    | This option determines how your cookies behave when cross-site requests
+    | take place, and can be used to mitigate CSRF attacks. By default, we
+    | do not set this value so the browser default behavior will be used.
+    |
+    | Supported: "lax", "strict", "none", null
+    |
+    */
+
+    'same_site' => null,
+
 ];

@@ -36,17 +36,18 @@
 
                 <div style="padding-top:10px;">
 
-                    {!! Form::model($subUser, ['route'=>['user.sub_user.disconnect', $subUser->id], 'method' => 'post']) !!}
+                    <form method="post" action="{{route('user.sub_user.disconnect', $subUser->id)}}">
+                        {{csrf_field()}}
 
-                    @include('partials.v3.button', [
-                        'type' => 'submit',
-                        'element' => 'button',
-                        'title' => translate('disconnect', 'Disconnect'),
-                        'class' => 'center small',
-                        'dusk' => 'disconnect'
-                    ])
+                        @include('partials.v3.button', [
+                            'type' => 'submit',
+                            'element' => 'button',
+                            'title' => translate('disconnect', 'Disconnect'),
+                            'class' => 'center small',
+                            'dusk' => 'disconnect'
+                        ])
 
-                    {!! Form::close() !!}
+                    </form>
 
                 </div>
 
@@ -82,7 +83,8 @@
 
         @endif
 
-        {!! Form::model($user, ['route'=>['user.sub_user.connect'], 'method' => 'post']) !!}
+        <form method="post" action="{{route('user.sub_user.connect')}}">
+            {{csrf_field()}}
 
         <h4>Alternative connect methods</h4>
         <p>
@@ -136,7 +138,7 @@
             </button>
         </div>
 
-        {!! Form::close() !!}
+        </form>
     </div>
 
 

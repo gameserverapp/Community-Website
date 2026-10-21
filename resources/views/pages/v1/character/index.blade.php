@@ -85,7 +85,8 @@
         <div class="modal fade" id="giveTokens" tabindex="-1" role="dialog" aria-labelledby="giveTokensLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    {!! Form::open(['route'=>['token.givetoplayer', $character->user->uuid ], 'method' => 'post']) !!}
+                    <form method="post" action="{{route('token.givetoplayer', $character->user->uuid)}}">
+                        {{csrf_field()}}
 
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -105,13 +106,13 @@
                             </p>
 
                             <div class="form-group">
-                                {!! Form::label('amount', 'Give amount:', ['for' => 'amount' ]) !!}
-                                {!! Form::number('amount', 0, array('class' => 'form-control')) !!}
+                                <label for="amount">Give amount:</label>
+                                <input type="number" name="amount" id="amount" value="0" class="form-control">
                             </div>
 
                             <div class="form-group">
-                                {!! Form::label('description', 'Description (optional):', ['for' => 'description' ]) !!}
-                                {!! Form::textarea('description', '', array('class' => 'form-control', 'rows' => 3)) !!}
+                                <label for="description">Description (optional):</label>
+                                <textarea name="description" id="description" class="form-control" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -119,7 +120,7 @@
                             <button type="submit" class="btn btn-success">Send tokens</button>
                         </div>
 
-                    {!! Form::close() !!}
+                    </form>
                 </div>
             </div>
         </div>

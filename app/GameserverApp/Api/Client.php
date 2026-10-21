@@ -28,7 +28,6 @@ use GameserverApp\Transformers\TransactionTransformer;
 use GameserverApp\Transformers\GroupTransformer;
 use GameserverApp\Transformers\UserTransformer;
 use Illuminate\Support\Facades\Cache;
-use function GuzzleHttp\Psr7\build_query;
 
 class Client
 {
@@ -342,7 +341,7 @@ class Client
 
     public function allNews($route, $args = [])
     {
-        $response = $this->api()->guestRequest('get', 'news?' . build_query($args), [], 2);
+        $response = $this->api()->guestRequest('get', 'news?' . http_build_query($args), [], 2);
 
         if (! isset($response->items)) {
             return new LengthAwarePaginator(

@@ -27,6 +27,24 @@
 
             <h4 class="title"><span>{{str_limit($item->name(), 30)}}</span></h4>
 
+            <?php
+            $percentage = calcPercentage($item->limit(), $item->usage());
+            ?>
+
+            <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                     aria-valuemax="100" style="width: {{$percentage}}%">
+                </div>
+
+                <div class="detail">
+                    {{$item->displayLimits()}}
+
+                    @if($item->limit())
+                        <i>({{$percentage}}%)</i>
+                    @endif
+                </div>
+            </div>
+
             <div class="costs">
                 <span>{!! $item->displayTotalPrice() !!}</span>
             </div>

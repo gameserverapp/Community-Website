@@ -39,6 +39,24 @@
                 {{$package->name()}}
             </h2>
 
+            <?php
+            $percentage = calcPercentage($package->limit(), $package->usage());
+            ?>
+
+            <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                     aria-valuemax="100" style="width: {{$percentage}}%">
+                </div>
+
+                <div class="detail">
+                    {{$package->displayLimits()}}
+
+                    @if($package->limit())
+                        <i>({{$percentage}}%)</i>
+                    @endif
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
 

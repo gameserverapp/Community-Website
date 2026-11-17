@@ -6,7 +6,7 @@
     padding:20px;
     margin-bottom:30px;
     text-align: center;
-    max-height:425px;
+    max-height:440px;
 
     @include box-shadow(0 0 30px -15px #000);
 
@@ -77,7 +77,7 @@
     .progress {
         position: relative;
         max-width:200px;
-        margin:1rem auto 3rem;
+        margin:1rem auto 1rem;
         background-color:var(--medium-text);
 
         .progress-bar {

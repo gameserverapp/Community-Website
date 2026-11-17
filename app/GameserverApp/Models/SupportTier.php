@@ -50,6 +50,10 @@ class SupportTier extends Model implements LinkableInterface
             $label[] = $this->cluster() . ' only';
         }
 
+        if($this->gameserver()) {
+            $label[] = $this->gameserver() . ' only';
+        }
+
         return $label;
     }
 
@@ -169,6 +173,71 @@ class SupportTier extends Model implements LinkableInterface
     public function cluster()
     {
         return $this->cluster;
+    }
+
+    public function gameserver()
+    {
+        return $this->gameserver;
+    }
+
+    public function gateway()
+    {
+        return $this->gateway;
+    }
+
+    public function characterLevelRestriction()
+    {
+        return $this->character_level_restriction;
+    }
+
+    public function characterLevelRestrictions()
+    {
+        return $this->character_level_restriction;
+    }
+
+    public function usage()
+    {
+        if(!isset($this->limit->used) or !$this->limit->used) {
+            return 0;
+        }
+
+        return $this->limit->used;
+    }
+
+    public function limit()
+    {
+        return $this->limit->limit ?? false;
+    }
+
+    public function limitDays()
+    {
+        return $this->limit->limit_days ?? false;
+    }
+
+    public function hasLimits()
+    {
+        if($this->limit() == 0 and $this->limitDays() == 0) {
+            return 1;
+        }
+
+        if($this->limit() == 1 and $this->limitDays() == 365) {
+            return 2;
+        }
+
+        if($this->limit() == 1 and $this->limitDays() != 365) {
+            return 3;
+        }
+
+        if($this->limit() != 1 and $this->limitDays() > 0) {
+            return 4;
+        }
+
+        return 1;
+    }
+
+    public function displayLimits()
+    {
+        return $this->limit->limit_text ?? false;
     }
 
     public function hasPaymentProviders()

@@ -20,23 +20,27 @@ class SupportTierTransformer extends ModelTransformer implements ModelTransforme
     public static function transformableInput($args)
     {
         $data = [
-            'id'                  => $args->id,
-            'name'                => $args->name,
-            'description'         => $args->description,
-            'total_price'         => $args->total_price,
-            'discounted_price'    => $args->discounted_price,
-            'discount_percentage' => $args->discount_percentage,
-            'discount_amount'     => $args->discount_amount,
-            'personal_discount'   => $args->personal_discount,
-            'currency'            => $args->currency,
-            'type'                => $args->type,
-            'image'               => $args->image,
-            'requires_discord'    => $args->requires_discord,
-            'requires_character'  => $args->requires_character,
-            'requires_gameserver' => $args->requires_gameserver,
-            'cluster'             => $args->cluster,
-            'order_url'           => $args->order_url,
-            'payment_providers'   => $args->psp
+            'id'                          => $args->id,
+            'name'                        => $args->name,
+            'description'                 => $args->description,
+            'total_price'                 => $args->total_price,
+            'discounted_price'            => $args->discounted_price,
+            'discount_percentage'         => $args->discount_percentage,
+            'discount_amount'             => $args->discount_amount,
+            'personal_discount'           => $args->personal_discount,
+            'currency'                    => $args->currency,
+            'gateway'                     => $args->gateway ?? null,
+            'type'                        => $args->type,
+            'image'                       => $args->image,
+            'limit'                       => $args->limit ?? false,
+            'requires_discord'            => $args->requires_discord,
+            'requires_character'          => $args->requires_character,
+            'requires_gameserver'         => $args->requires_gameserver,
+            'cluster'                     => $args->cluster,
+            'gameserver'                  => $args->gameserver ?? false,
+            'character_level_restriction' => $args->character_level_restriction ?? false,
+            'order_url'                   => $args->order_url,
+            'payment_providers'           => $args->psp
         ];
 
         if (
@@ -44,6 +48,8 @@ class SupportTierTransformer extends ModelTransformer implements ModelTransforme
             $args->characters
         ) {
             $data['characters'] = CharacterTransformer::transformMultiple($args->characters);
+        } else {
+            $data['characters'] = false;
         }
 
         if (
@@ -51,6 +57,8 @@ class SupportTierTransformer extends ModelTransformer implements ModelTransforme
             $args->gameservers
         ) {
             $data['gameservers'] = ServerTransformer::transformMultiple($args->gameservers);
+        } else {
+            $data['gameservers'] = false;
         }
 
         return $data;

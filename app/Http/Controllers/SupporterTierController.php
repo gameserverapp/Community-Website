@@ -83,6 +83,46 @@ class SupporterTierController extends Controller
                     ]);
                     break;
 
+                case 'limit-reached':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'You have reached the order limit for this Supporter Tier.',
+                        'stay'    => true
+                    ]);
+                    break;
+
+                case 'subscription-limit-reached':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'You already have an active subscription (for this Supporter Tier).',
+                        'stay'    => true
+                    ]);
+                    break;
+
+                case 'level-restriction-error':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'Your character does not meet the level requirements for this Supporter Tier.',
+                        'stay'    => true
+                    ]);
+                    break;
+
+                case 'role-restriction-error':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'You do not have the required role to order this Supporter Tier.',
+                        'stay'    => true
+                    ]);
+                    break;
+
+                case 'delivery-restriction-error':
+                    session()->flash('alert', [
+                        'status'  => 'warning',
+                        'message' => 'This Supporter Tier cannot be delivered to the selected character or game server.',
+                        'stay'    => true
+                    ]);
+                    break;
+
                 case 'discord-error':
                     session()->flash('alert', [
                         'status'  => 'warning',

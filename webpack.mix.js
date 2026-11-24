@@ -1,8 +1,5 @@
-let mix  = require('laravel-mix');
+let mix = require('laravel-mix');
 
-var browserify = require('browserify');
-var fs = require('fs');
-// var LiveReloadPlugin = require('webpack-livereload-plugin');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -14,38 +11,29 @@ var fs = require('fs');
  |
  */
 
-// mix.webpackConfig({
-//     plugins: [
-//         new LiveReloadPlugin()
-//     ]
-// });
-
-
-// mix.copy('./resources/assets/js/app.js', './public/build/js/app.js');
-
-var b = browserify();
-b.add('./resources/assets/js/app.js');
-b.bundle().pipe(fs.createWriteStream('./public/js/app.js'));
-
+mix.autoload({
+    jquery: ['$', 'jQuery']
+});
 
 mix.copy('node_modules/bootstrap/fonts', 'public/build/fonts')
     .copy('resources/assets/vendor/owl.carousel/owl-carousel/*.gif', 'public/build/css/AjaxLoader.gif');
 
-mix.scripts([
-    './public/js/app.js',
-    './node_modules/moment/moment.js',
-    './node_modules/fullcalendar/dist/fullcalendar.js',
-], './public/js/bundle.js').version();
-
+mix.js('resources/assets/js/app.js', 'public/js/app.js')
+    .scripts([
+        './public/js/app.js',
+        './node_modules/moment/moment.js',
+        './node_modules/fullcalendar/dist/fullcalendar.js',
+    ], './public/js/bundle.js')
+    .version();
 
 mix.sass('resources/assets/sass/style.scss', 'build/css')
     .combine([
-            'node_modules/fullcalendar/dist/fullcalendar.css',
-            'node_modules/bootstrap/dist/css/bootstrap.css',
-            'node_modules/simplemde/dist/simplemde.min.css',
-            'resources/assets/vendor/owl.carousel/owl-carousel/owl.carousel.css',
-            'resources/assets/vendor/owl.carousel/owl-carousel/owl.theme.css',
-            'resources/assets/vendor/owl.carousel/owl-carousel/owl.transitions.css',
-            'public/build/css/style.css',
+        'node_modules/fullcalendar/dist/fullcalendar.css',
+        'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/easymde/dist/easymde.min.css',
+        'resources/assets/vendor/owl.carousel/owl-carousel/owl.carousel.css',
+        'resources/assets/vendor/owl.carousel/owl-carousel/owl.theme.css',
+        'resources/assets/vendor/owl.carousel/owl-carousel/owl.transitions.css',
+        'public/build/css/style.css',
     ], 'public/css/style.css')
     .version();

@@ -2,7 +2,7 @@ window.$ = window.jQuery = require('jquery');
 var bootstrap = require('bootstrap'),
     owlCarousel = require('./../vendor/owl.carousel/owl-carousel/owl.carousel.js'),
     flot = require('flot'),
-    SimpleMDE = require('simplemde');
+    EasyMDE = require('easymde');
 
 require('flot/jquery.flot.time.js');
 require('flot/excanvas.js');
@@ -225,10 +225,11 @@ $(document).ready(function () {
         if ($('body').width() <= 499) {
             return;
         }
-        var simplemde = new SimpleMDE({
+        var simplemde = new EasyMDE({
             toolbar: ["bold", "italic", "|", "unordered-list", "ordered-list", "|", "link", "image", "|", "quote"],
             spellChecker: false,
             status: false,
+            autoDownloadFontAwesome: false,
             element: $(".simplemde")[0]
         });
     }

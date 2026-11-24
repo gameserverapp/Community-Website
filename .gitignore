@@ -22,3 +22,5 @@ npm-debug.log
 public/core
 /public/mix-manifest.json
 /.idea
+/AGENTS.md
+/.phpunit.result.cache

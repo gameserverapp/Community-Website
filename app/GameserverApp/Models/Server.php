@@ -69,7 +69,7 @@ class Server extends Model implements LinkableInterface
 
     public function displayLabel()
     {
-        return '<div class="label label-theme alternative server">' . $this->name() . '</div>';
+        return '<div class="label label-theme alternative server">' . e($this->name()) . '</div>';
     }
 
     public function online()

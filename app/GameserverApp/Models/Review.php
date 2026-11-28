@@ -32,7 +32,7 @@ class Review extends Model
 
     public function commentWithBr()
     {
-        return str_replace('\n', '<br>', strip_tags($this->comment));
+        return str_replace('\n', '<br>', e($this->comment));
     }
 
     public function user()

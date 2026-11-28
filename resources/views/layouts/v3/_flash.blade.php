@@ -53,7 +53,7 @@ try {
                 </button>
             @endif
 
-            {!! $error_msg['message'] ?? ''!!}
+            {{ $error_msg['message'] ?? '' }}
         </div>
     @endif
 <?php

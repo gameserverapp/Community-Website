@@ -32,7 +32,7 @@ if(in_array($message->receiver->id, auth()->user()->allUserIds())) {
             <?php
             $title = $message->subject;
 
-            $title = ucfirst($title) . ' &nbsp; <small class="label label-theme">' . $message->date('created_at')->diffForHumans() . '</small>';
+            $title = e(ucfirst($title)) . ' &nbsp; <small class="label label-theme">' . e($message->date('created_at')->diffForHumans()) . '</small>';
             ?>
 
             @component('partials.v3.frame', ['type' => 'big' , 'title' => $title])

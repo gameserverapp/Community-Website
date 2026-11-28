@@ -126,8 +126,15 @@ class UserController extends Controller
                 true
             );
 
+            $allowedAlertTypes = ['success', 'info', 'warning', 'danger', 'error'];
+            $alertType = $request->get('alert_type', 'success');
+
+            if (! in_array($alertType, $allowedAlertTypes, true)) {
+                $alertType = 'info';
+            }
+
             session()->flash('alert', [
-                'status'  => $request->get('alert_type', 'success'),
+                'status'  => $alertType,
                 'message' => $request->get('alert'),
                 'stay'    => true
             ]);

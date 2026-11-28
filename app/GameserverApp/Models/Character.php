@@ -179,7 +179,7 @@ class Character extends Model implements LinkableInterface
             $options['limit'] = 99;
         }
 
-        $name = str_limit($this->name(), $options['limit'], '...');
+        $name = e(str_limit($this->name(), $options['limit'], '...'));
 
         if(isset($options['suffix'])) {
             $name .= $options['suffix'];
@@ -235,7 +235,7 @@ class Character extends Model implements LinkableInterface
             $title .= 'Supporter <3 | ';
         }
 
-        $title .= 'Online with character \'' . $this->name() . '\' since ' . $this->date('status_since')->diffForHumans();
+        $title .= 'Online with character \'' . e($this->name()) . '\' since ' . e($this->date('status_since')->diffForHumans());
 
         $class = $size . ' ' . implode(' ', $class);
 

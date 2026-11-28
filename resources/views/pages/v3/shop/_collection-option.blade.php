@@ -163,7 +163,7 @@ if($item->hasLabel()) {
                                 'class' => 'btn-theme-rock center',
                                 'confirm_modal' => [
                                     'title' => 'Confirm your purchase',
-                                    'text' => 'You are about to purchase "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '.',
+                                    'text' => 'You are about to purchase "<strong>' . e($item->name()) . '</strong>" for ' . e($item->displayTokenPriceTextOnly()) . '.',
                                     'form_id' => $formId
                                 ],
                                 'dusk' => 'order-now'
@@ -206,7 +206,7 @@ if($item->hasLabel()) {
                                 'class' => 'btn-theme-rock center',
                                 'confirm_modal' => [
                                     'title' => 'Confirm your purchase',
-                                    'text' => 'You are about to purchase "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '.',
+                                    'text' => 'You are about to purchase "<strong>' . e($item->name()) . '</strong>" for ' . e($item->displayTokenPriceTextOnly()) . '.',
                                     'form_id' => $formId
                                 ],
                                 'dusk' => 'order-now'
@@ -222,7 +222,7 @@ if($item->hasLabel()) {
                             'class' => 'btn-theme-rock center',
                             'confirm_modal' => [
                                 'title' => 'Confirm your purchase',
-                                'text' => 'You are about to purchase "<strong>' . $item->name() . '</strong>" for ' . $item->displayTokenPriceTextOnly() . '.',
+                                'text' => 'You are about to purchase "<strong>' . e($item->name()) . '</strong>" for ' . e($item->displayTokenPriceTextOnly()) . '.',
                                 'form_id' => $formId
                             ],
                             'dusk' => 'order-now'

@@ -48,7 +48,7 @@ use GameserverApp\Helpers\SiteHelper;
 
     if ($user->hasCharacters()) {
         $characters = $user->characters->map(function ($char) {
-            $name = '<span class="char_pic" style="background-image:url(' . $char->image() . ')"></span>' . $char->showName();
+            $name = '<span class="char_pic" style="background-image:url(' . e($char->image()) . ')"></span>' . $char->showName();
 
             if ($char->hasServer()) {
                 $name .= $char->server->displayLabel();
@@ -75,7 +75,7 @@ use GameserverApp\Helpers\SiteHelper;
             return $item->id;
         })->map(function($item) {
             return [
-                'title' => $item->name . ' ' . $item->displayServerClusterLabel(),
+                'title' => e($item->name) . ' ' . $item->displayServerClusterLabel(),
                 'route' => route('group.show', $item->id)
             ];
         });

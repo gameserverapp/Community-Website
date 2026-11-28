@@ -15,8 +15,8 @@ if(isset($title)) {
         isset($data['options'])
     )
         <div class="stat_canvas"
-             data-data='{!! json_encode($data['data']) !!}'
-             data-options='{!!json_encode($data['options'])!!}'></div>
+             data-data='{!! json_encode($data['data'], JSON_HEX_APOS | JSON_HEX_TAG) !!}'
+             data-options='{!! json_encode($data['options'], JSON_HEX_APOS | JSON_HEX_TAG) !!}'></div>
     @else
         <em>Failed to load data.</em>
     @endif

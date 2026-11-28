@@ -295,11 +295,11 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
 
         if (isset($options['disable_link']) or !SiteHelper::featureEnabled('user_page')) {
             $output[] = '<span class="accountlink-name">';
-            $output[] = '<span itemprop="name">' . $this->name($options['limit']) . '</span>';
+            $output[] = '<span itemprop="name">' . e($this->name($options['limit'])) . '</span>';
             $output[] = '</span>';
         } else {
             $output[] = '<a class="accountlink" href="' . $url . '" itemprop="url">';
-            $output[] = '<span itemprop="name">' . $this->name($options['limit']) . '</span>';
+            $output[] = '<span itemprop="name">' . e($this->name($options['limit'])) . '</span>';
             $output[] = '</a>';
         }
 
@@ -329,7 +329,7 @@ class User extends Model implements LinkableInterface, AuthenticatableContract, 
             $title .= 'Supporter <3 | ';
         }
 
-        $title .= 'Online with character \'' . $this->name() . '\'';
+        $title .= 'Online with character \'' . e($this->name()) . '\'';
 
         $class = $size . ' ' . implode(' ', $class);
 

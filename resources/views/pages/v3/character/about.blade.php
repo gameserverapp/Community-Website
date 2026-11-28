@@ -30,7 +30,7 @@
         <div class="col-md-8">
 
             @component('partials.v3.frame', [
-                'title' => 'About ' . $character->name()
+                'title' => 'About ' . e($character->name())
             ])
                 @if($character->hasAbout())
                     {!! Markdown::convertToHtml($character->about()) !!}

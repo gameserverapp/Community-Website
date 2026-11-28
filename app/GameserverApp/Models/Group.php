@@ -172,11 +172,11 @@ class Group extends Model implements LinkableInterface
     public function displayServerClusterLabel()
     {
         if($this->hasServer()) {
-            return '<div class="label label-theme alternative">' . $this->server->name() . '</div>';
+            return '<div class="label label-theme alternative">' . e($this->server->name()) . '</div>';
         }
 
         if($this->hasCluster()) {
-            return '<div class="label label-theme alternative">' . $this->cluster->name() . '</div>';
+            return '<div class="label label-theme alternative">' . e($this->cluster->name()) . '</div>';
         }
     }
 
@@ -192,11 +192,11 @@ class Group extends Model implements LinkableInterface
 
         if (isset($options['disable_link'])) {
             $output[] = '<span class="tribelink-name">';
-            $output[] = '<span itemprop="name">' . str_limit($this->name(), $options['limit'], '...') . '</span>';
+            $output[] = '<span itemprop="name">' . e(str_limit($this->name(), $options['limit'], '...')) . '</span>';
             $output[] = '</span>';
         } else {
             $output[] = '<a class="tribelink" href="' . $url . '" itemprop="url">';
-            $output[] = '<span itemprop="name">' . str_limit($this->name(), $options['limit'], '...') . '</span>';
+            $output[] = '<span itemprop="name">' . e(str_limit($this->name(), $options['limit'], '...')) . '</span>';
             $output[] = '</a>';
         }
 

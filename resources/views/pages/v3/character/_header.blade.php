@@ -97,7 +97,7 @@ use GameserverApp\Helpers\SiteHelper;
         if($character->hasGroup()) {
             $groups = $character->groups->map(function($group) {
                 return [
-                    'title' => $group->name(),
+                    'title' => e($group->name()),
                     'route' => route('group.show', $group->id)
                 ];
             });
@@ -128,7 +128,7 @@ use GameserverApp\Helpers\SiteHelper;
             $characters = $character->user->characters->filter(function($char) use ($character) {
                 return $char->id != $character->id;
             })->map(function($char) {
-                $name = '<span class="char_pic" style="background-image:url(' . $char->image() . ')"></span>' . $char->showName();
+                $name = '<span class="char_pic" style="background-image:url(' . e($char->image()) . ')"></span>' . $char->showName();
 
                 if($char->hasServer()) {
                     $name .= $char->server->displayLabel();

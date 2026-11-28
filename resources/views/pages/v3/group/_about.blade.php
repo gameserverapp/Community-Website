@@ -1,4 +1,4 @@
-@component('partials.v3.frame', ['class' => 'about', 'title' => $group->name()])
+@component('partials.v3.frame', ['class' => 'about', 'title' => e($group->name())])
     <p>
         @if(!empty($group->about()))
             {!! nl2br(e($group->about())) !!}

@@ -239,7 +239,9 @@
                                         $('#generatedCode').val(data.success);
                                         $codeResult.show();
                                     } else if (data.error) {
-                                        $statusDiv.html('<div class="alert alert-danger">' + data.error + '</div>');
+                                        $statusDiv.empty().append(
+                                            $('<div class="alert alert-danger"></div>').text(data.error)
+                                        );
                                     } else {
                                         $statusDiv.html('<div class="alert alert-danger">Unexpected response format.</div>');
                                     }

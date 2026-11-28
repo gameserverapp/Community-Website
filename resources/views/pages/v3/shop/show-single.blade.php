@@ -131,7 +131,7 @@ $formId = md5($package->orderUrl());
                                     'class' => 'btn-theme-rock',
                                     'confirm_modal' => [
                                         'title' => 'Confirm your purchase',
-                                        'text' => 'You are about to purchase "<strong>' . $package->name() . $nameSuffix . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '.',
+                                        'text' => 'You are about to purchase "<strong>' . e($package->name() . $nameSuffix) . '</strong>" for ' . e($package->displayTokenPriceTextOnly()) . '.',
                                         'form_id' => $formId
                                     ],
                                     'dusk' => 'order-now'
@@ -285,7 +285,7 @@ $formId = md5($package->orderUrl());
                                         'class' => 'btn-theme-rock',
                                         'confirm_modal' => [
                                             'title' => 'Confirm your purchase',
-                                            'text' => 'You are about to purchase "<strong>' . $package->name() . '</strong>" for ' . $package->displayTokenPriceTextOnly() . '.',
+                                            'text' => 'You are about to purchase "<strong>' . e($package->name()) . '</strong>" for ' . e($package->displayTokenPriceTextOnly()) . '.',
                                             'form_id' => $formId
                                         ],
                                         'dusk' => 'order-now'
